@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import Node from './Node/Node';
+import React, { Component } from "react";
+import Node from "./Node/Node";
 
-import './Grid.css';
+import "./Grid.css";
 
 export default class Grid extends Component {
   gridSetup = () => {
     let nodes = [];
-    for (let row = 0; row < 51; row++) {
+    for (let row = 0; row < 50; row++) {
       let current_row = [];
       for (let col = 0; col < 30; col++) {
         current_row.push([]);

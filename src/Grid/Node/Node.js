@@ -3,7 +3,7 @@ import "./Node.css";
 
 export default class Node extends Component {
   state = {
-    start: false,
+    current_status: false,
     finish: false,
     visited: false,
   };
@@ -29,20 +29,22 @@ export default class Node extends Component {
       this.setState({ start: true });
     } else if (start && !finish) {
       this.setState({ start: false, finish: true });
-    }
-  };
-
-  downHandler = () => {
-    const { start, finish, visited } = this.state;
-
-    if (!start && !finish) {
-      this.setState({ start: true });
-    } else if (start && !finish) {
-      this.setState({ finish: false });
-    } else if (finish && !start) {
+    } else {
       this.setState({ start: false, finish: false });
     }
   };
+
+  // downHandler = () => {
+  //   const { start, finish, visited } = this.state;
+
+  //   if (!start && !finish) {
+  //     this.setState({ start: true });
+  //   } else if (start && !finish) {
+  //     this.setState({ finish: false });
+  //   } else {
+  //     this.setState({ start: false, finish: false });
+  //   }
+  // };
 
   render() {
     return (
