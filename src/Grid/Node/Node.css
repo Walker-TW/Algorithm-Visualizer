@@ -8,3 +8,11 @@
 .Visited {
   background-color: aquamarine;
 }
+
+.Start {
+  background-color: greenyellow;
+}
+
+.Finish {
+  background-color: red;
+}
