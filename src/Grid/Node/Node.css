@@ -1,0 +1,10 @@
+.Node {
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  background-color: white;
+}
+
+.Visited {
+  background-color: aquamarine;
+}

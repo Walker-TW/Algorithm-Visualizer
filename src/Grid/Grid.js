@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Node from './Nodes/Node';
+import Node from './Node/Node';
 
 import './Grid.css';
 
@@ -21,7 +21,7 @@ export default class Grid extends Component {
       <div className="Grid">
         {this.gridSetup().map((row) => {
           return (
-            <div className="Row">
+            <div className="Column">
               {row.map((col) => (
                 <Node />
               ))}
