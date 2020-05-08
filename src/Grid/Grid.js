@@ -1,21 +1,32 @@
-import React, { Component } from "react";
-import Node from "./Node/Node";
+import React, { Component } from 'react';
+import Node from './Node/Node';
 
-import "./Grid.css";
+import './Grid.css';
 
 export default class Grid extends Component {
   state = {
+    grid: [],
     start: {
       present: false,
-      coordinates: [],
+      coordinates: {
+        rowIndex: 0,
+        colIndex: 0,
+      },
     },
-    end: {
+    finish: {
       present: false,
-      coordinates: [],
+      coordinates: {
+        rowIndex: 0,
+        colIndex: 0,
+      },
     },
   };
 
   // defineStart = (index) => {};
+
+  componentDidMount() {
+    this.setState({ grid: this.gridSetup() });
+  }
 
   gridSetup = () => {
     let nodes = [];
@@ -29,16 +40,37 @@ export default class Grid extends Component {
     return nodes;
   };
 
+  startNodeFlag = (gridId) => {
+    this.setState({
+      start: {
+        present: true,
+        gridId: gridId,
+      },
+    });
+  };
+
+  finishNodeFlag = (gridId) => {
+    this.setState({
+      finish: {
+        present: true,
+        gridId: gridId,
+      },
+    });
+  };
+
   render() {
+    const { grid } = this.state;
     return (
       <div className="Grid">
-        {this.gridSetup().map((row, colIndex) => {
+        {grid.map((row, colIndex) => {
           return (
             <div className="Column" key={colIndex.toString()}>
               {row.map((col, rowIndex) => (
                 <Node
-                  key={colIndex.toString() + " " + rowIndex.toString()}
+                  key={colIndex.toString() + ' ' + rowIndex.toString()}
                   gridId={{ rowIndex: rowIndex, colIndex: colIndex }}
+                  flagStart={this.startNodeFlag}
+                  flagFinish={this.finishNodeFlag}
                 />
               ))}
             </div>

@@ -39,3 +39,6 @@ sketch
 
 .prettierrc
 .vscode
+
+src/Algorithms
+Scratch.js
