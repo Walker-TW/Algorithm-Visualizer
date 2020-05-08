@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import Node from './Node/Node';
+import React, { Component } from "react";
+import Node from "./Node/Node";
 
-import './Grid.css';
+import "./Grid.css";
 
 export default class Grid extends Component {
   state = {
@@ -34,10 +34,10 @@ export default class Grid extends Component {
       <div className="Grid">
         {this.gridSetup().map((row, colIndex) => {
           return (
-            <div className="Column">
+            <div className="Column" key={colIndex.toString()}>
               {row.map((col, rowIndex) => (
                 <Node
-                  key={colIndex.toString() + ' ' + rowIndex.toString()}
+                  key={colIndex.toString() + " " + rowIndex.toString()}
                   gridId={{ rowIndex: rowIndex, colIndex: colIndex }}
                 />
               ))}

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import './Node.css';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import "./Node.css";
+import PropTypes from "prop-types";
 
 export default class Node extends Component {
   state = {
@@ -34,23 +34,22 @@ export default class Node extends Component {
   // };
 
   render() {
-    const classes = ['Node'];
+    const classes = ["Node"];
     const { start, finish, visited } = this.state;
 
     if (start) {
-      classes.push('start');
+      classes.push("start");
     } else if (finish) {
-      classes.push('finish');
+      classes.push("finish");
     } else if (visited) {
-      classes.push('visited');
+      classes.push("visited");
     }
-    console.log('Created');
 
     return (
       <div
         // onMouseDown={() => this.downHandler()}
         onClick={this.clickHandler}
-        className={classes.join(' ')}
+        className={classes.join(" ")}
       ></div>
     );
   }
