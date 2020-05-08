@@ -1,0 +1,15 @@
+Give all nodes an infinity property
+
+Create an array to hold all visted nodes (in order)
+
+Create a method/array with all unvisted nodes
+
+Set the start node distance to 0 (lets rename it)
+
+Have a method that finds the neightbours of our visted nodes
+and then updates their distances
+
+Get a method that gets all nodes
+
+Make a method that finds all nodes in the shortest path
+- this can be done by going backwards from our sorted node path

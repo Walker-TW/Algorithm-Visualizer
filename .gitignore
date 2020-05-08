@@ -40,5 +40,4 @@ sketch
 .prettierrc
 .vscode
 
-src/Algorithms
-Scratch.js
+src/Algorithms/cDijkstra.js
