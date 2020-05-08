@@ -3,17 +3,14 @@ import './Node.css';
 import PropTypes from 'prop-types';
 
 export default class Node extends Component {
-  // constructor(props){
-  //   super(props) {
   state = {
     current_status: false,
     finish: false,
     visited: false,
   };
-  // };
-  // }
+
   clickHandler = () => {
-    const { start, finish, visited } = this.state;
+    const { start, finish } = this.state;
 
     if (!start && !finish) {
       this.setState({ start: true });
@@ -59,4 +56,7 @@ export default class Node extends Component {
   }
 }
 
+Node.propTypes = {
+  gridId: PropTypes.object.isRequired,
+};
 //

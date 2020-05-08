@@ -15,7 +15,7 @@ export default class Grid extends Component {
     },
   };
 
-  defineStart = (index) => {};
+  // defineStart = (index) => {};
 
   gridSetup = () => {
     let nodes = [];
