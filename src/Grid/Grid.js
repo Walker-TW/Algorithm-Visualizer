@@ -32,11 +32,14 @@ export default class Grid extends Component {
   render() {
     return (
       <div className="Grid">
-        {this.gridSetup().map((row, rowIndex) => {
+        {this.gridSetup().map((row, colIndex) => {
           return (
             <div className="Column">
-              {row.map((col, colIndex) => (
-                <Node key={colIndex.toString() + ' ' + rowIndex.toString()} />
+              {row.map((col, rowIndex) => (
+                <Node
+                  key={colIndex.toString() + ' ' + rowIndex.toString()}
+                  gridId={{ rowIndex: rowIndex, colIndex: colIndex }}
+                />
               ))}
             </div>
           );
