@@ -5,6 +5,14 @@
   background-color: white;
 }
 
-.Visited {
+.visited {
   background-color: aquamarine;
+}
+
+.start {
+  background-color: rgb(206, 47, 255);
+}
+
+.finish {
+  background-color: yellow;
 }

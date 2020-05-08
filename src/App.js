@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import Grid from './Grid/Grid';
+import React, { Component } from "react";
+import Grid from "./Grid/Grid";
 
-import './App.css';
+import "./App.css";
 
 export default class App extends Component {
   render() {
