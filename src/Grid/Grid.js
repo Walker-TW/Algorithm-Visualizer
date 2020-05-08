@@ -1,9 +1,22 @@
-import React, { Component } from "react";
-import Node from "./Node/Node";
+import React, { Component } from 'react';
+import Node from './Node/Node';
 
-import "./Grid.css";
+import './Grid.css';
 
 export default class Grid extends Component {
+  state = {
+    start: {
+      present: false,
+      coordinates: [],
+    },
+    end: {
+      present: false,
+      coordinates: [],
+    },
+  };
+
+  defineStart = (index) => {};
+
   gridSetup = () => {
     let nodes = [];
     for (let row = 0; row < 50; row++) {
@@ -19,11 +32,11 @@ export default class Grid extends Component {
   render() {
     return (
       <div className="Grid">
-        {this.gridSetup().map((row) => {
+        {this.gridSetup().map((row, rowIndex) => {
           return (
             <div className="Column">
-              {row.map((col) => (
-                <Node />
+              {row.map((col, colIndex) => (
+                <Node key={colIndex.toString() + ' ' + rowIndex.toString()} />
               ))}
             </div>
           );
