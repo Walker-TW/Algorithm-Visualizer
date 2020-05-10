@@ -8,14 +8,14 @@ import { shallowToJson } from "enzyme-to-json";
 import { shallow, mount, render } from "enzyme";
 
 test("Node renders", () => {
-  const component = renderer.create(<Node />).toJSON();
+  const component = renderer.create(<Node flagStart={{}} />).toJSON();
 
   expect(component).toMatchSnapshot();
 });
 
 describe("node", () => {
   const output = shallow(<Node />);
-  it("should render with a sate of false", () => {
+  it("Test that Node renders", () => {
     const output = shallow(<Node />);
     expect(shallowToJson(output)).toMatchSnapshot();
   });
@@ -26,4 +26,15 @@ describe("node", () => {
     expect(output.state().distance).toEqual(Infinity);
     expect(output.state().visited).toEqual(false);
   });
+
+  it("changes to a start node when clicked once", () => {
+    expect(output.state().start).toEqual(false);
+    output.simulate("click");
+    expect(output.state().start).toEqual(true);
+  });
+
+  // this doesnt work as the test has no way to access the grid function flagStart()
+  // Maybe I need to render the Grid then check the Node?
+  // That or do the test within the Grid test place and then from there choose a node by the ID
+  // Then check the CSS colour or check the state?
 });
