@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> renders 1`] = `
+<Button
+  active={false}
+  disabled={false}
+  type="button"
+  variant="primary"
+>
+  <button
+    className="btn btn-primary"
+    disabled={false}
+    type="button"
+  >
+    Dijkstra
+  </button>
+</Button>
+`;

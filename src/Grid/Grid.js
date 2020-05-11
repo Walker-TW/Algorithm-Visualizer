@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import Node from './Node/Node';
+import React, { Component } from "react";
+import Node from "./Node/Node";
+import { dijkstra } from "./../Algorithms/Scratch";
 
-import './Grid.css';
+import "./Grid.css";
 
 export default class Grid extends Component {
   state = {
@@ -22,10 +23,18 @@ export default class Grid extends Component {
     },
   };
 
+  // const { start.coordinates, finish.coordinates } = this.state
+  // const { start, finish } = this.state
+
   // defineStart = (index) => {};
 
   componentDidMount() {
     this.setState({ grid: this.gridSetup() });
+  }
+
+  testDijkstra() {
+    console.log(this.state);
+    const startNode = this.start.coordinates;
   }
 
   gridSetup = () => {
@@ -67,7 +76,7 @@ export default class Grid extends Component {
             <div className="Column" key={colIndex.toString()}>
               {row.map((col, rowIndex) => (
                 <Node
-                  key={colIndex.toString() + ' ' + rowIndex.toString()}
+                  key={colIndex.toString() + " " + rowIndex.toString()}
                   gridId={{ rowIndex: rowIndex, colIndex: colIndex }}
                   flagStart={this.startNodeFlag}
                   flagFinish={this.finishNodeFlag}
