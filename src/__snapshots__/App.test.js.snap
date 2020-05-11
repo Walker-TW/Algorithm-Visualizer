@@ -13,9 +13,10 @@ exports[`App renders 1`] = `
       <button
         className="btn btn-primary"
         disabled={false}
+        onClick={[Function]}
         type="button"
       >
-        Dijkstra
+        Let's Run Dijkstra
       </button>
     </div>
     <br />

@@ -4,15 +4,17 @@ exports[`<Header /> renders 1`] = `
 <Button
   active={false}
   disabled={false}
+  onClick={[Function]}
   type="button"
   variant="primary"
 >
   <button
     className="btn btn-primary"
     disabled={false}
+    onClick={[Function]}
     type="button"
   >
-    Dijkstra
+    Let's Run Dijkstra
   </button>
 </Button>
 `;

@@ -11,7 +11,7 @@ exports[`<Grid /> renders 1`] = `
       class="btn btn-primary"
       type="button"
     >
-      Dijkstra
+      Let's Run Dijkstra
     </button>
   </div>
   <br />
