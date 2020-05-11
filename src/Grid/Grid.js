@@ -38,6 +38,10 @@ export default class Grid extends Component {
     const startNode = this.start.coordinates;
   }
 
+  testing = () => {
+    console.log("x");
+  };
+
   gridSetup = () => {
     let nodes = [];
     for (let row = 0; row < 50; row++) {
@@ -73,7 +77,10 @@ export default class Grid extends Component {
     return (
       <div className="Grid">
         <div className="Button">
-          <Header />
+          <Header
+            startNode={this.state.start.coordinates}
+            endNode={this.state.finish.coordinates}
+          />
         </div>
         <br />
         {grid.map((row, colIndex) => {
