@@ -20,3 +20,8 @@ export class Header extends Component {
 }
 
 export default Header;
+
+Header.propTypes = {
+  startNode: PropTypes.object.isRequired,
+  endNode: PropTypes.object.isRequired,
+};
