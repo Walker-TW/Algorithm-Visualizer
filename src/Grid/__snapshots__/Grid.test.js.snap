@@ -3,5 +3,17 @@
 exports[`<Grid /> renders 1`] = `
 <div
   class="Grid"
-/>
+>
+  <div
+    class="Button"
+  >
+    <button
+      class="btn btn-primary"
+      type="button"
+    >
+      Dijkstra
+    </button>
+  </div>
+  <br />
+</div>
 `;

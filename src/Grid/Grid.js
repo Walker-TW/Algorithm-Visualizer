@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Node from "./Node/Node";
+import Header from "../Header/Header";
 import { dijkstra } from "./../Algorithms/Scratch";
 
 import "./Grid.css";
@@ -71,6 +72,10 @@ export default class Grid extends Component {
     const { grid } = this.state;
     return (
       <div className="Grid">
+        <div className="Button">
+          <Header />
+        </div>
+        <br />
         {grid.map((row, colIndex) => {
           return (
             <div className="Column" key={colIndex.toString()}>

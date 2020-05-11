@@ -4,16 +4,21 @@ exports[`App renders 1`] = `
 <div
   className="App"
 >
-  <button
-    className="btn btn-primary"
-    disabled={false}
-    type="button"
-  >
-    Dijkstra
-  </button>
   <div
     className="Grid"
   >
+    <div
+      className="Button"
+    >
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        type="button"
+      >
+        Dijkstra
+      </button>
+    </div>
+    <br />
     <div
       className="Column"
     >
