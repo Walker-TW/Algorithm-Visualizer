@@ -1,23 +1,23 @@
-import React, { Component } from "react";
-import Node from "./Node/Node";
-import Header from "../Header/Header";
-import { dijkstra } from "./../Algorithms/Scratch";
+import React, { Component } from 'react';
+import Node from './Node/Node';
+import Header from '../Header/Header';
+import { dijkstra } from './../Algorithms/Scratch';
 
-import "./Grid.css";
+import './Grid.css';
 
 export default class Grid extends Component {
   state = {
     grid: [],
     start: {
       present: false,
-      coordinates: {
+      gridId: {
         rowIndex: 0,
         colIndex: 0,
       },
     },
     finish: {
       present: false,
-      coordinates: {
+      gridId: {
         rowIndex: 0,
         colIndex: 0,
       },
@@ -39,7 +39,7 @@ export default class Grid extends Component {
   }
 
   testing = () => {
-    console.log("x");
+    console.log('x');
   };
 
   gridSetup = () => {
@@ -73,14 +73,11 @@ export default class Grid extends Component {
   };
 
   render() {
-    const { grid } = this.state;
+    const { grid, start, finish } = this.state;
     return (
       <div className="Grid">
         <div className="Button">
-          <Header
-            startNode={this.state.start.coordinates}
-            endNode={this.state.finish.coordinates}
-          />
+          <Header startNode={start.gridId} endNode={finish.gridId} />
         </div>
         <br />
         {grid.map((row, colIndex) => {
@@ -88,7 +85,7 @@ export default class Grid extends Component {
             <div className="Column" key={colIndex.toString()}>
               {row.map((col, rowIndex) => (
                 <Node
-                  key={colIndex.toString() + " " + rowIndex.toString()}
+                  key={colIndex.toString() + ' ' + rowIndex.toString()}
                   gridId={{ rowIndex: rowIndex, colIndex: colIndex }}
                   flagStart={this.startNodeFlag}
                   flagFinish={this.finishNodeFlag}
