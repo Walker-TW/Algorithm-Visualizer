@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Node from './Node/Node';
 import Header from '../Header/Header';
-import { dijkstra } from './../Algorithms/Scratch';
 
 import './Grid.css';
 
@@ -33,25 +32,27 @@ export default class Grid extends Component {
     this.setState({ grid: this.gridSetup() });
   }
 
-  testDijkstra() {
-    console.log(this.state);
-    const startNode = this.start.coordinates;
-  }
-
-  testing = () => {
-    console.log('x');
+  createNode = (gridId) => {
+    return {
+      gridId,
+      start: false,
+      finish: false,
+      distance: Infinity,
+      visited: false,
+    };
   };
 
   gridSetup = () => {
-    let nodes = [];
-    for (let row = 0; row < 50; row++) {
+    let grid = [];
+    for (let row = 0; row < 10; row++) {
       let current_row = [];
-      for (let col = 0; col < 30; col++) {
-        current_row.push([]);
+      for (let col = 0; col < 10; col++) {
+        const coordinates = { rowIndex: row, colIndex: col };
+        current_row.push(this.createNode(coordinates));
       }
-      nodes.push(current_row);
+      grid.push(current_row);
     }
-    return nodes;
+    return grid;
   };
 
   startNodeFlag = (gridId) => {
@@ -94,6 +95,7 @@ export default class Grid extends Component {
             </div>
           );
         })}
+        {console.log(grid)}
       </div>
     );
   }
