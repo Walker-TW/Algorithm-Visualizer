@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import Node from './Node/Node';
-import Header from '../Header/Header';
+import React, { Component } from "react";
+import Node from "./Node/Node";
+import Header from "../Header/Header";
 
-import './Grid.css';
+import "./Grid.css";
 
 export default class Grid extends Component {
   state = {
@@ -79,7 +79,11 @@ export default class Grid extends Component {
     return (
       <div className="Grid">
         <div className="Button">
-          <Header startNode={start.gridId} endNode={finish.gridId} />
+          <Header
+            grid={grid}
+            startNode={start.gridId}
+            endNode={finish.gridId}
+          />
         </div>
         <br />
         {grid.map((row, colIndex) => {
@@ -87,7 +91,7 @@ export default class Grid extends Component {
             <div className="Column" key={colIndex.toString()}>
               {row.map((node, rowIndex) => (
                 <Node
-                  key={colIndex.toString() + ' ' + rowIndex.toString()}
+                  key={colIndex.toString() + " " + rowIndex.toString()}
                   gridId={node.gridId}
                   flagStart={this.startNodeFlag}
                   flagFinish={this.finishNodeFlag}

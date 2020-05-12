@@ -1,4 +1,6 @@
-Give all nodes an infinity property
+Give all nodes an infinity property X
+- Then change the start nodes distance to 0
+- Make sure I can update all of the nodes
 
 Create an array to hold all visted nodes (in order)
 

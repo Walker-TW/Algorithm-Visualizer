@@ -1,19 +1,20 @@
-import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { Button } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 export class Header extends Component {
-  testDijkstra = (startNode, endNode) => {
-    console.log(this.props);
-    console.log(startNode, 'Look a start node');
-    console.log(endNode, 'Look an end node');
+  testDijkstra = (grid, startNode, endNode) => {
+    const start = grid[startNode.rowIndex][startNode.colIndex];
+    const end = grid[endNode.rowIndex][endNode.colIndex];
+    console.log(start);
+    console.log(end);
   };
 
   render() {
-    const { startNode, endNode } = this.props;
+    const { grid, startNode, endNode } = this.props;
     return (
       <Button
-        onClick={() => this.testDijkstra(startNode, endNode)}
+        onClick={() => this.testDijkstra(grid, startNode, endNode)}
         variant="primary"
       >
         Let's Run Dijkstra
