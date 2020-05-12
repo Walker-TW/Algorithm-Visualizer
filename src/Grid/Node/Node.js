@@ -1,16 +1,15 @@
-import React, { Component } from "react";
-import "./Node.css";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import './Node.css';
+import PropTypes from 'prop-types';
 
 export default class Node extends Component {
   state = {
     start: false,
     finish: false,
-    distance: Infinity,
-    visited: false,
   };
 
-  clickHandler = () => {
+  // click handler has to update the object and the
+  clickHandler = (e) => {
     const { start, finish } = this.state;
     const { flagStart, flagFinish, gridId } = this.props;
     if (!start && !finish) {
@@ -24,36 +23,20 @@ export default class Node extends Component {
     }
   };
 
-  // downHandler = () => {
-  //   const { start, finish, visited } = this.state;
-
-  //   if (!start && !finish) {
-  //     this.setState({ start: true });
-  //   } else if (start && !finish) {
-  //     this.setState({ finish: false });
-  //   } else {
-  //     this.setState({ start: false, finish: false });
-  //   }
-  // };
-
   render() {
-    const classes = ["Node"];
+    const classes = ['Node'];
     const { start, finish, visited } = this.state;
 
     if (start) {
-      classes.push("start");
+      classes.push('start');
     } else if (finish) {
-      classes.push("finish");
+      classes.push('finish');
     } else if (visited) {
-      classes.push("visited");
+      classes.push('visited');
     }
 
     return (
-      <div
-        // onMouseDown={() => this.downHandler()}
-        onClick={this.clickHandler}
-        className={classes.join(" ")}
-      ></div>
+      <div onClick={this.clickHandler} className={classes.join(' ')}></div>
     );
   }
 }

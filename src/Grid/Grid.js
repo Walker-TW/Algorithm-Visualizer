@@ -47,8 +47,8 @@ export default class Grid extends Component {
     for (let row = 0; row < 10; row++) {
       let current_row = [];
       for (let col = 0; col < 10; col++) {
-        const coordinates = { rowIndex: row, colIndex: col };
-        current_row.push(this.createNode(coordinates));
+        const gridId = { rowIndex: row, colIndex: col };
+        current_row.push(this.createNode(gridId));
       }
       grid.push(current_row);
     }
@@ -75,6 +75,7 @@ export default class Grid extends Component {
 
   render() {
     const { grid, start, finish } = this.state;
+
     return (
       <div className="Grid">
         <div className="Button">
@@ -84,10 +85,10 @@ export default class Grid extends Component {
         {grid.map((row, colIndex) => {
           return (
             <div className="Column" key={colIndex.toString()}>
-              {row.map((col, rowIndex) => (
+              {row.map((node, rowIndex) => (
                 <Node
                   key={colIndex.toString() + ' ' + rowIndex.toString()}
-                  gridId={{ rowIndex: rowIndex, colIndex: colIndex }}
+                  gridId={node.gridId}
                   flagStart={this.startNodeFlag}
                   flagFinish={this.finishNodeFlag}
                 />
@@ -95,7 +96,6 @@ export default class Grid extends Component {
             </div>
           );
         })}
-        {console.log(grid)}
       </div>
     );
   }

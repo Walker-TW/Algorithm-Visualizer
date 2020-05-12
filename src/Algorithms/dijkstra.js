@@ -1,3 +1,3 @@
 const dijkstra = (grid, start, finish) => {
-  const unvisitedNotes = [];
+  const unvisitedNodes = grid;
 };
