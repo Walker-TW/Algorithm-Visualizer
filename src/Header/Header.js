@@ -1,25 +1,30 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+import { Alert, Spinner, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
+import { dijkstra } from "../Algorithms/dijkstra";
 
 export class Header extends Component {
   testDijkstra = (grid, startNode, endNode) => {
+    console.log(startNode);
     const start = grid[startNode.rowIndex][startNode.colIndex];
-    const end = grid[endNode.rowIndex][endNode.colIndex];
-    console.log(start);
-    console.log(end);
+    const finish = grid[endNode.rowIndex][endNode.colIndex];
+    dijkstra(grid, start, finish);
   };
 
   render() {
     const { grid, startNode, endNode } = this.props;
-    return (
-      <Button
-        onClick={() => this.testDijkstra(grid, startNode, endNode)}
-        variant="primary"
-      >
-        Let's Run Dijkstra
-      </Button>
-    );
+    if (startNode.rowIndex != null && endNode.rowIndex != null) {
+      return (
+        <Button
+          onClick={() => this.testDijkstra(grid, startNode, endNode)}
+          variant="primary"
+        >
+          Let's Run Dijkstra
+        </Button>
+      );
+    } else {
+      return <Alert variant="primary">Please Choose A Start & End Node</Alert>;
+    }
   }
 }
 

@@ -10,23 +10,18 @@ export default class Grid extends Component {
     start: {
       present: false,
       gridId: {
-        rowIndex: 0,
-        colIndex: 0,
+        rowIndex: null,
+        colIndex: null,
       },
     },
     finish: {
       present: false,
       gridId: {
-        rowIndex: 0,
-        colIndex: 0,
+        rowIndex: null,
+        colIndex: null,
       },
     },
   };
-
-  // const { start.coordinates, finish.coordinates } = this.state
-  // const { start, finish } = this.state
-
-  // defineStart = (index) => {};
 
   componentDidMount() {
     this.setState({ grid: this.gridSetup() });
