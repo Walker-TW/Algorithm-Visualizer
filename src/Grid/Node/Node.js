@@ -4,46 +4,48 @@ import PropTypes from 'prop-types';
 
 export default class Node extends Component {
   state = {
-    start: false,
-    finish: false,
+    isStart: false,
+    isFinish: false,
   };
 
-  // click handler has to update the object and the
-  clickHandler = (e) => {
-    const { start, finish } = this.state;
-    const { flagStart, flagFinish, gridId } = this.props;
-    if (!start && !finish) {
-      this.setState({ start: true });
+  clickHandler = () => {
+    const { isStart, isFinish } = this.state;
+
+    const { flagStart, flagFinish, gridId, updateNode } = this.props;
+
+    if (!isStart && !isFinish) {
+      this.setState({ isStart: true });
       flagStart(gridId);
-    } else if (start && !finish) {
-      this.setState({ start: false, finish: true });
+      updateNode(gridId);
+    } else if (isStart && !isFinish) {
+      this.setState({ isStart: false, isFinish: true });
       flagFinish(gridId);
+      updateNode(gridId);
     } else {
-      this.setState({ start: false, finish: false });
+      this.setState({ isStart: false, isFinish: false });
+      updateNode(gridId);
     }
   };
 
   render() {
     const classes = ['Node'];
-    const { start, finish, visited } = this.state;
+    const { isStart, isFinish, visited } = this.state;
 
-    if (start) {
+    if (isStart) {
       classes.push('start');
-    } else if (finish) {
+    } else if (isFinish) {
       classes.push('finish');
     } else if (visited) {
       classes.push('visited');
     }
 
-    return (
-      <div onClick={this.clickHandler} className={classes.join(' ')}></div>
-    );
+    return <div onClick={this.clickHandler} className={classes.join(' ')} />;
   }
 }
 
 Node.propTypes = {
   gridId: PropTypes.object.isRequired,
+  updateNode: PropTypes.func.isRequired,
   flagStart: PropTypes.func.isRequired,
   flagFinish: PropTypes.func.isRequired,
 };
-//

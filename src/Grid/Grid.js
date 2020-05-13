@@ -23,11 +23,6 @@ export default class Grid extends Component {
     },
   };
 
-  // const { start.coordinates, finish.coordinates } = this.state
-  // const { start, finish } = this.state
-
-  // defineStart = (index) => {};
-
   componentDidMount() {
     this.setState({ grid: this.gridSetup() });
   }
@@ -35,8 +30,8 @@ export default class Grid extends Component {
   createNode = (gridId) => {
     return {
       gridId,
-      start: false,
-      finish: false,
+      isStart: false,
+      isFinish: false,
       distance: Infinity,
       visited: false,
     };
@@ -73,6 +68,25 @@ export default class Grid extends Component {
     });
   };
 
+  updateNode = (gridId) => {
+    const { grid, start, finish } = this.state;
+
+    const node = grid[gridId.rowIndex][gridId.colIndex];
+
+    if (!start.present && !finish.present) {
+      this.startNodeFlag(gridId);
+      node.isStart = true;
+      node.isFinish = false;
+    } else if (start.present && !finish.present) {
+      this.finishNodeFlag(gridId);
+      node.isStart = false;
+      node.isFinish = true;
+    } else {
+      node.isStart = false;
+      node.isFinish = false;
+    }
+  };
+
   render() {
     const { grid, start, finish } = this.state;
 
@@ -89,6 +103,7 @@ export default class Grid extends Component {
                 <Node
                   key={colIndex.toString() + ' ' + rowIndex.toString()}
                   gridId={node.gridId}
+                  updateNode={this.updateNode}
                   flagStart={this.startNodeFlag}
                   flagFinish={this.finishNodeFlag}
                 />
