@@ -4,22 +4,17 @@ export function dijkstra(grid, start, finish) {
   // If a start node is not chosen then it will set all nodes to 0
   // so make a check to be sure that it exists!!!
   const unvisitedNodes = getNodes(grid);
-  console.log(unvisitedNodes);
+  checkGridIs(unvisitedNodes);
   while (!!unvisitedNodes.length) {
-    sortNodesByDistance(unvisitedNodes);
+    sortUnvistedDistance(unvisitedNodes);
     console.log("1");
     const closestNode = unvisitedNodes.shift();
     console.log("2");
-    console.log(closestNode, "Closest Node");
     if (closestNode.distance === Infinity) return nodesVisited;
     closestNode.visited = true;
-
-    console.log(closestNode, "closestnode2");
-
     console.log("3");
     nodesVisited.push(closestNode);
     console.log("4");
-    checkVisited(unvisitedNodes);
     if (closestNode === finish) return nodesVisited;
 
     console.log(closestNode, finish, "comparison");
@@ -40,19 +35,21 @@ function getNodes(grid) {
   return allNodes;
 }
 
-function checkVisited(unvistedNodes) {
-  for (let i = 0; i < unvistedNodes.length; i++) {
-    console.log(unvistedNodes[i].visited);
+function checkGridIs(unvisitedNodes) {
+  for (let i = 0; i < unvisitedNodes.gridID; i++) {
+    console.log(unvisitedNodes[i].visited, "GridIds");
   }
 }
 
-function sortNodesByDistance(unvisitedNodes) {
+function sortUnvistedDistance(unvisitedNodes) {
   unvisitedNodes.sort((node1, node2) => node1.distance - node2.distance);
+  console.log("sortUnvistedDistance");
 }
 
 function updateUnvisitedNeighbors(node, grid) {
   const unvisitedNeighbors = getUnvisitedNeighbors(node, grid);
   for (const neighbor of unvisitedNeighbors) {
+    console.log("updateVisitedNeighbours");
     console.log(neighbor, "neighbour");
     console.log(node, "node");
     neighbor.distance = node.distance + 1;
@@ -65,25 +62,27 @@ function updateUnvisitedNeighbors(node, grid) {
 
 function getUnvisitedNeighbors(node, grid) {
   const neighbors = [];
-  const { col, row } = node;
+  const { colIndex, rowIndex } = node.gridId;
   // creates an object with the index of the node
   // these are all checks
-  if (row > 0) neighbors.push(grid[row - 1][col]);
+  if (rowIndex > 0) neighbors.push(grid[rowIndex - 1][colIndex]);
   // if the row is not 0 then push into neighbours the node (0 indexed)
-  if (row < grid.length - 1) neighbors.push(grid[row + 1][col]);
+  if (rowIndex < grid.length - 1) neighbors.push(grid[rowIndex + 1][colIndex]);
   // if the row is smaller than the grid length push into neighbours the node (+1)
-  if (col > 0) neighbors.push(grid[row][col - 1]);
+  if (colIndex > 0) neighbors.push(grid[rowIndex][colIndex - 1]);
   // if column is smaller than 0 push in neighbours 0 indexed
-  if (col < grid[0].length - 1) neighbors.push(grid[row][col + 1]);
+  if (colIndex < grid[0].length - 1)
+    neighbors.push(grid[rowIndex][colIndex + 1]);
   // and if ????
   return neighbors.filter((neighbor) => !neighbor.visited);
   // return the neighbours that have not been visted(which ic listed in the state)
 }
 
-export function getNodesInShortestPathOrder(finishNode) {
+export function getNodesInShortestPathOrder(endNode) {
+  console.log(endNode, "getNodesInShortestPathOrder");
   const nodesInShortestPathOrder = [];
   // current node == the final node
-  let currentNode = finishNode;
+  let currentNode = endNode;
   while (currentNode !== null) {
     // while you still have nodes
     nodesInShortestPathOrder.unshift(currentNode);

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Alert, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
-import { dijkstra } from "../Algorithms/dijkstra";
+import { dijkstra, getNodesInShortestPathOrder } from "../Algorithms/dijkstra";
 
 export class Header extends Component {
   testDijkstra = (grid, startNode, endNode) => {
@@ -10,8 +10,11 @@ export class Header extends Component {
     console.log(endNode, "Your End Node");
     const start = grid[startNode.rowIndex][startNode.colIndex];
     const finish = grid[endNode.rowIndex][endNode.colIndex];
-    const x = dijkstra(grid, start, finish);
-    console.log(x);
+    const resultOfDijkstra = dijkstra(grid, start, finish);
+    const y = getNodesInShortestPathOrder(
+      resultOfDijkstra[resultOfDijkstra.length - 1]
+    );
+    console.log(y, "getNodesInShortestPathOrder");
   };
 
   render() {
