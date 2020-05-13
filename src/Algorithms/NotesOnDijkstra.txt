@@ -4,9 +4,7 @@ Give all nodes an infinity property X
 
 Create an array to hold all visted nodes (in order) X
 
-Create a method/array with all unvisted nodes
-
-Set the start node distance to 0 (lets rename it)
+Create a method/array with all unvisted nodes X
 
 Have a method that finds the neightbours of our visted nodes
 and then updates their distances

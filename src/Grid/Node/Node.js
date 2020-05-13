@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import './Node.css';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import "./Node.css";
+import PropTypes from "prop-types";
 
 export default class Node extends Component {
   state = {
@@ -11,11 +11,21 @@ export default class Node extends Component {
   // click handler has to update the object and the
   clickHandler = (e) => {
     const { start, finish } = this.state;
-    const { flagStart, flagFinish, gridId } = this.props;
+    const { flagStart, gridId } = this.props;
     if (!start && !finish) {
       this.setState({ start: true });
       flagStart(gridId);
-    } else if (start && !finish) {
+    } else {
+      this.setState({ start: false, finish: false });
+    }
+  };
+
+  contextMenuHandler = (e) => {
+    e.preventDefault();
+    console.log("Right click baybee");
+    const { finish } = this.state;
+    const { flagFinish, gridId } = this.props;
+    if (!finish) {
       this.setState({ start: false, finish: true });
       flagFinish(gridId);
     } else {
@@ -24,19 +34,23 @@ export default class Node extends Component {
   };
 
   render() {
-    const classes = ['Node'];
+    const classes = ["Node"];
     const { start, finish, visited } = this.state;
 
     if (start) {
-      classes.push('start');
+      classes.push("start");
     } else if (finish) {
-      classes.push('finish');
+      classes.push("finish");
     } else if (visited) {
-      classes.push('visited');
+      classes.push("visited");
     }
 
     return (
-      <div onClick={this.clickHandler} className={classes.join(' ')}></div>
+      <div
+        onClick={this.clickHandler}
+        onContextMenu={this.contextMenuHandler}
+        className={classes.join(" ")}
+      ></div>
     );
   }
 }

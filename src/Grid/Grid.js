@@ -34,6 +34,7 @@ export default class Grid extends Component {
       finish: false,
       distance: Infinity,
       visited: false,
+      pastNode: null,
     };
   };
 
@@ -70,7 +71,6 @@ export default class Grid extends Component {
 
   render() {
     const { grid, start, finish } = this.state;
-
     return (
       <div className="Grid">
         <div className="Button">

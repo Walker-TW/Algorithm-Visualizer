@@ -1,14 +1,17 @@
 import React, { Component } from "react";
-import { Alert, Spinner, Button } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { dijkstra } from "../Algorithms/dijkstra";
 
 export class Header extends Component {
   testDijkstra = (grid, startNode, endNode) => {
-    console.log(startNode);
+    console.log(grid, "Your grid");
+    console.log(startNode, "Your StartNode");
+    console.log(endNode, "Your End Node");
     const start = grid[startNode.rowIndex][startNode.colIndex];
     const finish = grid[endNode.rowIndex][endNode.colIndex];
-    dijkstra(grid, start, finish);
+    const x = dijkstra(grid, start, finish);
+    console.log(x);
   };
 
   render() {
