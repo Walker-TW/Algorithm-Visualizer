@@ -7,26 +7,26 @@ export function dijkstra(grid, start, finish) {
   console.log(unvisitedNodes);
   while (!!unvisitedNodes.length) {
     sortNodesByDistance(unvisitedNodes);
-    console.log("1");
+    console.log('1');
     const closestNode = unvisitedNodes.shift();
-    console.log("2");
-    console.log(closestNode, "Closest Node");
+    console.log('2');
+    console.log(closestNode, 'Closest Node');
     if (closestNode.distance === Infinity) return nodesVisited;
     closestNode.visited = true;
 
-    console.log(closestNode, "closestnode2");
+    console.log(closestNode, 'closestnode2');
 
-    console.log("3");
+    console.log('3');
     nodesVisited.push(closestNode);
-    console.log("4");
+    console.log('4');
     checkVisited(unvisitedNodes);
     if (closestNode === finish) return nodesVisited;
 
-    console.log(closestNode, finish, "comparison");
+    console.log(closestNode, finish, 'comparison');
 
-    console.log("5");
+    console.log('5');
     updateUnvisitedNeighbors(closestNode, grid);
-    console.log("6");
+    console.log('6');
   }
 }
 
@@ -53,8 +53,8 @@ function sortNodesByDistance(unvisitedNodes) {
 function updateUnvisitedNeighbors(node, grid) {
   const unvisitedNeighbors = getUnvisitedNeighbors(node, grid);
   for (const neighbor of unvisitedNeighbors) {
-    console.log(neighbor, "neighbour");
-    console.log(node, "node");
+    console.log(neighbor, 'neighbour');
+    console.log(node, 'node');
     neighbor.distance = node.distance + 1;
     // iterating the distance
     neighbor.pastNode = node;
