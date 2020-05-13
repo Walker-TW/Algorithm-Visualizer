@@ -5,7 +5,6 @@ export function dijkstra(grid, start, finish) {
   // so make a check to be sure that it exists!!!
   console.log(grid[0][1].distance);
   const unvistedNodes = getNodes(grid);
-  console.log(unvistedNodes, "unvistedNOdes");
   checkDistances(unvistedNodes);
 
   function getNodes(grid) {
@@ -20,7 +19,7 @@ export function dijkstra(grid, start, finish) {
 
   function checkDistances(unvistedNodes) {
     for (var i = 0; i < unvistedNodes.length; i++) {
-      console.log(unvistedNodes[0].distance);
+      console.log(unvistedNodes[i].distance);
     }
   }
 }
