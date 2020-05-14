@@ -44,16 +44,16 @@ export default class Grid extends Component {
 
   gridSetup = () => {
     let grid = [];
-    for (let rowIndex = 0; rowIndex < 10; rowIndex++) {
+    for (let rowIndex = 0; rowIndex < 50; rowIndex++) {
       let current_row = [];
-      for (let colIndex = 0; colIndex < 10; colIndex++) {
+      for (let colIndex = 0; colIndex < 30; colIndex++) {
         const gridId = { colIndex, rowIndex };
 
         current_row.push(this.createNode(gridId));
       }
       grid.push(current_row);
     }
-    this.setState({ grid: grid });
+    this.setState({ grid });
   };
 
   startNodeFlag = (gridId) => {
@@ -122,8 +122,16 @@ export default class Grid extends Component {
       setTimeout(() => {
         const node = visitedNodesInOrder[i];
         document.getElementById(
-          `node-${node.gridId.rowIndex}-${node.gridId.colIndex}`
-        ).className = 'Node visited';
+          `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
+        ).className = `Node ${
+          node.isStart
+            ? 'start'
+            : node.isFinish
+            ? 'finish'
+            : node.visited
+            ? 'visited'
+            : ''
+        }`;
       }, 10 * i);
     }
   }
@@ -133,7 +141,7 @@ export default class Grid extends Component {
       setTimeout(() => {
         const node = nodesInShortestPathOrder[i];
         document.getElementById(
-          `node-${node.gridId.rowIndex}-${node.gridId.colIndex}`
+          `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
         ).className = 'Node path';
       }, 50 * i);
     }

@@ -36,14 +36,9 @@ export default class Node extends Component {
   };
 
   render() {
-    const { isStart, isFinish, visited } = this.state;
-
     return (
       <div
         onClick={this.clickHandler}
-        // className={`Node ${isStart ? 'start' : ''} ${
-        //   isFinish ? 'finish' : ''
-        // } ${visited ? 'visited' : ''}`}
         className={this.props.nodeStyle}
         id={this.props.id}
       />

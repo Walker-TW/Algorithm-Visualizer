@@ -2,11 +2,11 @@
   width: 20px;
   height: 20px;
   border: 1px solid black;
-  background-color: white;
+  background-color: lightcyan;
 }
 
 .visited {
-  background-color: aquamarine;
+  background-color: hotpink;
 }
 
 .start {

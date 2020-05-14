@@ -13,7 +13,7 @@ describe('<Grid />', () => {
 
   it('renders all 1500 Node components', () => {
     const wrapper = mount(<Grid />);
-    expect(wrapper.find(Node).length).toEqual(100);
+    expect(wrapper.find(Node).length).toEqual(1500);
   });
 
   it('render a node that will change the start state when clicked', () => {
