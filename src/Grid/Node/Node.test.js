@@ -13,6 +13,7 @@ const defaultProps = {
   flagFinish: () => {},
   updateNode: () => {},
   reset: () => {},
+  nodeStyle: '',
 };
 
 describe('<Node />', () => {
