@@ -40,9 +40,9 @@ export default class Grid extends Component {
 
   gridSetup = () => {
     let grid = [];
-    for (let row = 0; row < 50; row++) {
+    for (let row = 0; row < 20; row++) {
       let current_row = [];
-      for (let col = 0; col < 70; col++) {
+      for (let col = 0; col < 20; col++) {
         const gridId = { rowIndex: row, colIndex: col };
         current_row.push(this.createNode(gridId));
       }
