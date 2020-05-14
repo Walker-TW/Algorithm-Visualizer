@@ -6,6 +6,7 @@ import { Alert } from 'react-bootstrap';
 import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
 
 import './Grid.css';
+import './Node/Node.css';
 
 export default class Grid extends Component {
   state = {
@@ -43,10 +44,11 @@ export default class Grid extends Component {
 
   gridSetup = () => {
     let grid = [];
-    for (let colIndex = 0; colIndex < 10; colIndex++) {
+    for (let rowIndex = 0; rowIndex < 10; rowIndex++) {
       let current_row = [];
-      for (let rowIndex = 0; rowIndex < 10; rowIndex++) {
-        const gridId = { rowIndex, colIndex };
+      for (let colIndex = 0; colIndex < 10; colIndex++) {
+        const gridId = { colIndex, rowIndex };
+
         current_row.push(this.createNode(gridId));
       }
       grid.push(current_row);
@@ -104,8 +106,38 @@ export default class Grid extends Component {
     const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
     const resultOfDijkstra = dijkstra(grid, startNode, finishNode);
     const y = findShortestPath(resultOfDijkstra[resultOfDijkstra.length - 1]);
-    console.log(y, 'These are the nodes that are the shortest path');
+    // console.log(y, 'These are the nodes that are the shortest path');
+    // console.log(grid, 'Grid array');
+    this.animateAlgorithm(resultOfDijkstra, y);
   };
+
+  animateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder) {
+    for (let i = 0; i <= visitedNodesInOrder.length; i++) {
+      if (i === visitedNodesInOrder.length) {
+        setTimeout(() => {
+          this.animateShortestPath(nodesInShortestPathOrder);
+        }, 10 * i);
+        return;
+      }
+      setTimeout(() => {
+        const node = visitedNodesInOrder[i];
+        document.getElementById(
+          `node-${node.gridId.rowIndex}-${node.gridId.colIndex}`
+        ).className = 'Node visited';
+      }, 10 * i);
+    }
+  }
+
+  animateShortestPath(nodesInShortestPathOrder) {
+    for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
+      setTimeout(() => {
+        const node = nodesInShortestPathOrder[i];
+        document.getElementById(
+          `node-${node.gridId.rowIndex}-${node.gridId.colIndex}`
+        ).className = 'Node path';
+      }, 50 * i);
+    }
+  }
 
   render() {
     const { grid, start, finish } = this.state;
@@ -116,6 +148,10 @@ export default class Grid extends Component {
           {row.map((node, rowIndex) => (
             <Node
               key={colIndex.toString() + ' ' + rowIndex.toString()}
+              nodeStyle={`Node ${node.isStart ? 'start' : ''} ${
+                node.isFinish ? 'finish' : ''
+              } ${node.visited ? 'visited' : ''}`}
+              id={`node-${node.gridId.colIndex}-${node.gridId.rowIndex}`}
               gridId={node.gridId}
               gridHasStart={start.present}
               gridHasFinish={finish.present}

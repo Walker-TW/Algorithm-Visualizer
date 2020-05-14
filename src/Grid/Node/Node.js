@@ -41,9 +41,11 @@ export default class Node extends Component {
     return (
       <div
         onClick={this.clickHandler}
-        className={`Node ${isStart ? 'start' : ''} ${
-          isFinish ? 'finish' : ''
-        } ${visited ? 'visited' : ''}`}
+        // className={`Node ${isStart ? 'start' : ''} ${
+        //   isFinish ? 'finish' : ''
+        // } ${visited ? 'visited' : ''}`}
+        className={this.props.nodeStyle}
+        id={this.props.id}
       />
     );
   }
@@ -57,4 +59,5 @@ Node.propTypes = {
   gridHasStart: PropTypes.bool.isRequired,
   gridHasFinish: PropTypes.bool.isRequired,
   reset: PropTypes.func.isRequired,
+  nodeStyle: PropTypes.string.isRequired,
 };
