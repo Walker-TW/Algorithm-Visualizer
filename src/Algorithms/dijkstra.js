@@ -6,18 +6,18 @@ export function dijkstra(grid, start, finish) {
   const unvisitedNodes = getNodes(grid);
   while (!!unvisitedNodes.length) {
     sortUnvistedDistance(unvisitedNodes);
-    console.log("1");
+    // console.log("1");
     const closestNode = unvisitedNodes.shift();
-    console.log("2");
+    // console.log("2");
     if (closestNode.distance === Infinity) return nodesVisited;
     closestNode.visited = true;
-    console.log("3");
+    // console.log("3");
     nodesVisited.push(closestNode);
-    console.log("4");
+    // console.log("4");
     if (closestNode === finish) return nodesVisited;
-    console.log("5");
+    // console.log("5");
     updateUnvisitedNeighbors(closestNode, grid);
-    console.log("6");
+    // console.log("6");
   }
 }
 
