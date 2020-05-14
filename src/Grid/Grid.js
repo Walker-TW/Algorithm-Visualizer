@@ -24,7 +24,7 @@ export default class Grid extends Component {
   };
 
   componentDidMount() {
-    this.setState({ grid: this.gridSetup() });
+    this.gridSetup();
   }
 
   createNode = (gridId) => {
@@ -48,7 +48,7 @@ export default class Grid extends Component {
       }
       grid.push(current_row);
     }
-    return grid;
+    this.setState({ grid: grid });
   };
 
   startNodeFlag = (gridId) => {
@@ -93,7 +93,6 @@ export default class Grid extends Component {
       start: { ...this.state.start, present: false },
       finish: { ...this.state.finish, present: false },
     });
-    console.log(this.state);
   };
 
   render() {
