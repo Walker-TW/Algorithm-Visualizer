@@ -7,8 +7,8 @@ import { shallow, mount, render } from 'enzyme';
 
 const defaultProps = {
   gridId: { colIndex: 0, rowIndex: 10 },
-  gridHasStart: () => {},
-  gridHasFinish: () => {},
+  gridHasStart: false,
+  gridHasFinish: false,
   flagStart: () => {},
   flagFinish: () => {},
   updateNode: () => {},

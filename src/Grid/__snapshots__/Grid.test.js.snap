@@ -1,18 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Grid /> renders 1`] = `
-<div
-  class="Grid"
->
+Array [
   <div
-    class="Button"
+    class="fade alert alert-primary show"
+    role="alert"
   >
-    <div
-      class="fade alert alert-primary show"
-      role="alert"
-    >
-      Please Choose A Start & End Node
-    </div>
-  </div>
-</div>
+    Please Choose A Start & End Node
+  </div>,
+  <div
+    class="Grid"
+  />,
+]
 `;

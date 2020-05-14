@@ -5,16 +5,14 @@ exports[`<Header /> renders 1`] = `
   active={false}
   disabled={false}
   onClick={[Function]}
+  style={
+    Object {
+      "margin": "10px 0 ",
+    }
+  }
   type="button"
   variant="primary"
 >
-  <button
-    className="btn btn-primary"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    Let's Run Dijkstra
-  </button>
+  Let's Run Dijkstra
 </Button>
 `;

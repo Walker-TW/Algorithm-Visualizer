@@ -6,10 +6,3 @@ exports[`<Node /> Test that Node renders 1`] = `
   onClick={[Function]}
 />
 `;
-
-exports[`node Test that Node renders 1`] = `
-<div
-  className="Node   "
-  onClick={[Function]}
-/>
-`;

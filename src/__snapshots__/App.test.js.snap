@@ -5,18 +5,14 @@ exports[`App renders 1`] = `
   className="App"
 >
   <div
+    className="fade alert alert-primary show"
+    role="alert"
+  >
+    Please Choose A Start & End Node
+  </div>
+  <div
     className="Grid"
   >
-    <div
-      className="Button"
-    >
-      <div
-        className="fade alert alert-primary show"
-        role="alert"
-      >
-        Please Choose A Start & End Node
-      </div>
-    </div>
     <div
       className="Column"
     >
