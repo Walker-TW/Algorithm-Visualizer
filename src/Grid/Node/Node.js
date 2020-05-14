@@ -33,7 +33,7 @@ export default class Node extends Component {
   //   }
   // };
 
-  clickHandler = (e) => {
+  clickHandler = () => {
     const { isStart, isFinish } = this.state;
 
     const {
@@ -43,37 +43,35 @@ export default class Node extends Component {
       updateNode,
       start,
       finish,
+      reset,
     } = this.props;
 
-    console.log(start, finish, 'start/finish');
-    if (!isStart && !isFinish && !start.present) {
-      this.setState({ isStart: true, isFinish: false });
+    if (!start.present) {
+      this.setState({ isStart: true });
       flagStart(gridId);
-      updateNode(gridId);
-    } else if (isStart && !isFinish && start.present && !finish.present) {
-      this.setState({ isStart: false, isFinish: true });
+      // updateNode(gridId);
+    } else if (start.present && !finish.present) {
+      this.setState({ isFinish: true });
       flagFinish(gridId);
-      updateNode(gridId);
+      // updateNode(gridId);
     } else {
       this.setState({ isStart: false, isFinish: false });
-      updateNode(gridId);
+      // updateNode(gridId);
+      reset();
     }
+    updateNode(gridId);
   };
 
   render() {
-    const classes = ['Node'];
     const { isStart, isFinish, visited } = this.state;
 
-    if (isStart) {
-      classes.push('start');
-    } else if (isFinish) {
-      classes.push('finish');
-    } else if (visited) {
-      classes.push('visited');
-    }
-
     return (
-      <div onClick={() => this.clickHandler} className={classes.join(' ')} />
+      <div
+        onClick={this.clickHandler}
+        className={`Node ${isStart ? 'start' : ''} ${
+          isFinish ? 'finish' : ''
+        } ${visited ? 'visited' : ''}`}
+      />
     );
   }
 }
@@ -85,4 +83,5 @@ Node.propTypes = {
   flagFinish: PropTypes.func.isRequired,
   start: PropTypes.object.isRequired,
   finish: PropTypes.object.isRequired,
+  reset: PropTypes.func.isRequired,
 };

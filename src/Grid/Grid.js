@@ -88,6 +88,14 @@ export default class Grid extends Component {
     }
   };
 
+  resetStartFinish = () => {
+    this.setState({
+      start: { ...this.state.start, present: false },
+      finish: { ...this.state.finish, present: false },
+    });
+    console.log(this.state);
+  };
+
   render() {
     const { grid, start, finish } = this.state;
     return (
@@ -112,6 +120,7 @@ export default class Grid extends Component {
                   flagFinish={this.finishNodeFlag}
                   start={start}
                   finish={finish}
+                  reset={this.resetStartFinish}
                 />
               ))}
             </div>
