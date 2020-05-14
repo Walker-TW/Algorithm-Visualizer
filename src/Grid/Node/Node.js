@@ -1,61 +1,58 @@
-import React, { Component } from "react";
-import "./Node.css";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import './Node.css';
+import PropTypes from 'prop-types';
 
 export default class Node extends Component {
   state = {
-    current_status: false,
-    finish: false,
-    visited: false,
+    isStart: false,
+    isFinish: false,
   };
 
   clickHandler = () => {
-    const { start, finish } = this.state;
+    const {
+      gridId,
+      gridHasStart,
+      gridHasFinish,
+      flagStart,
+      flagFinish,
+      updateNode,
+      reset,
+    } = this.props;
 
-    if (!start && !finish) {
-      this.setState({ start: true });
-    } else if (start && !finish) {
-      this.setState({ start: false, finish: true });
+    if (!gridHasStart) {
+      this.setState({ isStart: true });
+      flagStart(gridId);
+      // updateNode(gridId);
+    } else if (gridHasStart && !gridHasFinish) {
+      this.setState({ isFinish: true });
+      flagFinish(gridId);
+      // updateNode(gridId);
     } else {
-      this.setState({ start: false, finish: false });
+      this.setState({ isStart: false, isFinish: false });
+      // updateNode(gridId);
+      reset();
     }
+    updateNode(gridId);
   };
 
-  // downHandler = () => {
-  //   const { start, finish, visited } = this.state;
-
-  //   if (!start && !finish) {
-  //     this.setState({ start: true });
-  //   } else if (start && !finish) {
-  //     this.setState({ finish: false });
-  //   } else {
-  //     this.setState({ start: false, finish: false });
-  //   }
-  // };
-
   render() {
-    const classes = ["Node"];
-    const { start, finish, visited } = this.state;
-
-    if (start) {
-      classes.push("start");
-    } else if (finish) {
-      classes.push("finish");
-    } else if (visited) {
-      classes.push("visited");
-    }
-
     return (
       <div
-        // onMouseDown={() => this.downHandler()}
         onClick={this.clickHandler}
-        className={classes.join(" ")}
-      ></div>
+        className={this.props.nodeStyle}
+        id={this.props.id}
+      />
     );
   }
 }
 
 Node.propTypes = {
   gridId: PropTypes.object.isRequired,
+  updateNode: PropTypes.func.isRequired,
+  flagStart: PropTypes.func.isRequired,
+  flagFinish: PropTypes.func.isRequired,
+  gridHasStart: PropTypes.bool.isRequired,
+  gridHasFinish: PropTypes.bool.isRequired,
+  reset: PropTypes.func.isRequired,
+  nodeStyle: PropTypes.string.isRequired,
 };
-//
