@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Node from './Node/Node';
 import Header from '../Header/Header';
+import { Alert } from 'react-bootstrap';
+
+import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
 
 import './Grid.css';
 
@@ -95,6 +98,15 @@ export default class Grid extends Component {
     });
   };
 
+  runDijkstra = () => {
+    const { grid, start, finish } = this.state;
+    const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
+    const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
+    const resultOfDijkstra = dijkstra(grid, startNode, finishNode);
+    const y = findShortestPath(resultOfDijkstra[resultOfDijkstra.length - 1]);
+    console.log(y, 'These are the nodes that are the shortest path');
+  };
+
   render() {
     const { grid, start, finish } = this.state;
 
@@ -118,16 +130,14 @@ export default class Grid extends Component {
     });
 
     return (
-      <div className="Grid">
-        <div className="Button">
-          <Header
-            grid={grid}
-            startNode={start.gridId}
-            endNode={finish.gridId}
-          />
-        </div>
-        {nodes}
-      </div>
+      <Fragment>
+        {start.present && finish.present ? (
+          <Header run={this.runDijkstra} />
+        ) : (
+          <Alert variant="primary">Please Choose A Start & End Node</Alert>
+        )}
+        <div className="Grid">{nodes}</div>
+      </Fragment>
     );
   }
 }
