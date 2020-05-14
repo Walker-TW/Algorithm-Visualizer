@@ -7,13 +7,12 @@ exports[`<Grid /> renders 1`] = `
   <div
     class="Button"
   >
-    <button
-      class="btn btn-primary"
-      type="button"
+    <div
+      class="fade alert alert-primary show"
+      role="alert"
     >
-      Let's Run Dijkstra
-    </button>
+      Please Choose A Start & End Node
+    </div>
   </div>
-  <br />
 </div>
 `;

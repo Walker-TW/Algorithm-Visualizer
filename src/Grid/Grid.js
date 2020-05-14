@@ -40,10 +40,10 @@ export default class Grid extends Component {
 
   gridSetup = () => {
     let grid = [];
-    for (let col = 0; col < 10; col++) {
+    for (let colIndex = 0; colIndex < 10; colIndex++) {
       let current_row = [];
-      for (let row = 0; row < 10; row++) {
-        const gridId = { rowIndex: row, colIndex: col };
+      for (let rowIndex = 0; rowIndex < 10; rowIndex++) {
+        const gridId = { rowIndex, colIndex };
         current_row.push(this.createNode(gridId));
       }
       grid.push(current_row);
@@ -71,8 +71,8 @@ export default class Grid extends Component {
 
   updateNode = (gridId) => {
     const { grid, start, finish } = this.state;
-
-    const node = grid[gridId.rowIndex][gridId.colIndex];
+    const { rowIndex, colIndex } = gridId;
+    const node = grid[rowIndex][colIndex];
 
     if (!start.present && !finish.present) {
       this.startNodeFlag(gridId);
@@ -97,6 +97,26 @@ export default class Grid extends Component {
 
   render() {
     const { grid, start, finish } = this.state;
+
+    const nodes = grid.map((row, colIndex) => {
+      return (
+        <div className="Column" key={colIndex.toString()}>
+          {row.map((node, rowIndex) => (
+            <Node
+              key={colIndex.toString() + ' ' + rowIndex.toString()}
+              gridId={node.gridId}
+              gridHasStart={start.present}
+              gridHasFinish={finish.present}
+              flagStart={this.startNodeFlag}
+              flagFinish={this.finishNodeFlag}
+              updateNode={this.updateNode}
+              reset={this.resetStartFinish}
+            />
+          ))}
+        </div>
+      );
+    });
+
     return (
       <div className="Grid">
         <div className="Button">
@@ -106,25 +126,7 @@ export default class Grid extends Component {
             endNode={finish.gridId}
           />
         </div>
-
-        {grid.map((row, colIndex) => {
-          return (
-            <div className="Column" key={colIndex.toString()}>
-              {row.map((node, rowIndex) => (
-                <Node
-                  key={colIndex.toString() + ' ' + rowIndex.toString()}
-                  gridId={node.gridId}
-                  updateNode={this.updateNode}
-                  flagStart={this.startNodeFlag}
-                  flagFinish={this.finishNodeFlag}
-                  start={start}
-                  finish={finish}
-                  reset={this.resetStartFinish}
-                />
-              ))}
-            </div>
-          );
-        })}
+        {nodes}
       </div>
     );
   }

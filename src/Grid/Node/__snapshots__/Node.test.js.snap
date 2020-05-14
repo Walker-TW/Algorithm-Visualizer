@@ -1,8 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Node /> Test that Node renders 1`] = `
+<div
+  className="Node   "
+  onClick={[Function]}
+/>
+`;
+
 exports[`node Test that Node renders 1`] = `
 <div
-  className="Node"
+  className="Node   "
   onClick={[Function]}
 />
 `;

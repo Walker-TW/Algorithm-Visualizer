@@ -8,49 +8,22 @@ export default class Node extends Component {
     isFinish: false,
   };
 
-  // // click handler has to update the object and the
-  // clickHandler = (e) => {
-  //   const { start, finish } = this.state;
-  //   const { flagStart, gridId } = this.props;
-  //   if (!start && !finish) {
-  //     this.setState({ start: true });
-  //     flagStart(gridId);
-  //   } else {
-  //     this.setState({ start: false, finish: false });
-  //   }
-  // };
-
-  // contextMenuHandler = (e) => {
-  //   e.preventDefault();
-  //   console.log('Right click baybee');
-  //   const { finish } = this.state;
-  //   const { flagFinish, gridId } = this.props;
-  //   if (!finish) {
-  //     this.setState({ start: false, finish: true });
-  //     flagFinish(gridId);
-  //   } else {
-  //     this.setState({ start: false, finish: false });
-  //   }
-  // };
-
   clickHandler = () => {
-    const { isStart, isFinish } = this.state;
-
     const {
+      gridId,
+      gridHasStart,
+      gridHasFinish,
       flagStart,
       flagFinish,
-      gridId,
       updateNode,
-      start,
-      finish,
       reset,
     } = this.props;
 
-    if (!start.present) {
+    if (!gridHasStart) {
       this.setState({ isStart: true });
       flagStart(gridId);
       // updateNode(gridId);
-    } else if (start.present && !finish.present) {
+    } else if (gridHasStart && !gridHasFinish) {
       this.setState({ isFinish: true });
       flagFinish(gridId);
       // updateNode(gridId);
@@ -81,7 +54,7 @@ Node.propTypes = {
   updateNode: PropTypes.func.isRequired,
   flagStart: PropTypes.func.isRequired,
   flagFinish: PropTypes.func.isRequired,
-  start: PropTypes.object.isRequired,
-  finish: PropTypes.object.isRequired,
+  gridHasStart: PropTypes.bool.isRequired,
+  gridHasFinish: PropTypes.bool.isRequired,
   reset: PropTypes.func.isRequired,
 };
