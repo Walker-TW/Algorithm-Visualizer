@@ -8,25 +8,48 @@ import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
 import './Grid.css';
 import './Node/Node.css';
 
-export default class Grid extends Component {
-  state = {
-    grid: [],
-    start: {
-      present: false,
-      gridId: {
-        rowIndex: null,
-        colIndex: null,
-      },
+const defaultState = {
+  grid: [],
+  start: {
+    present: false,
+    gridId: {
+      rowIndex: null,
+      colIndex: null,
     },
-    finish: {
-      present: false,
-      gridId: {
-        rowIndex: null,
-        colIndex: null,
-      },
+  },
+  finish: {
+    present: false,
+    gridId: {
+      rowIndex: null,
+      colIndex: null,
     },
-  };
+  },
+};
 
+export default class Grid extends Component {
+  constructor() {
+    super();
+    this.state = defaultState;
+    // this.state = {
+    //   grid: [],
+    //   start: {
+    //     present: false,
+    //     gridId: {
+    //       rowIndex: null,
+    //       colIndex: null,
+    //     },
+    //   },
+    //   finish: {
+    //     present: false,
+    //     gridId: {
+    //       rowIndex: null,
+    //       colIndex: null,
+    //     },
+    //   },
+  }
+
+  // this.baseState = this.state;
+  // }
   componentDidMount() {
     this.gridSetup();
   }
@@ -125,6 +148,14 @@ export default class Grid extends Component {
     }
   };
 
+  reset = () => {
+    window.location.reload();
+  };
+
+  resetForm = () => {
+    this.setState(defaultState);
+  };
+
   render() {
     const { grid, start, finish } = this.state;
 
@@ -150,7 +181,7 @@ export default class Grid extends Component {
     return (
       <Fragment>
         {start.present && finish.present ? (
-          <Header run={this.runDijkstra} />
+          <Header run={this.runDijkstra} reset={this.resetForm} />
         ) : (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
         )}
