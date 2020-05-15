@@ -25,6 +25,13 @@ export default class Grid extends Component {
         colIndex: null,
       },
     },
+    fence: {
+      present: [false],
+      gridId: {
+        rowIndex: null,
+        colIndex: null,
+      },
+    },
   };
 
   componentDidMount() {
@@ -39,7 +46,7 @@ export default class Grid extends Component {
       distance: Infinity,
       visited: false,
       pastNode: null,
-      wall: false,
+      fence: false,
     };
   };
 
@@ -62,13 +69,17 @@ export default class Grid extends Component {
     const { rowIndex, colIndex } = gridId;
     const node = grid[rowIndex][colIndex];
 
-    node[type] = true;
-    this.setState({
-      [type]: {
-        present: true,
-        gridId: gridId,
-      },
-    });
+    if (type === "fence") {
+      node[type] = true;
+    } else {
+      node[type] = true;
+      this.setState({
+        [type]: {
+          present: true,
+          gridId: gridId,
+        },
+      });
+    }
   };
 
   // commented out as it is currently unnecessary, may be useful later
@@ -81,7 +92,6 @@ export default class Grid extends Component {
 
   runDijkstra = () => {
     const { grid, start, finish } = this.state;
-
     const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
     const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
     const resultOfDijkstra = dijkstra(grid, startNode, finishNode);
