@@ -12,7 +12,7 @@ describe('<Grid />', () => {
   });
 
   it('renders all 1500 Node components', () => {
-    const wrapper = mount(<Grid />);
+    const wrapper = shallow(<Grid />);
     expect(wrapper.find(Node).length).toEqual(1500);
   });
 
@@ -20,18 +20,16 @@ describe('<Grid />', () => {
     const wrapper = mount(<Grid />);
     const node = wrapper.find(Node);
     const test = node.first();
-    expect(test.state().isStart).toEqual(false);
+    expect(test.state().start).toEqual(false);
     test.simulate('click');
-    expect(test.state().isStart).toEqual(true);
+    expect(test.state().start).toEqual(true);
   });
 
   it('render a node that will change the finish state when clicked', () => {
     const wrapper = mount(<Grid />);
     const node = wrapper.find(Node);
     const test = node.first();
-    expect(test.state().isFinish).toEqual(false);
     test.simulate('click');
-    test.simulate('click');
-    expect(test.state().isFinish).toEqual(true);
+    expect(wrapper.state().start.present).toEqual(true);
   });
 });

@@ -4,12 +4,19 @@ import Enzyme, { shallow, mount, render } from 'enzyme';
 
 import Header from './Header';
 
+const spy = jest.fn(() => {});
 const defaultProps = {
-  run: () => {},
+  run: spy,
 };
 describe('<Header />', () => {
+  const wrapper = shallow(<Header {...defaultProps} />);
+
   it('renders', () => {
-    const wrapper = shallow(<Header {...defaultProps} />);
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('calls the spy onclick', () => {
+    wrapper.simulate('click');
+    expect(spy.mock.calls.length).toEqual(1);
   });
 });

@@ -2,7 +2,7 @@
 
 exports[`<Node /> Test that Node renders 1`] = `
 <div
-  className=""
+  className="Node "
   onClick={[Function]}
 />
 `;

@@ -4,7 +4,8 @@ exports[`<Header /> renders 1`] = `
 <Button
   active={false}
   disabled={false}
-  onClick={[Function]}
+  id="button"
+  onClick={[MockFunction]}
   style={
     Object {
       "margin": "10px 0 ",
