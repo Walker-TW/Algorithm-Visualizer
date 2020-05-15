@@ -1,0 +1,28 @@
+.alt-collapsed {
+  width: 4rem;
+  color: white;
+  font-size: 20px;
+  padding: 2px;
+  font-weight: bolder;
+  height: 30px;
+  margin: 40px 0 0 -15px;
+  background-color: lightskyblue;
+  border: 1px solid lightskyblue;
+  transform: rotate(90deg);
+  border-radius: 5px;
+}
+
+.alt-collapsed:hover {
+  cursor: pointer;
+}
+
+.info {
+  display: ;
+  width: 150px;
+  height: 300px;
+  margin: 30px 0 0 0;
+  float: left;
+  border: 1px solid lightskyblue;
+  border-radius: 5px;
+  text-align: left;
+}
