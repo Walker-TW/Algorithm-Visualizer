@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
 
-import Node from './Node/Node';
-import Header from './Header/Header';
-import { Alert } from 'react-bootstrap';
-import Info from './Info/Info';
-import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
+import Node from "./Node/Node";
+import Header from "./Header/Header";
+import { Alert } from "react-bootstrap";
+import Info from "./Info/Info";
+import { dijkstra, findShortestPath } from "../Algorithms/dijkstra";
 
 import "./Grid.css";
 import "./Node/Node.css";
@@ -141,6 +141,10 @@ export default class Grid extends Component {
     }
   };
 
+  gimmeClicks = () => {
+    console.log("Wall Selector");
+  };
+
   render() {
     const { grid, start, finish } = this.state;
 
@@ -166,7 +170,7 @@ export default class Grid extends Component {
     return (
       <Fragment>
         {start.present && finish.present ? (
-          <Header run={this.runDijkstra} />
+          <Header run={this.runDijkstra} wall={this.gimmeClicks} />
         ) : (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
         )}
