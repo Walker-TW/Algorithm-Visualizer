@@ -9,7 +9,7 @@ export default class Node extends Component {
   };
 
   clickHandler = () => {
-    const { gridId, gridHasStart, gridHasFinish, nodeFlag, reset } = this.props;
+    const { gridId, gridHasStart, gridHasFinish, nodeFlag } = this.props;
 
     if (gridHasStart && gridHasFinish) {
       document.getElementById('button').className = 'btn btn-primary big';
