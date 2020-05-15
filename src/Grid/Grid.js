@@ -34,8 +34,8 @@ export default class Grid extends Component {
   createNode = (gridId) => {
     return {
       gridId,
-      isStart: false,
-      isFinish: false,
+      start: false,
+      finish: false,
       distance: Infinity,
       visited: false,
       pastNode: null,
@@ -56,62 +56,40 @@ export default class Grid extends Component {
     this.setState({ grid });
   };
 
-  startNodeFlag = (gridId) => {
-    this.setState({
-      start: {
-        present: true,
-        gridId: gridId,
-      },
-    });
-  };
-
-  finishNodeFlag = (gridId) => {
-    this.setState({
-      finish: {
-        present: true,
-        gridId: gridId,
-      },
-    });
-  };
-
-  updateNode = (gridId) => {
-    const { grid, start, finish } = this.state;
+  nodeFlag = (gridId, type) => {
+    const { grid } = this.state;
     const { rowIndex, colIndex } = gridId;
     const node = grid[rowIndex][colIndex];
 
-    if (!start.present && !finish.present) {
-      this.startNodeFlag(gridId);
-      node.isStart = true;
-      node.isFinish = false;
-    } else if (start.present && !finish.present) {
-      this.finishNodeFlag(gridId);
-      node.isStart = false;
-      node.isFinish = true;
-    } else {
-      node.isStart = false;
-      node.isFinish = false;
-    }
-  };
-
-  resetStartFinish = () => {
+    node[type] = true;
     this.setState({
-      start: { ...this.state.start, present: false },
-      finish: { ...this.state.finish, present: false },
+      [type]: {
+        present: true,
+        gridId: gridId,
+      },
     });
   };
 
+  // commented out as it is currently unnecessary, may be useful later
+  // resetStartFinish = () => {
+  //   this.setState({
+  //     start: { ...this.state.start, present: false },
+  //     finish: { ...this.state.finish, present: false },
+  //   });
+  // };
+
   runDijkstra = () => {
     const { grid, start, finish } = this.state;
+
     const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
     const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
     const resultOfDijkstra = dijkstra(grid, startNode, finishNode);
     const y = findShortestPath(resultOfDijkstra[resultOfDijkstra.length - 1]);
-    // console.log(y, 'These are the nodes that are the shortest path');
-    // console.log(grid, 'Grid array');
+
     this.animateAlgorithm(resultOfDijkstra, y);
   };
 
-  animateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder) {
+  animateAlgorithm = (visitedNodesInOrder, nodesInShortestPathOrder) => {
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
@@ -124,9 +102,9 @@ export default class Grid extends Component {
         document.getElementById(
           `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
         ).className = `Node ${
-          node.isStart
+          node.start
             ? 'start'
-            : node.isFinish
+            : node.finish
             ? 'finish'
             : node.visited
             ? 'visited'
@@ -134,10 +112,10 @@ export default class Grid extends Component {
         }`;
       }, 10 * i);
     }
-  }
+  };
 
-  animateShortestPath(nodesInShortestPathOrder) {
-    for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
+  animateShortestPath = (nodesInShortestPathOrder) => {
+    for (let i = 1; i < nodesInShortestPathOrder.length - 1; i++) {
       setTimeout(() => {
         const node = nodesInShortestPathOrder[i];
         document.getElementById(
@@ -145,7 +123,7 @@ export default class Grid extends Component {
         ).className = 'Node path';
       }, 50 * i);
     }
-  }
+  };
 
   render() {
     const { grid, start, finish } = this.state;
@@ -156,17 +134,13 @@ export default class Grid extends Component {
           {row.map((node, rowIndex) => (
             <Node
               key={colIndex.toString() + ' ' + rowIndex.toString()}
-              nodeStyle={`Node ${node.isStart ? 'start' : ''} ${
-                node.isFinish ? 'finish' : ''
-              } ${node.visited ? 'visited' : ''}`}
               id={`node-${node.gridId.colIndex}-${node.gridId.rowIndex}`}
               gridId={node.gridId}
               gridHasStart={start.present}
               gridHasFinish={finish.present}
-              flagStart={this.startNodeFlag}
-              flagFinish={this.finishNodeFlag}
+              nodeFlag={this.nodeFlag}
               updateNode={this.updateNode}
-              reset={this.resetStartFinish}
+              // reset={this.resetStartFinish}
             />
           ))}
         </div>
@@ -180,7 +154,7 @@ export default class Grid extends Component {
         ) : (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
         )}
-        <div className="Grid">{nodes}</div>
+        <div className="Grid" children={nodes} />
       </Fragment>
     );
   }

@@ -4,42 +4,43 @@ import PropTypes from 'prop-types';
 
 export default class Node extends Component {
   state = {
-    isStart: false,
-    isFinish: false,
+    start: false,
+    finish: false,
   };
 
   clickHandler = () => {
-    const {
-      gridId,
-      gridHasStart,
-      gridHasFinish,
-      flagStart,
-      flagFinish,
-      updateNode,
-      reset,
-    } = this.props;
+    const { gridId, gridHasStart, gridHasFinish, nodeFlag, reset } = this.props;
 
-    if (!gridHasStart) {
-      this.setState({ isStart: true });
-      flagStart(gridId);
-      // updateNode(gridId);
-    } else if (gridHasStart && !gridHasFinish) {
-      this.setState({ isFinish: true });
-      flagFinish(gridId);
-      // updateNode(gridId);
+    if (gridHasStart && gridHasFinish) {
+      document.getElementById('button').className = 'btn btn-primary big';
     } else {
-      this.setState({ isStart: false, isFinish: false });
-      // updateNode(gridId);
-      reset();
+      if (!gridHasStart) {
+        nodeFlag(gridId, 'start');
+        this.setState({ start: true });
+      } else {
+        this.setState({ finish: true });
+        nodeFlag(gridId, 'finish');
+      }
+      // if (!gridHasStart) {
+      //   nodeFlag(gridId, 'start');
+      //   this.setState({ start: true });
+      // } else if (gridHasStart && !gridHasFinish) {
+      //   this.setState({ finish: true });
+      //   nodeFlag(gridId, 'finish');
+      // } else {
+      //   this.setState({ start: false, finish: false });
+      //   reset();
+      // }
     }
-    updateNode(gridId);
   };
 
   render() {
     return (
       <div
         onClick={this.clickHandler}
-        className={this.props.nodeStyle}
+        className={`Node ${
+          this.state.start ? 'start' : this.state.finish ? 'finish' : ''
+        }`}
         id={this.props.id}
       />
     );
@@ -48,11 +49,8 @@ export default class Node extends Component {
 
 Node.propTypes = {
   gridId: PropTypes.object.isRequired,
-  updateNode: PropTypes.func.isRequired,
-  flagStart: PropTypes.func.isRequired,
-  flagFinish: PropTypes.func.isRequired,
+  nodeFlag: PropTypes.func.isRequired,
   gridHasStart: PropTypes.bool.isRequired,
   gridHasFinish: PropTypes.bool.isRequired,
-  reset: PropTypes.func.isRequired,
-  nodeStyle: PropTypes.string.isRequired,
+  // reset: PropTypes.func.isRequired,
 };
