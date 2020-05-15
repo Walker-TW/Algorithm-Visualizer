@@ -15,16 +15,9 @@ const Info = () => {
   ) : (
     <div className={'info'}>
       <div
+        className="X"
         onClick={() => {
           setCollapsed(true);
-        }}
-        style={{
-          width: '1rem',
-          height: '1.4rem',
-          backgroundColor: 'red',
-          float: 'right',
-          textAlign: 'center',
-          borderRadius: '4px',
         }}
         children={'X'}
       />
