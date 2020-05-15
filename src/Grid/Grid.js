@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+
 import Node from './Node/Node';
 import Header from './Header/Header';
 import { Alert } from 'react-bootstrap';
@@ -43,16 +45,19 @@ export default class Grid extends Component {
   };
 
   gridSetup = () => {
+    const { width, height } = this.props.view;
+
     let grid = [];
-    for (let rowIndex = 0; rowIndex < 50; rowIndex++) {
+    for (let rowIndex = 0; rowIndex < width; rowIndex++) {
       let current_row = [];
-      for (let colIndex = 0; colIndex < 30; colIndex++) {
+      for (let colIndex = 0; colIndex < height; colIndex++) {
         const gridId = { colIndex, rowIndex };
 
         current_row.push(this.createNode(gridId));
       }
       grid.push(current_row);
     }
+
     this.setState({ grid });
   };
 
@@ -154,9 +159,15 @@ export default class Grid extends Component {
         ) : (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
         )}
-        <Info />
-        <div className="Grid" children={nodes} />
+        <div>
+          <Info />
+          <div className="Grid" children={nodes} />
+        </div>
       </Fragment>
     );
   }
 }
+
+Grid.propTypes = {
+  view: PropTypes.object.isRequired,
+};
