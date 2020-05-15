@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Grid /> renders 1`] = `
+exports[`<Grid view={desktop} /> renders 1`] = `
 Array [
   <div
     class="fade alert alert-primary show"
@@ -8,13 +8,15 @@ Array [
   >
     Please Choose A Start & End Node
   </div>,
-  <div
-    class="collapsed"
-  >
-    info
+  <div>
+    <div
+      class="collapsed"
+    >
+      info
+    </div>
+    <div
+      class="Grid"
+    />
   </div>,
-  <div
-    class="Grid"
-  />,
 ]
 `;

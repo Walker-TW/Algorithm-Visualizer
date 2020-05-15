@@ -1,12 +1,14 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+
 import Node from './Node/Node';
 import Header from './Header/Header';
 import { Alert } from 'react-bootstrap';
 import Info from './Info/Info';
 import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
 
-import './Grid.css';
-import './Node/Node.css';
+import "./Grid.css";
+import "./Node/Node.css";
 
 export default class Grid extends Component {
   state = {
@@ -20,6 +22,13 @@ export default class Grid extends Component {
     },
     finish: {
       present: false,
+      gridId: {
+        rowIndex: null,
+        colIndex: null,
+      },
+    },
+    fence: {
+      present: [false],
       gridId: {
         rowIndex: null,
         colIndex: null,
@@ -39,20 +48,24 @@ export default class Grid extends Component {
       distance: Infinity,
       visited: false,
       pastNode: null,
+      fence: false,
     };
   };
 
   gridSetup = () => {
+    const { width, height } = this.props.view;
+
     let grid = [];
-    for (let rowIndex = 0; rowIndex < 50; rowIndex++) {
+    for (let rowIndex = 0; rowIndex < width; rowIndex++) {
       let current_row = [];
-      for (let colIndex = 0; colIndex < 30; colIndex++) {
+      for (let colIndex = 0; colIndex < height; colIndex++) {
         const gridId = { colIndex, rowIndex };
 
         current_row.push(this.createNode(gridId));
       }
       grid.push(current_row);
     }
+
     this.setState({ grid });
   };
 
@@ -61,13 +74,17 @@ export default class Grid extends Component {
     const { rowIndex, colIndex } = gridId;
     const node = grid[rowIndex][colIndex];
 
-    node[type] = true;
-    this.setState({
-      [type]: {
-        present: true,
-        gridId: gridId,
-      },
-    });
+    if (type === "fence") {
+      node[type] = true;
+    } else {
+      node[type] = true;
+      this.setState({
+        [type]: {
+          present: true,
+          gridId: gridId,
+        },
+      });
+    }
   };
 
   // commented out as it is currently unnecessary, may be useful later
@@ -80,7 +97,6 @@ export default class Grid extends Component {
 
   runDijkstra = () => {
     const { grid, start, finish } = this.state;
-
     const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
     const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
     const resultOfDijkstra = dijkstra(grid, startNode, finishNode);
@@ -103,12 +119,12 @@ export default class Grid extends Component {
           `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
         ).className = `Node ${
           node.start
-            ? 'start'
+            ? "start"
             : node.finish
-            ? 'finish'
+            ? "finish"
             : node.visited
-            ? 'visited'
-            : ''
+            ? "visited"
+            : ""
         }`;
       }, 10 * i);
     }
@@ -120,7 +136,7 @@ export default class Grid extends Component {
         const node = nodesInShortestPathOrder[i];
         document.getElementById(
           `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
-        ).className = 'Node path';
+        ).className = "Node path";
       }, 50 * i);
     }
   };
@@ -133,7 +149,7 @@ export default class Grid extends Component {
         <div className="Column" key={colIndex.toString()}>
           {row.map((node, rowIndex) => (
             <Node
-              key={colIndex.toString() + ' ' + rowIndex.toString()}
+              key={colIndex.toString() + " " + rowIndex.toString()}
               id={`node-${node.gridId.colIndex}-${node.gridId.rowIndex}`}
               gridId={node.gridId}
               gridHasStart={start.present}
@@ -154,9 +170,15 @@ export default class Grid extends Component {
         ) : (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
         )}
-        <Info />
-        <div className="Grid" children={nodes} />
+        <div>
+          <Info />
+          <div className="Grid" children={nodes} />
+        </div>
       </Fragment>
     );
   }
 }
+
+Grid.propTypes = {
+  view: PropTypes.object.isRequired,
+};
