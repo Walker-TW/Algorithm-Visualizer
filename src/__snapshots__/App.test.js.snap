@@ -11,6 +11,12 @@ exports[`App renders 1`] = `
     Please Choose A Start & End Node
   </div>
   <div
+    className="collapsed"
+    onClick={[Function]}
+  >
+    info
+  </div>
+  <div
     className="Grid"
   >
     <div
