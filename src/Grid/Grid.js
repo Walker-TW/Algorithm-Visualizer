@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import Node from './Node/Node';
-import Header from '../Header/Header';
+import Header from './Header/Header';
 import { Alert } from 'react-bootstrap';
-
+import Info from './Info/Info';
 import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
 
 import './Grid.css';
@@ -154,6 +154,7 @@ export default class Grid extends Component {
         ) : (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
         )}
+        <Info />
         <div className="Grid" children={nodes} />
       </Fragment>
     );
