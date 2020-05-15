@@ -4,5 +4,6 @@ exports[`<Node /> Test that Node renders 1`] = `
 <div
   className="Node "
   onClick={[Function]}
+  onContextMenu={[Function]}
 />
 `;

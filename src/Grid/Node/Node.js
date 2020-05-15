@@ -1,36 +1,41 @@
-import React, { Component } from 'react';
-import './Node.css';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import "./Node.css";
+import PropTypes from "prop-types";
 
 export default class Node extends Component {
   state = {
     start: false,
     finish: false,
+    fence: false,
   };
 
   clickHandler = () => {
     const { gridId, gridHasStart, gridHasFinish, nodeFlag } = this.props;
 
     if (gridHasStart && gridHasFinish) {
-      document.getElementById('button').className = 'btn btn-primary big';
+      document.getElementById("button").className = "btn btn-primary big";
     } else {
       if (!gridHasStart) {
-        nodeFlag(gridId, 'start');
+        nodeFlag(gridId, "start");
         this.setState({ start: true });
       } else {
         this.setState({ finish: true });
-        nodeFlag(gridId, 'finish');
+        nodeFlag(gridId, "finish");
       }
-      // if (!gridHasStart) {
-      //   nodeFlag(gridId, 'start');
-      //   this.setState({ start: true });
-      // } else if (gridHasStart && !gridHasFinish) {
-      //   this.setState({ finish: true });
-      //   nodeFlag(gridId, 'finish');
-      // } else {
-      //   this.setState({ start: false, finish: false });
-      //   reset();
-      // }
+    }
+  };
+
+  contextMenuHandler = (e) => {
+    e.preventDefault();
+    console.log("Right click baybee");
+    const { gridId, nodeFlag } = this.props;
+    const { fence } = this.state;
+    if (fence === false) {
+      nodeFlag(gridId, "fence");
+      this.setState({ fence: true });
+    } else {
+      nodeFlag(gridId, "fence");
+      this.setState({ fence: false });
     }
   };
 
@@ -38,8 +43,15 @@ export default class Node extends Component {
     return (
       <div
         onClick={this.clickHandler}
+        onContextMenu={this.contextMenuHandler}
         className={`Node ${
-          this.state.start ? 'start' : this.state.finish ? 'finish' : ''
+          this.state.start
+            ? "start"
+            : this.state.finish
+            ? "finish"
+            : this.state.fence
+            ? "fence"
+            : ""
         }`}
         id={this.props.id}
       />
