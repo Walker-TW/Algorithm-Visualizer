@@ -9,6 +9,11 @@ Array [
     Please Choose A Start & End Node
   </div>,
   <div
+    class="collapsed"
+  >
+    info
+  </div>,
+  <div
     class="Grid"
   />,
 ]
