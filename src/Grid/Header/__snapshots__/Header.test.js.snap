@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> renders 1`] = `
+<Button
+  active={false}
+  disabled={false}
+  id="button"
+  onClick={[MockFunction]}
+  style={
+    Object {
+      "margin": "10px 0 ",
+    }
+  }
+  type="button"
+  variant="primary"
+>
+  Let's Run Dijkstra
+</Button>
+`;
