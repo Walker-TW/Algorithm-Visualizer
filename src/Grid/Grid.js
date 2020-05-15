@@ -1,12 +1,12 @@
-import React, { Component, Fragment } from 'react';
-import Node from './Node/Node';
-import Header from './Header/Header';
-import { Alert } from 'react-bootstrap';
-import Info from './Info/Info';
-import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
+import React, { Component, Fragment } from "react";
+import Node from "./Node/Node";
+import Header from "./Header/Header";
+import { Alert } from "react-bootstrap";
+import Info from "./Info/Info";
+import { dijkstra, findShortestPath } from "../Algorithms/dijkstra";
 
-import './Grid.css';
-import './Node/Node.css';
+import "./Grid.css";
+import "./Node/Node.css";
 
 export default class Grid extends Component {
   state = {
@@ -39,6 +39,7 @@ export default class Grid extends Component {
       distance: Infinity,
       visited: false,
       pastNode: null,
+      wall: false,
     };
   };
 
@@ -103,12 +104,12 @@ export default class Grid extends Component {
           `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
         ).className = `Node ${
           node.start
-            ? 'start'
+            ? "start"
             : node.finish
-            ? 'finish'
+            ? "finish"
             : node.visited
-            ? 'visited'
-            : ''
+            ? "visited"
+            : ""
         }`;
       }, 10 * i);
     }
@@ -120,7 +121,7 @@ export default class Grid extends Component {
         const node = nodesInShortestPathOrder[i];
         document.getElementById(
           `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
-        ).className = 'Node path';
+        ).className = "Node path";
       }, 50 * i);
     }
   };
@@ -133,7 +134,7 @@ export default class Grid extends Component {
         <div className="Column" key={colIndex.toString()}>
           {row.map((node, rowIndex) => (
             <Node
-              key={colIndex.toString() + ' ' + rowIndex.toString()}
+              key={colIndex.toString() + " " + rowIndex.toString()}
               id={`node-${node.gridId.colIndex}-${node.gridId.rowIndex}`}
               gridId={node.gridId}
               gridHasStart={start.present}
