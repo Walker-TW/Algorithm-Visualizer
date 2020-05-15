@@ -15,6 +15,7 @@ const Header = (props) => {
         variant="primary"
         children={"Wall selector"}
       />
+      <br />
       <Button
         id="button"
         style={{ margin: "10px 0 " }}

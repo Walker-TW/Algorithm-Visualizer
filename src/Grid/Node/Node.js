@@ -14,6 +14,7 @@ export default class Node extends Component {
 
     if (gridHasStart && gridHasFinish) {
       document.getElementById("button").className = "btn btn-primary big";
+      // this.wallSelector();
     } else {
       if (!gridHasStart) {
         nodeFlag(gridId, "start");
@@ -25,8 +26,7 @@ export default class Node extends Component {
     }
   };
 
-  contextMenuHandler = (e) => {
-    e.preventDefault();
+  wallSelector = (e) => {
     console.log("Right click baybee");
     const { gridId, nodeFlag } = this.props;
     const { fence } = this.state;
@@ -43,7 +43,8 @@ export default class Node extends Component {
     return (
       <div
         onClick={this.clickHandler}
-        onContextMenu={this.contextMenuHandler}
+        // onTouchStart={this.clickHandler}
+        onMouseEnter={this.wallSelector}
         className={`Node ${
           this.state.start
             ? "start"
