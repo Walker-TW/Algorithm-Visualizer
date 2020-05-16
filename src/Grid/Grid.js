@@ -119,6 +119,14 @@ export default class Grid extends Component {
   //   });
   // };
 
+  runAStar = () => {
+    const { grid, start, finish } = this.state;
+    const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
+    const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
+    const resultOfAStar = aStar(grid, startNode, finishNode);
+    console.log(resultOfAStar, "This is the result of A*");
+  };
+
   runDijkstra = () => {
     const { grid, start, finish } = this.state;
     const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
@@ -193,7 +201,11 @@ export default class Grid extends Component {
     return (
       <Fragment>
         {start.present && finish.present ? (
-          <Header run={this.runDijkstra} fenceToggle={this.fenceToggler} />
+          <Header
+            run={this.runDijkstra}
+            fenceToggle={this.fenceToggler}
+            aStar={this.runAStar}
+          />
         ) : (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
         )}
