@@ -52,6 +52,8 @@ export default class Grid extends Component {
       visited: false,
       pastNode: null,
       fence: false,
+      heuristic: null,
+      manhatten: null,
     };
   };
 
