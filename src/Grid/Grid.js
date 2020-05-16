@@ -6,7 +6,7 @@ import Header from "./Header/Header";
 import { Alert } from "react-bootstrap";
 import Info from "./Info/Info";
 import { dijkstra, findShortestPath } from "../Algorithms/dijkstra";
-import { aStar } from "../Algorithms/a*";
+import { aStar, findShortestPathAStar } from "../Algorithms/a*";
 
 import "./Grid.css";
 import "./Node/Node.css";
@@ -126,7 +126,10 @@ export default class Grid extends Component {
     const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
     const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
     const resultOfAStar = aStar(grid, startNode, finishNode);
-    console.log(resultOfAStar, "This is the result of A*");
+    console.log(resultOfAStar, "resultofAstar");
+    const y = findShortestPathAStar(resultOfAStar[resultOfAStar.length - 1]);
+
+    this.animateAlgorithm(resultOfAStar, y);
   };
 
   runDijkstra = () => {

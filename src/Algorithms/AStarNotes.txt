@@ -1,13 +1,16 @@
 - First thing to do is decide on a heuristic
- - manhatten seems the best as we cannot move in diagonals
+ - manhatten seems the best as we cannot move in diagonals X
  - therefore need to create a function which creates this distance 
- for every node in the grid
+ for every node in the grid X
 
 - Then test this to be sure it is giving the correct result on every
 node (TDD)
 
 - When the funtion is fully tested on implementation of A* set this distance
-to every node and store in the object
+to every node and store in the object X
+
+-- What to do about inifinity which only changes when it finds the nearest
+neighbours 
 
 - Sort the nodes based off (heuristic + the weight at that moment) 
 return them in a sorted list

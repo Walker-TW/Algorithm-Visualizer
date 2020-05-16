@@ -5,7 +5,7 @@ export function dijkstra(grid, start, finish) {
   // so make a check to be sure that it exists!!!
   const unvisitedNodes = getNodes(grid);
   while (!!unvisitedNodes.length) {
-    sortUnvistedDistance(unvisitedNodes);
+    sortUnvisitedDistance(unvisitedNodes);
     const closestNode = unvisitedNodes.shift();
     if (closestNode.fence === true) continue;
     if (closestNode.distance === Infinity) return nodesVisited;
@@ -26,7 +26,7 @@ function getNodes(grid) {
   return allNodes;
 }
 
-function sortUnvistedDistance(unvisitedNodes) {
+function sortUnvisitedDistance(unvisitedNodes) {
   unvisitedNodes.sort((node1, node2) => node1.distance - node2.distance);
 }
 
