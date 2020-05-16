@@ -191,10 +191,11 @@ export default class Grid extends Component {
 
     return (
       <Fragment>
-        {start.present && finish.present ? (
-          <Header run={this.runDijkstra} fenceToggle={this.fenceToggler} />
-        ) : (
+        <Header run={this.runDijkstra} fenceToggle={this.fenceToggler} />
+        {!start.present && !finish.present ? (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
+        ) : (
+          ''
         )}
         <div>
           <Info />

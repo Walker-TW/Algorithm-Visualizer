@@ -1,3 +1,14 @@
 .big {
   transform: scale(2);
 }
+.btn-run {
+  background-color: yellow;
+  margin: 0;
+  float: none;
+}
+
+.nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translatex(-50%);
+}
