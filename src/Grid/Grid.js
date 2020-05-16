@@ -13,6 +13,7 @@ import "./Node/Node.css";
 export default class Grid extends Component {
   state = {
     grid: [],
+    fenceToggle: false,
     start: {
       present: false,
       gridId: {
@@ -67,6 +68,15 @@ export default class Grid extends Component {
     }
 
     this.setState({ grid });
+  };
+
+  fenceToggler = () => {
+    const { fenceToggle } = this.state;
+    if (fenceToggle === false) {
+      this.setState({ fenceToggle: true });
+    } else {
+      this.setState({ fenceToggle: false });
+    }
   };
 
   nodeFlag = (gridId, type) => {
@@ -141,10 +151,6 @@ export default class Grid extends Component {
     }
   };
 
-  gimmeClicks = () => {
-    console.log("Wall Selector");
-  };
-
   render() {
     const { grid, start, finish } = this.state;
 
@@ -158,6 +164,7 @@ export default class Grid extends Component {
               gridId={node.gridId}
               gridHasStart={start.present}
               gridHasFinish={finish.present}
+              gridHasFenceToggle={this.state.fenceToggle}
               nodeFlag={this.nodeFlag}
               updateNode={this.updateNode}
               // reset={this.resetStartFinish}
@@ -170,7 +177,7 @@ export default class Grid extends Component {
     return (
       <Fragment>
         {start.present && finish.present ? (
-          <Header run={this.runDijkstra} wall={this.gimmeClicks} />
+          <Header run={this.runDijkstra} fencetoggle={this.fenceToggler} />
         ) : (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
         )}

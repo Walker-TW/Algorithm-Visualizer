@@ -10,11 +10,17 @@ export default class Node extends Component {
   };
 
   clickHandler = () => {
-    const { gridId, gridHasStart, gridHasFinish, nodeFlag } = this.props;
+    const {
+      gridId,
+      gridHasStart,
+      gridHasFinish,
+      gridHasFenceToggle,
+      nodeFlag,
+    } = this.props;
 
-    if (gridHasStart && gridHasFinish) {
+    if (gridHasStart && gridHasFinish && !gridHasFenceToggle) {
       document.getElementById("button").className = "btn btn-primary big";
-      // this.wallSelector();
+      this.fenceSelector();
     } else {
       if (!gridHasStart) {
         nodeFlag(gridId, "start");
@@ -26,7 +32,7 @@ export default class Node extends Component {
     }
   };
 
-  wallSelector = (e) => {
+  fenceSelector = (e) => {
     console.log("Right click baybee");
     const { gridId, nodeFlag } = this.props;
     const { fence } = this.state;
@@ -39,12 +45,32 @@ export default class Node extends Component {
     }
   };
 
+  mouseUpHandler = () => {
+    const { gridHasFenceToggle } = this.props;
+    if (gridHasFenceToggle === true) {
+      console.log(gridHasFenceToggle, "mouseUpHandler");
+    }
+  };
+  mouseEnterHandler = () => {
+    const { gridHasFenceToggle } = this.props;
+    if (gridHasFenceToggle === true) {
+      console.log(gridHasFenceToggle, "mouseEnterHandler");
+    }
+  };
+  mouseDownHandler = () => {
+    const { gridHasFenceToggle } = this.props;
+    if (gridHasFenceToggle === true) {
+      console.log(gridHasFenceToggle, "mouseDownHandler");
+    }
+  };
+
   render() {
     return (
       <div
         onClick={this.clickHandler}
-        // onTouchStart={this.clickHandler}
-        onMouseEnter={this.wallSelector}
+        onMouseDown={this.mouseDownHandler}
+        onMouseEnter={this.mouseEnterHandler}
+        onMouseUp={this.mouseUpHandler}
         className={`Node ${
           this.state.start
             ? "start"
@@ -65,5 +91,7 @@ Node.propTypes = {
   nodeFlag: PropTypes.func.isRequired,
   gridHasStart: PropTypes.bool.isRequired,
   gridHasFinish: PropTypes.bool.isRequired,
+  gridHasFenceToggle: PropTypes.bool.isRequired,
+
   // reset: PropTypes.func.isRequired,
 };

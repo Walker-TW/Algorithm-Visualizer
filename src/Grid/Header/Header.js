@@ -9,11 +9,11 @@ const Header = (props) => {
     <Fragment>
       <br />
       <Button
-        id="wall-button"
+        id="fence-button"
         style={{ margin: "10px 0 " }}
-        onClick={props.wall}
+        onClick={props.fencetoggle}
         variant="primary"
-        children={"Wall selector"}
+        children={"Make Fences"}
       />
       <br />
       <Button
