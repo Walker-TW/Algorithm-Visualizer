@@ -14,6 +14,7 @@ export default class Grid extends Component {
   state = {
     grid: [],
     fenceToggle: false,
+    mouseToggle: false,
     start: {
       present: false,
       gridId: {
@@ -76,6 +77,15 @@ export default class Grid extends Component {
       this.setState({ fenceToggle: true });
     } else {
       this.setState({ fenceToggle: false });
+    }
+  };
+
+  mouseFlag = () => {
+    const { mouseToggle } = this.state;
+    if (mouseToggle === false) {
+      this.setState({ mouseToggle: true });
+    } else {
+      this.setState({ mouseToggle: false });
     }
   };
 
@@ -166,7 +176,9 @@ export default class Grid extends Component {
               gridHasFinish={finish.present}
               gridHasFenceToggle={this.state.fenceToggle}
               nodeFlag={this.nodeFlag}
+              mouseFlag={this.mouseFlag}
               updateNode={this.updateNode}
+              mouseToggle={this.state.mouseToggle}
               // reset={this.resetStartFinish}
             />
           ))}

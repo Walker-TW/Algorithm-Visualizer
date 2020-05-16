@@ -20,14 +20,14 @@ Pseudo
 - - fenceToggle DEFAULT false X
 - - onClick == function (which turns this true in the grid state) X
 
-- On mousedown
+- On mousedown X
 - - set fenceSelector = true
 - - WHEN fenceSelector.true & button toggle has happened
 - - THEN set fence = true
 
-- On mouseenter
+- On mouseenter X
 - - if fenceSelector = true & button toggle 
 - - set fence = true
 
-- On mouseup
+- On mouseup X
 - - set fenceSelector = false

@@ -20,7 +20,6 @@ export default class Node extends Component {
 
     if (gridHasStart && gridHasFinish && !gridHasFenceToggle) {
       document.getElementById("button").className = "btn btn-primary big";
-      this.fenceSelector();
     } else {
       if (!gridHasStart) {
         nodeFlag(gridId, "start");
@@ -33,7 +32,6 @@ export default class Node extends Component {
   };
 
   fenceSelector = (e) => {
-    console.log("Right click baybee");
     const { gridId, nodeFlag } = this.props;
     const { fence } = this.state;
     if (fence === false) {
@@ -46,28 +44,30 @@ export default class Node extends Component {
   };
 
   mouseUpHandler = () => {
-    const { gridHasFenceToggle } = this.props;
-    if (gridHasFenceToggle === true) {
-      console.log(gridHasFenceToggle, "mouseUpHandler");
+    const { mouseFlag, mouseToggle, gridHasFenceToggle } = this.props;
+    if (gridHasFenceToggle === true && mouseToggle === true) {
+      mouseFlag();
     }
   };
   mouseEnterHandler = () => {
-    const { gridHasFenceToggle } = this.props;
-    if (gridHasFenceToggle === true) {
-      console.log(gridHasFenceToggle, "mouseEnterHandler");
+    const { mouseToggle, gridHasFenceToggle } = this.props;
+    if (gridHasFenceToggle === true && mouseToggle === true) {
+      this.fenceSelector();
     }
   };
   mouseDownHandler = () => {
-    const { gridHasFenceToggle } = this.props;
-    if (gridHasFenceToggle === true) {
-      console.log(gridHasFenceToggle, "mouseDownHandler");
+    const { mouseToggle, mouseFlag, gridHasFenceToggle } = this.props;
+    if (gridHasFenceToggle === true && mouseToggle === false) {
+      mouseFlag();
+      this.fenceSelector();
+    } else {
+      this.clickHandler();
     }
   };
 
   render() {
     return (
       <div
-        onClick={this.clickHandler}
         onMouseDown={this.mouseDownHandler}
         onMouseEnter={this.mouseEnterHandler}
         onMouseUp={this.mouseUpHandler}
