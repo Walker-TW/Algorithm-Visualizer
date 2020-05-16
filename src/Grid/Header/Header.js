@@ -1,13 +1,10 @@
 import React, { Fragment } from 'react';
-import { Button, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Button, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 import './Header.css';
 
 const Header = (props) => {
-  //   return (
-  //     <Fragment>
-  //       <br />
   //       <Button
   //         id="fence-button"
   //         style={{ margin: '10px 0 ' }}
@@ -15,18 +12,14 @@ const Header = (props) => {
   //         variant="primary"
   //         children={'Make Fences'}
   //       />
-  //       <br />
+
   // <Button
   //   id="button"
-  //   style={{ margin: '10px 0 ' }}
-  //   onClick={props.run}
+  //   style={{ margin: '10px 0 ', backgroundColor: 'red' }}
+  //   onClick={props.reset}
   //   variant="primary"
-  //   children={"Let's Run Dijkstra"}
-  // />
-  //     </Fragment>
-  //   );
-  // };
-
+  //   children={'Reset'}
+  // />;
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand href="#home">Algo-Visualiser</Navbar.Brand>
@@ -54,6 +47,13 @@ const Header = (props) => {
             onClick={props.run}
             children={"Let's Run Dijkstra"}
           />
+          <Button
+            id="reset-btn"
+            style={{ backgroundColor: 'red' }}
+            onClick={props.reset}
+            variant="primary"
+            children={'Reset'}
+          />
         </Nav>
         <Nav>
           <Nav.Link href="#deets">More deets</Nav.Link>
@@ -70,4 +70,5 @@ export default Header;
 Header.propTypes = {
   run: PropTypes.func.isRequired,
   fenceToggle: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired,
 };

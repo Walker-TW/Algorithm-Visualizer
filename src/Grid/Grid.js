@@ -28,12 +28,12 @@ export default class Grid extends Component {
         rowIndex: null,
         colIndex: null,
       },
-    },
-    fence: {
-      present: [false],
-      gridId: {
-        rowIndex: null,
-        colIndex: null,
+      fence: {
+        present: [false],
+        gridId: {
+          rowIndex: null,
+          colIndex: null,
+        },
       },
     },
   };
@@ -164,6 +164,10 @@ export default class Grid extends Component {
     }
   };
 
+  reset = () => {
+    window.location.reload();
+  };
+
   render() {
     const { grid, start, finish } = this.state;
 
@@ -191,11 +195,15 @@ export default class Grid extends Component {
 
     return (
       <Fragment>
-        <Header run={this.runDijkstra} fenceToggle={this.fenceToggler} />
-        {!start.present && !finish.present ? (
-          <Alert variant="primary">Please Choose A Start & End Node</Alert>
-        ) : (
+        <Header
+          run={this.runDijkstra}
+          fenceToggle={this.fenceToggler}
+          reset={this.reset}
+        />
+        {start.present && finish.present ? (
           ''
+        ) : (
+          <Alert variant="primary">Please Choose A Start & End Node</Alert>
         )}
         <div>
           <Info />

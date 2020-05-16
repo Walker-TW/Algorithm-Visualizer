@@ -10,6 +10,7 @@ const spyTwo = jest.fn(() => {});
 const defaultProps = {
   run: spy,
   fenceToggle: spyTwo,
+  reset: () => {},
 };
 describe('<Header />', () => {
   const wrapper = shallow(<Header {...defaultProps} />);
