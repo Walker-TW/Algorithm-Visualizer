@@ -93,14 +93,11 @@ export default class Grid extends Component {
     const { grid } = this.state;
     const { rowIndex, colIndex } = gridId;
     const node = grid[rowIndex][colIndex];
-    console.log(node, "node before change");
     if (type === "fence") {
       if (node.start === true || node.finish === true) {
         node[type] = false;
-        console.log(node, "if");
       } else {
         node[type] = true;
-        console.log(node, "else");
       }
     } else {
       node[type] = true;
