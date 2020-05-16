@@ -1,0 +1,33 @@
+Need to do two things
+- Create button that will switch the mouse clicks to walls 
+
+- OR make it so that mouseenter etc events set start and finish nodes
+- - And the double click on a node will change it to a start/finish node
+- - Thing to make sure of here is that the wall selector is 
+automatically set to false when this happens
+
+- - MouseEnter would set a boolean that the mouse is clicked 
+so we can use mouseenter to get inside and
+toggle it 
+- - that way when you lift up on the click it mouseisclicked will 
+default to true and not be able to
+make walls anymore (allowing you to switch between them both easily)
+
+
+Pseudo
+
+- Button Toggle
+- - fenceToggle DEFAULT false X
+- - onClick == function (which turns this true in the grid state) X
+
+- On mousedown X
+- - set fenceSelector = true
+- - WHEN fenceSelector.true & button toggle has happened
+- - THEN set fence = true
+
+- On mouseenter X
+- - if fenceSelector = true & button toggle 
+- - set fence = true
+
+- On mouseup X
+- - set fenceSelector = false

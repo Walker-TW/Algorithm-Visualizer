@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import "./Node.css";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import './Node.css';
+import PropTypes from 'prop-types';
 
 export default class Node extends Component {
   state = {
@@ -10,48 +10,70 @@ export default class Node extends Component {
   };
 
   clickHandler = () => {
-    const { gridId, gridHasStart, gridHasFinish, nodeFlag } = this.props;
+    const {
+      gridId,
+      gridHasStart,
+      gridHasFinish,
+      gridHasFenceToggle,
+      nodeFlag,
+    } = this.props;
 
-    if (gridHasStart && gridHasFinish) {
-      document.getElementById("button").className = "btn btn-primary big";
+    if (gridHasStart && gridHasFinish && !gridHasFenceToggle) {
+      document.getElementById('button').innerText = 'Click Me';
     } else {
       if (!gridHasStart) {
-        nodeFlag(gridId, "start");
+        nodeFlag(gridId, 'start');
         this.setState({ start: true });
-      } else {
+      } else if (!gridHasFinish) {
         this.setState({ finish: true });
-        nodeFlag(gridId, "finish");
+        nodeFlag(gridId, 'finish');
       }
     }
   };
 
-  contextMenuHandler = (e) => {
-    e.preventDefault();
-    console.log("Right click baybee");
+  fenceSelector = (e) => {
     const { gridId, nodeFlag } = this.props;
-    const { fence } = this.state;
-    if (fence === false) {
-      nodeFlag(gridId, "fence");
+    const { fence, start, finish } = this.state;
+    if (fence === false && start === false && finish === false) {
+      nodeFlag(gridId, 'fence');
       this.setState({ fence: true });
     } else {
-      nodeFlag(gridId, "fence");
+      nodeFlag(gridId, 'fence');
       this.setState({ fence: false });
     }
   };
 
+  mouseUpHandler = () => {
+    const { mouseFlag, mouseToggle, gridHasFenceToggle } = this.props;
+    if (gridHasFenceToggle === true && mouseToggle === true) {
+      mouseFlag();
+    }
+  };
+  mouseEnterHandler = () => {
+    const { mouseToggle, gridHasFenceToggle } = this.props;
+    if (gridHasFenceToggle === true && mouseToggle === true) {
+      this.fenceSelector();
+    }
+  };
+  mouseDownHandler = () => {
+    const { mouseToggle, mouseFlag, gridHasFenceToggle } = this.props;
+    if (gridHasFenceToggle === true && mouseToggle === false) {
+      mouseFlag();
+      this.fenceSelector();
+    } else {
+      this.clickHandler();
+    }
+  };
+
   render() {
+    const { start, finish, fence } = this.state;
     return (
       <div
-        onClick={this.clickHandler}
-        onContextMenu={this.contextMenuHandler}
+        onMouseDown={this.mouseDownHandler}
+        onMouseEnter={this.mouseEnterHandler}
+        onMouseUp={this.mouseUpHandler}
         className={`Node ${
-          this.state.start
-            ? "start"
-            : this.state.finish
-            ? "finish"
-            : this.state.fence
-            ? "fence"
-            : ""
+          start ? 'start' : finish ? 'finish' : fence ? 'fence' : ''
         }`}
         id={this.props.id}
       />
@@ -64,5 +86,7 @@ Node.propTypes = {
   nodeFlag: PropTypes.func.isRequired,
   gridHasStart: PropTypes.bool.isRequired,
   gridHasFinish: PropTypes.bool.isRequired,
+  gridHasFenceToggle: PropTypes.bool.isRequired,
+
   // reset: PropTypes.func.isRequired,
 };

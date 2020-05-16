@@ -7,12 +7,14 @@ import { Alert } from 'react-bootstrap';
 import Info from './Info/Info';
 import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
 
-import "./Grid.css";
-import "./Node/Node.css";
+import './Grid.css';
+import './Node/Node.css';
 
 export default class Grid extends Component {
   state = {
     grid: [],
+    fenceToggle: false,
+    mouseToggle: false,
     start: {
       present: false,
       gridId: {
@@ -69,13 +71,34 @@ export default class Grid extends Component {
     this.setState({ grid });
   };
 
+  fenceToggler = () => {
+    const { fenceToggle } = this.state;
+    if (fenceToggle === false) {
+      this.setState({ fenceToggle: true });
+    } else {
+      this.setState({ fenceToggle: false });
+    }
+  };
+
+  mouseFlag = () => {
+    const { mouseToggle } = this.state;
+    if (mouseToggle === false) {
+      this.setState({ mouseToggle: true });
+    } else {
+      this.setState({ mouseToggle: false });
+    }
+  };
+
   nodeFlag = (gridId, type) => {
     const { grid } = this.state;
     const { rowIndex, colIndex } = gridId;
     const node = grid[rowIndex][colIndex];
-
-    if (type === "fence") {
-      node[type] = true;
+    if (type === 'fence') {
+      if (node.start === true || node.finish === true) {
+        node[type] = false;
+      } else {
+        node[type] = true;
+      }
     } else {
       node[type] = true;
       this.setState({
@@ -119,12 +142,12 @@ export default class Grid extends Component {
           `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
         ).className = `Node ${
           node.start
-            ? "start"
+            ? 'start'
             : node.finish
-            ? "finish"
+            ? 'finish'
             : node.visited
-            ? "visited"
-            : ""
+            ? 'visited'
+            : ''
         }`;
       }, 10 * i);
     }
@@ -136,7 +159,7 @@ export default class Grid extends Component {
         const node = nodesInShortestPathOrder[i];
         document.getElementById(
           `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
-        ).className = "Node path";
+        ).className = 'Node path';
       }, 50 * i);
     }
   };
@@ -149,13 +172,16 @@ export default class Grid extends Component {
         <div className="Column" key={colIndex.toString()}>
           {row.map((node, rowIndex) => (
             <Node
-              key={colIndex.toString() + " " + rowIndex.toString()}
+              key={colIndex.toString() + ' ' + rowIndex.toString()}
               id={`node-${node.gridId.colIndex}-${node.gridId.rowIndex}`}
               gridId={node.gridId}
               gridHasStart={start.present}
               gridHasFinish={finish.present}
+              gridHasFenceToggle={this.state.fenceToggle}
               nodeFlag={this.nodeFlag}
+              mouseFlag={this.mouseFlag}
               updateNode={this.updateNode}
+              mouseToggle={this.state.mouseToggle}
               // reset={this.resetStartFinish}
             />
           ))}
@@ -166,7 +192,7 @@ export default class Grid extends Component {
     return (
       <Fragment>
         {start.present && finish.present ? (
-          <Header run={this.runDijkstra} />
+          <Header run={this.runDijkstra} fenceToggle={this.fenceToggler} />
         ) : (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
         )}
