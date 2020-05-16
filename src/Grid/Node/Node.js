@@ -24,7 +24,7 @@ export default class Node extends Component {
       if (!gridHasStart) {
         nodeFlag(gridId, "start");
         this.setState({ start: true });
-      } else {
+      } else if (!gridHasFinish) {
         this.setState({ finish: true });
         nodeFlag(gridId, "finish");
       }
@@ -33,8 +33,8 @@ export default class Node extends Component {
 
   fenceSelector = (e) => {
     const { gridId, nodeFlag } = this.props;
-    const { fence } = this.state;
-    if (fence === false) {
+    const { fence, start, finish } = this.state;
+    if (fence === false && start === false && finish === false) {
       nodeFlag(gridId, "fence");
       this.setState({ fence: true });
     } else {

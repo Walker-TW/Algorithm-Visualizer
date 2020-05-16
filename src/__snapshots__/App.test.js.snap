@@ -7,8 +7,8 @@ exports[`<App /> renders 1`] = `
   <Grid
     view={
       Object {
-        "height": 29.4,
-        "width": 50.2,
+        "height": 28.4,
+        "width": 41.2,
       }
     }
   />
