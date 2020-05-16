@@ -5,8 +5,11 @@ import Enzyme, { shallow, mount, render } from 'enzyme';
 import Header from './Header';
 
 const spy = jest.fn(() => {});
+const spyTwo = jest.fn(() => {});
+
 const defaultProps = {
   run: spy,
+  fenceToggle: spyTwo,
 };
 describe('<Header />', () => {
   const wrapper = shallow(<Header {...defaultProps} />);
@@ -15,8 +18,12 @@ describe('<Header />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('calls the spy onclick', () => {
-    wrapper.simulate('click');
+  it('run calls the spy onclick', () => {
+    wrapper.find('#button').simulate('click');
     expect(spy.mock.calls.length).toEqual(1);
+  });
+  it('walls calls the spy onclick', () => {
+    wrapper.find('#fence-button').simulate('click');
+    expect(spyTwo.mock.calls.length).toEqual(1);
   });
 });

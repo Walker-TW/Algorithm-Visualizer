@@ -4,6 +4,7 @@ import Enzyme, { shallow, mount, render } from 'enzyme';
 
 import Grid from './Grid';
 import Node from './Node/Node';
+import Header from './Header/Header';
 
 const mobile = { width: 18, height: 28 };
 const desktop = { width: 50, height: 30 };
@@ -16,6 +17,7 @@ describe('<Grid view={desktop} />', () => {
 
   it('renders all 1500 Node components', () => {
     const wrapper = shallow(<Grid view={desktop} />);
+
     expect(wrapper.find(Node).length).toEqual(1500);
   });
 
@@ -24,7 +26,7 @@ describe('<Grid view={desktop} />', () => {
     const node = wrapper.find(Node);
     const test = node.first();
     expect(test.state().start).toEqual(false);
-    test.simulate('click');
+    test.simulate('mousedown', 'mouseup');
     expect(test.state().start).toEqual(true);
   });
 
@@ -32,12 +34,28 @@ describe('<Grid view={desktop} />', () => {
     const wrapper = mount(<Grid view={desktop} />);
     const node = wrapper.find(Node);
     const test = node.first();
-    test.simulate('click');
+    test.simulate('mousedown', 'mouseup');
     expect(wrapper.state().start.present).toEqual(true);
   });
 
   it('renders 1400 nodes on mobile', () => {
     const wrapperTwo = shallow(<Grid view={mobile} />);
     expect(wrapperTwo.find(Node).length).toEqual(504);
+  });
+
+  it('adds walls', () => {
+    const wrapper = mount(<Grid view={desktop} />);
+
+    const node = wrapper.find(Node);
+    const test = node.first();
+    const testTwo = node.last();
+    test.simulate('mousedown', 'mouseup');
+    testTwo.simulate('mousedown', 'mouseup');
+
+    const button = wrapper.find('#fence-button');
+    const fenced = button.first();
+    fenced.simulate('click');
+
+    expect(wrapper.state().fenceToggle).toEqual(true);
   });
 });

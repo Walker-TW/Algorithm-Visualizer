@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import "./Node.css";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import './Node.css';
+import PropTypes from 'prop-types';
 
 export default class Node extends Component {
   state = {
@@ -19,14 +19,14 @@ export default class Node extends Component {
     } = this.props;
 
     if (gridHasStart && gridHasFinish && !gridHasFenceToggle) {
-      document.getElementById("button").className = "btn btn-primary big";
+      document.getElementById('button').innerText = 'Click Me';
     } else {
       if (!gridHasStart) {
-        nodeFlag(gridId, "start");
+        nodeFlag(gridId, 'start');
         this.setState({ start: true });
       } else if (!gridHasFinish) {
         this.setState({ finish: true });
-        nodeFlag(gridId, "finish");
+        nodeFlag(gridId, 'finish');
       }
     }
   };
@@ -35,10 +35,10 @@ export default class Node extends Component {
     const { gridId, nodeFlag } = this.props;
     const { fence, start, finish } = this.state;
     if (fence === false && start === false && finish === false) {
-      nodeFlag(gridId, "fence");
+      nodeFlag(gridId, 'fence');
       this.setState({ fence: true });
     } else {
-      nodeFlag(gridId, "fence");
+      nodeFlag(gridId, 'fence');
       this.setState({ fence: false });
     }
   };
@@ -66,19 +66,14 @@ export default class Node extends Component {
   };
 
   render() {
+    const { start, finish, fence } = this.state;
     return (
       <div
         onMouseDown={this.mouseDownHandler}
         onMouseEnter={this.mouseEnterHandler}
         onMouseUp={this.mouseUpHandler}
         className={`Node ${
-          this.state.start
-            ? "start"
-            : this.state.finish
-            ? "finish"
-            : this.state.fence
-            ? "fence"
-            : ""
+          start ? 'start' : finish ? 'finish' : fence ? 'fence' : ''
         }`}
         id={this.props.id}
       />
