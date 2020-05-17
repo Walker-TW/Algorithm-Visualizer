@@ -1,24 +1,29 @@
 export function aStar(grid, start, finish) {
   const nodesVisited = [];
-  // console.log(start.manhatten, "start");
-  // console.log(finish, "finish");
+  console.log(start, "start");
+  console.log(finish, "finish");
   start.distance = 0;
   start.manhatten = findManhatten(start, finish);
+  // console.log(start, "before setting it");
+  findHeuristicTotal(start);
+  // set the heuristic here
+  // console.log(start, "after setting it");
   const unvisitedNodes = getNodes(grid);
   const unvistedAndManhattenNodes = findManhattenOnAllNodes(
     unvisitedNodes,
     finish,
     start
   );
-  console.dir(unvistedAndManhattenNodes, "unvistedmanhattened nodes");
+  console.log(unvistedAndManhattenNodes.length, "unvistedmanhattened nodes");
   while (!!unvistedAndManhattenNodes.length) {
-    console.log("1");
-    sortUnvisitedDistance(unvistedAndManhattenNodes);
+    console.log(unvistedAndManhattenNodes[0], "1");
+    sortUnvisitedHeuritsic(unvistedAndManhattenNodes);
+    console.log(unvistedAndManhattenNodes[0], "after sort");
     console.log("2");
     const closestNode = unvistedAndManhattenNodes.shift();
     console.log("3");
     if (closestNode.fence === true) continue;
-    console.log("4");
+    console.log(closestNode, "4");
     if (closestNode.distance === Infinity) return nodesVisited;
     console.log("5");
     closestNode.visited = true;
@@ -69,15 +74,18 @@ function findHeuristicTotal(node) {
 //   }
 // }
 
-function sortUnvisitedDistance(unvisitedNodes) {
-  unvisitedNodes.sort((node1, node2) => node1.distance - node2.distance);
-}
+// function sortUnvisitedDistance(unvisitedNodes) {
+//   unvisitedNodes.sort((node1, node2) => node1.distance - node2.distance);
+// }
 
 function updateUnvisitedNeighbors(closestNode, grid) {
   const unvisitedNeighbors = getUnvisitedNeighbors(closestNode, grid);
   console.log(unvisitedNeighbors, "unvisitedNeighbors");
   for (const neighbor of unvisitedNeighbors) {
+    console.log(neighbor, "before distance update");
     neighbor.distance = closestNode.distance + 1;
+    console.log(neighbor, "after distance update");
+    // update distance
     console.log(neighbor, "before heuritsic total");
     findHeuristicTotal(neighbor);
     // give it a heuristic total here.
@@ -104,7 +112,8 @@ function getUnvisitedNeighbors(node, grid) {
     neighbors.push(grid[rowIndex][colIndex + 1]);
   // and if ????
   sortUnvisitedHeuritsic(neighbors);
-  return neighbors.filter((neighbor) => !neighbor.visited);
+  const x = neighbors.filter((neighbor) => !neighbor.visited);
+  return x.filter((neighbor) => !neighbor.start);
 }
 
 function sortUnvisitedHeuritsic(neighbors) {

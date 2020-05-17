@@ -6,7 +6,7 @@ import Header from "./Header/Header";
 import { Alert } from "react-bootstrap";
 import Info from "./Info/Info";
 import { dijkstra, findShortestPath } from "../Algorithms/dijkstra";
-import { aStar, findShortestPathAStar } from "../Algorithms/a*";
+import { aStar, findShortestPathAStar } from "../Algorithms/a*test";
 
 import "./Grid.css";
 import "./Node/Node.css";
@@ -46,13 +46,13 @@ export default class Grid extends Component {
   createNode = (gridId) => {
     return {
       gridId,
-      start: false,
-      finish: false,
-      heuristic: null,
-      manhatten: null,
+      heuristic: Infinity,
+      manhatten: Infinity,
       distance: Infinity,
       visited: false,
       pastNode: null,
+      start: false,
+      finish: false,
       fence: false,
     };
   };

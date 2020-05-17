@@ -10,14 +10,14 @@ node (TDD)
 to every node and store in the object X
 
 -- What to do about inifinity which only changes when it finds the nearest
-neighbours 
+neighbours X
 
 - Sort the nodes based off (heuristic + the weight at that moment) 
-return them in a sorted list
+return them in a sorted list X
 (have a look at what to do if the distance changes i.e. fences)
 
 - iterate through this queue sorting the nodes again as the weights 
-change (luckily the heuristic base value will stay the same)
+change (luckily the heuristic base value will stay the same) X
 
 -return a completed reversed list (like dijkstra) when you reach the end
 
