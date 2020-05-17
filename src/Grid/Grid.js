@@ -127,7 +127,8 @@ export default class Grid extends Component {
     const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
     const resultOfAStar = aStar(grid, startNode, finishNode);
     console.log(resultOfAStar, "resultofAstar");
-    const y = findShortestPathAStar(resultOfAStar[resultOfAStar.length - 1]);
+    console.log(resultOfAStar[0], "look here");
+    const y = findShortestPathAStar(resultOfAStar[0]);
     this.animateAlgorithm(resultOfAStar, y);
   };
 
