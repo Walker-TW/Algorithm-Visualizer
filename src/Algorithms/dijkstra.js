@@ -32,29 +32,29 @@ function sortUnvisitedDistance(unvisitedNodes) {
 
 function updateUnvisitedNeighbors(closestNode, grid) {
   const unvisitedNeighbors = getUnvisitedNeighbors(closestNode, grid);
-  for (const neighbor of unvisitedNeighbors) {
-    neighbor.distance = closestNode.distance + 1;
+  for (const neighbour of unvisitedNeighbors) {
+    neighbour.distance = closestNode.distance + 1;
     // iterating the distance
-    neighbor.pastNode = closestNode;
+    neighbour.pastNode = closestNode;
     // the new node is the neighbour of the previous node
   }
 }
 
 function getUnvisitedNeighbors(node, grid) {
-  const neighbors = [];
+  const neighbours = [];
   const { colIndex, rowIndex } = node.gridId;
   // creates an object with the index of the node
   // these are all checks
-  if (rowIndex > 0) neighbors.push(grid[rowIndex - 1][colIndex]);
+  if (rowIndex > 0) neighbours.push(grid[rowIndex - 1][colIndex]);
   // if the row is not 0 then push into neighbours the node (0 indexed)
-  if (rowIndex < grid.length - 1) neighbors.push(grid[rowIndex + 1][colIndex]);
+  if (rowIndex < grid.length - 1) neighbours.push(grid[rowIndex + 1][colIndex]);
   // if the row is smaller than the grid length push into neighbours the node (+1)
-  if (colIndex > 0) neighbors.push(grid[rowIndex][colIndex - 1]);
+  if (colIndex > 0) neighbours.push(grid[rowIndex][colIndex - 1]);
   // if column is smaller than 0 push in neighbours 0 indexed
   if (colIndex < grid[0].length - 1)
-    neighbors.push(grid[rowIndex][colIndex + 1]);
+    neighbours.push(grid[rowIndex][colIndex + 1]);
   // and if ????
-  return neighbors.filter((neighbor) => !neighbor.visited);
+  return neighbours.filter((neighbour) => !neighbour.visited);
   // return the neighbours that have not been visted(which ic listed in the state)
 }
 

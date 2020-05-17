@@ -128,7 +128,6 @@ export default class Grid extends Component {
     const resultOfAStar = aStar(grid, startNode, finishNode);
     console.log(resultOfAStar, "resultofAstar");
     const y = findShortestPathAStar(resultOfAStar[resultOfAStar.length - 1]);
-
     this.animateAlgorithm(resultOfAStar, y);
   };
 
@@ -137,6 +136,7 @@ export default class Grid extends Component {
     const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
     const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
     const resultOfDijkstra = dijkstra(grid, startNode, finishNode);
+    console.log(resultOfDijkstra, "what you looking at");
     const y = findShortestPath(resultOfDijkstra[resultOfDijkstra.length - 1]);
 
     this.animateAlgorithm(resultOfDijkstra, y);

@@ -81,43 +81,43 @@ function findHeuristicTotal(node) {
 function updateUnvisitedNeighbors(closestNode, grid) {
   const unvisitedNeighbors = getUnvisitedNeighbors(closestNode, grid);
   console.log(unvisitedNeighbors, "unvisitedNeighbors");
-  for (const neighbor of unvisitedNeighbors) {
-    console.log(neighbor, "before distance update");
-    neighbor.distance = closestNode.distance + 1;
-    console.log(neighbor, "after distance update");
+  for (const neighbour of unvisitedNeighbors) {
+    console.log(neighbour, "before distance update");
+    neighbour.distance = closestNode.distance + 1;
+    console.log(neighbour, "after distance update");
     // update distance
-    console.log(neighbor, "before heuritsic total");
-    findHeuristicTotal(neighbor);
+    console.log(neighbour, "before heuritsic total");
+    findHeuristicTotal(neighbour);
     // give it a heuristic total here.
-    console.log(neighbor, "after heuritsic total");
+    console.log(neighbour, "after heuritsic total");
     // here it is finding and changing the heuristic total
-    neighbor.pastNode = closestNode;
+    neighbour.pastNode = closestNode;
     console.log(closestNode, "the closestNode");
     // the new node is the neighbour of the previous node
   }
 }
 
 function getUnvisitedNeighbors(node, grid) {
-  const neighbors = [];
+  const neighbours = [];
   const { colIndex, rowIndex } = node.gridId;
   // creates an object with the index of the node
   // these are all checks
-  if (rowIndex > 0) neighbors.push(grid[rowIndex - 1][colIndex]);
+  if (rowIndex > 0) neighbours.push(grid[rowIndex - 1][colIndex]);
   // if the row is not 0 then push into neighbours the node (0 indexed)
-  if (rowIndex < grid.length - 1) neighbors.push(grid[rowIndex + 1][colIndex]);
+  if (rowIndex < grid.length - 1) neighbours.push(grid[rowIndex + 1][colIndex]);
   // if the row is smaller than the grid length push into neighbours the node (+1)
-  if (colIndex > 0) neighbors.push(grid[rowIndex][colIndex - 1]);
+  if (colIndex > 0) neighbours.push(grid[rowIndex][colIndex - 1]);
   // if column is smaller than 0 push in neighbours 0 indexed
   if (colIndex < grid[0].length - 1)
-    neighbors.push(grid[rowIndex][colIndex + 1]);
+    neighbours.push(grid[rowIndex][colIndex + 1]);
   // and if ????
-  sortUnvisitedHeuritsic(neighbors);
-  const x = neighbors.filter((neighbor) => !neighbor.visited);
-  return x.filter((neighbor) => !neighbor.start);
+  sortUnvisitedHeuritsic(neighbours);
+  const x = neighbours.filter((neighbour) => !neighbour.visited);
+  return x.filter((neighbour) => !neighbour.start);
 }
 
-function sortUnvisitedHeuritsic(neighbors) {
-  const x = neighbors.sort(function (node1, node2) {
+function sortUnvisitedHeuritsic(neighbours) {
+  const x = neighbours.sort(function (node1, node2) {
     return node1.heuristic - node2.heuristic;
   });
   // this sort is working
