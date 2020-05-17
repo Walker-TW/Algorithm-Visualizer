@@ -48,12 +48,12 @@ export default class Grid extends Component {
       gridId,
       start: false,
       finish: false,
+      heuristic: null,
+      manhatten: null,
       distance: Infinity,
       visited: false,
       pastNode: null,
       fence: false,
-      heuristic: null,
-      manhatten: null,
     };
   };
 

@@ -1,5 +1,7 @@
 export function aStar(grid, start, finish) {
   const nodesVisited = [];
+  // console.log(start.manhatten, "start");
+  // console.log(finish, "finish");
   start.distance = 0;
   start.manhatten = findManhatten(start, finish);
   const unvisitedNodes = getNodes(grid);
@@ -8,15 +10,14 @@ export function aStar(grid, start, finish) {
     finish,
     start
   );
-  console.log(unvistedAndManhattenNodes, "what you looking for");
-  while (!!unvisitedNodes.length) {
+  console.dir(unvistedAndManhattenNodes, "unvistedmanhattened nodes");
+  while (!!unvistedAndManhattenNodes.length) {
     console.log("1");
-    sortUnvisitedDistance(unvisitedNodes);
+    sortUnvisitedDistance(unvistedAndManhattenNodes);
     console.log("2");
-    const closestNode = unvisitedNodes.shift();
+    const closestNode = unvistedAndManhattenNodes.shift();
     console.log("3");
     if (closestNode.fence === true) continue;
-    console.log(closestNode, "the closestnode");
     console.log("4");
     if (closestNode.distance === Infinity) return nodesVisited;
     console.log("5");
@@ -46,7 +47,7 @@ function findManhatten(node, finish) {
   const finalNodeY = finish.gridId.colIndex + 1;
   const nodeX = node.gridId.rowIndex + 1;
   const nodeY = node.gridId.colIndex + 1;
-  const manhatten = Math.abs(nodeX + finalNodeX) + Math.abs(nodeY + finalNodeY);
+  const manhatten = Math.abs(nodeX - finalNodeX) + Math.abs(nodeY - finalNodeY);
   return manhatten;
 }
 
@@ -54,6 +55,7 @@ function findManhattenOnAllNodes(unvisitedNodes, start, finish) {
   for (const node of unvisitedNodes) {
     node.manhatten = findManhatten(node, finish);
   }
+  return unvisitedNodes;
 }
 
 function findHeuristicTotal(node) {
@@ -71,18 +73,18 @@ function sortUnvisitedDistance(unvisitedNodes) {
   unvisitedNodes.sort((node1, node2) => node1.distance - node2.distance);
 }
 
-function sortUnvisitedHeuritsic(neighbors) {
-  neighbors.sort(function (node1, node2) {
-    return node1.heuristic - node2.heuristic;
-  });
-}
-
 function updateUnvisitedNeighbors(closestNode, grid) {
   const unvisitedNeighbors = getUnvisitedNeighbors(closestNode, grid);
+  console.log(unvisitedNeighbors, "unvisitedNeighbors");
   for (const neighbor of unvisitedNeighbors) {
     neighbor.distance = closestNode.distance + 1;
+    console.log(neighbor, "before heuritsic total");
     findHeuristicTotal(neighbor);
+    // give it a heuristic total here.
+    console.log(neighbor, "after heuritsic total");
+    // here it is finding and changing the heuristic total
     neighbor.pastNode = closestNode;
+    console.log(closestNode, "the closestNode");
     // the new node is the neighbour of the previous node
   }
 }
@@ -103,7 +105,14 @@ function getUnvisitedNeighbors(node, grid) {
   // and if ????
   sortUnvisitedHeuritsic(neighbors);
   return neighbors.filter((neighbor) => !neighbor.visited);
-  // return the neighbours that have not been visted(which ic listed in the state)
+}
+
+function sortUnvisitedHeuritsic(neighbors) {
+  const x = neighbors.sort(function (node1, node2) {
+    return node1.heuristic - node2.heuristic;
+  });
+  // this sort is working
+  return x;
 }
 
 export function findShortestPathAStar(endNode) {
