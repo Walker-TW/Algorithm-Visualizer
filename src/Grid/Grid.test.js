@@ -59,7 +59,9 @@ describe('<Grid view={desktop} />', () => {
       .simulate('change', { target: { checked: true } });
     const findnode = wrapper.find('#node-0-0');
     const node = findnode.first();
-    node.simulate('mousedown', 'mouseup', 'mousedown', 'mouseup');
+    [1, 2].forEach(() => {
+      node.simulate('click');
+    });
     const nodeobj = wrapper.state().grid[0][0];
     expect(nodeobj.fence).toEqual(false);
   });

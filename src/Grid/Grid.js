@@ -82,11 +82,7 @@ export default class Grid extends Component {
 
   mouseFlag = () => {
     const { mouseToggle } = this.state;
-    // if (mouseToggle === false) {
-    //   this.setState({ mouseToggle: true });
-    // } else {
-    //   this.setState({ mouseToggle: false });
-    // }
+
     this.setState({ mouseToggle: !mouseToggle });
   };
 
@@ -95,11 +91,8 @@ export default class Grid extends Component {
     const { rowIndex, colIndex } = gridId;
     const node = grid[rowIndex][colIndex];
     if (type === 'fence') {
-      if (node.start === true || node.finish === true) {
-        node[type] = false;
-      } else {
-        node[type] = true;
-      }
+      node[type] = !node[type];
+      console.log(node, 'node');
     } else {
       node[type] = true;
       this.setState({
