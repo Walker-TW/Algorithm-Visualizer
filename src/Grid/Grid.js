@@ -82,11 +82,12 @@ export default class Grid extends Component {
 
   mouseFlag = () => {
     const { mouseToggle } = this.state;
-    if (mouseToggle === false) {
-      this.setState({ mouseToggle: true });
-    } else {
-      this.setState({ mouseToggle: false });
-    }
+    // if (mouseToggle === false) {
+    //   this.setState({ mouseToggle: true });
+    // } else {
+    //   this.setState({ mouseToggle: false });
+    // }
+    this.setState({ mouseToggle: !mouseToggle });
   };
 
   nodeFlag = (gridId, type) => {

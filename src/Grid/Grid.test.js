@@ -43,13 +43,24 @@ describe('<Grid view={desktop} />', () => {
     expect(wrapperTwo.find(Node).length).toEqual(504);
   });
 
-  it('adds walls', () => {
+  it('can add walls', () => {
     const wrapper = mount(<Grid view={desktop} />);
 
     wrapper
       .find('input[type="checkbox"]')
       .simulate('change', { target: { checked: true } });
-
     expect(wrapper.state().fenceToggle).toEqual(true);
+  });
+  it('can remove walls', () => {
+    const wrapper = mount(<Grid view={desktop} />);
+
+    wrapper
+      .find('input[type="checkbox"]')
+      .simulate('change', { target: { checked: true } });
+    const findnode = wrapper.find('#node-0-0');
+    const node = findnode.first();
+    node.simulate('mousedown', 'mouseup', 'mousedown', 'mouseup');
+    const nodeobj = wrapper.state().grid[0][0];
+    expect(nodeobj.fence).toEqual(false);
   });
 });
