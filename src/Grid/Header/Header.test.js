@@ -10,7 +10,7 @@ const resetSpy = jest.fn(() => {});
 const setAlgorithmSpy = jest.fn(() => {});
 
 const defaultProps = {
-  alforithm: '',
+  algorithm: '',
   run: runSpy,
   fenceToggle: fenceToggleSpy,
   reset: resetSpy,
