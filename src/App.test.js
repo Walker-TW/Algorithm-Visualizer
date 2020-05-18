@@ -1,9 +1,7 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+
 import App from './App';
 import matchMediaPolyfill from 'mq-polyfill';
-
-import { shallow, mount, render } from 'enzyme';
 
 describe('<App />', () => {
   beforeAll(() => {

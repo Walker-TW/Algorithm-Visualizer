@@ -1,6 +1,4 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import Enzyme, { shallow, mount, render } from 'enzyme';
 
 import Grid from './Grid';
 import Node from './Node/Node';
