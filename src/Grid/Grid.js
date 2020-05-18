@@ -40,6 +40,7 @@ export default class Grid extends Component {
     },
   };
 
+  // setup methods
   componentDidMount() {
     this.gridSetup();
   }
@@ -76,13 +77,10 @@ export default class Grid extends Component {
     this.setState({ grid });
   };
 
+  // state changers & prop methods
   fenceToggler = () => {
     const { fenceToggle } = this.state;
-    // if (fenceToggle === false) {
-    //   this.setState({ fenceToggle: true });
-    // } else {
-    //   this.setState({ fenceToggle: false });
-    // }
+
     this.setState({ fenceToggle: !fenceToggle });
   };
 
@@ -109,14 +107,33 @@ export default class Grid extends Component {
     }
   };
 
+  setAlgorithm = (selection) => {
+    console.log(selection, 'selection');
+    if (this.state.algorithm !== selection)
+      this.setState({ algorithm: selection });
+  };
+
+  reset = () => {
+    window.location.reload();
+  };
+
+  run = () => {
+    const { algorithm } = this.state;
+
+    if (algorithm === 'dijkstra') {
+      this.runDijkstra();
+    } else if (algorithm === 'astar') {
+      this.runAstar();
+    }
+  };
   // commented out as it is currently unnecessary, may be useful later
   // resetStartFinish = () => {
   //   this.setState({
   //     start: { ...this.state.start, present: false },
   //     finish: { ...this.state.finish, present: false },
   //   });
-  // };
-
+  // }
+  // algorithm
   runAstar = () => {
     const { grid, start, finish } = this.state;
     const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
@@ -135,6 +152,7 @@ export default class Grid extends Component {
     this.animateAlgorithm(resultOfDijkstra, y);
   };
 
+  // animation
   animateAlgorithm = (visitedNodesInOrder, nodesInShortestPathOrder) => {
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
       if (i === visitedNodesInOrder.length) {
@@ -168,26 +186,6 @@ export default class Grid extends Component {
           `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
         ).className = 'Node path';
       }, 50 * i);
-    }
-  };
-
-  setAlgorithm = (selection) => {
-    console.log(selection, 'selection');
-    if (this.state.algorithm !== selection)
-      this.setState({ algorithm: selection });
-  };
-
-  reset = () => {
-    window.location.reload();
-  };
-
-  run = () => {
-    const { algorithm } = this.state;
-
-    if (algorithm === 'dijkstra') {
-      this.runDijkstra();
-    } else if (algorithm === 'astar') {
-      this.runAstar();
     }
   };
 

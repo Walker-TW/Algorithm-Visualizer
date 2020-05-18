@@ -26,9 +26,9 @@ const Header = (props) => {
               onClick={() => setAlgorithm('astar')}
               children={'A*'}
             />
-            <NavDropdown.Item href="#action/3.3" children={'Something'} />
+            <NavDropdown.Item children={'Something'} />
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4" children={'Separated link'} />
+            <NavDropdown.Item children={'Separated link'} />
           </NavDropdown>
           <Form>
             <Form.Check

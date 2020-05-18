@@ -91,7 +91,6 @@ exports[`<Header /> renders 1`] = `
             }
           }
           disabled={false}
-          href="#action/3.3"
         >
           Something
         </DropdownItem>
@@ -107,7 +106,6 @@ exports[`<Header /> renders 1`] = `
             }
           }
           disabled={false}
-          href="#action/3.4"
         >
           Separated link
         </DropdownItem>

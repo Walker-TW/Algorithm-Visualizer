@@ -45,14 +45,16 @@ describe('<Grid view={desktop} />', () => {
     const wrapperTwo = shallow(<Grid view={mobile} />);
     expect(wrapperTwo.find(Node).length).toEqual(504);
   });
-  it('registers if a mouse if held', () => {
+
+  it('registers if a mouse is held', () => {
     const wrapper = mount(<Grid view={desktop} />);
     const node = wrapper.find(Node).first();
     toggleFences(wrapper);
 
     node.simulate('mousedown', 'mouseenter');
-    expect(wrapper.state('mouseToggle')).toBe(true);
+    expect(wrapper.state('mouseToggle')).toEqual(true);
   });
+
   it('can add walls', () => {
     const wrapper = mount(<Grid view={desktop} />);
 
@@ -73,4 +75,17 @@ describe('<Grid view={desktop} />', () => {
     const nodeobj = wrapper.state().grid[0][0];
     expect(nodeobj.fence).toEqual(false);
   });
+
+  // it('sets the algorithm', () => {
+  //   const wrapper = mount(<Grid view={desktop} />);
+  //   const astarLink = wrapper.find('#set-astar');
+  //   const dropDown = wrapper.find('#collasible-nav-dropdown');
+  //   // console.log(dropDown);
+  //   // dropDown.first().simulate('click');
+  //   dropDown.first().simulate('mousedown', 'mouseup');
+  //   // dropDown.first().simulate('click');
+  //   // dropDown[1].simulate('click');
+  //   astarLink.simulate('click');
+  //   expect(wrapper.state('algorithm')).toEqual('astar');
+  // });
 });
