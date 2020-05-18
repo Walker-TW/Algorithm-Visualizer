@@ -43,10 +43,6 @@ export default class Grid extends Component {
     this.gridSetup();
   }
 
-  setAlgorithm = (selection) => {
-    this.setState({ algorithm: selection });
-  };
-
   createNode = (gridId) => {
     return {
       gridId,
@@ -162,12 +158,37 @@ export default class Grid extends Component {
     }
   };
 
+  setAlgorithm = (selection) => {
+    console.log(selection, 'selection');
+    if (this.state.algorithm !== selection)
+      this.setState({ algorithm: selection });
+  };
+
   reset = () => {
     window.location.reload();
   };
 
+  run = () => {
+    const { algorithm } = this.state;
+
+    if (algorithm === 'dijkstra') {
+      this.runDijkstra();
+      // } else if (algorithm === 'astar') {
+      //   this.runAstar();
+    } else {
+      return;
+    }
+  };
+
   render() {
-    const { fenceToggle, finish, grid, mouseToggle, start } = this.state;
+    const {
+      algorithm,
+      fenceToggle,
+      finish,
+      grid,
+      mouseToggle,
+      start,
+    } = this.state;
 
     const nodes = grid.map((row, colIndex) => {
       return (
@@ -194,10 +215,9 @@ export default class Grid extends Component {
     return (
       <Fragment>
         <Header
-          algorithm={this.state.algorithm}
-          runDijkstra={this.runDijkstra}
-          // runAstar={this.runAstar}
-          setAlgorithm={() => this.setAlgorithm}
+          algorithm={algorithm}
+          run={this.run}
+          setAlgorithm={this.setAlgorithm}
           fenceToggle={this.fenceToggler}
           reset={this.reset}
         />

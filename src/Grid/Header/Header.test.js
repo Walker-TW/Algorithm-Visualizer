@@ -1,17 +1,22 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Enzyme, { shallow, mount, render } from 'enzyme';
+import { shallow, mount, render } from 'enzyme';
 
 import Header from './Header';
 
-const spy = jest.fn(() => {});
-const spyTwo = jest.fn(() => {});
+const runSpy = jest.fn(() => {});
+const fenceToggleSpy = jest.fn(() => {});
+const resetSpy = jest.fn(() => {});
+const setAlgorithmSpy = jest.fn(() => {});
 
 const defaultProps = {
-  run: spy,
-  fenceToggle: spyTwo,
-  reset: () => {},
+  alforithm: '',
+  run: runSpy,
+  fenceToggle: fenceToggleSpy,
+  reset: resetSpy,
+  setAlgorithm: setAlgorithmSpy,
 };
+
 describe('<Header />', () => {
   const wrapper = shallow(<Header {...defaultProps} />);
 
@@ -19,14 +24,26 @@ describe('<Header />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('run calls the spy onclick', () => {
+  it('calls the run spy onclick', () => {
     wrapper.find('#button').simulate('click');
-    expect(spy.mock.calls.length).toEqual(1);
+    expect(runSpy.mock.calls.length).toEqual(1);
   });
-  it('walls calls the spy onclick', () => {
+
+  it('calls the wall toggle spy onclick', () => {
     wrapper
       .find('#fence-check')
       .simulate('change', { target: { checked: true } });
-    expect(spyTwo.mock.calls.length).toEqual(1);
+    expect(fenceToggleSpy.mock.calls.length).toEqual(1);
+  });
+
+  it('calls the reset spy onclick', () => {
+    wrapper.find('#reset-btn').simulate('click');
+    expect(resetSpy.mock.calls.length).toEqual(1);
+  });
+
+  it('calls the set algorithm spy onclick', () => {
+    wrapper.find('#set-dijkstra').simulate('click');
+    wrapper.find('#set-astar').simulate('click');
+    expect(setAlgorithmSpy.mock.calls.length).toEqual(2);
   });
 });

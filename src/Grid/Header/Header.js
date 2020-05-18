@@ -5,14 +5,7 @@ import PropTypes from 'prop-types';
 import './Header.css';
 
 const Header = (props) => {
-  const {
-    algorithm,
-    fenceToggle,
-    // runAstar,
-    runDijkstra,
-    reset,
-    setAlgorithm,
-  } = props;
+  const { algorithm, fenceToggle, run, reset, setAlgorithm } = props;
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -24,10 +17,15 @@ const Header = (props) => {
           <Nav.Link href="#pricing" children={'Pricing'} />
           <NavDropdown title="Algorithms" id="collasible-nav-dropdown">
             <NavDropdown.Item
-              onClick={setAlgorithm('dijkstra')}
+              id={'set-dijkstra'}
+              onClick={() => setAlgorithm('dijkstra')}
               children={'Dijkstra'}
             />
-            <NavDropdown.Item onClick={setAlgorithm('astar')} children={'A*'} />
+            <NavDropdown.Item
+              id={'set-astar'}
+              onClick={() => setAlgorithm('astar')}
+              children={'A*'}
+            />
             <NavDropdown.Item href="#action/3.3" children={'Something'} />
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action/3.4" children={'Separated link'} />
@@ -47,14 +45,8 @@ const Header = (props) => {
           <Button
             id="button"
             variant="primary"
-            onClick={
-              algorithm === 'dijkstra'
-                ? runDijkstra()
-                : // : 'astar'
-                  // ? runAstar()
-                  ''
-            }
-            children={`Let's Run ${algorithm}`}
+            onClick={run}
+            children={algorithm ? `Let's Run ${algorithm}` : 'Select Algorithm'}
           />
           <Button
             id="reset-btn"
@@ -78,8 +70,7 @@ export default Header;
 
 Header.propTypes = {
   algorithm: PropTypes.string.isRequired,
-  // runAstar: PropTypes.func.isRequired,
-  runDijkstra: PropTypes.func.isRequired,
+  run: PropTypes.func.isRequired,
   fenceToggle: PropTypes.func.isRequired,
   setAlgorithm: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
