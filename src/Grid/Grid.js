@@ -12,6 +12,7 @@ import './Node/Node.css';
 
 export default class Grid extends Component {
   state = {
+    algorithm: '',
     grid: [],
     fenceToggle: false,
     mouseToggle: false,
