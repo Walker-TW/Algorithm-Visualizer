@@ -28,12 +28,12 @@ export default class Grid extends Component {
         rowIndex: null,
         colIndex: null,
       },
-    },
-    fence: {
-      present: [false],
-      gridId: {
-        rowIndex: null,
-        colIndex: null,
+      fence: {
+        present: [false],
+        gridId: {
+          rowIndex: null,
+          colIndex: null,
+        },
       },
     },
   };
@@ -82,11 +82,8 @@ export default class Grid extends Component {
 
   mouseFlag = () => {
     const { mouseToggle } = this.state;
-    if (mouseToggle === false) {
-      this.setState({ mouseToggle: true });
-    } else {
-      this.setState({ mouseToggle: false });
-    }
+
+    this.setState({ mouseToggle: !mouseToggle });
   };
 
   nodeFlag = (gridId, type) => {
@@ -94,11 +91,7 @@ export default class Grid extends Component {
     const { rowIndex, colIndex } = gridId;
     const node = grid[rowIndex][colIndex];
     if (type === 'fence') {
-      if (node.start === true || node.finish === true) {
-        node[type] = false;
-      } else {
-        node[type] = true;
-      }
+      node[type] = !node[type];
     } else {
       node[type] = true;
       this.setState({
@@ -164,8 +157,12 @@ export default class Grid extends Component {
     }
   };
 
+  reset = () => {
+    window.location.reload();
+  };
+
   render() {
-    const { grid, start, finish } = this.state;
+    const { fenceToggle, finish, grid, mouseToggle, start } = this.state;
 
     const nodes = grid.map((row, colIndex) => {
       return (
@@ -177,11 +174,11 @@ export default class Grid extends Component {
               gridId={node.gridId}
               gridHasStart={start.present}
               gridHasFinish={finish.present}
-              gridHasFenceToggle={this.state.fenceToggle}
+              gridHasFenceToggle={fenceToggle}
               nodeFlag={this.nodeFlag}
               mouseFlag={this.mouseFlag}
               updateNode={this.updateNode}
-              mouseToggle={this.state.mouseToggle}
+              mouseToggle={mouseToggle}
               // reset={this.resetStartFinish}
             />
           ))}
@@ -191,8 +188,13 @@ export default class Grid extends Component {
 
     return (
       <Fragment>
+        <Header
+          run={this.runDijkstra}
+          fenceToggle={this.fenceToggler}
+          reset={this.reset}
+        />
         {start.present && finish.present ? (
-          <Header run={this.runDijkstra} fenceToggle={this.fenceToggler} />
+          ''
         ) : (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
         )}

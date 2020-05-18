@@ -10,6 +10,7 @@ const spyTwo = jest.fn(() => {});
 const defaultProps = {
   run: spy,
   fenceToggle: spyTwo,
+  reset: () => {},
 };
 describe('<Header />', () => {
   const wrapper = shallow(<Header {...defaultProps} />);
@@ -23,7 +24,9 @@ describe('<Header />', () => {
     expect(spy.mock.calls.length).toEqual(1);
   });
   it('walls calls the spy onclick', () => {
-    wrapper.find('#fence-button').simulate('click');
+    wrapper
+      .find('#fence-check')
+      .simulate('change', { target: { checked: true } });
     expect(spyTwo.mock.calls.length).toEqual(1);
   });
 });

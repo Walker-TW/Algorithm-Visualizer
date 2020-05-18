@@ -2,6 +2,122 @@
 
 exports[`<Grid view={desktop} /> renders 1`] = `
 Array [
+  <nav
+    class="navbar navbar-expand-lg navbar-dark bg-dark"
+  >
+    <a
+      class="navbar-brand"
+      href="#home"
+    >
+      Algo-Visualiser
+    </a>
+    <button
+      aria-controls="responsive-navbar-nav"
+      aria-label="Toggle navigation"
+      class="navbar-toggler collapsed"
+      type="button"
+    >
+      <span
+        class="navbar-toggler-icon"
+      />
+    </button>
+    <div
+      class="navbar-collapse collapse"
+      id="responsive-navbar-nav"
+    >
+      <div
+        class="mr-auto navbar-nav"
+      >
+        <a
+          class="nav-link"
+          data-rb-event-key="#features"
+          href="#features"
+        >
+          Features
+        </a>
+        <a
+          class="nav-link"
+          data-rb-event-key="#pricing"
+          href="#pricing"
+        >
+          Pricing
+        </a>
+        <div
+          class="dropdown nav-item"
+        >
+          <a
+            aria-expanded="false"
+            aria-haspopup="true"
+            class="dropdown-toggle nav-link"
+            href="#"
+            id="collasible-nav-dropdown"
+            role="button"
+          >
+            Algorithms
+          </a>
+        </div>
+        <form
+          class=""
+        >
+          <div
+            class="form-check"
+            style="color:white"
+          >
+            <input
+              class="form-check-input"
+              id="fence-check"
+              name="fences"
+              type="checkbox"
+            />
+            <label
+              class="form-check-label"
+              for="fence-check"
+              title=""
+            >
+              Fences
+            </label>
+          </div>
+        </form>
+      </div>
+      <div
+        class="navbar-nav nav-center"
+      >
+        <button
+          class="btn btn-primary"
+          id="button"
+          type="button"
+        >
+          Let's Run Dijkstra
+        </button>
+        <button
+          class="btn btn-primary"
+          id="reset-btn"
+          style="background-color:red"
+          type="button"
+        >
+          Reset
+        </button>
+      </div>
+      <div
+        class="navbar-nav"
+      >
+        <a
+          class="nav-link"
+          data-rb-event-key="#deets"
+          href="#deets"
+        >
+          More deets
+        </a>
+        <a
+          class="nav-link"
+          data-rb-event-key="2"
+          href="#memes"
+        >
+          Contact
+        </a>
+      </div>
+    </div>
+  </nav>,
   <div
     class="fade alert alert-primary show"
     role="alert"

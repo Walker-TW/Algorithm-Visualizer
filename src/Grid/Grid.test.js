@@ -43,19 +43,26 @@ describe('<Grid view={desktop} />', () => {
     expect(wrapperTwo.find(Node).length).toEqual(504);
   });
 
-  it('adds walls', () => {
+  it('can add walls', () => {
     const wrapper = mount(<Grid view={desktop} />);
 
-    const node = wrapper.find(Node);
-    const test = node.first();
-    const testTwo = node.last();
-    test.simulate('mousedown', 'mouseup');
-    testTwo.simulate('mousedown', 'mouseup');
-
-    const button = wrapper.find('#fence-button');
-    const fenced = button.first();
-    fenced.simulate('click');
-
+    wrapper
+      .find('input[type="checkbox"]')
+      .simulate('change', { target: { checked: true } });
     expect(wrapper.state().fenceToggle).toEqual(true);
+  });
+  it('can remove walls', () => {
+    const wrapper = mount(<Grid view={desktop} />);
+
+    wrapper
+      .find('input[type="checkbox"]')
+      .simulate('change', { target: { checked: true } });
+    const findnode = wrapper.find('#node-0-0');
+    const node = findnode.first();
+    [1, 2].forEach(() => {
+      node.simulate('click');
+    });
+    const nodeobj = wrapper.state().grid[0][0];
+    expect(nodeobj.fence).toEqual(false);
   });
 });

@@ -1,38 +1,200 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Header /> renders 1`] = `
-<Fragment>
-  <br />
-  <Button
-    active={false}
-    disabled={false}
-    id="fence-button"
-    onClick={[MockFunction]}
-    style={
-      Object {
-        "margin": "10px 0 ",
-      }
-    }
-    type="button"
-    variant="primary"
+<Navbar
+  bg="dark"
+  collapseOnSelect={true}
+  expand="lg"
+  variant="dark"
+>
+  <NavbarBrand
+    href="#home"
   >
-    Make Fences
-  </Button>
-  <br />
-  <Button
-    active={false}
-    disabled={false}
-    id="button"
-    onClick={[MockFunction]}
-    style={
-      Object {
-        "margin": "10px 0 ",
-      }
-    }
-    type="button"
-    variant="primary"
+    Algo-Visualiser
+  </NavbarBrand>
+  <NavbarToggle
+    aria-controls="responsive-navbar-nav"
+    label="Toggle navigation"
+  />
+  <NavbarCollapse
+    id="responsive-navbar-nav"
   >
-    Let's Run Dijkstra
-  </Button>
-</Fragment>
+    <Nav
+      className="mr-auto"
+      fill={false}
+      justify={false}
+    >
+      <NavLink
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "SafeAnchor",
+            "render": [Function],
+          }
+        }
+        disabled={false}
+        href="#features"
+      >
+        Features
+      </NavLink>
+      <NavLink
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "SafeAnchor",
+            "render": [Function],
+          }
+        }
+        disabled={false}
+        href="#pricing"
+      >
+        Pricing
+      </NavLink>
+      <NavDropdown
+        id="collasible-nav-dropdown"
+        title="Algorithms"
+      >
+        <DropdownItem
+          as={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "displayName": "SafeAnchor",
+              "render": [Function],
+            }
+          }
+          disabled={false}
+          href="#action/3.1"
+        >
+          Dijkstra
+        </DropdownItem>
+        <DropdownItem
+          as={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "displayName": "SafeAnchor",
+              "render": [Function],
+            }
+          }
+          disabled={false}
+          href="#action/3.2"
+        >
+          Another action
+        </DropdownItem>
+        <DropdownItem
+          as={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "displayName": "SafeAnchor",
+              "render": [Function],
+            }
+          }
+          disabled={false}
+          href="#action/3.3"
+        >
+          Something
+        </DropdownItem>
+        <DropdownDivider
+          role="separator"
+        />
+        <DropdownItem
+          as={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "displayName": "SafeAnchor",
+              "render": [Function],
+            }
+          }
+          disabled={false}
+          href="#action/3.4"
+        >
+          Separated link
+        </DropdownItem>
+      </NavDropdown>
+      <Form
+        inline={false}
+      >
+        <FormCheck
+          disabled={false}
+          id="fence-check"
+          inline={false}
+          isInvalid={false}
+          isValid={false}
+          label="Fences"
+          name="fences"
+          onChange={[MockFunction]}
+          style={
+            Object {
+              "color": "white",
+            }
+          }
+          title=""
+          type="checkbox"
+        />
+      </Form>
+    </Nav>
+    <Nav
+      fill={false}
+      justify={false}
+      variant="center"
+    >
+      <Button
+        active={false}
+        disabled={false}
+        id="button"
+        onClick={[MockFunction]}
+        type="button"
+        variant="primary"
+      >
+        Let's Run Dijkstra
+      </Button>
+      <Button
+        active={false}
+        disabled={false}
+        id="reset-btn"
+        onClick={[Function]}
+        style={
+          Object {
+            "backgroundColor": "red",
+          }
+        }
+        type="button"
+        variant="primary"
+      >
+        Reset
+      </Button>
+    </Nav>
+    <Nav
+      fill={false}
+      justify={false}
+    >
+      <NavLink
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "SafeAnchor",
+            "render": [Function],
+          }
+        }
+        disabled={false}
+        href="#deets"
+      >
+        More deets
+      </NavLink>
+      <NavLink
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "SafeAnchor",
+            "render": [Function],
+          }
+        }
+        disabled={false}
+        eventKey={2}
+        href="#memes"
+      >
+        Contact
+      </NavLink>
+    </Nav>
+  </NavbarCollapse>
+</Navbar>
 `;
