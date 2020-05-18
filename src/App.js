@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import Grid from "./Grid/Grid";
-import "./App.css";
+import React, { Component } from 'react';
+import Grid from './Grid/Grid';
+import './App.css';
 
 export default class App extends Component {
   state = {
@@ -9,10 +9,10 @@ export default class App extends Component {
 
   componentDidMount() {
     this.updatePredicate();
-    window.addEventListener("resize", () => this.updatePredicate);
+    window.addEventListener('resize', () => this.updatePredicate);
   }
   componentWillUnmount() {
-    window.removeEventListener("resize", () => this.updatePredicate);
+    window.removeEventListener('resize', () => this.updatePredicate);
   }
 
   updatePredicate = () => {
@@ -21,8 +21,8 @@ export default class App extends Component {
 
   render() {
     const resize = {
-      width: window.innerWidth / 20 - 10,
-      height: window.innerHeight / 20 - 10,
+      width: window.innerWidth / 20 - 2,
+      height: window.innerHeight / 20 - 14,
     };
 
     return (

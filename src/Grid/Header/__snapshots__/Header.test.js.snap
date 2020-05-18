@@ -63,7 +63,8 @@ exports[`<Header /> renders 1`] = `
             }
           }
           disabled={false}
-          href="#action/3.1"
+          id="set-dijkstra"
+          onClick={[Function]}
         >
           Dijkstra
         </DropdownItem>
@@ -76,9 +77,10 @@ exports[`<Header /> renders 1`] = `
             }
           }
           disabled={false}
-          href="#action/3.2"
+          id="set-astar"
+          onClick={[Function]}
         >
-          Another action
+          A*
         </DropdownItem>
         <DropdownItem
           as={
@@ -89,7 +91,6 @@ exports[`<Header /> renders 1`] = `
             }
           }
           disabled={false}
-          href="#action/3.3"
         >
           Something
         </DropdownItem>
@@ -105,7 +106,6 @@ exports[`<Header /> renders 1`] = `
             }
           }
           disabled={false}
-          href="#action/3.4"
         >
           Separated link
         </DropdownItem>
@@ -145,13 +145,13 @@ exports[`<Header /> renders 1`] = `
         type="button"
         variant="primary"
       >
-        Let's Run Dijkstra
+        Select Algorithm
       </Button>
       <Button
         active={false}
         disabled={false}
         id="reset-btn"
-        onClick={[Function]}
+        onClick={[MockFunction]}
         style={
           Object {
             "backgroundColor": "red",

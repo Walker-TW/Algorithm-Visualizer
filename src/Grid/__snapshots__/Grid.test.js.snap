@@ -87,7 +87,7 @@ Array [
           id="button"
           type="button"
         >
-          Let's Run Dijkstra
+          Select Algorithm
         </button>
         <button
           class="btn btn-primary"

@@ -6,12 +6,14 @@ import Header from './Header/Header';
 import { Alert } from 'react-bootstrap';
 import Info from './Info/Info';
 import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
+import { aStar, findShortestPathAStar } from '../Algorithms/a*test';
 
 import './Grid.css';
 import './Node/Node.css';
 
 export default class Grid extends Component {
   state = {
+    algorithm: '',
     grid: [],
     fenceToggle: false,
     mouseToggle: false,
@@ -38,6 +40,7 @@ export default class Grid extends Component {
     },
   };
 
+  // setup methods
   componentDidMount() {
     this.gridSetup();
   }
@@ -45,11 +48,14 @@ export default class Grid extends Component {
   createNode = (gridId) => {
     return {
       gridId,
-      start: false,
-      finish: false,
+      heuristic: Infinity,
+      manhatten: Infinity,
       distance: Infinity,
       visited: false,
+      inOpen: false,
       pastNode: null,
+      start: false,
+      finish: false,
       fence: false,
     };
   };
@@ -71,13 +77,11 @@ export default class Grid extends Component {
     this.setState({ grid });
   };
 
+  // state changers & prop methods
   fenceToggler = () => {
     const { fenceToggle } = this.state;
-    if (fenceToggle === false) {
-      this.setState({ fenceToggle: true });
-    } else {
-      this.setState({ fenceToggle: false });
-    }
+
+    this.setState({ fenceToggle: !fenceToggle });
   };
 
   mouseFlag = () => {
@@ -103,13 +107,41 @@ export default class Grid extends Component {
     }
   };
 
+  setAlgorithm = (selection) => {
+    console.log(selection, 'selection');
+    if (this.state.algorithm !== selection)
+      this.setState({ algorithm: selection });
+  };
+
+  reset = () => {
+    window.location.reload();
+  };
+
+  run = () => {
+    const { algorithm } = this.state;
+
+    if (algorithm === 'dijkstra') {
+      this.runDijkstra();
+    } else if (algorithm === 'astar') {
+      this.runAstar();
+    }
+  };
   // commented out as it is currently unnecessary, may be useful later
   // resetStartFinish = () => {
   //   this.setState({
   //     start: { ...this.state.start, present: false },
   //     finish: { ...this.state.finish, present: false },
   //   });
-  // };
+  // }
+  // algorithm
+  runAstar = () => {
+    const { grid, start, finish } = this.state;
+    const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
+    const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
+    const resultOfAStar = aStar(grid, startNode, finishNode);
+    const y = findShortestPathAStar(resultOfAStar[resultOfAStar.length - 1]);
+    this.animateAlgorithm(resultOfAStar, y);
+  };
 
   runDijkstra = () => {
     const { grid, start, finish } = this.state;
@@ -117,10 +149,10 @@ export default class Grid extends Component {
     const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
     const resultOfDijkstra = dijkstra(grid, startNode, finishNode);
     const y = findShortestPath(resultOfDijkstra[resultOfDijkstra.length - 1]);
-
     this.animateAlgorithm(resultOfDijkstra, y);
   };
 
+  // animation
   animateAlgorithm = (visitedNodesInOrder, nodesInShortestPathOrder) => {
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
       if (i === visitedNodesInOrder.length) {
@@ -157,12 +189,15 @@ export default class Grid extends Component {
     }
   };
 
-  reset = () => {
-    window.location.reload();
-  };
-
   render() {
-    const { fenceToggle, finish, grid, mouseToggle, start } = this.state;
+    const {
+      algorithm,
+      fenceToggle,
+      finish,
+      grid,
+      mouseToggle,
+      start,
+    } = this.state;
 
     const nodes = grid.map((row, colIndex) => {
       return (
@@ -189,7 +224,9 @@ export default class Grid extends Component {
     return (
       <Fragment>
         <Header
-          run={this.runDijkstra}
+          algorithm={algorithm}
+          run={this.run}
+          setAlgorithm={this.setAlgorithm}
           fenceToggle={this.fenceToggler}
           reset={this.reset}
         />

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import './Header.css';
 
 const Header = (props) => {
-  const { fenceToggle, run, reset } = props;
+  const { algorithm, fenceToggle, run, reset, setAlgorithm } = props;
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -16,11 +16,19 @@ const Header = (props) => {
           <Nav.Link href="#features" children={'Features'} />
           <Nav.Link href="#pricing" children={'Pricing'} />
           <NavDropdown title="Algorithms" id="collasible-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1" children={'Dijkstra'} />
-            <NavDropdown.Item href="#action/3.2" children={'Another action'} />
-            <NavDropdown.Item href="#action/3.3" children={'Something'} />
+            <NavDropdown.Item
+              id={'set-dijkstra'}
+              onClick={() => setAlgorithm('dijkstra')}
+              children={'Dijkstra'}
+            />
+            <NavDropdown.Item
+              id={'set-astar'}
+              onClick={() => setAlgorithm('astar')}
+              children={'A*'}
+            />
+            <NavDropdown.Item children={'Something'} />
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4" children={'Separated link'} />
+            <NavDropdown.Item children={'Separated link'} />
           </NavDropdown>
           <Form>
             <Form.Check
@@ -38,7 +46,7 @@ const Header = (props) => {
             id="button"
             variant="primary"
             onClick={run}
-            children={"Let's Run Dijkstra"}
+            children={algorithm ? `Let's Run ${algorithm}` : 'Select Algorithm'}
           />
           <Button
             id="reset-btn"
@@ -61,7 +69,9 @@ const Header = (props) => {
 export default Header;
 
 Header.propTypes = {
+  algorithm: PropTypes.string.isRequired,
   run: PropTypes.func.isRequired,
   fenceToggle: PropTypes.func.isRequired,
+  setAlgorithm: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
 };
