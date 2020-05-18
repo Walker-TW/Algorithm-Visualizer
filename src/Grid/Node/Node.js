@@ -9,61 +9,55 @@ export default class Node extends Component {
     fence: false,
   };
 
-  clickHandler = () => {
-    const {
-      gridId,
-      gridHasStart,
-      gridHasFinish,
-      gridHasFenceToggle,
-      nodeFlag,
-    } = this.props;
+  // start and end points are not adjustable
+  // at the moment so they have a seperate handler
 
-    if (gridHasStart && gridHasFinish && !gridHasFenceToggle) {
-      document.getElementById('button').innerText = 'Click Me';
-    } else {
-      if (!gridHasStart) {
-        nodeFlag(gridId, 'start');
-        this.setState({ start: true });
-      } else if (!gridHasFinish) {
-        this.setState({ finish: true });
-        nodeFlag(gridId, 'finish');
-      }
-    }
+  startFinishHandler = (type) => {
+    const { gridId, nodeFlag } = this.props;
+    nodeFlag(gridId, [type]);
+    this.setState({ [type]: true });
   };
 
-  fenceSelector = (e) => {
+  fenceHandler = () => {
     const { gridId, nodeFlag } = this.props;
     const { fence, start, finish } = this.state;
-    if (fence === false && start === false && finish === false) {
-      nodeFlag(gridId, 'fence');
-      this.setState({ fence: true });
-    } else {
-      nodeFlag(gridId, 'fence');
-      this.setState({ fence: false });
-    }
+
+    if (!start && !finish) nodeFlag(gridId, 'fence');
+    this.setState({ fence: !fence });
   };
 
   mouseUpHandler = () => {
     const { mouseFlag, mouseToggle, gridHasFenceToggle } = this.props;
-    if (gridHasFenceToggle === true && mouseToggle === true) {
-      mouseFlag();
-    }
+
+    if (gridHasFenceToggle && mouseToggle) mouseFlag();
   };
 
   mouseEnterHandler = () => {
     const { mouseToggle, gridHasFenceToggle } = this.props;
-    if (gridHasFenceToggle === true && mouseToggle === true) {
-      this.fenceSelector();
-    }
+
+    if (gridHasFenceToggle && mouseToggle) this.fenceHandler();
   };
 
   mouseDownHandler = () => {
     const { mouseToggle, mouseFlag, gridHasFenceToggle } = this.props;
-    if (gridHasFenceToggle === true && mouseToggle === false) {
+    if (gridHasFenceToggle && !mouseToggle) {
       mouseFlag();
-      this.fenceSelector();
+      this.fenceHandler();
     } else {
       this.clickHandler();
+    }
+  };
+
+  clickHandler = () => {
+    const { gridHasStart, gridHasFinish } = this.props;
+
+    if (gridHasStart && gridHasFinish) {
+      // visual aid
+      document.getElementById('button').innerText = 'Click Me!';
+    } else {
+      !gridHasStart
+        ? this.startFinishHandler('start')
+        : this.startFinishHandler('finish');
     }
   };
 
@@ -85,10 +79,10 @@ export default class Node extends Component {
 
 Node.propTypes = {
   gridId: PropTypes.object.isRequired,
-  nodeFlag: PropTypes.func.isRequired,
   gridHasStart: PropTypes.bool.isRequired,
   gridHasFinish: PropTypes.bool.isRequired,
+  nodeFlag: PropTypes.func.isRequired,
+  mouseFlag: PropTypes.func.isRequired,
+  mouseToggle: PropTypes.bool.isRequired,
   gridHasFenceToggle: PropTypes.bool.isRequired,
-
-  // reset: PropTypes.func.isRequired,
 };

@@ -92,7 +92,6 @@ export default class Grid extends Component {
     const node = grid[rowIndex][colIndex];
     if (type === 'fence') {
       node[type] = !node[type];
-      console.log(node, 'node');
     } else {
       node[type] = true;
       this.setState({

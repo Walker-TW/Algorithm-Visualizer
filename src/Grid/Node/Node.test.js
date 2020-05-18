@@ -15,8 +15,7 @@ const defaultProps = {
   gridHasStart: false,
   gridHasFinish: false,
   nodeFlag: spyOne,
-  reset: () => {},
-  nodeStyle: '',
+
   mouseFlag: spyTwo,
   mouseToggle: false,
   gridHasFenceToggle: false,
@@ -44,7 +43,7 @@ describe('<Node />', () => {
     expect(spyOne.mock.calls.length).toEqual(1);
     expect(spyOne.mock.calls[0]).toEqual([
       { colIndex: 0, rowIndex: 10 },
-      'start',
+      ['start'],
     ]);
   });
 });
