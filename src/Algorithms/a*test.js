@@ -1,22 +1,26 @@
 export function aStar(grid, start, finish) {
-  console.log(start, "start");
-  console.log(finish, "finish");
-  const open = [start];
+  console.log(start, 'start');
+  console.log(finish, 'finish');
+  let open = [start];
   const closed = [];
   const allNodes = getNodes(grid);
   start.distance = 0;
   start.manhatten = findManhatten(start, finish);
   setHeuristicTotal(start);
   // start has been set here
-  while (!!open.length) {
-    sortUnvisitedHeuritsic(open);
-    console.log(open.length, "this should never be above 100");
+  while (open.length) {
+    open = sortUnvisitedHeuritsic(open);
+    console.log(open.length, 'this should never be above 100');
     const currentNode = open.shift();
     currentNode.visited = true;
     closed.push(currentNode);
-    console.log(currentNode, "the Closest Node");
-    console.log(currentNode === finish, "is this the end node");
-    if (currentNode === finish) return closed;
+    console.log(currentNode, 'the Closest Node');
+    console.log(currentNode === finish, 'is this the end node');
+    if (currentNode === finish) {
+      console.log(closed, 'FINAL ARRAY');
+      return closed;
+    }
+
     addNeighboursToOpen(currentNode, grid, open, finish);
     // find-out if the neighbours are visted or a wall
   }
@@ -24,19 +28,18 @@ export function aStar(grid, start, finish) {
 
 function addNeighboursToOpen(currentNode, grid, open, finish) {
   const unVisitedNotFenceNeighbours = getUnvisitedNeighbors(currentNode, grid);
-  console.log(unVisitedNotFenceNeighbours, "is this an array?");
-  console.log(unVisitedNotFenceNeighbours[0], "is visited?");
-  console.log(unVisitedNotFenceNeighbours[1], "is visited?");
-  console.log(unVisitedNotFenceNeighbours[2], "is visited?");
-  console.log(unVisitedNotFenceNeighbours[3], "is visited?");
+  console.log(unVisitedNotFenceNeighbours, 'is this an array?');
+  console.log(unVisitedNotFenceNeighbours[0], 'is visited?');
+  console.log(unVisitedNotFenceNeighbours[1], 'is visited?');
+  console.log(unVisitedNotFenceNeighbours[2], 'is visited?');
+  console.log(unVisitedNotFenceNeighbours[3], 'is visited?');
 
   for (const neighbour of unVisitedNotFenceNeighbours) {
     neighbour.distance = currentNode.distance + 1;
     neighbour.manhatten = findManhatten(neighbour, finish);
     heuristicCheck(neighbour);
     neighbour.pastNode = currentNode;
-    if (neighbour.inOpen !== true) {
-      neighbour.isOpen = true;
+    if (!open[neighbour]) {
       open.push(neighbour);
     }
   }
@@ -44,8 +47,9 @@ function addNeighboursToOpen(currentNode, grid, open, finish) {
 }
 
 function heuristicCheck(node) {
-  if (node.heuristic > findHeuristicTotal(node)) {
-    setHeuristicTotal(node);
+  const heuristicTotal = node.distance + node.manhatten;
+  if (node.heuristic > heuristicTotal) {
+    node.heuristic = heuristicTotal;
   }
 }
 
@@ -63,8 +67,10 @@ function getUnvisitedNeighbors(node, grid) {
   if (colIndex < grid[0].length - 1)
     neighbours.push(grid[rowIndex][colIndex + 1]);
   // and if ????
-  const x = neighbours.filter((neighbour) => !neighbour.visited);
-  return x.filter((neighbour) => !neighbour.fence);
+  return neighbours.filter(
+    (neighbour) => !neighbour.visited && !neighbour.fence
+  );
+
   // check if fence after open?
   // return the neighbours that have not been visted(which ic listed in the state)
 }
@@ -82,10 +88,10 @@ function getNodes(grid) {
 }
 
 function findManhatten(node, finish) {
-  const finalNodeX = finish.gridId.rowIndex;
-  const finalNodeY = finish.gridId.colIndex;
-  const nodeX = node.gridId.rowIndex;
-  const nodeY = node.gridId.colIndex;
+  const { rowIndex: finalNodeX, colIndex: finalNodeY } = finish.gridId;
+
+  const { rowIndex: nodeX, colIndex: nodeY } = node.gridId;
+
   const manhatten = Math.abs(nodeX - finalNodeX) + Math.abs(nodeY - finalNodeY);
   return manhatten;
 }
@@ -99,21 +105,19 @@ function findHeuristicTotal(node) {
 }
 
 function sortUnvisitedHeuritsic(nodes) {
-  console.log(nodes, "this is before the sort");
-  const x = nodes.sort(function (node1, node2) {
+  const heuristicAsc = nodes.sort((node1, node2) => {
     return node1.heuristic - node2.heuristic;
   });
   // this sort is working
-  const fullyFiltered = x.filter((nodes) => !nodes.visited);
-  console.log(fullyFiltered, "this should have no visted in");
-  return fullyFiltered;
+  const unvHeuristicAsc = heuristicAsc.filter((nodes) => !nodes.visited);
+  return unvHeuristicAsc;
 }
 
 export function findShortestPathAStar(finish) {
   const shortestPath = [];
   // current node == the final node
   let thisNode = finish;
-  while (thisNode !== null) {
+  while (thisNode) {
     // while you still have nodes
     shortestPath.unshift(thisNode);
     // push the current node into sortest path order

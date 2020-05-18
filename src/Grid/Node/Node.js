@@ -55,6 +55,7 @@ export default class Node extends Component {
       this.fenceSelector();
     }
   };
+
   mouseDownHandler = () => {
     const { mouseToggle, mouseFlag, gridHasFenceToggle } = this.props;
     if (gridHasFenceToggle === true && mouseToggle === false) {

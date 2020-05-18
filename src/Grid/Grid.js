@@ -1,15 +1,15 @@
-import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 
-import Node from "./Node/Node";
-import Header from "./Header/Header";
-import { Alert } from "react-bootstrap";
-import Info from "./Info/Info";
-import { dijkstra, findShortestPath } from "../Algorithms/dijkstra";
-import { aStar, findShortestPathAStar } from "../Algorithms/a*test";
+import Node from './Node/Node';
+import Header from './Header/Header';
+import { Alert } from 'react-bootstrap';
+import Info from './Info/Info';
+import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
+import { aStar, findShortestPathAStar } from '../Algorithms/a*test';
 
-import "./Grid.css";
-import "./Node/Node.css";
+import './Grid.css';
+import './Node/Node.css';
 
 export default class Grid extends Component {
   state = {
@@ -62,9 +62,9 @@ export default class Grid extends Component {
     const { width, height } = this.props.view;
 
     let grid = [];
-    for (let rowIndex = 0; rowIndex < 10; rowIndex++) {
+    for (let rowIndex = 0; rowIndex < width; rowIndex++) {
       let current_row = [];
-      for (let colIndex = 0; colIndex < 10; colIndex++) {
+      for (let colIndex = 0; colIndex < height; colIndex++) {
         const gridId = { colIndex, rowIndex };
 
         current_row.push(this.createNode(gridId));
@@ -97,7 +97,7 @@ export default class Grid extends Component {
     const { grid } = this.state;
     const { rowIndex, colIndex } = gridId;
     const node = grid[rowIndex][colIndex];
-    if (type === "fence") {
+    if (type === 'fence') {
       if (node.start === true || node.finish === true) {
         node[type] = false;
       } else {
@@ -127,8 +127,8 @@ export default class Grid extends Component {
     const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
     const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
     const resultOfAStar = aStar(grid, startNode, finishNode);
-    console.log(resultOfAStar, "resultofAstar");
-    console.log(resultOfAStar[0], "look here");
+    console.log(resultOfAStar, 'resultofAstar');
+    console.log(resultOfAStar[0], 'look here');
     const y = findShortestPathAStar(resultOfAStar[resultOfAStar.length - 1]);
     this.animateAlgorithm(resultOfAStar, y);
   };
@@ -138,7 +138,7 @@ export default class Grid extends Component {
     const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
     const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
     const resultOfDijkstra = dijkstra(grid, startNode, finishNode);
-    console.log(resultOfDijkstra, "what you looking at");
+    console.log(resultOfDijkstra, 'what you looking at');
     const y = findShortestPath(resultOfDijkstra[resultOfDijkstra.length - 1]);
 
     this.animateAlgorithm(resultOfDijkstra, y);
@@ -158,12 +158,12 @@ export default class Grid extends Component {
           `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
         ).className = `Node ${
           node.start
-            ? "start"
+            ? 'start'
             : node.finish
-            ? "finish"
+            ? 'finish'
             : node.visited
-            ? "visited"
-            : ""
+            ? 'visited'
+            : ''
         }`;
       }, 10 * i);
     }
@@ -175,7 +175,7 @@ export default class Grid extends Component {
         const node = nodesInShortestPathOrder[i];
         document.getElementById(
           `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
-        ).className = "Node path";
+        ).className = 'Node path';
       }, 50 * i);
     }
   };
@@ -188,7 +188,7 @@ export default class Grid extends Component {
         <div className="Column" key={colIndex.toString()}>
           {row.map((node, rowIndex) => (
             <Node
-              key={colIndex.toString() + " " + rowIndex.toString()}
+              key={colIndex.toString() + ' ' + rowIndex.toString()}
               id={`node-${node.gridId.colIndex}-${node.gridId.rowIndex}`}
               gridId={node.gridId}
               gridHasStart={start.present}
@@ -211,7 +211,16 @@ export default class Grid extends Component {
           <Header
             run={this.runDijkstra}
             fenceToggle={this.fenceToggler}
-            aStar={this.runAStar}
+            aStar={
+              () => {
+                console.time('Function #1');
+
+                this.runAStar();
+
+                console.timeEnd('Function #1');
+              }
+              // this.runAStar
+            }
           />
         ) : (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
