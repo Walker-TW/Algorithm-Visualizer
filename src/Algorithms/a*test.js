@@ -3,7 +3,6 @@ export function aStar(grid, start, finish) {
   console.log(finish, 'finish');
   let open = [start];
   const closed = [];
-  const allNodes = getNodes(grid);
   start.distance = 0;
   start.manhatten = findManhatten(start, finish);
   setHeuristicTotal(start);
@@ -75,18 +74,6 @@ function getUnvisitedNeighbors(node, grid) {
   // return the neighbours that have not been visted(which ic listed in the state)
 }
 
-// zzzzzzzzzzzzz
-
-function getNodes(grid) {
-  const allNodes = [];
-  for (const row of grid) {
-    for (const node of row) {
-      allNodes.push(node);
-    }
-  }
-  return allNodes;
-}
-
 function findManhatten(node, finish) {
   const { rowIndex: finalNodeX, colIndex: finalNodeY } = finish.gridId;
 
@@ -98,10 +85,6 @@ function findManhatten(node, finish) {
 
 function setHeuristicTotal(node) {
   node.heuristic = node.distance + node.manhatten;
-}
-
-function findHeuristicTotal(node) {
-  return node.distance + node.manhatten;
 }
 
 function sortUnvisitedHeuritsic(nodes) {
