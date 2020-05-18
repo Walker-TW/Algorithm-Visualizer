@@ -61,12 +61,12 @@ function getUnvisitedNeighbors(node, grid) {
 export function findShortestPath(endNode) {
   const shortestPath = [];
   // current node == the final node
-  let thisNode = endNode;
-  while (thisNode !== null) {
+  let nodeBeingProcessed = endNode;
+  while (nodeBeingProcessed !== null) {
     // while you still have nodes
-    shortestPath.unshift(thisNode);
+    shortestPath.unshift(nodeBeingProcessed);
     // push the current node into sortest path order
-    thisNode = thisNode.pastNode;
+    nodeBeingProcessed = nodeBeingProcessed.pastNode;
     // then make the new current node the previous node in the array and makes
     // it the current node
   }
