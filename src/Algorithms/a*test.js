@@ -10,28 +10,37 @@ export function aStar(grid, start, finish) {
   // start has been set here
   while (!!open.length) {
     sortUnvisitedHeuritsic(open);
+    console.log(open.length, "this should never be above 100");
     const currentNode = open.shift();
     currentNode.visited = true;
-    closed.unshift(currentNode);
+    closed.push(currentNode);
     console.log(currentNode, "the Closest Node");
     console.log(currentNode === finish, "is this the end node");
     if (currentNode === finish) return closed;
     addNeighboursToOpen(currentNode, grid, open, finish);
     // find-out if the neighbours are visted or a wall
-    allNodes.pop();
   }
 }
 
 function addNeighboursToOpen(currentNode, grid, open, finish) {
   const unVisitedNotFenceNeighbours = getUnvisitedNeighbors(currentNode, grid);
   console.log(unVisitedNotFenceNeighbours, "is this an array?");
+  console.log(unVisitedNotFenceNeighbours[0], "is visited?");
+  console.log(unVisitedNotFenceNeighbours[1], "is visited?");
+  console.log(unVisitedNotFenceNeighbours[2], "is visited?");
+  console.log(unVisitedNotFenceNeighbours[3], "is visited?");
+
   for (const neighbour of unVisitedNotFenceNeighbours) {
     neighbour.distance = currentNode.distance + 1;
     neighbour.manhatten = findManhatten(neighbour, finish);
     heuristicCheck(neighbour);
     neighbour.pastNode = currentNode;
-    if (neighbour.visited !== true) open.push(neighbour);
+    if (neighbour.inOpen !== true) {
+      neighbour.isOpen = true;
+      open.push(neighbour);
+    }
   }
+  // is broken because instead of searching in closed it is not updatign neighbours?
 }
 
 function heuristicCheck(node) {
@@ -56,6 +65,7 @@ function getUnvisitedNeighbors(node, grid) {
   // and if ????
   const x = neighbours.filter((neighbour) => !neighbour.visited);
   return x.filter((neighbour) => !neighbour.fence);
+  // check if fence after open?
   // return the neighbours that have not been visted(which ic listed in the state)
 }
 
@@ -72,10 +82,10 @@ function getNodes(grid) {
 }
 
 function findManhatten(node, finish) {
-  const finalNodeX = finish.gridId.rowIndex + 1;
-  const finalNodeY = finish.gridId.colIndex + 1;
-  const nodeX = node.gridId.rowIndex + 1;
-  const nodeY = node.gridId.colIndex + 1;
+  const finalNodeX = finish.gridId.rowIndex;
+  const finalNodeY = finish.gridId.colIndex;
+  const nodeX = node.gridId.rowIndex;
+  const nodeY = node.gridId.colIndex;
   const manhatten = Math.abs(nodeX - finalNodeX) + Math.abs(nodeY - finalNodeY);
   return manhatten;
 }
@@ -89,6 +99,7 @@ function findHeuristicTotal(node) {
 }
 
 function sortUnvisitedHeuritsic(nodes) {
+  console.log(nodes, "this is before the sort");
   const x = nodes.sort(function (node1, node2) {
     return node1.heuristic - node2.heuristic;
   });

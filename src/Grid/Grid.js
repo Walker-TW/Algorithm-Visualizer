@@ -50,6 +50,7 @@ export default class Grid extends Component {
       manhatten: Infinity,
       distance: Infinity,
       visited: false,
+      inOpen: false,
       pastNode: null,
       start: false,
       finish: false,
@@ -61,9 +62,9 @@ export default class Grid extends Component {
     const { width, height } = this.props.view;
 
     let grid = [];
-    for (let rowIndex = 0; rowIndex < width; rowIndex++) {
+    for (let rowIndex = 0; rowIndex < 10; rowIndex++) {
       let current_row = [];
-      for (let colIndex = 0; colIndex < height; colIndex++) {
+      for (let colIndex = 0; colIndex < 10; colIndex++) {
         const gridId = { colIndex, rowIndex };
 
         current_row.push(this.createNode(gridId));
@@ -128,7 +129,7 @@ export default class Grid extends Component {
     const resultOfAStar = aStar(grid, startNode, finishNode);
     console.log(resultOfAStar, "resultofAstar");
     console.log(resultOfAStar[0], "look here");
-    const y = findShortestPathAStar(resultOfAStar[0]);
+    const y = findShortestPathAStar(resultOfAStar[resultOfAStar.length - 1]);
     this.animateAlgorithm(resultOfAStar, y);
   };
 
