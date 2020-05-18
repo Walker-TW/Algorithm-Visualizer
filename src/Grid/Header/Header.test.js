@@ -1,8 +1,8 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import Enzyme, { shallow, mount, render } from 'enzyme';
+import React from "react";
+import renderer from "react-test-renderer";
+import Enzyme, { shallow, mount, render } from "enzyme";
 
-import Header from './Header';
+import Header from "./Header";
 
 const spy = jest.fn(() => {});
 const spyTwo = jest.fn(() => {});
@@ -11,19 +11,23 @@ const defaultProps = {
   run: spy,
   fenceToggle: spyTwo,
 };
-describe('<Header />', () => {
+describe("<Header />", () => {
   const wrapper = shallow(<Header {...defaultProps} />);
 
-  it('renders', () => {
+  it("renders", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('run calls the spy onclick', () => {
-    wrapper.find('#button').simulate('click');
+  it("run calls the spy onclick", () => {
+    wrapper.find("#button").simulate("click");
     expect(spy.mock.calls.length).toEqual(1);
   });
-  it('walls calls the spy onclick', () => {
-    wrapper.find('#fence-button').simulate('click');
+  it("walls calls the spy onclick", () => {
+    wrapper.find("#fence-button").simulate("click");
     expect(spyTwo.mock.calls.length).toEqual(1);
+  });
+  it("walls calls the spy onclick", () => {
+    wrapper.find("#astar-button").simulate("click");
+    expect(spy.mock.calls.length).toEqual(1);
   });
 });

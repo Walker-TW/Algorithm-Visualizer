@@ -34,5 +34,20 @@ exports[`<Header /> renders 1`] = `
   >
     Let's Run Dijkstra
   </Button>
+  <br />
+  <Button
+    active={false}
+    disabled={false}
+    id="astar-button"
+    style={
+      Object {
+        "margin": "10px 0 ",
+      }
+    }
+    type="button"
+    variant="primary"
+  >
+    Let's Run A*
+  </Button>
 </Fragment>
 `;

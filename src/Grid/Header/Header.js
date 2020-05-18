@@ -25,7 +25,7 @@ const Header = (props) => {
       />
       <br />
       <Button
-        id="button"
+        id="astar-button"
         style={{ margin: "10px 0 " }}
         onClick={props.aStar}
         variant="primary"
