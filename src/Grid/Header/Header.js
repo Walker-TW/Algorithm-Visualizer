@@ -5,7 +5,14 @@ import PropTypes from 'prop-types';
 import './Header.css';
 
 const Header = (props) => {
-  const { fenceToggle, run, reset } = props;
+  const {
+    algorithm,
+    fenceToggle,
+    // runAstar,
+    runDijkstra,
+    reset,
+    setAlgorithm,
+  } = props;
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -16,8 +23,11 @@ const Header = (props) => {
           <Nav.Link href="#features" children={'Features'} />
           <Nav.Link href="#pricing" children={'Pricing'} />
           <NavDropdown title="Algorithms" id="collasible-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1" children={'Dijkstra'} />
-            <NavDropdown.Item href="#action/3.2" children={'Another action'} />
+            <NavDropdown.Item
+              onClick={setAlgorithm('dijkstra')}
+              children={'Dijkstra'}
+            />
+            <NavDropdown.Item onClick={setAlgorithm('astar')} children={'A*'} />
             <NavDropdown.Item href="#action/3.3" children={'Something'} />
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action/3.4" children={'Separated link'} />
@@ -37,8 +47,14 @@ const Header = (props) => {
           <Button
             id="button"
             variant="primary"
-            onClick={run}
-            children={"Let's Run Dijkstra"}
+            onClick={
+              algorithm === 'dijkstra'
+                ? runDijkstra()
+                : // : 'astar'
+                  // ? runAstar()
+                  ''
+            }
+            children={`Let's Run ${algorithm}`}
           />
           <Button
             id="reset-btn"
@@ -61,7 +77,10 @@ const Header = (props) => {
 export default Header;
 
 Header.propTypes = {
-  run: PropTypes.func.isRequired,
+  algorithm: PropTypes.string.isRequired,
+  // runAstar: PropTypes.func.isRequired,
+  runDijkstra: PropTypes.func.isRequired,
   fenceToggle: PropTypes.func.isRequired,
+  setAlgorithm: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
 };

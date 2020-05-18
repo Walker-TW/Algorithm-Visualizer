@@ -43,6 +43,10 @@ export default class Grid extends Component {
     this.gridSetup();
   }
 
+  setAlgorithm = (selection) => {
+    this.setState({ algorithm: selection });
+  };
+
   createNode = (gridId) => {
     return {
       gridId,
@@ -190,7 +194,10 @@ export default class Grid extends Component {
     return (
       <Fragment>
         <Header
-          run={this.runDijkstra}
+          algorithm={this.state.algorithm}
+          runDijkstra={this.runDijkstra}
+          // runAstar={this.runAstar}
+          setAlgorithm={() => this.setAlgorithm}
           fenceToggle={this.fenceToggler}
           reset={this.reset}
         />
