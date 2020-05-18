@@ -7,15 +7,12 @@ import { shallow, mount, render } from 'enzyme';
 
 const spyOne = jest.fn((gridId, type) => {});
 const spyTwo = jest.fn((gridId, type) => {});
-const spyThree = jest.fn((gridId, type) => {});
-const spyFour = jest.fn((gridId, type) => {});
 
 const defaultProps = {
   gridId: { colIndex: 0, rowIndex: 10 },
   gridHasStart: false,
   gridHasFinish: false,
   nodeFlag: spyOne,
-
   mouseFlag: spyTwo,
   mouseToggle: false,
   gridHasFenceToggle: false,
