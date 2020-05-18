@@ -78,11 +78,12 @@ export default class Grid extends Component {
 
   fenceToggler = () => {
     const { fenceToggle } = this.state;
-    if (fenceToggle === false) {
-      this.setState({ fenceToggle: true });
-    } else {
-      this.setState({ fenceToggle: false });
-    }
+    // if (fenceToggle === false) {
+    //   this.setState({ fenceToggle: true });
+    // } else {
+    //   this.setState({ fenceToggle: false });
+    // }
+    this.setState({ fenceToggle: !fenceToggle });
   };
 
   mouseFlag = () => {
