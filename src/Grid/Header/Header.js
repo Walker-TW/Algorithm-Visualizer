@@ -25,6 +25,7 @@ const Header = (props) => {
           <Form>
             <Form.Check
               type="checkbox"
+              id="fence-check"
               name="fences"
               label="Fences"
               style={{ color: 'white' }}

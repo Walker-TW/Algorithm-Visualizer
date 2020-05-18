@@ -46,15 +46,9 @@ describe('<Grid view={desktop} />', () => {
   it('adds walls', () => {
     const wrapper = mount(<Grid view={desktop} />);
 
-    const node = wrapper.find(Node);
-    const test = node.first();
-    const testTwo = node.last();
-    test.simulate('mousedown', 'mouseup');
-    testTwo.simulate('mousedown', 'mouseup');
-
-    const button = wrapper.find('#fence-button');
-    const fenced = button.first();
-    fenced.simulate('click');
+    wrapper
+      .find('input[type="checkbox"]')
+      .simulate('change', { target: { checked: true } });
 
     expect(wrapper.state().fenceToggle).toEqual(true);
   });

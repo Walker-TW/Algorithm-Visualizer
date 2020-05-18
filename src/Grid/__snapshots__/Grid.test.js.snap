@@ -56,6 +56,28 @@ Array [
             Algorithms
           </a>
         </div>
+        <form
+          class=""
+        >
+          <div
+            class="form-check"
+            style="color:white"
+          >
+            <input
+              class="form-check-input"
+              id="fence-check"
+              name="fences"
+              type="checkbox"
+            />
+            <label
+              class="form-check-label"
+              for="fence-check"
+              title=""
+            >
+              Fences
+            </label>
+          </div>
+        </form>
       </div>
       <div
         class="navbar-nav nav-center"
@@ -66,6 +88,14 @@ Array [
           type="button"
         >
           Let's Run Dijkstra
+        </button>
+        <button
+          class="btn btn-primary"
+          id="reset-btn"
+          style="background-color:red"
+          type="button"
+        >
+          Reset
         </button>
       </div>
       <div

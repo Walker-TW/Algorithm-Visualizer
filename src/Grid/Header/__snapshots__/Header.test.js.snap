@@ -110,6 +110,27 @@ exports[`<Header /> renders 1`] = `
           Separated link
         </DropdownItem>
       </NavDropdown>
+      <Form
+        inline={false}
+      >
+        <FormCheck
+          disabled={false}
+          id="fence-check"
+          inline={false}
+          isInvalid={false}
+          isValid={false}
+          label="Fences"
+          name="fences"
+          onChange={[MockFunction]}
+          style={
+            Object {
+              "color": "white",
+            }
+          }
+          title=""
+          type="checkbox"
+        />
+      </Form>
     </Nav>
     <Nav
       fill={false}
@@ -125,6 +146,21 @@ exports[`<Header /> renders 1`] = `
         variant="primary"
       >
         Let's Run Dijkstra
+      </Button>
+      <Button
+        active={false}
+        disabled={false}
+        id="reset-btn"
+        onClick={[Function]}
+        style={
+          Object {
+            "backgroundColor": "red",
+          }
+        }
+        type="button"
+        variant="primary"
+      >
+        Reset
       </Button>
     </Nav>
     <Nav
