@@ -5,52 +5,44 @@ import PropTypes from 'prop-types';
 import './Header.css';
 
 const Header = (props) => {
-  //       <Button
-  //         id="fence-button"
-  //         style={{ margin: '10px 0 ' }}
-  //         onClick={props.fenceToggle}
-  //         variant="primary"
-  //         children={'Make Fences'}
-  //       />
+  const { fenceToggle, run, reset } = props;
 
-  // <Button
-  //   id="button"
-  //   style={{ margin: '10px 0 ', backgroundColor: 'red' }}
-  //   onClick={props.reset}
-  //   variant="primary"
-  //   children={'Reset'}
-  // />;
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="#home">Algo-Visualiser</Navbar.Brand>
+      <Navbar.Brand href="#home" children={'Algo-Visualiser'} />
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="#features">Features</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
+          <Nav.Link href="#features" children={'Features'} />
+          <Nav.Link href="#pricing" children={'Pricing'} />
           <NavDropdown title="Algorithms" id="collasible-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Dijkstra</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Another action
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.1" children={'Dijkstra'} />
+            <NavDropdown.Item href="#action/3.2" children={'Another action'} />
+            <NavDropdown.Item href="#action/3.3" children={'Something'} />
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              Separated link
-            </NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.4" children={'Separated link'} />
           </NavDropdown>
+          <Form>
+            <Form.Check
+              type="checkbox"
+              name="fences"
+              label="Fences"
+              style={{ color: 'white' }}
+              onChange={fenceToggle}
+            />
+          </Form>
         </Nav>
         <Nav variant="center">
           <Button
             id="button"
             variant="primary"
-            onClick={props.run}
+            onClick={run}
             children={"Let's Run Dijkstra"}
           />
           <Button
             id="reset-btn"
             style={{ backgroundColor: 'red' }}
-            onClick={props.reset}
+            onClick={reset}
             variant="primary"
             children={'Reset'}
           />

@@ -49,12 +49,14 @@ export default class Node extends Component {
       mouseFlag();
     }
   };
+
   mouseEnterHandler = () => {
     const { mouseToggle, gridHasFenceToggle } = this.props;
     if (gridHasFenceToggle === true && mouseToggle === true) {
       this.fenceSelector();
     }
   };
+
   mouseDownHandler = () => {
     const { mouseToggle, mouseFlag, gridHasFenceToggle } = this.props;
     if (gridHasFenceToggle === true && mouseToggle === false) {

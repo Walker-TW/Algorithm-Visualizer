@@ -169,7 +169,7 @@ export default class Grid extends Component {
   };
 
   render() {
-    const { grid, start, finish } = this.state;
+    const { fenceToggle, finish, grid, mouseToggle, start } = this.state;
 
     const nodes = grid.map((row, colIndex) => {
       return (
@@ -181,11 +181,11 @@ export default class Grid extends Component {
               gridId={node.gridId}
               gridHasStart={start.present}
               gridHasFinish={finish.present}
-              gridHasFenceToggle={this.state.fenceToggle}
+              gridHasFenceToggle={fenceToggle}
               nodeFlag={this.nodeFlag}
               mouseFlag={this.mouseFlag}
               updateNode={this.updateNode}
-              mouseToggle={this.state.mouseToggle}
+              mouseToggle={mouseToggle}
               // reset={this.resetStartFinish}
             />
           ))}
