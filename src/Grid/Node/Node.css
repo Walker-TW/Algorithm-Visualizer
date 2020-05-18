@@ -3,6 +3,10 @@
   height: 20px;
   border: 1px solid black;
   background-color: lightcyan;
+  transition: transform 0.2s;
+}
+.Node:active {
+  transform: scale(1.25);
 }
 
 .visited {

@@ -6,6 +6,7 @@ import Header from './Header/Header';
 import { Alert } from 'react-bootstrap';
 import Info from './Info/Info';
 import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
+import { aStar, findShortestPathAStar } from '../Algorithms/a*test';
 
 import './Grid.css';
 import './Node/Node.css';
@@ -46,11 +47,14 @@ export default class Grid extends Component {
   createNode = (gridId) => {
     return {
       gridId,
-      start: false,
-      finish: false,
+      heuristic: Infinity,
+      manhatten: Infinity,
       distance: Infinity,
       visited: false,
+      inOpen: false,
       pastNode: null,
+      start: false,
+      finish: false,
       fence: false,
     };
   };
@@ -112,13 +116,21 @@ export default class Grid extends Component {
   //   });
   // };
 
+  runAstar = () => {
+    const { grid, start, finish } = this.state;
+    const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
+    const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
+    const resultOfAStar = aStar(grid, startNode, finishNode);
+    const y = findShortestPathAStar(resultOfAStar[resultOfAStar.length - 1]);
+    this.animateAlgorithm(resultOfAStar, y);
+  };
+
   runDijkstra = () => {
     const { grid, start, finish } = this.state;
     const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
     const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
     const resultOfDijkstra = dijkstra(grid, startNode, finishNode);
     const y = findShortestPath(resultOfDijkstra[resultOfDijkstra.length - 1]);
-
     this.animateAlgorithm(resultOfDijkstra, y);
   };
 
@@ -173,10 +185,8 @@ export default class Grid extends Component {
 
     if (algorithm === 'dijkstra') {
       this.runDijkstra();
-      // } else if (algorithm === 'astar') {
-      //   this.runAstar();
-    } else {
-      return;
+    } else if (algorithm === 'astar') {
+      this.runAstar();
     }
   };
 

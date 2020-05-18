@@ -1,0 +1,29 @@
+- First thing to do is decide on a heuristic
+ - manhatten seems the best as we cannot move in diagonals X
+ - therefore need to create a function which creates this distance 
+ for every node in the grid X
+
+- Then test this to be sure it is giving the correct result on every
+node (TDD)
+
+- When the funtion is fully tested on implementation of A* set this distance
+to every node and store in the object X
+
+-- What to do about inifinity which only changes when it finds the nearest
+neighbours X
+
+- Sort the nodes based off (heuristic + the weight at that moment) 
+return them in a sorted list X
+(have a look at what to do if the distance changes i.e. fences)
+
+- iterate through this queue sorting the nodes again as the weights 
+change (luckily the heuristic base value will stay the same) X
+
+-return a completed reversed list (like dijkstra) when you reach the end
+
+- Track back and animate in the same way as well
+
+- WHAT TO STORE IN OBJECT 
+-- Mdistance
+-- Heuristic
+-- distance
