@@ -1,20 +1,39 @@
+# Algorithm Visualiser [![Build Status](https://travis-ci.org/Walker-TW/Algorithm-Visualizer.svg?branch=master)](https://travis-ci.org/Walker-TW/Algorithm-Visualizer)
 
-## Available Scripts
+View the deployed app [here:](https://algo-visualiser.herokuapp.com)
 
-In the project directory, you can run:
+## `To run the project locally:
 
-### `yarn start`
+1. Clone the repo by running
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+   `git clone https://github.com/Walker-TW/Algorithm-Visualizer.git`
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+2. Change into the cloned directory
 
-### `yarn test`
+   `cd Algorithm-Visualizer`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Install dependencies
+
+   `yarn`
+
+4. Booting the server:
+   1. For hot reload during development (or quick start):
+   - Boot the server with `yarn start`
+   - Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
+     - The rendered page will update as you make changes
+     - You will also see any lint errors in the console.
+   2. To view the optomised build
+   - run `yarn build`, then
+   - Boot with `serve -s build`.
+     1. You can install serve globally with `yarn global add serve` or `npm i -g serve`, it's handy to have around.
+
+### Testing
+
+`yarn test`
+
+Launches the test runner ([react-scripts jest](https://create-react-app.dev/docs/running-tests/) with [enzyme](https://enzymejs.github.io/enzyme/)) in the interactive watch mode.
+
+At time of writing, jest can be buggy with coverage in watch mode so for accurate coverage run `yarn test:coverage`
 
 ### `yarn build`
 
@@ -22,46 +41,11 @@ Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Additional info [here](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Advanced users only, provides access to babel, webpack and other config files
