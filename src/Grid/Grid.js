@@ -1,19 +1,26 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
 
-import Node from './Node/Node';
-import Header from './Header/Header';
-import { Alert } from 'react-bootstrap';
-import Info from './Info/Info';
-import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
-import { aStar, findShortestPathAStar } from '../Algorithms/a*test';
+import Node from "./Node/Node";
+import Header from "./Header/Header";
+import { Alert } from "react-bootstrap";
+import Info from "./Info/Info";
+import { dijkstra, findShortestPath } from "../Algorithms/dijkstra";
+import {
+  aStarManhatten,
+  findShortestPathAStarM,
+} from "../Algorithms/a*manhatten";
+import {
+  aStarEuclidean,
+  findShortestPathAStarE,
+} from "../Algorithms/a*euclidean";
 
-import './Grid.css';
-import './Node/Node.css';
+import "./Grid.css";
+import "./Node/Node.css";
 
 export default class Grid extends Component {
   state = {
-    algorithm: '',
+    algorithm: "",
     grid: [],
     fenceToggle: false,
     mouseToggle: false,
@@ -94,7 +101,7 @@ export default class Grid extends Component {
     const { grid } = this.state;
     const { rowIndex, colIndex } = gridId;
     const node = grid[rowIndex][colIndex];
-    if (type === 'fence') {
+    if (type === "fence") {
       node[type] = !node[type];
     } else {
       node[type] = true;
@@ -108,7 +115,6 @@ export default class Grid extends Component {
   };
 
   setAlgorithm = (selection) => {
-    console.log(selection, 'selection');
     if (this.state.algorithm !== selection)
       this.setState({ algorithm: selection });
   };
@@ -120,27 +126,31 @@ export default class Grid extends Component {
   run = () => {
     const { algorithm } = this.state;
 
-    if (algorithm === 'dijkstra') {
+    if (algorithm === "dijkstra") {
       this.runDijkstra();
-    } else if (algorithm === 'astar') {
-      this.runAstar();
+    } else if (algorithm === "A* Euclidean") {
+      this.runAstarEuclidean();
+    } else if (algorithm === "A* Manhatten") {
+      this.runAstarManhatten();
     }
   };
-  // commented out as it is currently unnecessary, may be useful later
-  // resetStartFinish = () => {
-  //   this.setState({
-  //     start: { ...this.state.start, present: false },
-  //     finish: { ...this.state.finish, present: false },
-  //   });
-  // }
-  // algorithm
-  runAstar = () => {
+
+  runAstarEuclidean = () => {
     const { grid, start, finish } = this.state;
     const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
     const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
-    const resultOfAStar = aStar(grid, startNode, finishNode);
-    const y = findShortestPathAStar(resultOfAStar[resultOfAStar.length - 1]);
-    this.animateAlgorithm(resultOfAStar, y);
+    const resultOfAStarE = aStarEuclidean(grid, startNode, finishNode);
+    const y = findShortestPathAStarE(resultOfAStarE[resultOfAStarE.length - 1]);
+    this.animateAlgorithm(resultOfAStarE, y);
+  };
+
+  runAstarManhatten = () => {
+    const { grid, start, finish } = this.state;
+    const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
+    const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
+    const resultOfAStarM = aStarManhatten(grid, startNode, finishNode);
+    const y = findShortestPathAStarM(resultOfAStarM[resultOfAStarM.length - 1]);
+    this.animateAlgorithm(resultOfAStarM, y);
   };
 
   runDijkstra = () => {
@@ -167,12 +177,12 @@ export default class Grid extends Component {
           `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
         ).className = `Node ${
           node.start
-            ? 'start'
+            ? "start"
             : node.finish
-            ? 'finish'
+            ? "finish"
             : node.visited
-            ? 'visited'
-            : ''
+            ? "visited"
+            : ""
         }`;
       }, 10 * i);
     }
@@ -184,7 +194,7 @@ export default class Grid extends Component {
         const node = nodesInShortestPathOrder[i];
         document.getElementById(
           `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
-        ).className = 'Node path';
+        ).className = "Node path";
       }, 50 * i);
     }
   };
@@ -204,7 +214,7 @@ export default class Grid extends Component {
         <div className="Column" key={colIndex.toString()}>
           {row.map((node, rowIndex) => (
             <Node
-              key={colIndex.toString() + ' ' + rowIndex.toString()}
+              key={colIndex.toString() + " " + rowIndex.toString()}
               id={`node-${node.gridId.colIndex}-${node.gridId.rowIndex}`}
               gridId={node.gridId}
               gridHasStart={start.present}
@@ -214,7 +224,6 @@ export default class Grid extends Component {
               mouseFlag={this.mouseFlag}
               updateNode={this.updateNode}
               mouseToggle={mouseToggle}
-              // reset={this.resetStartFinish}
             />
           ))}
         </div>
@@ -231,7 +240,7 @@ export default class Grid extends Component {
           reset={this.reset}
         />
         {start.present && finish.present ? (
-          ''
+          ""
         ) : (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
         )}
