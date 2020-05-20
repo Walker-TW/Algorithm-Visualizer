@@ -230,11 +230,12 @@ export default class Grid extends Component {
           fenceToggle={this.fenceToggler}
           reset={this.reset}
         />
-        {start.present && finish.present ? (
-          ''
-        ) : (
+        {!start.present && !finish.present ? (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
-        )}
+        ) : !finish.present ? (
+          <Alert variant="primary">Please Choose An End Node</Alert>
+        ) : null}
+
         <div>
           <Info />
           <div className="Grid" children={nodes} />

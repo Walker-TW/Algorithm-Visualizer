@@ -50,6 +50,7 @@ export default class Node extends Component {
 
   clickHandler = () => {
     const { gridHasStart, gridHasFinish } = this.props;
+    const { start } = this.state;
 
     if (gridHasStart && gridHasFinish) {
       // visual aid
@@ -57,6 +58,8 @@ export default class Node extends Component {
     } else {
       !gridHasStart
         ? this.startFinishHandler('start')
+        : gridHasStart && start
+        ? alert("Start and end can't be the same")
         : this.startFinishHandler('finish');
     }
   };
