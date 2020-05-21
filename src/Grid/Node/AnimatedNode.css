@@ -8,7 +8,7 @@
 
 .visited {
   animation-name: visitedAnimation;
-  animation-duration: 0.7s;
+  animation-duration: 0.4s;
   animation-timing-function: ease-out;
   animation-delay: 0;
   animation-direction: alternate;
