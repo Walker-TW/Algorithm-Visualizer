@@ -67,7 +67,7 @@ const Header = (props) => {
         </Nav>
         <Nav variant="center">
           <Button
-            id="button"
+            id="run-btn"
             variant="primary"
             onClick={run}
             children={algorithm ? `Let's Run ${algorithm}` : 'Select Algorithm'}

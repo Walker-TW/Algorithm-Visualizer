@@ -141,9 +141,9 @@ exports[`<Header /> renders 1`] = `
     >
       <Button
         active={false}
-        disabled={false}
-        id="button"
-        onClick={[MockFunction]}
+        disabled={true}
+        id="run-btn"
+        onClick={[Function]}
         type="button"
         variant="primary"
       >
