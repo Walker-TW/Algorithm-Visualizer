@@ -5,6 +5,7 @@ import Node from "./Node/Node";
 import Header from "./Header/Header";
 import { Alert } from "react-bootstrap";
 import Info from "./Info/Info";
+import { depthFirstSearch, findShortestPathDFS } from "../Algorithms/dfs.js";
 import { dijkstra, findShortestPath } from "../Algorithms/dijkstra";
 import {
   aStarManhatten,
@@ -55,15 +56,15 @@ export default class Grid extends Component {
   createNode = (gridId) => {
     return {
       gridId,
-      heuristic: Infinity,
-      manhatten: Infinity,
-      distance: Infinity,
+      finish: false,
       visited: false,
       inOpen: false,
       pastNode: null,
       start: false,
-      finish: false,
       fence: false,
+      heuristic: Infinity,
+      manhatten: Infinity,
+      distance: Infinity,
     };
   };
 
@@ -80,7 +81,6 @@ export default class Grid extends Component {
       }
       grid.push(current_row);
     }
-
     this.setState({ grid });
   };
 
@@ -132,7 +132,24 @@ export default class Grid extends Component {
       this.runAstarEuclidean();
     } else if (algorithm === "A* Manhatten") {
       this.runAstarManhatten();
+    } else if (algorithm === "Depth First Search") {
+      this.runDepthFirstSearch();
     }
+  };
+
+  runDepthFirstSearch = () => {
+    const { grid, start, finish } = this.state;
+    const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
+    const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
+    const resultOfDepthFirstSearch = depthFirstSearch(
+      grid,
+      startNode,
+      finishNode
+    );
+    const z = findShortestPathDFS(
+      resultOfDepthFirstSearch[resultOfDepthFirstSearch.length - 1]
+    );
+    this.animateAlgorithm(resultOfDepthFirstSearch, z);
   };
 
   runAstarEuclidean = () => {
