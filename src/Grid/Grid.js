@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import Node from './Node/Node';
+import Nodes from './Nodes/Nodes';
 import Header from './Header/Header';
 import { Alert } from 'react-bootstrap';
 import Info from './Info/Info';
@@ -58,7 +58,6 @@ export default class Grid extends Component {
       manhatten: Infinity,
       distance: Infinity,
       visited: false,
-      inOpen: false,
       pastNode: null,
       start: false,
       finish: false,
@@ -119,7 +118,44 @@ export default class Grid extends Component {
   };
 
   reset = () => {
-    window.location.reload();
+    // window.location.reload();
+    // this.resetVisited();
+    this.resetVisitedInState();
+  };
+
+  resetNodeHandler = (node) => {
+    const resetNodeStyle = (node) => {
+      document.getElementById(
+        `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
+      ).className = `Node`;
+    };
+
+    const resetNode = (node) => {
+      node.heuristic = Infinity;
+      node.manhatten = Infinity;
+      node.distance = Infinity;
+      node.visited = false;
+      node.pastNode = null;
+    };
+
+    if (node.start || node.fence || node.finish) {
+      resetNode(node);
+    } else {
+      resetNodeStyle(node);
+      node = this.createNode(node.gridId);
+    }
+  };
+
+  resetVisitedInState = () => {
+    let grid = [...this.state.grid];
+
+    grid.forEach((row) => {
+      row.forEach((node) => {
+        this.resetNodeHandler(node);
+      });
+    });
+
+    this.setState({ grid: grid });
   };
 
   run = () => {
@@ -163,11 +199,11 @@ export default class Grid extends Component {
 
   // animation
   animateAlgorithm = (visitedNodesInOrder, nodesInShortestPathOrder) => {
-    for (let i = 0; i <= visitedNodesInOrder.length; i++) {
-      if (i === visitedNodesInOrder.length) {
+    for (let i = 1; i <= visitedNodesInOrder.length - 1; i++) {
+      if (i === visitedNodesInOrder.length - 1) {
         setTimeout(() => {
           this.animateShortestPath(nodesInShortestPathOrder);
-        }, 10 * i);
+        }, 5 * i);
         return;
       }
       setTimeout(() => {
@@ -183,7 +219,7 @@ export default class Grid extends Component {
             ? 'visited'
             : ''
         }`;
-      }, 10 * i);
+      }, 5 * i);
     }
   };
 
@@ -208,27 +244,6 @@ export default class Grid extends Component {
       start,
     } = this.state;
 
-    const nodes = grid.map((row, colIndex) => {
-      return (
-        <div className="Column" key={colIndex.toString()}>
-          {row.map((node, rowIndex) => (
-            <Node
-              key={colIndex.toString() + ' ' + rowIndex.toString()}
-              id={`node-${node.gridId.colIndex}-${node.gridId.rowIndex}`}
-              gridId={node.gridId}
-              gridHasStart={start.present}
-              gridHasFinish={finish.present}
-              gridHasFenceToggle={fenceToggle}
-              nodeFlag={this.nodeFlag}
-              mouseFlag={this.mouseFlag}
-              updateNode={this.updateNode}
-              mouseToggle={mouseToggle}
-            />
-          ))}
-        </div>
-      );
-    });
-
     return (
       <Fragment>
         <Header
@@ -247,7 +262,16 @@ export default class Grid extends Component {
 
         <div>
           <Info />
-          <div className="Grid" children={nodes} />
+          <Nodes
+            grid={grid}
+            gridHasStart={start.present}
+            gridHasFinish={finish.present}
+            fenceToggle={fenceToggle}
+            nodeFlag={this.nodeFlag}
+            mouseFlag={this.mouseFlag}
+            updateNode={this.updateNode}
+            mouseToggle={mouseToggle}
+          />
         </div>
       </Fragment>
     );

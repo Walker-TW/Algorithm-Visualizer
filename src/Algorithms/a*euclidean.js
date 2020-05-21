@@ -6,7 +6,9 @@ export function aStarEuclidean(grid, start, finish) {
   setHeuristicTotal(start);
   while (open.length) {
     open = sortUnvisitedHeuritsic(open);
+
     const currentNode = open.shift();
+
     currentNode.visited = true;
     closed.push(currentNode);
     if (currentNode === finish) {

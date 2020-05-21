@@ -84,6 +84,7 @@ Array [
       >
         <button
           class="btn btn-primary"
+          disabled=""
           id="button"
           type="button"
         >
