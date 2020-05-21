@@ -9,7 +9,6 @@ import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
 import { aStar, findShortestPathAStar } from '../Algorithms/a*test';
 
 import './Grid.css';
-import './Node/Node.css';
 
 export default class Grid extends Component {
   state = {
@@ -225,6 +224,7 @@ export default class Grid extends Component {
       <Fragment>
         <Header
           algorithm={algorithm}
+          ready={start.present && finish.present}
           run={this.run}
           setAlgorithm={this.setAlgorithm}
           fenceToggle={this.fenceToggler}

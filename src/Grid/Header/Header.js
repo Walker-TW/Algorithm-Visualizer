@@ -5,8 +5,28 @@ import PropTypes from 'prop-types';
 import './Header.css';
 
 const Header = (props) => {
-  const { algorithm, fenceToggle, run, reset, setAlgorithm } = props;
+  const {
+    algorithm,
+    fenceToggle,
+    ready,
+    run: propRun,
+    reset,
+    setAlgorithm,
+  } = props;
 
+  const run = () => {
+    if (algorithm === '') {
+      alert('Please select an algorithm');
+    }
+    if (!ready) {
+      alert(
+        'Please choose a start and finish point before running by clicking on the desired squares'
+      );
+    }
+    if (ready && algorithm) {
+      propRun();
+    }
+  };
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand href="#home" children={'Algo-Visualiser'} />
@@ -47,6 +67,7 @@ const Header = (props) => {
             variant="primary"
             onClick={run}
             children={algorithm ? `Let's Run ${algorithm}` : 'Select Algorithm'}
+            disabled={!ready || algorithm === ''}
           />
           <Button
             id="reset-btn"
@@ -70,6 +91,7 @@ export default Header;
 
 Header.propTypes = {
   algorithm: PropTypes.string.isRequired,
+  ready: PropTypes.bool.isRequired,
   run: PropTypes.func.isRequired,
   fenceToggle: PropTypes.func.isRequired,
   setAlgorithm: PropTypes.func.isRequired,
