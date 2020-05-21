@@ -96,6 +96,20 @@ exports[`<Header /> renders 1`] = `
         >
           A* (Manhatten Distance)
         </DropdownItem>
+        <DropdownItem
+          as={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "displayName": "SafeAnchor",
+              "render": [Function],
+            }
+          }
+          disabled={false}
+          id="set-depth-first-search"
+          onClick={[Function]}
+        >
+          Depth First Search
+        </DropdownItem>
         <DropdownDivider
           role="separator"
         />
