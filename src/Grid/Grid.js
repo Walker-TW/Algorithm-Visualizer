@@ -9,7 +9,7 @@ import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
 import { aStar, findShortestPathAStar } from '../Algorithms/a*test';
 
 import './Grid.css';
-import './Node/Node.css';
+// import './Node/Node.css';
 
 export default class Grid extends Component {
   state = {
