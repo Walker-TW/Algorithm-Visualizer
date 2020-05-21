@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import './Node.css';
 import PropTypes from 'prop-types';
 
+// import './Node.css';
+import './NodeTron.css';
+// import './AnimatedNode.css';
 export default class Node extends Component {
   state = {
     start: false,

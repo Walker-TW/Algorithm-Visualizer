@@ -76,8 +76,8 @@ describe('<Grid view={desktop} />', () => {
     [1, 2].forEach(() => {
       node.simulate('click');
     });
-    const nodeobj = wrapper.state().grid[0][0];
-    expect(nodeobj.fence).toEqual(false);
+    const nodeObj = wrapper.state().grid[0][0];
+    expect(nodeObj.fence).toEqual(false);
   });
 
   // it('sets the algorithm', () => {

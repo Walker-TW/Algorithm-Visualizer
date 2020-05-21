@@ -41,6 +41,7 @@ const Header = (props) => {
               onClick={() => setAlgorithm('dijkstra')}
               children={'Dijkstra'}
             />
+            <NavDropdown.Divider />
             <NavDropdown.Item
               id={'set-astar-euclidean'}
               onClick={() => setAlgorithm('A* Euclidean')}
@@ -59,7 +60,7 @@ const Header = (props) => {
               type="checkbox"
               id="fence-check"
               name="fences"
-              label="Fences"
+              label="Fence mode"
               style={{ color: 'white' }}
               onChange={fenceToggle}
             />
@@ -67,17 +68,18 @@ const Header = (props) => {
         </Nav>
         <Nav variant="center">
           <Button
-            id="run-btn"
-            variant="primary"
+            id="button"
+            style={{ border: '2px solid yellow', color: 'yellow' }}
+            variant="dark"
             onClick={run}
             children={algorithm ? `Let's Run ${algorithm}` : 'Select Algorithm'}
             disabled={!ready || algorithm === ''}
           />
           <Button
             id="reset-btn"
-            style={{ backgroundColor: 'red' }}
+            style={{ border: '2px solid red', color: 'red' }}
+            variant="dark"
             onClick={reset}
-            variant="primary"
             children={'Reset'}
           />
         </Nav>
