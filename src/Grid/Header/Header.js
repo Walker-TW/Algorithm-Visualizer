@@ -42,11 +42,15 @@ const Header = (props) => {
               children={'Dijkstra'}
             />
             <NavDropdown.Item
-              id={'set-astar'}
-              onClick={() => setAlgorithm('astar')}
-              children={'A*'}
+              id={'set-astar-euclidean'}
+              onClick={() => setAlgorithm('A* Euclidean')}
+              children={'A* (Euclidean Distance)'}
             />
-            <NavDropdown.Item children={'Something'} />
+            <NavDropdown.Item
+              id={'set-astar-manhatten'}
+              onClick={() => setAlgorithm('A* Manhatten')}
+              children={'A* (Manhatten Distance)'}
+            />
             <NavDropdown.Divider />
             <NavDropdown.Item children={'Separated link'} />
           </NavDropdown>
