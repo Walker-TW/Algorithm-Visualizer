@@ -36,6 +36,11 @@ const Header = (props) => {
               onClick={() => setAlgorithm("Depth First Search")}
               children={"Depth First Search"}
             />
+            <NavDropdown.Item
+              id={"set-breadth-first-search"}
+              onClick={() => setAlgorithm("Breadth First Search")}
+              children={"Breadth First Search"}
+            />
             <NavDropdown.Divider />
             <NavDropdown.Item children={"Separated link"} />
           </NavDropdown>
