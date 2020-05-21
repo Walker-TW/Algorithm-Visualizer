@@ -56,7 +56,7 @@ export default class Node extends Component {
 
     if (gridHasStart && gridHasFinish) {
       // visual aid
-      document.getElementById('button').innerText = 'Click Me!';
+      document.getElementById('run-btn').innerText = 'Click Me!';
     } else {
       !gridHasStart
         ? this.startFinishHandler('start')

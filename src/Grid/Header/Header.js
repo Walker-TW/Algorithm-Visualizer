@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import Info from '../Info/Info';
 
 import './Header.css';
 
@@ -34,7 +35,14 @@ const Header = (props) => {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="#features" children={'Features'} />
-          <Nav.Link href="#pricing" children={'Pricing'} />
+          <NavDropdown title="Mazes">
+            <NavDropdown.Item children={'1'} />
+            <NavDropdown.Divider />
+            <NavDropdown.Item children={'2'} />
+            <NavDropdown.Divider />
+            <NavDropdown.Item children={'3?'} />
+            <NavDropdown.Divider />
+          </NavDropdown>
           <NavDropdown title="Algorithms" id="collasible-nav-dropdown">
             <NavDropdown.Item
               id={'set-dijkstra'}
@@ -65,10 +73,11 @@ const Header = (props) => {
               onChange={fenceToggle}
             />
           </Form>
+          <Info />
         </Nav>
         <Nav variant="center">
           <Button
-            id="button"
+            id="run-btn"
             style={{ border: '2px solid yellow', color: 'yellow' }}
             variant="dark"
             onClick={run}

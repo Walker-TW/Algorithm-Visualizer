@@ -118,9 +118,15 @@ export default class Grid extends Component {
   };
 
   reset = () => {
-    // window.location.reload();
-    // this.resetVisited();
-    this.resetVisitedInState();
+    let grid = [...this.state.grid];
+
+    grid.forEach((row) => {
+      row.forEach((node) => {
+        this.resetNodeHandler(node);
+      });
+    });
+
+    this.setState({ grid: grid });
   };
 
   resetNodeHandler = (node) => {
@@ -144,18 +150,6 @@ export default class Grid extends Component {
       resetNodeStyle(node);
       node = this.createNode(node.gridId);
     }
-  };
-
-  resetVisitedInState = () => {
-    let grid = [...this.state.grid];
-
-    grid.forEach((row) => {
-      row.forEach((node) => {
-        this.resetNodeHandler(node);
-      });
-    });
-
-    this.setState({ grid: grid });
   };
 
   run = () => {
