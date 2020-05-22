@@ -15,9 +15,9 @@ import {
   findShortestPathAStarE,
 } from '../Algorithms/a*euclidean';
 
-import './Grid.css';
+import './Visualizer.css';
 
-export class Grid extends Component {
+export default class Visualizer extends Component {
   state = {
     algorithm: '',
     grid: [],
@@ -255,7 +255,7 @@ export class Grid extends Component {
     } = this.state;
 
     return (
-      <Fragment>
+      <div className="Visualizer">
         <Header
           algorithm={algorithm}
           ready={start.present && finish.present}
@@ -270,8 +270,6 @@ export class Grid extends Component {
           <Alert variant="primary">Please Choose An End Node</Alert>
         ) : null}
 
-        {/* <div>
-          <Info /> */}
         <Nodes
           grid={grid}
           gridHasStart={start.present}
@@ -282,15 +280,7 @@ export class Grid extends Component {
           updateNode={this.updateNode}
           mouseToggle={mouseToggle}
         />
-        {/* </div> */}
-      </Fragment>
+      </div>
     );
   }
 }
-
-Grid.propTypes = {
-  view: PropTypes.object.isRequired,
-};
-
-// export default sizeMe({ monitorHeight: true })(Grid);
-export default Grid;

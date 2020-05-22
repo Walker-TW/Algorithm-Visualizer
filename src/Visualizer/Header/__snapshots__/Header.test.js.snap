@@ -172,7 +172,6 @@ exports[`<Header /> renders 1`] = `
           type="checkbox"
         />
       </Form>
-      <Info />
     </Nav>
     <Nav
       fill={false}

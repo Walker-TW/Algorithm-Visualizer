@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Node from '../Node/Node';
 import PropTypes from 'prop-types';
 
-import '../Grid.css';
+import './Grid.css';
 
 const Nodes = (props) => {
   const [grid, setGrid] = useState([]);

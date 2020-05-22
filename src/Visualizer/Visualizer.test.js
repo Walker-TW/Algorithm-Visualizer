@@ -1,16 +1,13 @@
 import React from 'react';
 
-import Grid from './Grid';
+import Visualizer from './Visualizer';
 import Node from './Node/Node';
 
 import { shallowToJson } from 'enzyme-to-json';
 
 import { shallow, mount, render } from 'enzyme';
 
-const mobile = { width: 18, height: 28 };
-const desktop = { width: 50, height: 30 };
-
-describe('<Grid view={desktop} />', () => {
+describe('<Visualizer />', () => {
   function toggleFences(wrapper) {
     wrapper
       .find('input[type="checkbox"]')
@@ -18,18 +15,18 @@ describe('<Grid view={desktop} />', () => {
   }
 
   it('renders', () => {
-    const wrapper = shallow(<Grid view={desktop} />);
+    const wrapper = shallow(<Visualizer />);
     expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
 
   it('renders all 1500 Node components', () => {
-    const wrapper = mount(<Grid view={desktop} />);
+    const wrapper = mount(<Visualizer />);
 
     expect(wrapper.find(Node).length).toEqual(1500);
   });
 
   it('render a node that will change the start state when clicked', () => {
-    const wrapper = mount(<Grid view={desktop} />);
+    const wrapper = mount(<Visualizer />);
     const node = wrapper.find(Node).first();
 
     expect(node.state('start')).toEqual(false);
@@ -38,7 +35,7 @@ describe('<Grid view={desktop} />', () => {
   });
 
   it('render a node that will change the finish state when clicked', () => {
-    const wrapper = mount(<Grid view={desktop} />);
+    const wrapper = mount(<Visualizer />);
     const node = wrapper.find(Node).first();
 
     node.simulate('mousedown', 'mouseup');
@@ -46,12 +43,12 @@ describe('<Grid view={desktop} />', () => {
   });
 
   it('renders 1400 nodes on mobile', () => {
-    const wrapperTwo = mount(<Grid view={mobile} />);
+    const wrapperTwo = mount(<Visualizer />);
     expect(wrapperTwo.find(Node).length).toEqual(504);
   });
 
   it('registers if a mouse is held', () => {
-    const wrapper = mount(<Grid view={desktop} />);
+    const wrapper = mount(<Visualizer />);
     const node = wrapper.find(Node).first();
     toggleFences(wrapper);
 
@@ -60,7 +57,7 @@ describe('<Grid view={desktop} />', () => {
   });
 
   it('can add walls', () => {
-    const wrapper = mount(<Grid view={desktop} />);
+    const wrapper = mount(<Visualizer />);
 
     toggleFences(wrapper);
 
@@ -68,7 +65,7 @@ describe('<Grid view={desktop} />', () => {
   });
 
   it('can remove walls', () => {
-    const wrapper = mount(<Grid view={desktop} />);
+    const wrapper = mount(<Visualizer />);
 
     toggleFences(wrapper);
     const findnode = wrapper.find('#node-0-0');
@@ -81,7 +78,7 @@ describe('<Grid view={desktop} />', () => {
   });
 
   // it('sets the algorithm', () => {
-  //   const wrapper = mount(<Grid view={desktop} />);
+  //   const wrapper = mount(<Visualizer />);
   //   const astarLink = wrapper.find('#set-astar');
   //   const dropDown = wrapper.find('#collasible-nav-dropdown');
   //   // console.log(dropDown);
