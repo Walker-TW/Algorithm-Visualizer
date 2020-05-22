@@ -1,5 +1,4 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import Node from './Node';
 import { shallowToJson } from 'enzyme-to-json';
 
@@ -15,7 +14,7 @@ const defaultProps = {
   nodeFlag: spyOne,
   mouseFlag: spyTwo,
   mouseToggle: false,
-  gridHasFenceToggle: false,
+  fenceToggle: false,
 };
 
 describe('<Node />', () => {

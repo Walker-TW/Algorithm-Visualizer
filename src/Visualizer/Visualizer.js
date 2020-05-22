@@ -1,28 +1,27 @@
-import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
+import React, { Component, Fragment } from 'react';
 
-import Node from "./Node/Node";
-import Header from "./Header/Header";
-import { Alert } from "react-bootstrap";
-import Info from "./Info/Info";
-import { breadthFirstSearch, findShortestPathBFS } from "../Algorithms/bfs.js";
-import { depthFirstSearch, findShortestPathDFS } from "../Algorithms/dfs.js";
-import { dijkstra, findShortestPath } from "../Algorithms/dijkstra";
+import Header from './Header/Header';
+
+import Alert from 'react-bootstrap/Alert';
+
+import Nodes from './Nodes/Nodes';
+
+import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
 import {
   aStarManhatten,
   findShortestPathAStarM,
-} from "../Algorithms/a*manhatten";
+} from '../Algorithms/a*manhatten';
 import {
   aStarEuclidean,
   findShortestPathAStarE,
-} from "../Algorithms/a*euclidean";
+} from '../Algorithms/a*euclidean';
+import { breadthFirstSearch, findShortestPathBFS } from '../Algorithms/bfs.js';
+import { depthFirstSearch, findShortestPathDFS } from '../Algorithms/dfs.js';
+import './Visualizer.css';
 
-import "./Grid.css";
-import "./Node/Node.css";
-
-export default class Grid extends Component {
+export default class Visualizer extends Component {
   state = {
-    algorithm: "",
+    algorithm: '',
     grid: [],
     fenceToggle: false,
     mouseToggle: false,
@@ -52,6 +51,10 @@ export default class Grid extends Component {
   // setup methods
   componentDidMount() {
     this.gridSetup();
+    window.addEventListener('resize', this.gridSetup);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.gridSetup);
   }
 
   createNode = (gridId) => {
@@ -59,7 +62,6 @@ export default class Grid extends Component {
       gridId,
       finish: false,
       visited: false,
-      inOpen: false,
       pastNode: null,
       start: false,
       fence: false,
@@ -69,8 +71,37 @@ export default class Grid extends Component {
     };
   };
 
+  // getDimensions = () => {
+  //   const [screenWidth, screenHeight] = [window.innerWidth, window.innerHeight];
+
+  //   let width, height;
+  //   if (screenWidth > 1450) {
+  //     width = screenWidth / 20 - 12;
+  //     height = screenHeight / 20 - 7;
+  //   } else if (screenWidth > 900) {
+  //     width = screenWidth / 30;
+  //     height = screenHeight / 30;
+  //   } else {
+  //     width = screenWidth / 40 - 3;
+  //     height = screenHeight / 40 - 5;
+  //   }
+  //   return [width, height];
+  // };
+
   gridSetup = () => {
-    const { width, height } = this.props.view;
+    const [screenWidth, screenHeight] = [window.innerWidth, window.innerHeight];
+
+    let width, height;
+    if (screenWidth > 1450) {
+      width = screenWidth / 20 - 12;
+      height = screenHeight / 20 - 7;
+    } else if (screenWidth > 900) {
+      width = screenWidth / 30;
+      height = screenHeight / 30;
+    } else {
+      width = screenWidth / 40 - 3;
+      height = screenHeight / 40 - 5;
+    }
 
     let grid = [];
     for (let rowIndex = 0; rowIndex < width; rowIndex++) {
@@ -102,7 +133,7 @@ export default class Grid extends Component {
     const { grid } = this.state;
     const { rowIndex, colIndex } = gridId;
     const node = grid[rowIndex][colIndex];
-    if (type === "fence") {
+    if (type === 'fence') {
       node[type] = !node[type];
     } else {
       node[type] = true;
@@ -121,21 +152,52 @@ export default class Grid extends Component {
   };
 
   reset = () => {
-    window.location.reload();
+    let grid = [...this.state.grid];
+
+    grid.forEach((row) => {
+      row.forEach((node) => {
+        this.resetNodeHandler(node);
+      });
+    });
+
+    this.setState({ grid: grid });
+  };
+
+  resetNodeHandler = (node) => {
+    const resetNodeStyle = (node) => {
+      document.getElementById(
+        `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
+      ).className = `Node`;
+    };
+
+    const resetNode = (node) => {
+      node.heuristic = Infinity;
+      node.manhatten = Infinity;
+      node.distance = Infinity;
+      node.visited = false;
+      node.pastNode = null;
+    };
+
+    if (node.start || node.fence || node.finish) {
+      resetNode(node);
+    } else {
+      resetNodeStyle(node);
+      node = this.createNode(node.gridId);
+    }
   };
 
   run = () => {
     const { algorithm } = this.state;
 
-    if (algorithm === "dijkstra") {
+    if (algorithm === 'dijkstra') {
       this.runDijkstra();
-    } else if (algorithm === "A* Euclidean") {
+    } else if (algorithm === 'A* Euclidean') {
       this.runAstarEuclidean();
-    } else if (algorithm === "A* Manhatten") {
+    } else if (algorithm === 'A* Manhatten') {
       this.runAstarManhatten();
-    } else if (algorithm === "Depth First Search") {
+    } else if (algorithm === 'Depth First Search') {
       this.runDepthFirstSearch();
-    } else if (algorithm === "Breadth First Search") {
+    } else if (algorithm === 'Breadth First Search') {
       this.runBreadthFirstSearch();
     }
   };
@@ -153,7 +215,7 @@ export default class Grid extends Component {
       resultOfBreadthFirstSearch[resultOfBreadthFirstSearch.length - 1]
     );
     this.animateAlgorithm(resultOfBreadthFirstSearch, z);
-    console.log(z, "this works");
+    console.log(z, 'this works');
   };
 
   runDepthFirstSearch = () => {
@@ -200,11 +262,11 @@ export default class Grid extends Component {
 
   // animation
   animateAlgorithm = (visitedNodesInOrder, nodesInShortestPathOrder) => {
-    for (let i = 0; i <= visitedNodesInOrder.length; i++) {
-      if (i === visitedNodesInOrder.length) {
+    for (let i = 1; i <= visitedNodesInOrder.length - 1; i++) {
+      if (i === visitedNodesInOrder.length - 1) {
         setTimeout(() => {
           this.animateShortestPath(nodesInShortestPathOrder);
-        }, 10 * i);
+        }, 5 * i);
         return;
       }
       setTimeout(() => {
@@ -213,14 +275,14 @@ export default class Grid extends Component {
           `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
         ).className = `Node ${
           node.start
-            ? "start"
+            ? 'start'
             : node.finish
-            ? "finish"
+            ? 'finish'
             : node.visited
-            ? "visited"
-            : ""
+            ? 'visited'
+            : ''
         }`;
-      }, 10 * i);
+      }, 5 * i);
     }
   };
 
@@ -230,7 +292,7 @@ export default class Grid extends Component {
         const node = nodesInShortestPathOrder[i];
         document.getElementById(
           `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
-        ).className = "Node path";
+        ).className = 'Node path';
       }, 50 * i);
     }
   };
@@ -245,50 +307,33 @@ export default class Grid extends Component {
       start,
     } = this.state;
 
-    const nodes = grid.map((row, colIndex) => {
-      return (
-        <div className="Column" key={colIndex.toString()}>
-          {row.map((node, rowIndex) => (
-            <Node
-              key={colIndex.toString() + " " + rowIndex.toString()}
-              id={`node-${node.gridId.colIndex}-${node.gridId.rowIndex}`}
-              gridId={node.gridId}
-              gridHasStart={start.present}
-              gridHasFinish={finish.present}
-              gridHasFenceToggle={fenceToggle}
-              nodeFlag={this.nodeFlag}
-              mouseFlag={this.mouseFlag}
-              updateNode={this.updateNode}
-              mouseToggle={mouseToggle}
-            />
-          ))}
-        </div>
-      );
-    });
-
     return (
       <Fragment>
         <Header
           algorithm={algorithm}
+          ready={start.present && finish.present}
           run={this.run}
           setAlgorithm={this.setAlgorithm}
           fenceToggle={this.fenceToggler}
           reset={this.reset}
         />
-        {start.present && finish.present ? (
-          ""
-        ) : (
+        {!start.present && !finish.present ? (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
-        )}
-        <div>
-          <Info />
-          <div className="Grid" children={nodes} />
-        </div>
+        ) : !finish.present ? (
+          <Alert variant="primary">Please Choose An End Node</Alert>
+        ) : null}
+
+        <Nodes
+          grid={grid}
+          gridHasStart={start.present}
+          gridHasFinish={finish.present}
+          fenceToggle={fenceToggle}
+          nodeFlag={this.nodeFlag}
+          mouseFlag={this.mouseFlag}
+          updateNode={this.updateNode}
+          mouseToggle={mouseToggle}
+        />
       </Fragment>
     );
   }
 }
-
-Grid.propTypes = {
-  view: PropTypes.object.isRequired,
-};

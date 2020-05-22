@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import './Node.css';
 import PropTypes from 'prop-types';
 
+// import './Node.css';
+import './NodeTron.css';
+// import './AnimatedNode.css';
 export default class Node extends Component {
   state = {
     start: false,
@@ -27,20 +29,20 @@ export default class Node extends Component {
   };
 
   mouseUpHandler = () => {
-    const { mouseFlag, mouseToggle, gridHasFenceToggle } = this.props;
+    const { mouseFlag, mouseToggle, fenceToggle } = this.props;
 
-    if (gridHasFenceToggle && mouseToggle) mouseFlag();
+    if (fenceToggle && mouseToggle) mouseFlag();
   };
 
   mouseEnterHandler = () => {
-    const { mouseToggle, gridHasFenceToggle } = this.props;
+    const { mouseToggle, fenceToggle } = this.props;
 
-    if (gridHasFenceToggle && mouseToggle) this.fenceHandler();
+    if (fenceToggle && mouseToggle) this.fenceHandler();
   };
 
   mouseDownHandler = () => {
-    const { mouseToggle, mouseFlag, gridHasFenceToggle } = this.props;
-    if (gridHasFenceToggle && !mouseToggle) {
+    const { mouseToggle, mouseFlag, fenceToggle } = this.props;
+    if (fenceToggle && !mouseToggle) {
       mouseFlag();
       this.fenceHandler();
     } else {
@@ -50,13 +52,16 @@ export default class Node extends Component {
 
   clickHandler = () => {
     const { gridHasStart, gridHasFinish } = this.props;
+    const { start } = this.state;
 
     if (gridHasStart && gridHasFinish) {
       // visual aid
-      document.getElementById('button').innerText = 'Click Me!';
+      document.getElementById('run-btn').innerText = 'Click Me!';
     } else {
       !gridHasStart
         ? this.startFinishHandler('start')
+        : gridHasStart && start
+        ? alert("Start and end can't be the same")
         : this.startFinishHandler('finish');
     }
   };
@@ -84,5 +89,5 @@ Node.propTypes = {
   nodeFlag: PropTypes.func.isRequired,
   mouseFlag: PropTypes.func.isRequired,
   mouseToggle: PropTypes.bool.isRequired,
-  gridHasFenceToggle: PropTypes.bool.isRequired,
+  fenceToggle: PropTypes.bool.isRequired,
 };

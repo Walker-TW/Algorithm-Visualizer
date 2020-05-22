@@ -37,19 +37,55 @@ exports[`<Header /> renders 1`] = `
       >
         Features
       </NavLink>
-      <NavLink
-        as={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "displayName": "SafeAnchor",
-            "render": [Function],
-          }
-        }
-        disabled={false}
-        href="#pricing"
+      <NavDropdown
+        title="Mazes"
       >
-        Pricing
-      </NavLink>
+        <DropdownItem
+          as={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "displayName": "SafeAnchor",
+              "render": [Function],
+            }
+          }
+          disabled={false}
+        >
+          1
+        </DropdownItem>
+        <DropdownDivider
+          role="separator"
+        />
+        <DropdownItem
+          as={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "displayName": "SafeAnchor",
+              "render": [Function],
+            }
+          }
+          disabled={false}
+        >
+          2
+        </DropdownItem>
+        <DropdownDivider
+          role="separator"
+        />
+        <DropdownItem
+          as={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "displayName": "SafeAnchor",
+              "render": [Function],
+            }
+          }
+          disabled={false}
+        >
+          3?
+        </DropdownItem>
+        <DropdownDivider
+          role="separator"
+        />
+      </NavDropdown>
       <NavDropdown
         id="collasible-nav-dropdown"
         title="Algorithms"
@@ -149,7 +185,7 @@ exports[`<Header /> renders 1`] = `
           inline={false}
           isInvalid={false}
           isValid={false}
-          label="Fences"
+          label="Fence mode"
           name="fences"
           onChange={[MockFunction]}
           style={
@@ -169,11 +205,17 @@ exports[`<Header /> renders 1`] = `
     >
       <Button
         active={false}
-        disabled={false}
-        id="button"
-        onClick={[MockFunction]}
+        disabled={true}
+        id="run-btn"
+        onClick={[Function]}
+        style={
+          Object {
+            "border": "2px solid yellow",
+            "color": "yellow",
+          }
+        }
         type="button"
-        variant="primary"
+        variant="dark"
       >
         Select Algorithm
       </Button>
@@ -184,11 +226,12 @@ exports[`<Header /> renders 1`] = `
         onClick={[MockFunction]}
         style={
           Object {
-            "backgroundColor": "red",
+            "border": "2px solid red",
+            "color": "red",
           }
         }
         type="button"
-        variant="primary"
+        variant="dark"
       >
         Reset
       </Button>
