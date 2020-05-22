@@ -255,7 +255,7 @@ export default class Visualizer extends Component {
     } = this.state;
 
     return (
-      <div className="Visualizer">
+      <Fragment>
         <Header
           algorithm={algorithm}
           ready={start.present && finish.present}
@@ -280,7 +280,7 @@ export default class Visualizer extends Component {
           updateNode={this.updateNode}
           mouseToggle={mouseToggle}
         />
-      </div>
+      </Fragment>
     );
   }
 }

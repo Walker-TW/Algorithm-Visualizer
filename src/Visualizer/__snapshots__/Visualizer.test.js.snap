@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Visualizer /> renders 1`] = `
-<div
-  className="Visualizer"
->
+<Fragment>
   <Header
     algorithm=""
     fenceToggle={[Function]}
@@ -12855,5 +12853,5 @@ exports[`<Visualizer /> renders 1`] = `
     mouseToggle={false}
     nodeFlag={[Function]}
   />
-</div>
+</Fragment>
 `;
