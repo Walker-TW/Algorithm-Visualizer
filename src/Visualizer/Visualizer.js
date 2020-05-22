@@ -49,7 +49,7 @@ export default class Visualizer extends Component {
   // setup methods
   componentDidMount() {
     this.gridSetup();
-    window.addEventListener('resize', this.gridSetup);
+    window.addEventListener('resize', () => this.gridSetup);
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.gridSetup);
@@ -69,7 +69,7 @@ export default class Visualizer extends Component {
     };
   };
 
-  gridSetup = () => {
+  getDimensions = () => {
     const [screenWidth, screenHeight] = [window.innerWidth, window.innerHeight];
 
     let width, height;
@@ -83,6 +83,12 @@ export default class Visualizer extends Component {
       width = screenWidth / 40 - 3;
       height = screenHeight / 40 - 5;
     }
+    return [width, height];
+  };
+
+  gridSetup = () => {
+    let width,
+      height = this.getDimensions();
 
     let grid = [];
     for (let rowIndex = 0; rowIndex < width; rowIndex++) {
