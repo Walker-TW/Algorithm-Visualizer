@@ -1,3 +1,6 @@
-export function breadthFirstSearch() {}
+export function breadthFirstSearch(grid, startNode, finishNode) {}
 
-export function findShortestPathBFS() {}
+// remember bfs uses queues
+// so its all shift
+
+export function findShortestPathBFS(finishNode) {}

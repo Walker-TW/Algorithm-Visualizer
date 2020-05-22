@@ -141,6 +141,14 @@ export default class Grid extends Component {
   };
 
   runBreadthFirstSearch = () => {
+    const { grid, start, finish } = this.state;
+    const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
+    const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
+    const resultOfBreadthFirstSearch = breadthFirstSearch(
+      grid,
+      startNode,
+      finishNode
+    );
     console.log("this works");
   };
 
