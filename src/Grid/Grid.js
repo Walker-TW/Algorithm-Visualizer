@@ -254,19 +254,19 @@ export default class Grid extends Component {
           <Alert variant="primary">Please Choose An End Node</Alert>
         ) : null}
 
-        <div>
-          <Info />
-          <Nodes
-            grid={grid}
-            gridHasStart={start.present}
-            gridHasFinish={finish.present}
-            fenceToggle={fenceToggle}
-            nodeFlag={this.nodeFlag}
-            mouseFlag={this.mouseFlag}
-            updateNode={this.updateNode}
-            mouseToggle={mouseToggle}
-          />
-        </div>
+        {/* <div>
+          <Info /> */}
+        <Nodes
+          grid={grid}
+          gridHasStart={start.present}
+          gridHasFinish={finish.present}
+          fenceToggle={fenceToggle}
+          nodeFlag={this.nodeFlag}
+          mouseFlag={this.mouseFlag}
+          updateNode={this.updateNode}
+          mouseToggle={mouseToggle}
+        />
+        {/* </div> */}
       </Fragment>
     );
   }

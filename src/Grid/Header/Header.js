@@ -73,7 +73,6 @@ const Header = (props) => {
               onChange={fenceToggle}
             />
           </Form>
-          <Info />
         </Nav>
         <Nav variant="center">
           <Button

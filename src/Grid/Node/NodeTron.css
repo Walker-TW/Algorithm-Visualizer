@@ -1,7 +1,7 @@
 .Node {
   width: 20px;
   height: 20px;
-  border: 1px solid yellow;
+  border: 2px solid rgb(189, 189, 5);
   /* background-color: black; */
   /* opacity: 0.5; */
   transition: transform 0.2s;
@@ -10,7 +10,7 @@
 
 .visited {
   animation-name: visitedAnimation;
-  animation-duration: 0.4s;
+  animation-duration: 0.3s;
   animation-timing-function: ease-out;
   animation-delay: 0;
   animation-direction: alternate;

@@ -2,6 +2,7 @@
   display: inline-block;
 }
 .Grid {
-  margin: 40px 50% 0 0;
+  margin: 5px 50% 10px 0;
   width: 100%;
+  padding: 27px;
 }

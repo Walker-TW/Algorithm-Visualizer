@@ -3,6 +3,8 @@ import React from 'react';
 import App from './App';
 import matchMediaPolyfill from 'mq-polyfill';
 
+import { shallow, mount, render } from 'enzyme';
+
 describe('<App />', () => {
   beforeAll(() => {
     matchMediaPolyfill(window);

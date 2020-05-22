@@ -18,16 +18,36 @@ export default class App extends Component {
   updatePredicate = () => {
     this.setState({ isDesktop: window.innerWidth > 1450 });
   };
-
+  resize = () => {
+    if (window.innerWidth > 1450) {
+      return {
+        width: window.innerWidth / 20 - 3,
+        height: window.innerHeight / 20 - 8,
+      };
+    } else {
+      return {
+        width: window.innerWidth / 40 - 3,
+        height: window.innerHeight / 40 - 8,
+      };
+    }
+  };
   render() {
-    const resize = {
-      width: window.innerWidth / 20 - 2,
-      height: window.innerHeight / 20 - 14,
+    const size = window.innerWidth;
+    const desktopResize = {
+      width: size > 1450 ? size / 20 - 3 : size / 40 - 3,
+      height:
+        size > 1450 ? window.innerHeight / 20 - 8 : window.innerHeight / 40 - 8,
+    };
+
+    const mobileResize = {
+      width: window.innerWidth / 40 - 3,
+      height: window.innerHeight / 40 - 8,
     };
 
     return (
       <div className="App">
-        <Grid view={resize} />
+        {console.log(desktopResize)}
+        <Grid view={desktopResize} />
       </div>
     );
   }
