@@ -21,7 +21,7 @@ describe('<Visualizer />', () => {
 
   it('renders all 1500 Node components', () => {
     const wrapper = mount(<Visualizer />);
-
+    // expect(wrapper.find(Node)).toEqual(true);
     expect(wrapper.find(Node).length).toEqual(1500);
   });
 
@@ -58,9 +58,7 @@ describe('<Visualizer />', () => {
 
   it('can add walls', () => {
     const wrapper = mount(<Visualizer />);
-
     toggleFences(wrapper);
-
     expect(wrapper.state().fenceToggle).toEqual(true);
   });
 
