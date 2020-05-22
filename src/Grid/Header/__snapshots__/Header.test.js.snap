@@ -110,6 +110,20 @@ exports[`<Header /> renders 1`] = `
         >
           Depth First Search
         </DropdownItem>
+        <DropdownItem
+          as={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "displayName": "SafeAnchor",
+              "render": [Function],
+            }
+          }
+          disabled={false}
+          id="set-breadth-first-search"
+          onClick={[Function]}
+        >
+          Breadth First Search
+        </DropdownItem>
         <DropdownDivider
           role="separator"
         />

@@ -5,6 +5,7 @@ import Node from "./Node/Node";
 import Header from "./Header/Header";
 import { Alert } from "react-bootstrap";
 import Info from "./Info/Info";
+import { breadthFirstSearch, findShortestPathBFS } from "../Algorithms/bfs.js";
 import { depthFirstSearch, findShortestPathDFS } from "../Algorithms/dfs.js";
 import { dijkstra, findShortestPath } from "../Algorithms/dijkstra";
 import {
@@ -134,7 +135,25 @@ export default class Grid extends Component {
       this.runAstarManhatten();
     } else if (algorithm === "Depth First Search") {
       this.runDepthFirstSearch();
+    } else if (algorithm === "Breadth First Search") {
+      this.runBreadthFirstSearch();
     }
+  };
+
+  runBreadthFirstSearch = () => {
+    const { grid, start, finish } = this.state;
+    const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
+    const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
+    const resultOfBreadthFirstSearch = breadthFirstSearch(
+      grid,
+      startNode,
+      finishNode
+    );
+    const z = findShortestPathBFS(
+      resultOfBreadthFirstSearch[resultOfBreadthFirstSearch.length - 1]
+    );
+    this.animateAlgorithm(resultOfBreadthFirstSearch, z);
+    console.log(z, "this works");
   };
 
   runDepthFirstSearch = () => {
