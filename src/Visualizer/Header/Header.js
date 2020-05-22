@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import Info from '../Info/Info';
 
 import './Header.css';
 

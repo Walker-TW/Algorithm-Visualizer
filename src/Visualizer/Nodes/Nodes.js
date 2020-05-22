@@ -26,7 +26,7 @@ const Nodes = (props) => {
         console.log('object')
       );
     },
-    [propsGrid]
+    [propsGrid, grid]
   );
 
   return (

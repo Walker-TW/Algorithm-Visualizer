@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
+
 import Alert from 'react-bootstrap/Alert';
 
 import Nodes from './Nodes/Nodes';
