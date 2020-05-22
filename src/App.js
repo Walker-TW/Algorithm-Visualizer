@@ -1,22 +1,35 @@
 import React, { Component } from 'react';
 import Grid from './Grid/Grid';
 import './App.css';
+import { withSize } from 'react-sizeme';
+
+const withSizeHOC = withSize();
+const SizeAwareGrid = withSizeHOC(Grid);
 
 export default class App extends Component {
   state = {
+    width: window.innerWidth,
+    height: window.innerHeight,
     isDesktop: false,
   };
 
   componentDidMount() {
     this.updatePredicate();
-    window.addEventListener('resize', () => this.updatePredicate);
+    window.addEventListener('resize', this.updatePredicate);
   }
+  // componentDidUpdate() {
+  //   window.addEventListener('resize', this.updatePredicate);
+  // }
   componentWillUnmount() {
-    window.removeEventListener('resize', () => this.updatePredicate);
+    window.removeEventListener('resize', this.updatePredicate);
   }
 
   updatePredicate = () => {
-    this.setState({ isDesktop: window.innerWidth > 1450 });
+    this.setState({
+      width: window.innerWidth,
+      height: window.innerHeight,
+      isDesktop: window.innerWidth > 1450,
+    });
   };
   resize = () => {
     if (window.innerWidth > 1450) {
@@ -32,22 +45,12 @@ export default class App extends Component {
     }
   };
   render() {
-    const size = window.innerWidth;
-    const desktopResize = {
-      width: size > 1450 ? size / 20 - 3 : size / 40 - 3,
-      height:
-        size > 1450 ? window.innerHeight / 20 - 8 : window.innerHeight / 40 - 8,
-    };
-
-    const mobileResize = {
-      width: window.innerWidth / 40 - 3,
-      height: window.innerHeight / 40 - 8,
-    };
-
+    const { width, height } = this.state;
     return (
       <div className="App">
-        {console.log(desktopResize)}
-        <Grid view={desktopResize} />
+        {/* {console.log(desktopResize)} */}
+        <Grid view={{ width, height }} />
+        {/* <SizeAwareGrid view={desktopResize} /> */}
       </div>
     );
   }

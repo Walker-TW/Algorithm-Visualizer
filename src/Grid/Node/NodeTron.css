@@ -8,6 +8,20 @@
   border-radius: 2px;
 }
 
+@media (max-width: 900px) {
+  .Node {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 500px) {
+  .Node {
+    width: 40px;
+    height: 40px;
+  }
+}
+
 .visited {
   animation-name: visitedAnimation;
   animation-duration: 0.3s;

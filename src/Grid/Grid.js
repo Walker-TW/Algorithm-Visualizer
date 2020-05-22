@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 
 import Nodes from './Nodes/Nodes';
 import Header from './Header/Header';
-import { Alert } from 'react-bootstrap';
-import Info from './Info/Info';
+
 import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
 import {
   aStarManhatten,
@@ -17,7 +17,7 @@ import {
 
 import './Grid.css';
 
-export default class Grid extends Component {
+export class Grid extends Component {
   state = {
     algorithm: '',
     grid: [],
@@ -49,6 +49,10 @@ export default class Grid extends Component {
   // setup methods
   componentDidMount() {
     this.gridSetup();
+    window.addEventListener('resize', this.gridSetup);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.gridSetup);
   }
 
   createNode = (gridId) => {
@@ -66,7 +70,19 @@ export default class Grid extends Component {
   };
 
   gridSetup = () => {
-    const { width, height } = this.props.view;
+    const [screenWidth, screenHeight] = [window.innerWidth, window.innerHeight];
+
+    let width, height;
+    if (screenWidth > 1450) {
+      width = screenWidth / 20 - 12;
+      height = screenHeight / 20 - 7;
+    } else if (screenWidth > 900) {
+      width = screenWidth / 30;
+      height = screenHeight / 30;
+    } else {
+      width = screenWidth / 40 - 3;
+      height = screenHeight / 40 - 5;
+    }
 
     let grid = [];
     for (let rowIndex = 0; rowIndex < width; rowIndex++) {
@@ -275,3 +291,6 @@ export default class Grid extends Component {
 Grid.propTypes = {
   view: PropTypes.object.isRequired,
 };
+
+// export default sizeMe({ monitorHeight: true })(Grid);
+export default Grid;
