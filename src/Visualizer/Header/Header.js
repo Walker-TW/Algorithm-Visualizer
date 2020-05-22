@@ -43,7 +43,7 @@ const Header = (props) => {
             <NavDropdown.Item children={'3?'} />
             <NavDropdown.Divider />
           </NavDropdown>
-          <NavDropdown title="Algorithms" id="collasible-nav-dropdown">
+          <NavDropdown title="Algorithms" id="collapsable-nav-dropdown">
             <NavDropdown.Item
               id={'set-dijkstra'}
               onClick={() => setAlgorithm('dijkstra')}

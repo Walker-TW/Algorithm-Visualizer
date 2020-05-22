@@ -1,5 +1,7 @@
 import React from 'react';
 
+import matchMediaPolyfill from 'mq-polyfill';
+
 import Visualizer from './Visualizer';
 import Node from './Node/Node';
 
@@ -13,7 +15,17 @@ describe('<Visualizer />', () => {
       .find('input[type="checkbox"]')
       .simulate('change', { target: { checked: true } });
   }
-
+  beforeAll(() => {
+    matchMediaPolyfill(window);
+    window.resizeTo = function resizeTo(width, height) {
+      Object.assign(this, {
+        innerWidth: width,
+        innerHeight: height,
+        outerWidth: width,
+        outerHeight: height,
+      }).dispatchEvent(new this.Event('resize'));
+    };
+  });
   it('renders', () => {
     const wrapper = shallow(<Visualizer />);
     expect(shallowToJson(wrapper)).toMatchSnapshot();
@@ -22,7 +34,7 @@ describe('<Visualizer />', () => {
   it('renders all 1500 Node components', () => {
     const wrapper = mount(<Visualizer />);
     // expect(wrapper.find(Node)).toEqual(true);
-    expect(wrapper.find(Node).length).toEqual(1500);
+    expect(wrapper.find(Node).length).toEqual(910);
   });
 
   it('render a node that will change the start state when clicked', () => {
@@ -43,8 +55,10 @@ describe('<Visualizer />', () => {
   });
 
   it('renders 1400 nodes on mobile', () => {
+    window.resizeTo(375, 667);
+
     const wrapperTwo = mount(<Visualizer />);
-    expect(wrapperTwo.find(Node).length).toEqual(504);
+    expect(wrapperTwo.find(Node).length).toEqual(84);
   });
 
   it('registers if a mouse is held', () => {
@@ -74,17 +88,4 @@ describe('<Visualizer />', () => {
     const nodeObj = wrapper.state().grid[0][0];
     expect(nodeObj.fence).toEqual(false);
   });
-
-  // it('sets the algorithm', () => {
-  //   const wrapper = mount(<Visualizer />);
-  //   const astarLink = wrapper.find('#set-astar');
-  //   const dropDown = wrapper.find('#collasible-nav-dropdown');
-  //   // console.log(dropDown);
-  //   // dropDown.first().simulate('click');
-  //   dropDown.first().simulate('mousedown', 'mouseup');
-  //   // dropDown.first().simulate('click');
-  //   // dropDown[1].simulate('click');
-  //   astarLink.simulate('click');
-  //   expect(wrapper.state('algorithm')).toEqual('astar');
-  // });
 });

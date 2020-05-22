@@ -87,7 +87,7 @@ exports[`<Header /> renders 1`] = `
         />
       </NavDropdown>
       <NavDropdown
-        id="collasible-nav-dropdown"
+        id="collapsable-nav-dropdown"
         title="Algorithms"
       >
         <DropdownItem
