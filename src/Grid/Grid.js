@@ -149,7 +149,11 @@ export default class Grid extends Component {
       startNode,
       finishNode
     );
-    console.log("this works");
+    const z = findShortestPathBFS(
+      resultOfBreadthFirstSearch[resultOfBreadthFirstSearch.length - 1]
+    );
+    this.animateAlgorithm(resultOfBreadthFirstSearch, z);
+    console.log(z, "this works");
   };
 
   runDepthFirstSearch = () => {
