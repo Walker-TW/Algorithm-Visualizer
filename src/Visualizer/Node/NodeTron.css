@@ -156,7 +156,7 @@
 
 .fence {
   animation-name: fenceAnimation;
-  animation-duration: 0.3s;
+  /* animation-duration: 0.3s; */
   animation-timing-function: ease-out;
   animation-delay: 0;
   animation-direction: alternate;
