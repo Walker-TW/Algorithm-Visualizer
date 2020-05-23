@@ -1,27 +1,27 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment } from 'react';
 
-import Header from "./Header/Header";
+import Header from './Header/Header';
 
-import Alert from "react-bootstrap/Alert";
+import Alert from 'react-bootstrap/Alert';
 
-import Nodes from "./Nodes/Nodes";
+import Nodes from './Nodes/Nodes';
 
-import { dijkstra, findShortestPath } from "../Algorithms/dijkstra";
+import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
 import {
   aStarManhatten,
   findShortestPathAStarM,
-} from "../Algorithms/a*manhatten";
+} from '../Algorithms/a*manhatten';
 import {
   aStarEuclidean,
   findShortestPathAStarE,
-} from "../Algorithms/a*euclidean";
-import { breadthFirstSearch, findShortestPathBFS } from "../Algorithms/bfs.js";
-import { depthFirstSearch, findShortestPathDFS } from "../Algorithms/dfs.js";
-import "./Visualizer.css";
+} from '../Algorithms/a*euclidean';
+import { breadthFirstSearch, findShortestPathBFS } from '../Algorithms/bfs.js';
+import { depthFirstSearch, findShortestPathDFS } from '../Algorithms/dfs.js';
+import './Visualizer.css';
 
 export default class Visualizer extends Component {
   state = {
-    algorithm: "",
+    algorithm: '',
     grid: [],
     fenceToggle: false,
     mouseToggle: false,
@@ -51,10 +51,10 @@ export default class Visualizer extends Component {
   // setup methods
   componentDidMount() {
     this.gridSetup();
-    window.addEventListener("resize", this.gridSetup);
+    window.addEventListener('resize', this.gridSetup);
   }
   componentWillUnmount() {
-    window.removeEventListener("resize", this.gridSetup);
+    window.removeEventListener('resize', this.gridSetup);
   }
 
   createNode = (gridId) => {
@@ -133,7 +133,7 @@ export default class Visualizer extends Component {
     const { grid } = this.state;
     const { rowIndex, colIndex } = gridId;
     const node = grid[rowIndex][colIndex];
-    if (type === "fence") {
+    if (type === 'fence') {
       node[type] = !node[type];
     } else {
       node[type] = true;
@@ -180,7 +180,7 @@ export default class Visualizer extends Component {
     if (node.start || node.fence || node.finish) {
       resetNode(node);
     } else {
-      resetNode(node);
+      // resetNode(node);
       // this has been added because the nodes were not being created so instead they are resetted
       resetNodeStyle(node);
       node = this.createNode(node.gridId);
@@ -190,15 +190,15 @@ export default class Visualizer extends Component {
   run = () => {
     const { algorithm } = this.state;
 
-    if (algorithm === "dijkstra") {
+    if (algorithm === 'dijkstra') {
       this.runDijkstra();
-    } else if (algorithm === "A* Euclidean") {
+    } else if (algorithm === 'A* Euclidean') {
       this.runAstarEuclidean();
-    } else if (algorithm === "A* Manhatten") {
+    } else if (algorithm === 'A* Manhatten') {
       this.runAstarManhatten();
-    } else if (algorithm === "Depth First Search") {
+    } else if (algorithm === 'Depth First Search') {
       this.runDepthFirstSearch();
-    } else if (algorithm === "Breadth First Search") {
+    } else if (algorithm === 'Breadth First Search') {
       this.runBreadthFirstSearch();
     }
   };
@@ -275,12 +275,12 @@ export default class Visualizer extends Component {
           `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
         ).className = `Node ${
           node.start
-            ? "start"
+            ? 'start'
             : node.finish
-            ? "finish"
+            ? 'finish'
             : node.visited
-            ? "visited"
-            : ""
+            ? 'visited'
+            : ''
         }`;
       }, 5 * i);
     }
@@ -292,7 +292,7 @@ export default class Visualizer extends Component {
         const node = nodesInShortestPathOrder[i];
         document.getElementById(
           `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
-        ).className = "Node path";
+        ).className = 'Node path';
       }, 50 * i);
     }
   };

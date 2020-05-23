@@ -156,7 +156,7 @@
 
 .fence {
   animation-name: fenceAnimation;
-  /* animation-duration: 0.3s; */
+  animation-duration: 0.1s;
   animation-timing-function: ease-out;
   animation-delay: 0;
   animation-direction: alternate;
@@ -166,13 +166,13 @@
 }
 
 @keyframes fenceAnimation {
-  0% {
+  /* 0% {
     transform: scale(0.3);
     background-color: rgb(23, 154, 45);
-  }
+  } */
 
   50% {
-    transform: scale(1.2);
+    transform: scale(1.5);
     background-color: rgb(194, 142, 28);
   }
 
