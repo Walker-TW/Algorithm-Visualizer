@@ -97,7 +97,8 @@ export default class Visualizer extends Component {
   };
 
   gridSetup = () => {
-    let [width, height] = this.getDimensions();
+    // let [width, height] = this.getDimensions();
+    let [width, height] = [10, 10];
     let grid = [];
     for (let rowIndex = 0; rowIndex < width; rowIndex++) {
       let current_row = [];
@@ -108,6 +109,7 @@ export default class Visualizer extends Component {
       }
       grid.push(current_row);
     }
+    console.log(grid);
     this.setState({ grid });
   };
 
@@ -264,6 +266,8 @@ export default class Visualizer extends Component {
     const { grid } = this.state;
     let [width, height] = [grid.length, grid[0].length];
     this.animateMaze(recursiveDivision(grid, width, height));
+    // const dup = [...grid][Math.floor(Math.random() * width - 1)];
+    // this.animateMaze(dup);
   };
 
   // animation
@@ -286,9 +290,9 @@ export default class Visualizer extends Component {
   animateMaze = (maze) => {
     // console.log(maze, 'maze');
     maze.forEach((node, index) => {
+      console.error(node);
       const { gridId } = node;
-      console.log(node, 'OI');
-
+      // console.log(node, 'OI');
       setTimeout(() => {
         this.nodeFlag(gridId, 'fence');
         this.animateNode(node);
