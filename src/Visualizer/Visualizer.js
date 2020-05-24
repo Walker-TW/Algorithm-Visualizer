@@ -6,17 +6,23 @@ import Alert from 'react-bootstrap/Alert';
 
 import Nodes from './Nodes/Nodes';
 
-import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
+import { dijkstra, findShortestPath } from '../Algorithms/PathFinders/dijkstra';
 import {
   aStarManhatten,
   findShortestPathAStarM,
-} from '../Algorithms/a*manhatten';
+} from '../Algorithms/PathFinders/a*manhatten';
 import {
   aStarEuclidean,
   findShortestPathAStarE,
-} from '../Algorithms/a*euclidean';
-import { breadthFirstSearch, findShortestPathBFS } from '../Algorithms/bfs.js';
-import { depthFirstSearch, findShortestPathDFS } from '../Algorithms/dfs.js';
+} from '../Algorithms/PathFinders/a*euclidean';
+import {
+  breadthFirstSearch,
+  findShortestPathBFS,
+} from '../Algorithms/PathFinders/bfs.js';
+import {
+  depthFirstSearch,
+  findShortestPathDFS,
+} from '../Algorithms/PathFinders/dfs.js';
 import './Visualizer.css';
 
 export default class Visualizer extends Component {
