@@ -205,6 +205,22 @@ exports[`<Header /> renders 1`] = `
     >
       <Button
         active={false}
+        disabled={false}
+        id="maze-btn"
+        onClick={[MockFunction]}
+        style={
+          Object {
+            "border": "2px solid cyan",
+            "color": "cyan",
+          }
+        }
+        type="button"
+        variant="dark"
+      >
+        Build Maze
+      </Button>
+      <Button
+        active={false}
         disabled={true}
         id="run-btn"
         onClick={[Function]}

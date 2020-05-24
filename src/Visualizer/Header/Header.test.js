@@ -8,6 +8,7 @@ const runSpy = jest.fn(() => {});
 const fenceToggleSpy = jest.fn(() => {});
 const resetSpy = jest.fn(() => {});
 const setAlgorithmSpy = jest.fn(() => {});
+const mazeBuildSpy = jest.fn(() => {});
 
 const defaultProps = {
   algorithm: '',
@@ -16,15 +17,13 @@ const defaultProps = {
   reset: resetSpy,
   setAlgorithm: setAlgorithmSpy,
   ready: false,
+  mazeBuild: mazeBuildSpy,
 };
 
 const readyProps = {
+  ...defaultProps,
   algorithm: 'dijkstra',
   ready: true,
-  run: runSpy,
-  fenceToggle: fenceToggleSpy,
-  reset: resetSpy,
-  setAlgorithm: setAlgorithmSpy,
 };
 
 describe('<Header />', () => {
@@ -62,5 +61,9 @@ describe('<Header />', () => {
     wrapper.find('#set-astar-manhatten').simulate('click');
     wrapper.find('#set-astar-euclidean').simulate('click');
     expect(setAlgorithmSpy.mock.calls.length).toEqual(3);
+  });
+  it('calls the maze building spy onclick', () => {
+    wrapper.find('#maze-btn').simulate('click');
+    expect(mazeBuildSpy.mock.calls.length).toEqual(1);
   });
 });

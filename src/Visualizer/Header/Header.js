@@ -8,6 +8,7 @@ const Header = (props) => {
   const {
     algorithm,
     fenceToggle,
+    mazeBuild,
     ready,
     run: propRun,
     reset,
@@ -84,6 +85,13 @@ const Header = (props) => {
         </Nav>
         <Nav variant="center">
           <Button
+            id="maze-btn"
+            style={{ border: '2px solid cyan', color: 'cyan' }}
+            variant="dark"
+            onClick={mazeBuild}
+            children={'Build Maze'}
+          />
+          <Button
             id="run-btn"
             style={{ border: '2px solid yellow', color: 'yellow' }}
             variant="dark"
@@ -118,4 +126,5 @@ Header.propTypes = {
   fenceToggle: PropTypes.func.isRequired,
   setAlgorithm: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
+  mazeBuild: PropTypes.func.isRequired,
 };

@@ -11,6 +11,21 @@ export const getOrientation = (width, height) => {
   }
 };
 
+export const borderFences = (grid, width, height) => {
+  let fences = [];
+  grid.forEach((row, index) => {
+    if (index === 0 || index === width - 1) {
+      row.forEach((node) => {
+        fences.push(node);
+      });
+    } else {
+      fences.push(row.first());
+      fences.push(row.last());
+    }
+  });
+  return fences;
+};
+
 const divide = (grid, x, y, width, height, orientation) => {
   return;
 };
