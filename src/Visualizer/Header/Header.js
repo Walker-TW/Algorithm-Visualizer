@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   DropdownButton,
@@ -13,13 +13,13 @@ import PropTypes from "prop-types";
 import "./Header.css";
 
 const Header = (props) => {
-  // this.state = {
-  //   row: null,
-  //   column: null,
-  // };
+  const [width, setWidth] = useState();
+  const [height, setHeight] = useState();
+
   const {
     algorithm,
     fenceToggle,
+    gridSetup,
     ready,
     run: propRun,
     reset,
@@ -44,6 +44,13 @@ const Header = (props) => {
     const { width, column } = this.props;
     console.log(width, column);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let array = [width, height];
+    gridSetup(array);
+  };
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand
@@ -119,13 +126,15 @@ const Header = (props) => {
           />
         </Nav>
         <DropdownButton title="Settings" size="sm" variant="secondary">
-          <Form inline>
+          <Form onSubmit={handleSubmit} inline>
             Grid Size
             <FormControl
               size="sm"
               type="text"
+              value={width}
+              onChange={(e) => setWidth(e.target.value)}
               placeholder="Column"
-              className="Column"
+              className="Column-Input"
               inputRef={(ref) => {
                 this.column = ref;
               }}
@@ -133,8 +142,10 @@ const Header = (props) => {
             <FormControl
               type="text"
               size="sm"
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
               placeholder="Row"
-              className="Row"
+              className="Row-Input"
               inputRef={(ref) => {
                 this.row = ref;
               }}
@@ -143,12 +154,7 @@ const Header = (props) => {
               <Form.Label> Speed</Form.Label>
               <Form.Control type="range" />
             </Form.Group>
-            <Button
-              variant="danger"
-              type="submit"
-              onClick={console.log(this.row, this.column)}
-              block
-            >
+            <Button variant="danger" type="submit" block>
               Update
             </Button>
           </Form>

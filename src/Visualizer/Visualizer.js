@@ -46,7 +46,7 @@ export default class Visualizer extends Component {
 
   // setup methods
   componentDidMount() {
-    this.gridSetup();
+    this.gridSetup(this.getDimensions());
     window.addEventListener("resize", this.gridSetup);
   }
   componentWillUnmount() {
@@ -67,24 +67,7 @@ export default class Visualizer extends Component {
     };
   };
 
-  // getDimensions = () => {
-  //   const [screenWidth, screenHeight] = [window.innerWidth, window.innerHeight];
-
-  //   let width, height;
-  //   if (screenWidth > 1450) {
-  //     width = screenWidth / 20 - 12;
-  //     height = screenHeight / 20 - 7;
-  //   } else if (screenWidth > 900) {
-  //     width = screenWidth / 30;
-  //     height = screenHeight / 30;
-  //   } else {
-  //     width = screenWidth / 40 - 3;
-  //     height = screenHeight / 40 - 5;
-  //   }
-  //   return [width, height];
-  // };
-
-  gridSetup = () => {
+  getDimensions = () => {
     const [screenWidth, screenHeight] = [window.innerWidth, window.innerHeight];
 
     let width, height;
@@ -98,7 +81,12 @@ export default class Visualizer extends Component {
       width = screenWidth / 40 - 3;
       height = screenHeight / 40 - 5;
     }
+    return [width, height];
+  };
 
+  gridSetup = (array) => {
+    const width = array[0];
+    const height = array[1];
     let grid = [];
     for (let rowIndex = 0; rowIndex < width; rowIndex++) {
       let current_row = [];
@@ -307,6 +295,7 @@ export default class Visualizer extends Component {
       <Fragment>
         <Header
           algorithm={algorithm}
+          gridSetup={this.gridSetup}
           ready={start.present && finish.present}
           run={this.run}
           setAlgorithm={this.setAlgorithm}
