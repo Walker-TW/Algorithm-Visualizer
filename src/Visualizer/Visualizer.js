@@ -1,11 +1,7 @@
 import React, { Component, Fragment } from "react";
-
 import Header from "./Header/Header";
-
 import Alert from "react-bootstrap/Alert";
-
 import Nodes from "./Nodes/Nodes";
-
 import { dijkstra, findShortestPath } from "../Algorithms/dijkstra";
 import {
   aStarManhatten,
