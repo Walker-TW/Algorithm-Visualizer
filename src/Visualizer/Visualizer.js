@@ -280,6 +280,22 @@ export default class Visualizer extends Component {
   };
 
   // animation
+  animateNode = (node) => {
+    document.getElementById(
+      `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
+    ).className = `Node ${
+      node.start
+        ? 'start'
+        : node.finish
+        ? 'finish'
+        : node.fence
+        ? 'fence'
+        : node.visited
+        ? 'visited'
+        : ''
+    }`;
+  };
+
   animateMaze = (maze) => {
     // console.log(maze, 'maze');
     maze.forEach((node, index) => {
@@ -288,19 +304,7 @@ export default class Visualizer extends Component {
 
       setTimeout(() => {
         this.nodeFlag(gridId, 'fence');
-        document.getElementById(
-          `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
-        ).className = `Node ${
-          node.start
-            ? 'start'
-            : node.finish
-            ? 'finish'
-            : node.fence
-            ? 'fence'
-            : node.visited
-            ? 'visited'
-            : ''
-        }`;
+        this.animateNode(node);
       }, 5 * index);
     });
   };
@@ -315,17 +319,7 @@ export default class Visualizer extends Component {
       }
       setTimeout(() => {
         const node = visitedNodesInOrder[i];
-        document.getElementById(
-          `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
-        ).className = `Node ${
-          node.start
-            ? 'start'
-            : node.finish
-            ? 'finish'
-            : node.visited
-            ? 'visited'
-            : ''
-        }`;
+        this.animateNode(node);
       }, 5 * i);
     }
   };
