@@ -101,6 +101,11 @@ export default class Visualizer extends Component {
   };
 
   // state changers & prop methods
+
+  defaultStateSizeChange = () => {
+    this.setState({ start: { present: false }, finish: { present: false } });
+  };
+
   fenceToggler = () => {
     const { fenceToggle } = this.state;
 
@@ -295,6 +300,7 @@ export default class Visualizer extends Component {
       <Fragment>
         <Header
           algorithm={algorithm}
+          defaultStateSizeChange={this.defaultStateSizeChange}
           gridSetup={this.gridSetup}
           ready={start.present && finish.present}
           run={this.run}

@@ -20,6 +20,7 @@ const Header = (props) => {
     algorithm,
     fenceToggle,
     gridSetup,
+    defaultStateSizeChange,
     ready,
     run: propRun,
     reset,
@@ -40,14 +41,10 @@ const Header = (props) => {
     }
   };
 
-  const print = () => {
-    const { width, column } = this.props;
-    console.log(width, column);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     let array = [width, height];
+    defaultStateSizeChange();
     gridSetup(array);
   };
 
@@ -135,9 +132,6 @@ const Header = (props) => {
               onChange={(e) => setWidth(e.target.value)}
               placeholder="Column"
               className="Column-Input"
-              inputRef={(ref) => {
-                this.column = ref;
-              }}
             />
             <FormControl
               type="text"
@@ -146,9 +140,6 @@ const Header = (props) => {
               onChange={(e) => setHeight(e.target.value)}
               placeholder="Row"
               className="Row-Input"
-              inputRef={(ref) => {
-                this.row = ref;
-              }}
             />
             <Form.Group controlId="formBasicRange">
               <Form.Label> Speed</Form.Label>
