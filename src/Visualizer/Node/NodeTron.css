@@ -35,7 +35,7 @@
 @keyframes visitedAnimation {
   0% {
     transform: scale(0.3);
-    background-color: rgb(19, 169, 129);
+    background-color: rgb(255, 4, 100);
   }
 
   /* 15% {
@@ -127,7 +127,6 @@
 }
 
 .path {
-  background-color: chartreuse;
   animation-name: pathAnimation;
   animation-duration: 0.3s;
   animation-timing-function: ease-out;
@@ -150,7 +149,7 @@
 
   100% {
     transform: scale(1);
-    background-color: chartreuse;
+    background-color: rgb(0, 174, 255);
   }
 }
 
