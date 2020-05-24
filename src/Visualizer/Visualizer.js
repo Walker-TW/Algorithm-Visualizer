@@ -24,7 +24,7 @@ import {
   findShortestPathDFS,
 } from '../Algorithms/PathFinders/dfs.js';
 
-import { borderFences } from '../Algorithms/MazeBuilders/RecursiveDivision';
+import { recursiveDivision } from '../Algorithms/MazeBuilders/RecursiveDivision';
 import './Visualizer.css';
 
 export default class Visualizer extends Component {
@@ -79,24 +79,7 @@ export default class Visualizer extends Component {
     };
   };
 
-  // getDimensions = () => {
-  //   const [screenWidth, screenHeight] = [window.innerWidth, window.innerHeight];
-
-  //   let width, height;
-  //   if (screenWidth > 1450) {
-  //     width = screenWidth / 20 - 12;
-  //     height = screenHeight / 20 - 7;
-  //   } else if (screenWidth > 900) {
-  //     width = screenWidth / 30;
-  //     height = screenHeight / 30;
-  //   } else {
-  //     width = screenWidth / 40 - 3;
-  //     height = screenHeight / 40 - 5;
-  //   }
-  //   return [width, height];
-  // };
-
-  gridSetup = () => {
+  getDimensions = () => {
     const [screenWidth, screenHeight] = [window.innerWidth, window.innerHeight];
 
     let width, height;
@@ -110,7 +93,11 @@ export default class Visualizer extends Component {
       width = screenWidth / 40 - 3;
       height = screenHeight / 40 - 5;
     }
+    return [width, height];
+  };
 
+  gridSetup = () => {
+    let [width, height] = this.getDimensions();
     let grid = [];
     for (let rowIndex = 0; rowIndex < width; rowIndex++) {
       let current_row = [];
@@ -276,7 +263,7 @@ export default class Visualizer extends Component {
   buildMaze = () => {
     const { grid } = this.state;
     let [width, height] = [grid.length, grid[0].length];
-    this.animateMaze(borderFences(grid, width, height));
+    this.animateMaze(recursiveDivision(grid, width, height));
   };
 
   // animation

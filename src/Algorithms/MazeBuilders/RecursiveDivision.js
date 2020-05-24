@@ -1,6 +1,9 @@
 export const recursiveDivision = (grid, start, end) => {
   const [width, height] = [grid.length, grid[0].length];
+  let fences = [...borderFences(grid, width, height)];
+
   const orientation = getOrientation(width, height);
+  return fences;
 };
 
 export const getOrientation = (width, height) => {
@@ -23,7 +26,6 @@ export const borderFences = (grid, width, height) => {
       fences.push(row[height - 1]);
     }
   });
-  console.log(fences[0], 'fences');
   return fences;
 };
 
