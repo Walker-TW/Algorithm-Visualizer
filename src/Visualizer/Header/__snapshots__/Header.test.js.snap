@@ -8,7 +8,7 @@ exports[`<Header /> renders 1`] = `
   variant="dark"
 >
   <NavbarBrand
-    href="#home"
+    href="https://github.com/Walker-TW/Algorithm-Visualizer"
   >
     Algo-Visualiser
   </NavbarBrand>
@@ -24,19 +24,6 @@ exports[`<Header /> renders 1`] = `
       fill={false}
       justify={false}
     >
-      <NavLink
-        as={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "displayName": "SafeAnchor",
-            "render": [Function],
-          }
-        }
-        disabled={false}
-        href="#features"
-      >
-        Features
-      </NavLink>
       <NavDropdown
         title="Mazes"
       >
@@ -177,7 +164,7 @@ exports[`<Header /> renders 1`] = `
         </DropdownItem>
       </NavDropdown>
       <Form
-        inline={false}
+        inline={true}
       >
         <FormCheck
           disabled={false}
@@ -236,6 +223,54 @@ exports[`<Header /> renders 1`] = `
         Reset
       </Button>
     </Nav>
+    <DropdownButton
+      size="sm"
+      title="Settings"
+      variant="secondary"
+    >
+      <Form
+        inline={true}
+        onSubmit={[Function]}
+      >
+        Grid Size
+        <FormControl
+          className="Column-Input"
+          onChange={[Function]}
+          placeholder="Column"
+          size="sm"
+          type="text"
+        />
+        <FormControl
+          className="Row-Input"
+          onChange={[Function]}
+          placeholder="Row"
+          size="sm"
+          type="text"
+        />
+        <FormGroup
+          controlId="formBasicRange"
+        >
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+             Speed
+          </FormLabel>
+          <FormControl
+            type="range"
+          />
+        </FormGroup>
+        <Button
+          active={false}
+          block={true}
+          disabled={false}
+          type="submit"
+          variant="danger"
+        >
+          Update
+        </Button>
+      </Form>
+    </DropdownButton>
     <Nav
       fill={false}
       justify={false}
@@ -263,7 +298,6 @@ exports[`<Header /> renders 1`] = `
         }
         disabled={false}
         eventKey={2}
-        href="#memes"
       >
         Contact
       </NavLink>

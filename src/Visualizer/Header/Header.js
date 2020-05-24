@@ -68,7 +68,7 @@ const Header = (props) => {
           <NavDropdown title="Algorithms" id="collasible-nav-dropdown">
             <NavDropdown.Item
               id={"set-dijkstra"}
-              onClick={() => setAlgorithm("dijkstra")}
+              onClick={() => setAlgorithm("Dijkstra")}
               children={"Dijkstra"}
             />
             <NavDropdown.Item
@@ -91,8 +91,6 @@ const Header = (props) => {
               onClick={() => setAlgorithm("Breadth First Search")}
               children={"Breadth First Search"}
             />
-            <NavDropdown.Divider />
-            <NavDropdown.Item children={"Separated link"} />
           </NavDropdown>
           <Form inline>
             <Form.Check
@@ -151,7 +149,6 @@ const Header = (props) => {
           </Form>
         </DropdownButton>
         <Nav>
-          <Nav.Link href="#deets">More deets</Nav.Link>
           <Nav.Link eventKey={2}>Contact</Nav.Link>
         </Nav>
       </Navbar.Collapse>

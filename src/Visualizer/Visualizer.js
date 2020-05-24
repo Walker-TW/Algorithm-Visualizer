@@ -179,7 +179,7 @@ export default class Visualizer extends Component {
   run = () => {
     const { algorithm } = this.state;
 
-    if (algorithm === "dijkstra") {
+    if (algorithm === "Dijkstra") {
       this.runDijkstra();
     } else if (algorithm === "A* Euclidean") {
       this.runAstarEuclidean();
