@@ -4,6 +4,7 @@ exports[`<Visualizer /> renders 1`] = `
 <Fragment>
   <Header
     algorithm=""
+    buildMaze={[Function]}
     fenceToggle={[Function]}
     ready={false}
     reset={[Function]}

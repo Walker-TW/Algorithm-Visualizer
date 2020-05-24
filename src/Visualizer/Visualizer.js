@@ -23,6 +23,8 @@ import {
   depthFirstSearch,
   findShortestPathDFS,
 } from '../Algorithms/PathFinders/dfs.js';
+
+import { borderFences } from '../Algorithms/MazeBuilders/RecursiveDivision';
 import './Visualizer.css';
 
 export default class Visualizer extends Component {
@@ -186,10 +188,15 @@ export default class Visualizer extends Component {
     if (node.start || node.fence || node.finish) {
       resetNode(node);
     } else {
-      // resetNode(node);
-      // this has been added because the nodes were not being created so instead they are resetted
+      resetNode(node);
+      // this has been added because the nodes were not being correctly assigned to return of function createNode
+      // so instead they are reset
+
+      // The repition of resetNode inside the conditional is necessary for the continuous animation of visited nodes
+      // if the user hits reset mid algorithm.
+      // The alternative: resetNode(node); if (!node.start && !node.fence && !node.finish) etc...
+      // cuts the visited animation until the path is drawn
       resetNodeStyle(node);
-      node = this.createNode(node.gridId);
     }
   };
 
@@ -266,7 +273,38 @@ export default class Visualizer extends Component {
     this.animateAlgorithm(resultOfDijkstra, y);
   };
 
+  buildMaze = () => {
+    const { grid } = this.state;
+    let [width, height] = [grid.length, grid[0].length];
+    this.animateMaze(borderFences(grid, width, height));
+  };
+
   // animation
+  animateMaze = (maze) => {
+    // console.log(maze, 'maze');
+    maze.forEach((node, index) => {
+      const { gridId } = node;
+      console.log(node, 'OI');
+
+      setTimeout(() => {
+        this.nodeFlag(gridId, 'fence');
+        document.getElementById(
+          `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
+        ).className = `Node ${
+          node.start
+            ? 'start'
+            : node.finish
+            ? 'finish'
+            : node.fence
+            ? 'fence'
+            : node.visited
+            ? 'visited'
+            : ''
+        }`;
+      }, 5 * index);
+    });
+  };
+
   animateAlgorithm = (visitedNodesInOrder, nodesInShortestPathOrder) => {
     for (let i = 1; i <= visitedNodesInOrder.length - 1; i++) {
       if (i === visitedNodesInOrder.length - 1) {
@@ -317,6 +355,7 @@ export default class Visualizer extends Component {
       <Fragment>
         <Header
           algorithm={algorithm}
+          buildMaze={this.buildMaze}
           ready={start.present && finish.present}
           run={this.run}
           setAlgorithm={this.setAlgorithm}

@@ -8,7 +8,7 @@ const runSpy = jest.fn(() => {});
 const fenceToggleSpy = jest.fn(() => {});
 const resetSpy = jest.fn(() => {});
 const setAlgorithmSpy = jest.fn(() => {});
-const mazeBuildSpy = jest.fn(() => {});
+const buildMazeSpy = jest.fn(() => {});
 
 const defaultProps = {
   algorithm: '',
@@ -17,7 +17,7 @@ const defaultProps = {
   reset: resetSpy,
   setAlgorithm: setAlgorithmSpy,
   ready: false,
-  mazeBuild: mazeBuildSpy,
+  buildMaze: buildMazeSpy,
 };
 
 const readyProps = {
@@ -64,6 +64,6 @@ describe('<Header />', () => {
   });
   it('calls the maze building spy onclick', () => {
     wrapper.find('#maze-btn').simulate('click');
-    expect(mazeBuildSpy.mock.calls.length).toEqual(1);
+    expect(buildMazeSpy.mock.calls.length).toEqual(1);
   });
 });

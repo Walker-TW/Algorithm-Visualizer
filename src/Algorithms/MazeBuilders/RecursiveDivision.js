@@ -19,10 +19,11 @@ export const borderFences = (grid, width, height) => {
         fences.push(node);
       });
     } else {
-      fences.push(row.first());
-      fences.push(row.last());
+      fences.push(row[0]);
+      fences.push(row[height - 1]);
     }
   });
+  console.log(fences[0], 'fences');
   return fences;
 };
 
