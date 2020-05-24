@@ -147,21 +147,6 @@ exports[`<Header /> renders 1`] = `
         >
           Breadth First Search
         </DropdownItem>
-        <DropdownDivider
-          role="separator"
-        />
-        <DropdownItem
-          as={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "displayName": "SafeAnchor",
-              "render": [Function],
-            }
-          }
-          disabled={false}
-        >
-          Separated link
-        </DropdownItem>
       </NavDropdown>
       <Form
         inline={true}
@@ -275,19 +260,6 @@ exports[`<Header /> renders 1`] = `
       fill={false}
       justify={false}
     >
-      <NavLink
-        as={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "displayName": "SafeAnchor",
-            "render": [Function],
-          }
-        }
-        disabled={false}
-        href="#deets"
-      >
-        More deets
-      </NavLink>
       <NavLink
         as={
           Object {
