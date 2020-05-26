@@ -25,7 +25,7 @@
 
 <div align= "center">
 
-[_About The Project_](#About-The-Project) | [_Features_](#Features) | [_Getting Started_](#Getting-Started) | [_How To Use_](#How-To-Use) | [_Notes On Databases_](#Notes-on-Databases) | [_License_](#license)
+[_About The Project_](#About-The-Project) | [_Features_](#Features) | [_Getting Started_](#Getting-Started) | [_How To Use_](#How-To-Use) | [_Contact The Team_](#Contact-The-Team) | [_License_](#license)
 
 Play with it [here:](https://algo-visualiser.herokuapp.com)
 
@@ -78,13 +78,30 @@ Launches the test runner ([react-scripts jest](https://create-react-app.dev/docs
 
 At time of writing, jest can be buggy with coverage in watch mode so for accurate coverage run `yarn test:coverage`
 
+## Contact The Team
+
+<h3> Tom Walker <h3>
+
+[![LinkedIn][linkedin-shield]][linkedin-urltw]
+[![Github][github-shield]][github-urltw]
+
+Bassel Al-Sayed
+
+[![LinkedIn][linkedin-shield]][linkedin-urlbas]
+[![Github][github-shield]][github-urlbas]
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
+[github-shield]: https://github.com/Walker-TW/CV/blob/master/images/GitHub-120px.png
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
 [license-url]: https://github.com/Walker-TW/Algorithm-Visualizer/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[linkedin-urltw]: https://linkedin.com/in/thomas-w-walker
+[linkedin-urlbas]: https://linkedin.com/in/bsas
+[github-urltw]: https://github.com/Walker-TW
+[github-urlbas]: https://github.com/basselalsayed
 [javascriptcommits]: https://img.shields.io/badge/JavaScript-yellow.svg
 [jest]: https://img.shields.io/badge/Jest-red.svg
 [csscommits]: https://img.shields.io/badge/CSS-green.svg
