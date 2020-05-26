@@ -1,4 +1,5 @@
-<br/>
+<h2 align="center"> The Algo-Visualiser</h2>
+
 <div align="center">
 
 [![Build Status](https://travis-ci.org/Walker-TW/Algorithm-Visualizer.svg?branch=master)](https://travis-ci.org/Walker-TW/Algorithm-Visualizer)
@@ -10,12 +11,11 @@
 [![MIT License][license-shield]][license-url]
 
 </div>
+
 <p align="center">
   <a href="https://github.com/Walker-TW/Algorithm-Visualizer">
       <img src="https://f0.pngfuel.com/png/858/267/round-black-maze-png-clip-art.png" width="200" height="200" alt="icon">
   </a>
-
-  <h2 align="center">Algorithm Visualiser</h2>
 
   <p align="center">
     An interactive visualiser which demonstrates the pro's and con's of various graph solving algorithms.
@@ -25,15 +25,15 @@
 
 <div align= "center">
 
-[_About The Project_](#About-The-Project) | [_Features_](#Features) | [_Getting Started_](#Getting-Started) | [_How To Use_](#How-To-Use) | [_Contact The Team_](#Contact-The-Team) | [_License_](#license)
+[_About The Project_](#About-The-Project) | [_Features_](#Features) | [_Getting Started_](#Getting-Started) | [_How To Use_](#How-To-Use) | | [_The Algorithms_](#The-Algorithms) [_Contact The Team_](#Contact-The-Team) | [_License_](#license)
 
-Play with it [here:](https://algo-visualiser.herokuapp.com)
+It is deployed on Heroku [here:](https://algo-visualiser.herokuapp.com)
 
 </div>
 
 ## About The Project
 
-The Algorithm Visualiser is a web app built in ReactJS that shows hwo various graph traversal algorithm work. It was built by [Bassell Al-Sayed](https://github.com/basselalsayed) and [Tom Walker](https://github.com/Walker-TW) out of a mutual wish to understand ReactJS and these algorithm together.
+The Algo-Visualiser is a web app built in ReactJS that shows how various graph traversal algorithm work. It was built by [Bassell Al-Sayed](https://github.com/basselalsayed) and [Tom Walker](https://github.com/Walker-TW) out of a mutual wish to understand ReactJS and GPS systems and these algorithms together.
 
 ## Features
 
@@ -78,15 +78,47 @@ Launches the test runner ([react-scripts jest](https://create-react-app.dev/docs
 
 At time of writing, jest can be buggy with coverage in watch mode so for accurate coverage run `yarn test:coverage`
 
+## The Algorithms
+
+The algorithms demonstrated within the project are all graph traversal algorithms.
+
+### Dijkstra
+
+An algorithm that is weighted and will always find the shortest path. Works by spreading out and determining the shortest 'distance' to the final node by adding up the traversed weights.
+
+### A\*
+
+An upgraded version of Dijkstra that takes the distance value of each node and combines it with a heuristic value to determine not just the distance to the finish node but the direction that it should take. Two types of heuristics are used in our project the Manhatten distance & the Euclidean distance. It will always find the shortest path.
+
+<h4><ins> Euclidean </ins></h4>
+
+AKA 'as the crow flies' is a heuristic used in most straight line mazes. It uses the pythagorian theorem on a triangle created from the two points that you wish to get to Point A (start point) & Point B (destination).
+
+`sqrt((x2-x1)^2 + (y2-y1)^2)`
+
+<h4><ins> Manhatten </ins></h4>
+
+AKA the taxi-cab distance will only work on a grid system unlike the euclidean, this heuristic is calculated by taking the absolute values of minusing the x & y values of two points on our triangle and then adding the result together. This allows a better relative distance.
+
+`|(x2-x1)| + |(y2-y1)|`
+
+### Breadth First Search
+
+Is a graph traversal algorithm which will search all neighbour nodes (in this projects case north/east/west/south) of the main node before mnoving onto the next level. This will cause a spreading out effect and means that along a maze BRS will explore all diversions that it comes across. It will find the shortest path.
+
+### Depth First Search
+
+The brother of Breadth First Search it will not explore all neighbour nodes instead exploring all along a branch before backtracking to other non-visited nodes. Depth first search is the only algorithm listed which will NOT find the shortest path.
+
 ## Contact The Team
 
-<h4> Tom Walker </h4>
+<h4> <ins>Tom Walker </ins> </h4>
 
 [![LinkedIn][linkedin-shield]][linkedin-urltw]
 <a href="https://github.com/Walker-TW"><img src="https://github.com/Walker-TW/CV/blob/master/images/GitHub-120px.png"  height="20" width="20">
 </a>
 
-<h4>Bassel Al-Sayed </h4>
+<h4> <ins>Bassel Al-Sayed </ins> </h4>
 
 [![LinkedIn][linkedin-shield]][linkedin-urlbas]
 <a href="https://github.com/basselalsayed"><img src="https://github.com/Walker-TW/CV/blob/master/images/GitHub-120px.png"  height="20" width="20">
