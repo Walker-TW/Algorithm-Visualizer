@@ -1,8 +1,37 @@
-# Algorithm Visualiser [![Build Status](https://travis-ci.org/Walker-TW/Algorithm-Visualizer.svg?branch=master)](https://travis-ci.org/Walker-TW/Algorithm-Visualizer)
+<br/>
+<div align="center">
 
-View the deployed app [here:](https://algo-visualiser.herokuapp.com)
+[![Build Status](https://travis-ci.org/Walker-TW/Algorithm-Visualizer.svg?branch=master)](https://travis-ci.org/Walker-TW/Algorithm-Visualizer)
+[![JavaScript commits][javascriptcommits]](https://sourcerer.io/walker-tw)
+[![Jest][jest]](https://sourcerer.io/walker-tw)
+[![CSS commits][csscommits]](https://sourcerer.io/walker-tw)
+[![Bootstrap commits][bootstrapcommits]](https://sourcerer.io/walker-tw)
+[![reactJS commits][reactjscommits]](https://sourcerer.io/walker-tw)
+[![MIT License][license-shield]][license-url]
 
-## `To run the project locally:
+</div>
+<p align="center">
+  <a href="https://github.com/Walker-TW/Algorithm-Visualizer">
+      <img src="https://f0.pngfuel.com/png/858/267/round-black-maze-png-clip-art.png" width="120" height="120" alt="icon">
+  </a>
+
+  <h3 align="center">Algorithm Visualiser</h3>
+
+  <p align="center">
+    An interactive visualiser which demonstrates the pro's and con's of various graph solving algorithms.
+ 
+  </p>
+</p>
+
+<div align= "center">
+
+[_About The Project_](#About-The-Project)| [_Getting Started_](#Getting-Started) | [_How To Use_](#How-To-Use) | [_Notes On Databases_](#Notes-on-Databases) | [_Features_](#Features) | [_License_](#license)
+
+Play with it [here:](https://algo-visualiser.herokuapp.com)
+
+</div>
+
+## Getting Started:
 
 1. Clone the repo by running
 
@@ -35,17 +64,15 @@ Launches the test runner ([react-scripts jest](https://create-react-app.dev/docs
 
 At time of writing, jest can be buggy with coverage in watch mode so for accurate coverage run `yarn test:coverage`
 
-### `yarn build`
+## License
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Distributed under the MIT License. See `LICENSE` for more information.
 
-The build is minified and the filenames include the hashes.<br />
-
-Additional info [here](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-Advanced users only, provides access to babel, webpack and other config files
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
+[license-url]: https://github.com/Walker-TW/Algorithm-Visualizer/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[javascriptcommits]: https://img.shields.io/badge/JavaScript-yellow.svg
+[jest]: https://img.shields.io/badge/Jest-red.svg
+[csscommits]: https://img.shields.io/badge/CSS-green.svg
+[bootstrapcommits]: https://img.shields.io/badge/Bootstrap-blueviolet.svg
+[reactjscommits]: https://img.shields.io/badge/ReactJS-informational.svg
