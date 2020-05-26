@@ -80,7 +80,7 @@ At time of writing, jest can be buggy with coverage in watch mode so for accurat
 
 ## Contact The Team
 
-<h3> Tom Walker </h3>
+<h4> Tom Walker </h4>
 
 [![LinkedIn][linkedin-shield]][linkedin-urltw]
 <a href="https://github.com/Walker-TW"><img src="https://github.com/Walker-TW/CV/blob/master/images/GitHub-120px.png"  height="20" width="20">
