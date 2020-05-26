@@ -12,10 +12,10 @@
 </div>
 <p align="center">
   <a href="https://github.com/Walker-TW/Algorithm-Visualizer">
-      <img src="https://f0.pngfuel.com/png/858/267/round-black-maze-png-clip-art.png" width="120" height="120" alt="icon">
+      <img src="https://f0.pngfuel.com/png/858/267/round-black-maze-png-clip-art.png" width="200" height="200" alt="icon">
   </a>
 
-  <h3 align="center">Algorithm Visualiser</h3>
+  <h2 align="center">Algorithm Visualiser</h2>
 
   <p align="center">
     An interactive visualiser which demonstrates the pro's and con's of various graph solving algorithms.
@@ -25,11 +25,25 @@
 
 <div align= "center">
 
-[_About The Project_](#About-The-Project)| [_Getting Started_](#Getting-Started) | [_How To Use_](#How-To-Use) | [_Notes On Databases_](#Notes-on-Databases) | [_Features_](#Features) | [_License_](#license)
+[_About The Project_](#About-The-Project) | [_Features_](#Features) | [_Getting Started_](#Getting-Started) | [_How To Use_](#How-To-Use) | [_Notes On Databases_](#Notes-on-Databases) | [_License_](#license)
 
 Play with it [here:](https://algo-visualiser.herokuapp.com)
 
 </div>
+
+## About The Project
+
+The Algorithm Visualiser is a web app built in ReactJS that shows hwo various graph traversal algorithm work. It was built by [Bassell Al-Sayed](https://github.com/basselalsayed) and [Tom Walker](https://github.com/Walker-TW) out of a mutual wish to understand ReactJS and these algorithm together.
+
+## Features
+
+- Users can select a maze size (which will scale with thier screen/phone size).
+- Users can select a start and end point for the maze.
+- Then add fences (obsturctions for the algorithm).
+- Then one of the 5 available algorithms is chosen.
+- The algorithm is then run with the nodes searched coloured in.
+- And then shortest path (found by the selected algorithm) drawn in a new colour.
+- The grid can then be reset (keeping the fences and start/end nodes) to allow comparison of algorithms.
 
 ## Getting Started:
 
