@@ -4,7 +4,9 @@ exports[`<Visualizer /> renders 1`] = `
 <Fragment>
   <Header
     algorithm=""
+    defaultStateSizeChange={[Function]}
     fenceToggle={[Function]}
+    gridSetup={[Function]}
     ready={false}
     reset={[Function]}
     run={[Function]}
