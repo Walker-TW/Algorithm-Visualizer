@@ -86,7 +86,7 @@ At time of writing, jest can be buggy with coverage in watch mode so for accurat
 <a href="https://github.com/Walker-TW"><img src="https://github.com/Walker-TW/CV/blob/master/images/GitHub-120px.png"  height="20" width="20">
 </a>
 
-<h3 >Bassel Al-Sayed </h3>
+<h4>Bassel Al-Sayed </h4>
 
 [![LinkedIn][linkedin-shield]][linkedin-urlbas]
 <a href="https://github.com/basselalsayed"><img src="https://github.com/Walker-TW/CV/blob/master/images/GitHub-120px.png"  height="20" width="20">
