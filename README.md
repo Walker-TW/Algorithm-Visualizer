@@ -37,9 +37,9 @@ The Algo-Visualiser is a web app built in ReactJS that shows how various graph t
 
 ## Features
 
-- Users can select a maze size (which will scale with thier screen/phone size).
+- Users can select a maze size (which will scale with their screen/phone size).
 - Users can select a start and end point for the maze.
-- Then add fences (obsturctions for the algorithm).
+- Then add fences (obstructions for the algorithm).
 - Then one of the 5 available algorithms is chosen.
 - The algorithm is then run with the nodes searched coloured in.
 - And then shortest path (found by the selected algorithm) drawn in a new colour.
@@ -65,7 +65,7 @@ The Algo-Visualiser is a web app built in ReactJS that shows how various graph t
    - Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
      - The rendered page will update as you make changes
      - You will also see any lint errors in the console.
-   2. To view the optomised build
+   2. To view the optimised build
    - run `yarn build`, then
    - Boot with `serve -s build`.
      1. You can install serve globally with `yarn global add serve` or `npm i -g serve`, it's handy to have around.
@@ -88,23 +88,23 @@ An algorithm that is weighted and will always find the shortest path. Works by s
 
 ### A\*
 
-An upgraded version of Dijkstra that takes the distance value of each node and combines it with a heuristic value to determine not just the distance to the finish node but the direction that it should take. Two types of heuristics are used in our project the Manhatten distance & the Euclidean distance. It will always find the shortest path.
+An upgraded version of Dijkstra that takes the distance value of each node and combines it with a heuristic value to determine not just the distance to the finish node but the direction that it should take. Two types of heuristics are used in our project the Manhattan distance & the Euclidean distance. It will always find the shortest path.
 
 <h4><ins> Euclidean </ins></h4>
 
-AKA 'as the crow flies' is a heuristic used in most straight line mazes. It uses the pythagorian theorem on a triangle created from the two points that you wish to get to Point A (start point) & Point B (destination).
+AKA 'as the crow flies' is a heuristic used in most straight line mazes. It uses the Pythagorean theorem on a triangle created from the two points that you wish to get to Point A (start point) & Point B (destination).
 
 `sqrt((x2-x1)^2 + (y2-y1)^2)`
 
-<h4><ins> Manhatten </ins></h4>
+<h4><ins> Manhattan </ins></h4>
 
-AKA the taxi-cab distance will only work on a grid system unlike the euclidean, this heuristic is calculated by taking the absolute values of minusing the x & y values of two points on our triangle and then adding the result together. This allows a better relative distance.
+AKA the taxi-cab distance will only work on a grid system unlike the euclidean, this heuristic is calculated by taking the absolute values of subtracting the x & y values of two points on our triangle and then adding the result together. This allows a better relative distance.
 
 `|(x2-x1)| + |(y2-y1)|`
 
 ### Breadth First Search
 
-Is a graph traversal algorithm which will search all neighbour nodes (in this projects case north/east/west/south) of the main node before mnoving onto the next level. This will cause a spreading out effect and means that along a maze BRS will explore all diversions that it comes across. It will find the shortest path.
+Is a graph traversal algorithm which will search all neighbour nodes (in this projects case north/east/west/south) of the main node before moving onto the next level. This will cause a spreading out effect and means that along a maze BRS will explore all diversions that it comes across. It will find the shortest path.
 
 ### Depth First Search
 
