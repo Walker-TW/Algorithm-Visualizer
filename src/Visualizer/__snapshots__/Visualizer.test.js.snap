@@ -33,6 +33,12 @@ exports[`<Visualizer /> renders 1`] = `
   >
     Please Choose A Start & End Node
   </Alert>
+  <Stats
+    algorithmRan="None Yet"
+    fastestPath="None Yet"
+    nodesProccessed="None Yet"
+    runtime="None Yet"
+  />
   <Nodes
     fenceToggle={false}
     grid={

@@ -199,6 +199,8 @@ export default class Visualizer extends Component {
 
   runBreadthFirstSearch = () => {
     const { grid, start, finish } = this.state;
+    const timerBegin = performance.now();
+
     const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
     const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
     const resultOfBreadthFirstSearch = breadthFirstSearch(
@@ -209,17 +211,21 @@ export default class Visualizer extends Component {
     const z = findShortestPathBFS(
       resultOfBreadthFirstSearch[resultOfBreadthFirstSearch.length - 1]
     );
+    const timerComplete = performance.now();
+
     this.animateAlgorithm(resultOfBreadthFirstSearch, z);
     this.statsUpdate(
       "Breadth First",
       resultOfBreadthFirstSearch.length,
       z.length,
-      "A lot"
+      (timerComplete - timerBegin) * 1000
     );
   };
 
   runDepthFirstSearch = () => {
     const { grid, start, finish } = this.state;
+    const timerBegin = performance.now();
+
     const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
     const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
     const resultOfDepthFirstSearch = depthFirstSearch(
@@ -230,43 +236,68 @@ export default class Visualizer extends Component {
     const z = findShortestPathDFS(
       resultOfDepthFirstSearch[resultOfDepthFirstSearch.length - 1]
     );
+    const timerComplete = performance.now();
     this.animateAlgorithm(resultOfDepthFirstSearch, z);
     this.statsUpdate(
       "Depth First",
       resultOfDepthFirstSearch.length,
       z.length,
-      "A lot"
+      (timerComplete - timerBegin) * 1000
     );
   };
 
   runAstarEuclidean = () => {
     const { grid, start, finish } = this.state;
+    const timerBegin = performance.now();
+
     const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
     const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
     const resultOfAStarE = aStarEuclidean(grid, startNode, finishNode);
     const y = findShortestPathAStarE(resultOfAStarE[resultOfAStarE.length - 1]);
+    const timerComplete = performance.now();
+
     this.animateAlgorithm(resultOfAStarE, y);
-    this.statsUpdate("A* Euclidean", resultOfAStarE.length, y.length, "A lot");
+    this.statsUpdate(
+      "A* Euclidean",
+      resultOfAStarE.length,
+      y.length,
+      (timerComplete - timerBegin) * 1000
+    );
   };
 
   runAstarManhatten = () => {
     const { grid, start, finish } = this.state;
+    const timerBegin = performance.now();
     const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
     const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
     const resultOfAStarM = aStarManhatten(grid, startNode, finishNode);
     const y = findShortestPathAStarM(resultOfAStarM[resultOfAStarM.length - 1]);
+    const timerComplete = performance.now();
     this.animateAlgorithm(resultOfAStarM, y);
-    this.statsUpdate("A* Manhattan", resultOfAStarM.length, y.length, "A lot");
+    this.statsUpdate(
+      "A* Manhattan",
+      resultOfAStarM.length,
+      y.length,
+      (timerComplete - timerBegin) * 1000
+    );
   };
 
   runDijkstra = () => {
     const { grid, start, finish } = this.state;
+    const timerBegin = performance.now();
     const startNode = grid[start.gridId.rowIndex][start.gridId.colIndex];
     const finishNode = grid[finish.gridId.rowIndex][finish.gridId.colIndex];
     const resultOfDijkstra = dijkstra(grid, startNode, finishNode);
     const y = findShortestPath(resultOfDijkstra[resultOfDijkstra.length - 1]);
+    const timerComplete = performance.now();
+
     this.animateAlgorithm(resultOfDijkstra, y);
-    this.statsUpdate("Dijkstra", resultOfDijkstra.length, y.length, "A lot");
+    this.statsUpdate(
+      "Dijkstra",
+      resultOfDijkstra.length,
+      y.length,
+      (timerComplete - timerBegin) * 1000
+    );
   };
 
   statsUpdate = (algorithm, nodesProccessed, fastestPath, runtime) => {
