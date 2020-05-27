@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import {
   Button,
+  Container,
+  Col,
   DropdownButton,
   Form,
   FormControl,
   Nav,
   Navbar,
   NavDropdown,
+  Image,
+  Row,
 } from "react-bootstrap";
 import PropTypes from "prop-types";
 
@@ -148,9 +152,40 @@ const Header = (props) => {
             </Button>
           </Form>
         </DropdownButton>
-        <Nav>
-          <Nav.Link eventKey={2}>Contact</Nav.Link>
-        </Nav>
+        <DropdownButton title="Contact The Team" size="sm" id="contact-info">
+          <Container>
+            <Row>
+              <NavDropdown.Item
+                id={"bassell"}
+                children={"Bassell Al-Sayed"}
+                href={"https://github.com/basselalsayed"}
+              />
+            </Row>
+            <Col>Git</Col>
+            <Col>LinkedIn</Col>
+          </Container>
+          <Container>
+            <Row>
+              <NavDropdown.Item id={"tom"} children={"Thomas Walker"} />
+            </Row>
+            <Col>
+              {" "}
+              <NavDropdown.Item
+                id={"tomGit"}
+                children={"Git"}
+                href={"https://github.com/Walker-TW"}
+              />
+            </Col>
+            <Col>
+              {" "}
+              <Nav.Link
+                id={"tomLink"}
+                children={"LinkedIn"}
+                href={"https://www.linkedin.com/in/thomas-w-walker/"}
+              />
+            </Col>
+          </Container>
+        </DropdownButton>
       </Navbar.Collapse>
     </Navbar>
   );
