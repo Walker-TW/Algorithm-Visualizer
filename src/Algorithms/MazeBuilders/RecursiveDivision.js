@@ -2,16 +2,14 @@ const HORIZONAL = 1;
 const VERTICAL = 2;
 const [S, E] = [1, 2];
 
-export const recursiveDivision = (grid, start, end) => {
+export const recursiveDivision = (grid, makeFence) => {
   const [width, height] = [grid.length, grid[0].length];
-  let fences = outerFences(grid, width, height);
-  // let fences = [];
 
   // stop the maze getting too tight
 
   // fences = [...fences, ...divide(grid, width, height, orientation)];
-
-  return divide(grid, width, height, getOrientation(width, height));
+  outerFences(grid, width, height, makeFence);
+  divide(grid, 1, width, 1, height, getOrientation(width, height), makeFence);
 };
 
 export const getOrientation = (width, height) => {
@@ -26,7 +24,7 @@ export const getOrientation = (width, height) => {
   }
 };
 
-export const outerFences = (grid, width, height) => {
+export const outerFences = (grid, width, height, makeFence) => {
   let fences = [];
   grid.forEach((row, index) => {
     if (index === 0 || index === width - 1) {
@@ -38,30 +36,85 @@ export const outerFences = (grid, width, height) => {
       fences.push(row[height - 1]);
     }
   });
-  return fences;
+  fences.forEach((node) => {
+    makeFence(node);
+  });
 };
 
-const divide = (
+export const divide = function (
   grid,
-  // rowStart,
-  // rowEnd,
-  // colStart,
-  // colEnd,
-  width,
-  height,
-  orientation
-) => {
-  const [min, max] = [1, orientation === 'vertical' ? height : width];
+  rowStart,
+  rowEnd,
+  colStart,
+  colEnd,
+  orientation,
+  makeFence
+) {
+  const [S, E] = [1, 2];
 
-  let currentRow = grid[Math.floor(min + Math.random() * max)];
-  // remove border clash
-  const borderedNewFences = newFences.slice(1, -1);
-  // random hole in column
+  let dir = orientation === 'vertical' ? S : E;
+  if (orientation === 'vertical') {
+    const [min, max] = [1, orientation === 'vertical' ? colEnd : rowEnd];
 
-  borderedNewFences.splice(
-    Math.floor(Math.random() * (newFences.length - min) + min),
-    1
-  );
+    let randomRowIndex = Math.floor(min + Math.random() * max);
+    let currentRow = grid[randomRowIndex];
+    let randomPassageIndex = Math.random() * (currentRow.length - min) + min;
+    // remove border clash
+    const borderlessCurrentRow = currentRow.slice(1, -1);
+    // random hole in column
+    const randomPassage = borderlessCurrentRow.splice(randomPassageIndex, 1);
+    borderlessCurrentRow.forEach((node) => {
+      makeFence(node);
+    });
+    let startToNDist = Math.abs(rowStart - randomRowIndex - 2);
+    let nToEndDist = Math.abs(rowEnd - randomRowIndex + 2);
+    if (startToNDist < nToEndDist) {
+      divide(
+        grid,
+        randomRowIndex - 2,
+        rowEnd,
+        colStart,
+        colEnd,
+        'horizontal',
+        makeFence
+      );
+    } else {
+      divide(
+        grid,
+        randomRowIndex + 2,
+        rowEnd,
+        colStart,
+        colEnd,
+        'horizontal',
+        makeFence
+      );
+    }
+  } else {
+    const [min, max] = [1, orientation === 'vertical' ? colEnd : rowEnd];
 
-  return borderedNewFences;
+    let randomRowIndex = Math.floor(min + Math.random() * max);
+    let currentRow = grid[randomRowIndex];
+    let randomPassageIndex = Math.random() * (currentRow.length - min) + min;
+    // remove border clash
+    const borderlessCurrentRow = currentRow.slice(1, -1);
+    // random hole in column
+    const randomPassage = borderlessCurrentRow.splice(randomPassageIndex, 1);
+    borderlessCurrentRow.forEach((node) => {
+      makeFence(node);
+    });
+    let startToNDist = Math.abs(rowStart - randomRowIndex - 2);
+    let nToEndDist = Math.abs(rowEnd - randomRowIndex + 2);
+    if (startToNDist < nToEndDist) {
+      divide(
+        grid,
+        randomRowIndex - 2,
+        rowEnd,
+        colStart,
+        colEnd,
+        'horizontal',
+        makeFence
+      );
+    }
+  }
+  // return borderlessCurrentRow;
 };

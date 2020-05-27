@@ -261,12 +261,16 @@ export default class Visualizer extends Component {
     this.animateAlgorithm(resultOfDijkstra, y);
   };
 
+  makeFence = (node) => {
+    this.nodeFlag(node.gridId, 'fence');
+    this.animateNode(node);
+  };
+
   buildMaze = () => {
     const { grid } = this.state;
     let [width, height] = [grid.length, grid[0].length];
-    this.animateMaze(recursiveDivision(grid, width, height));
-    // const dup = [...grid][Math.floor(Math.random() * width - 1)];
-    // this.animateMaze(dup);
+    // this.animateMaze(recursiveDivision(grid, width, height));
+    recursiveDivision(grid, this.makeFence);
   };
 
   // animation
