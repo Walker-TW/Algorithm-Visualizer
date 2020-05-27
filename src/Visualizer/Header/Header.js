@@ -97,20 +97,10 @@ const Header = (props) => {
                   children={"Breadth First Search"}
                 />
               </NavDropdown>
-              <Form navbar="true" inline>
-                <Form.Check
-                  type="checkbox"
-                  id="fence-check"
-                  name="fences"
-                  label="Fence mode"
-                  style={{ color: "white" }}
-                  onChange={fenceToggle}
-                />
-              </Form>
             </Nav>
           </Col>
           <Col>
-            <Nav inline>
+            <Nav>
               <Button
                 id="run-btn"
                 style={{ border: "2px solid chartreuse", color: "chartreuse" }}
@@ -134,6 +124,18 @@ const Header = (props) => {
           </Col>
           <Col>
             <Nav navbar="true">
+              <Container>
+                <Form inline>
+                  <Form.Check
+                    type="checkbox"
+                    id="fence-check"
+                    name="fences"
+                    label="Fence mode"
+                    style={{ color: "white" }}
+                    onChange={fenceToggle}
+                  />
+                </Form>
+              </Container>
               <DropdownButton title="Settings" size="sm" variant="secondary">
                 <Container>
                   <Form onSubmit={handleSubmit} inline>

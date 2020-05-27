@@ -152,34 +152,11 @@ exports[`<Header /> renders 1`] = `
               Breadth First Search
             </DropdownItem>
           </NavDropdown>
-          <Form
-            inline={true}
-            navbar="true"
-          >
-            <FormCheck
-              disabled={false}
-              id="fence-check"
-              inline={false}
-              isInvalid={false}
-              isValid={false}
-              label="Fence mode"
-              name="fences"
-              onChange={[MockFunction]}
-              style={
-                Object {
-                  "color": "white",
-                }
-              }
-              title=""
-              type="checkbox"
-            />
-          </Form>
         </Nav>
       </Col>
       <Col>
         <Nav
           fill={false}
-          inline={true}
           justify={false}
         >
           <Button
@@ -222,6 +199,31 @@ exports[`<Header /> renders 1`] = `
           justify={false}
           navbar="true"
         >
+          <Container
+            fluid={false}
+          >
+            <Form
+              inline={true}
+            >
+              <FormCheck
+                disabled={false}
+                id="fence-check"
+                inline={false}
+                isInvalid={false}
+                isValid={false}
+                label="Fence mode"
+                name="fences"
+                onChange={[MockFunction]}
+                style={
+                  Object {
+                    "color": "white",
+                  }
+                }
+                title=""
+                type="checkbox"
+              />
+            </Form>
+          </Container>
           <DropdownButton
             size="sm"
             title="Settings"
