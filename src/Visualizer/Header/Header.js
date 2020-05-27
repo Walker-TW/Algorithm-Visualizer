@@ -135,32 +135,34 @@ const Header = (props) => {
           <Col>
             <Nav navbar="true">
               <DropdownButton title="Settings" size="sm" variant="secondary">
-                <Form onSubmit={handleSubmit} inline>
-                  Grid Size
-                  <FormControl
-                    size="sm"
-                    type="text"
-                    value={width}
-                    onChange={(e) => setWidth(e.target.value)}
-                    placeholder="Column"
-                    className="Column-Input"
-                  />
-                  <FormControl
-                    type="text"
-                    size="sm"
-                    value={height}
-                    onChange={(e) => setHeight(e.target.value)}
-                    placeholder="Row"
-                    className="Row-Input"
-                  />
-                  <Form.Group controlId="formBasicRange">
-                    <Form.Label> Speed</Form.Label>
-                    <Form.Control type="range" />
-                  </Form.Group>
-                  <Button variant="danger" type="submit" block>
-                    Update
-                  </Button>
-                </Form>
+                <Container>
+                  <Form onSubmit={handleSubmit} inline>
+                    Grid Size
+                    <FormControl
+                      size="sm"
+                      type="text"
+                      value={width}
+                      onChange={(e) => setWidth(e.target.value)}
+                      placeholder="Column"
+                      className="Column-Input"
+                    />
+                    <FormControl
+                      type="text"
+                      size="sm"
+                      value={height}
+                      onChange={(e) => setHeight(e.target.value)}
+                      placeholder="Row"
+                      className="Row-Input"
+                    />
+                    <Form.Group controlId="formBasicRange">
+                      <Form.Label> Speed</Form.Label>
+                      <Form.Control type="range" />
+                    </Form.Group>
+                    <Button variant="danger" type="submit" block>
+                      Update
+                    </Button>
+                  </Form>
+                </Container>
               </DropdownButton>
               <DropdownButton
                 title="Contact The Team"
@@ -170,15 +172,15 @@ const Header = (props) => {
                 <Container>
                   <Row>
                     <NavDropdown.Item
-                      id={"bassellGit"}
-                      children={"Bassell's Git"}
+                      id={"basselGit"}
+                      children={"Bassel's Git"}
                       href={"https://github.com/basselalsayed"}
                     />
                   </Row>
                   <Row>
                     <NavDropdown.Item
-                      id={"bassellLink"}
-                      children={"Bassell's LinkedIn"}
+                      id={"basselLink"}
+                      children={"Bassel's LinkedIn"}
                       href={"https://www.linkedin.com/in/bsas/"}
                     />
                   </Row>
