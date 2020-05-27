@@ -1,67 +1,140 @@
+<h2 align="center"> The Algo-Visualiser</h2>
 
-## Available Scripts
+<div align="center">
 
-In the project directory, you can run:
+[![Build Status](https://travis-ci.org/Walker-TW/Algorithm-Visualizer.svg?branch=master)](https://travis-ci.org/Walker-TW/Algorithm-Visualizer)
+[![JavaScript commits][javascriptcommits]](https://sourcerer.io/walker-tw)
+[![Jest][jest]](https://sourcerer.io/walker-tw)
+[![CSS commits][csscommits]](https://sourcerer.io/walker-tw)
+[![Bootstrap commits][bootstrapcommits]](https://sourcerer.io/walker-tw)
+[![reactJS commits][reactjscommits]](https://sourcerer.io/walker-tw)
+[![MIT License][license-shield]][license-url]
 
-### `yarn start`
+</div>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<p align="center">
+  <a href="https://github.com/Walker-TW/Algorithm-Visualizer">
+      <img src="https://f0.pngfuel.com/png/858/267/round-black-maze-png-clip-art.png" width="200" height="200" alt="icon">
+  </a>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+  <p align="center">
+    An interactive visualiser which demonstrates the pro's and con's of various graph solving algorithms.
+ 
+  </p>
+</p>
 
-### `yarn test`
+<div align= "center">
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[_About The Project_](#About-The-Project) | [_Features_](#Features) | [_Getting Started_](#Getting-Started) | [_How To Use_](#How-To-Use) | | [_The Algorithms_](#The-Algorithms) [_Contact The Team_](#Contact-The-Team) | [_License_](#license)
 
-### `yarn build`
+It is deployed on Heroku [here:](https://algo-visualiser.herokuapp.com)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+</div>
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## About The Project
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The Algo-Visualiser is a web app built in ReactJS that shows how various graph traversal algorithm work. It was built by [Bassell Al-Sayed](https://github.com/basselalsayed) and [Tom Walker](https://github.com/Walker-TW) out of a mutual wish to understand ReactJS and GPS systems and these algorithms together.
 
-### `yarn eject`
+## Features
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Users can select a maze size (which will scale with thier screen/phone size).
+- Users can select a start and end point for the maze.
+- Then add fences (obsturctions for the algorithm).
+- Then one of the 5 available algorithms is chosen.
+- The algorithm is then run with the nodes searched coloured in.
+- And then shortest path (found by the selected algorithm) drawn in a new colour.
+- The grid can then be reset (keeping the fences and start/end nodes) to allow comparison of algorithms.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Getting Started:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Clone the repo by running
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   `git clone https://github.com/Walker-TW/Algorithm-Visualizer.git`
 
-## Learn More
+2. Change into the cloned directory
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   `cd Algorithm-Visualizer`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Install dependencies
 
-### Code Splitting
+   `yarn`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+4. Booting the server:
+   1. For hot reload during development (or quick start):
+   - Boot the server with `yarn start`
+   - Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
+     - The rendered page will update as you make changes
+     - You will also see any lint errors in the console.
+   2. To view the optomised build
+   - run `yarn build`, then
+   - Boot with `serve -s build`.
+     1. You can install serve globally with `yarn global add serve` or `npm i -g serve`, it's handy to have around.
 
-### Analyzing the Bundle Size
+### Testing
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+`yarn test`
 
-### Making a Progressive Web App
+Launches the test runner ([react-scripts jest](https://create-react-app.dev/docs/running-tests/) with [enzyme](https://enzymejs.github.io/enzyme/)) in the interactive watch mode.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+At time of writing, jest can be buggy with coverage in watch mode so for accurate coverage run `yarn test:coverage`
 
-### Advanced Configuration
+## The Algorithms
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+The algorithms demonstrated within the project are all graph traversal algorithms.
 
-### Deployment
+### Dijkstra
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+An algorithm that is weighted and will always find the shortest path. Works by spreading out and determining the shortest 'distance' to the final node by adding up the traversed weights.
 
-### `yarn build` fails to minify
+### A\*
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+An upgraded version of Dijkstra that takes the distance value of each node and combines it with a heuristic value to determine not just the distance to the finish node but the direction that it should take. Two types of heuristics are used in our project the Manhatten distance & the Euclidean distance. It will always find the shortest path.
+
+<h4><ins> Euclidean </ins></h4>
+
+AKA 'as the crow flies' is a heuristic used in most straight line mazes. It uses the pythagorian theorem on a triangle created from the two points that you wish to get to Point A (start point) & Point B (destination).
+
+`sqrt((x2-x1)^2 + (y2-y1)^2)`
+
+<h4><ins> Manhatten </ins></h4>
+
+AKA the taxi-cab distance will only work on a grid system unlike the euclidean, this heuristic is calculated by taking the absolute values of minusing the x & y values of two points on our triangle and then adding the result together. This allows a better relative distance.
+
+`|(x2-x1)| + |(y2-y1)|`
+
+### Breadth First Search
+
+Is a graph traversal algorithm which will search all neighbour nodes (in this projects case north/east/west/south) of the main node before mnoving onto the next level. This will cause a spreading out effect and means that along a maze BRS will explore all diversions that it comes across. It will find the shortest path.
+
+### Depth First Search
+
+The brother of Breadth First Search it will not explore all neighbour nodes instead exploring all along a branch before backtracking to other non-visited nodes. Depth first search is the only algorithm listed which will NOT find the shortest path.
+
+## Contact The Team
+
+<h4> <ins>Tom Walker </ins> </h4>
+
+[![LinkedIn][linkedin-shield]][linkedin-urltw]
+<a href="https://github.com/Walker-TW"><img src="https://github.com/Walker-TW/CV/blob/master/images/GitHub-120px.png"  height="20" width="20">
+</a>
+
+<h4> <ins>Bassel Al-Sayed </ins> </h4>
+
+[![LinkedIn][linkedin-shield]][linkedin-urlbas]
+<a href="https://github.com/basselalsayed"><img src="https://github.com/Walker-TW/CV/blob/master/images/GitHub-120px.png"  height="20" width="20">
+</a>
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
+[license-url]: https://github.com/Walker-TW/Algorithm-Visualizer/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[linkedin-urltw]: https://linkedin.com/in/thomas-w-walker
+[linkedin-urlbas]: https://linkedin.com/in/bsas
+[javascriptcommits]: https://img.shields.io/badge/JavaScript-yellow.svg
+[jest]: https://img.shields.io/badge/Jest-red.svg
+[csscommits]: https://img.shields.io/badge/CSS-green.svg
+[bootstrapcommits]: https://img.shields.io/badge/Bootstrap-blueviolet.svg
+[reactjscommits]: https://img.shields.io/badge/ReactJS-informational.svg

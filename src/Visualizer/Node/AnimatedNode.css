@@ -1,0 +1,146 @@
+.Node {
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  background-color: grey;
+  transition: transform 0.2s;
+}
+
+.visited {
+  animation-name: visitedAnimation;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+@keyframes visitedAnimation {
+  0% {
+    transform: scale(0.3);
+    background-color: rgb(23, 154, 45);
+  }
+
+  50% {
+    transform: scale(1.2);
+    background-color: rgb(194, 142, 28);
+  }
+
+  100% {
+    transform: scale(1);
+    background: radial-gradient(circle, #739da5, #020024, #090979);
+  }
+}
+
+.start {
+  background-color: rgb(206, 47, 255);
+  animation-name: startAnimation;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+@keyframes startAnimation {
+  0% {
+    transform: scale(0.3);
+    background-color: rgb(23, 154, 45);
+  }
+
+  50% {
+    transform: scale(1.2);
+    background-color: rgb(194, 142, 28);
+  }
+
+  100% {
+    transform: scale(1);
+    background-color: rgb(206, 47, 255);
+  }
+}
+
+.finish {
+  background-color: yellow;
+  animation-name: finishAnimation;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+@keyframes finishAnimation {
+  0% {
+    transform: scale(0.3);
+    background-color: rgb(23, 154, 45);
+  }
+
+  50% {
+    transform: scale(1.2);
+    background-color: rgb(194, 142, 28);
+  }
+
+  100% {
+    transform: scale(1);
+    background-color: yellow;
+  }
+}
+
+.path {
+  background-color: chartreuse;
+  animation-name: pathAnimation;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+@keyframes pathAnimation {
+  0% {
+    transform: scale(0.3);
+    background-color: rgb(186, 24, 178);
+  }
+
+  50% {
+    transform: scale(1.2);
+    background-color: rgb(247, 191, 70);
+  }
+
+  100% {
+    transform: scale(1);
+    background-color: chartreuse;
+  }
+}
+
+.fence {
+  animation-name: fenceAnimation;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+@keyframes fenceAnimation {
+  0% {
+    transform: scale(0.3);
+    background-color: rgb(23, 154, 45);
+  }
+
+  50% {
+    transform: scale(1.2);
+    background-color: rgb(194, 142, 28);
+  }
+
+  100% {
+    transform: scale(1);
+    background-color: rgb(0, 0, 0);
+  }
+}

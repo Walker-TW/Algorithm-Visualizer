@@ -22,18 +22,23 @@
   float: right;
   text-align: center;
   border-radius: 4px;
+  color: white;
 }
 .X:hover {
   cursor: pointer;
 }
 
-.info {
-  display: ;
-  width: 150px;
-  height: 300px;
+.Info {
+  display: inline-block;
+  width: 10rem;
+  height: 2rem;
   margin: 30px 0 0 0;
-  float: left;
+  /* float: left; */
   border: 1px solid lightskyblue;
   border-radius: 5px;
   text-align: left;
+}
+
+li {
+  display: inline-block;
 }

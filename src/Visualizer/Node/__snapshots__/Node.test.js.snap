@@ -3,6 +3,8 @@
 exports[`<Node /> Test that Node renders 1`] = `
 <div
   className="Node "
-  onClick={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseUp={[Function]}
 />
 `;

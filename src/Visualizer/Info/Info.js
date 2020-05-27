@@ -23,8 +23,8 @@ const Info = () => {
       />
       <p>How to use:</p>
       <ul>
-        <li>First click sets the start node</li>
-        <li>Second sets the end node</li>
+        <li>First click sets the start node &#9680; </li>
+        <li>Second sets the end node &#9681; </li>
         <li>Click Run Dijkstra to run the algorithm!</li>
       </ul>
     </div>
