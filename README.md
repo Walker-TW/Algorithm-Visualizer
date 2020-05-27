@@ -25,7 +25,7 @@
 
 <div align= "center">
 
-[_About The Project_](#About-The-Project) | [_Features_](#Features) | [_Getting Started_](#Getting-Started) | [_How To Use_](#How-To-Use) | [_The Algorithms_](#The-Algorithms) [_Contact The Team_](#Contact-The-Team) | [_License_](#license)
+[_About The Project_](#About-The-Project) | [_Features_](#Features) | [_Getting Started_](#Getting-Started) | [_How To Use_](#How-To-Use) | [_The Algorithms_](#The-Algorithms) | [_Contact The Team_](#Contact-The-Team) | [_License_](#license)
 
 It is deployed on Heroku [here:](https://algo-visualiser.herokuapp.com)
 
