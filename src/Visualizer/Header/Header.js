@@ -9,7 +9,6 @@ import {
   Nav,
   Navbar,
   NavDropdown,
-  Image,
   Row,
 } from "react-bootstrap";
 import PropTypes from "prop-types";
@@ -156,34 +155,34 @@ const Header = (props) => {
           <Container>
             <Row>
               <NavDropdown.Item
-                id={"bassell"}
-                children={"Bassell Al-Sayed"}
+                id={"bassellGit"}
+                children={"Bassell's Git"}
                 href={"https://github.com/basselalsayed"}
               />
             </Row>
-            <Col>Git</Col>
-            <Col>LinkedIn</Col>
+            <Row>
+              <NavDropdown.Item
+                id={"bassellLink"}
+                children={"Bassell's LinkedIn"}
+                href={"https://www.linkedin.com/in/bsas/"}
+              />
+            </Row>
           </Container>
           <Container>
             <Row>
-              <NavDropdown.Item id={"tom"} children={"Thomas Walker"} />
-            </Row>
-            <Col>
-              {" "}
               <NavDropdown.Item
                 id={"tomGit"}
-                children={"Git"}
+                children={"Tom's Git"}
                 href={"https://github.com/Walker-TW"}
               />
-            </Col>
-            <Col>
-              {" "}
-              <Nav.Link
+            </Row>
+            <Row>
+              <NavDropdown.Item
                 id={"tomLink"}
-                children={"LinkedIn"}
+                children={"Tom's LinkedIn"}
                 href={"https://www.linkedin.com/in/thomas-w-walker/"}
               />
-            </Col>
+            </Row>
           </Container>
         </DropdownButton>
       </Navbar.Collapse>

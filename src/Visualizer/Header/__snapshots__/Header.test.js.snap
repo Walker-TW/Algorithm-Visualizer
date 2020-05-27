@@ -277,17 +277,29 @@ exports[`<Header /> renders 1`] = `
             }
             disabled={false}
             href="https://github.com/basselalsayed"
-            id="bassell"
+            id="bassellGit"
           >
-            Bassell Al-Sayed
+            Bassell's Git
           </DropdownItem>
         </Row>
-        <Col>
-          Git
-        </Col>
-        <Col>
-          LinkedIn
-        </Col>
+        <Row
+          noGutters={false}
+        >
+          <DropdownItem
+            as={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "displayName": "SafeAnchor",
+                "render": [Function],
+              }
+            }
+            disabled={false}
+            href="https://www.linkedin.com/in/bsas/"
+            id="bassellLink"
+          >
+            Bassell's LinkedIn
+          </DropdownItem>
+        </Row>
       </Container>
       <Container
         fluid={false}
@@ -304,31 +316,16 @@ exports[`<Header /> renders 1`] = `
               }
             }
             disabled={false}
-            id="tom"
-          >
-            Thomas Walker
-          </DropdownItem>
-        </Row>
-        <Col>
-           
-          <DropdownItem
-            as={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "displayName": "SafeAnchor",
-                "render": [Function],
-              }
-            }
-            disabled={false}
             href="https://github.com/Walker-TW"
             id="tomGit"
           >
-            Git
+            Tom's Git
           </DropdownItem>
-        </Col>
-        <Col>
-           
-          <NavLink
+        </Row>
+        <Row
+          noGutters={false}
+        >
+          <DropdownItem
             as={
               Object {
                 "$$typeof": Symbol(react.forward_ref),
@@ -340,9 +337,9 @@ exports[`<Header /> renders 1`] = `
             href="https://www.linkedin.com/in/thomas-w-walker/"
             id="tomLink"
           >
-            LinkedIn
-          </NavLink>
-        </Col>
+            Tom's LinkedIn
+          </DropdownItem>
+        </Row>
       </Container>
     </DropdownButton>
   </NavbarCollapse>
