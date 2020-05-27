@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Stats /> renders 1`] = `
+<ForwardRef
+  bordered={true}
+  hover={true}
+  size="sm"
+  striped={true}
+  variant="dark"
+>
+  <tbody>
+    <tr>
+      <th>
+        Algorithm
+      </th>
+      <th>
+        Runtime (Microseconds)
+      </th>
+      <th>
+        Nodes Processed
+      </th>
+      <th>
+        Fastest Path Total
+      </th>
+    </tr>
+    <tr>
+      <td />
+      <td />
+      <td />
+      <td />
+    </tr>
+  </tbody>
+</ForwardRef>
+`;
