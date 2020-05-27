@@ -44,6 +44,7 @@ The Algo-Visualiser is a web app built in ReactJS that shows how various graph t
 - The algorithm is then run with the nodes searched coloured in.
 - And then shortest path (found by the selected algorithm) drawn in a new colour.
 - The grid can then be reset (keeping the fences and start/end nodes) to allow comparison of algorithms.
+- Users can view benchmarking statistics for each run of an algorithm to compare against other algorithms using the same grid.
 
 ## Getting Started:
 
@@ -88,7 +89,7 @@ An algorithm that is weighted and will always find the shortest path. Works by s
 
 ### A\*
 
-An upgraded version of Dijkstra that takes the distance value of each node and combines it with a heuristic value to determine not just the distance to the finish node but the direction that it should take. Two types of heuristics are used in our project the Manhattan distance & the Euclidean distance. It will always find the shortest path.
+An upgraded version of Dijkstra that takes the distance value of each node and combines it with a heuristic value to determine not just the distance to the finish node but the direction that it should take. Two types of heuristics are used in our project the Manhattan distance & the Euclidean distance. It will always find the shortest path when using the correct heuristic.
 
 <h4><ins> Euclidean </ins></h4>
 
@@ -96,11 +97,15 @@ AKA 'as the crow flies' is a heuristic used in most straight line mazes. It uses
 
 `sqrt((x2-x1)^2 + (y2-y1)^2)`
 
+However because our grid is only traversable on horizontal or vertical vertices using this heurtistic will NOT always give the shortest path, though it will be much faster than other heuristics.
+
 <h4><ins> Manhattan </ins></h4>
 
 AKA the taxi-cab distance will only work on a grid system unlike the euclidean, this heuristic is calculated by taking the absolute values of subtracting the x & y values of two points on our triangle and then adding the result together. This allows a better relative distance.
 
 `|(x2-x1)| + |(y2-y1)|`
+
+Because Manhattan moves only in horizontal or vertical verticies it will always find the shortest path. HOWEVER it will much slower than Euclidean so if speed is an issue (especially in huge graphs) while accurancy is not choose Euclidean.
 
 ### Breadth First Search
 
