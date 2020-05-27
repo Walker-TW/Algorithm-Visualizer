@@ -4,10 +4,10 @@
 
 [![Build Status](https://travis-ci.org/Walker-TW/Algorithm-Visualizer.svg?branch=master)](https://travis-ci.org/Walker-TW/Algorithm-Visualizer)
 [![JavaScript commits][javascriptcommits]](https://sourcerer.io/walker-tw)
-[![Jest][jest]](https://sourcerer.io/walker-tw)
+[![Jest][jest]](https://sourcerer.io/basselalsayed)
 [![CSS commits][csscommits]](https://sourcerer.io/walker-tw)
-[![Bootstrap commits][bootstrapcommits]](https://sourcerer.io/walker-tw)
-[![reactJS commits][reactjscommits]](https://sourcerer.io/walker-tw)
+[![Bootstrap commits][bootstrapcommits]](https://sourcerer.io/basselalsayed)
+[![reactJS commits][reactjscommits]](https://sourcerer.io/basselalsayed)
 [![MIT License][license-shield]][license-url]
 
 </div>
@@ -25,7 +25,7 @@
 
 <div align= "center">
 
-[_About The Project_](#About-The-Project) | [_Features_](#Features) | [_Getting Started_](#Getting-Started) | [_How To Use_](#How-To-Use) | | [_The Algorithms_](#The-Algorithms) [_Contact The Team_](#Contact-The-Team) | [_License_](#license)
+[_About The Project_](#About-The-Project) | [_Features_](#Features) | [_Getting Started_](#Getting-Started) | [_How To Use_](#How-To-Use) | [_The Algorithms_](#The-Algorithms) [_Contact The Team_](#Contact-The-Team) | [_License_](#license)
 
 It is deployed on Heroku [here:](https://algo-visualiser.herokuapp.com)
 
