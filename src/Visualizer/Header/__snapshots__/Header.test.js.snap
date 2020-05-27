@@ -256,24 +256,95 @@ exports[`<Header /> renders 1`] = `
         </Button>
       </Form>
     </DropdownButton>
-    <Nav
-      fill={false}
-      justify={false}
+    <DropdownButton
+      id="contact-info"
+      size="sm"
+      title="Contact The Team"
     >
-      <NavLink
-        as={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "displayName": "SafeAnchor",
-            "render": [Function],
-          }
-        }
-        disabled={false}
-        eventKey={2}
+      <Container
+        fluid={false}
       >
-        Contact
-      </NavLink>
-    </Nav>
+        <Row
+          noGutters={false}
+        >
+          <DropdownItem
+            as={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "displayName": "SafeAnchor",
+                "render": [Function],
+              }
+            }
+            disabled={false}
+            href="https://github.com/basselalsayed"
+            id="bassell"
+          >
+            Bassell Al-Sayed
+          </DropdownItem>
+        </Row>
+        <Col>
+          Git
+        </Col>
+        <Col>
+          LinkedIn
+        </Col>
+      </Container>
+      <Container
+        fluid={false}
+      >
+        <Row
+          noGutters={false}
+        >
+          <DropdownItem
+            as={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "displayName": "SafeAnchor",
+                "render": [Function],
+              }
+            }
+            disabled={false}
+            id="tom"
+          >
+            Thomas Walker
+          </DropdownItem>
+        </Row>
+        <Col>
+           
+          <DropdownItem
+            as={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "displayName": "SafeAnchor",
+                "render": [Function],
+              }
+            }
+            disabled={false}
+            href="https://github.com/Walker-TW"
+            id="tomGit"
+          >
+            Git
+          </DropdownItem>
+        </Col>
+        <Col>
+           
+          <NavLink
+            as={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "displayName": "SafeAnchor",
+                "render": [Function],
+              }
+            }
+            disabled={false}
+            href="https://www.linkedin.com/in/thomas-w-walker/"
+            id="tomLink"
+          >
+            LinkedIn
+          </NavLink>
+        </Col>
+      </Container>
+    </DropdownButton>
   </NavbarCollapse>
 </Navbar>
 `;
