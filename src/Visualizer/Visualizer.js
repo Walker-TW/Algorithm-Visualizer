@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import Header from "./Header/Header";
 import Alert from "react-bootstrap/Alert";
 import Nodes from "./Nodes/Nodes";
+import Stats from "./Stats/Stats";
 import { dijkstra, findShortestPath } from "../Algorithms/dijkstra";
 import {
   aStarManhatten,
@@ -42,6 +43,10 @@ export default class Visualizer extends Component {
         },
       },
     },
+    runtime: "None Yet",
+    nodesProccessed: "None Yet",
+    fastestPath: "None Yet",
+    algorithmRan: "None Yet",
   };
 
   // setup methods
@@ -294,6 +299,10 @@ export default class Visualizer extends Component {
       grid,
       mouseToggle,
       start,
+      runtime,
+      nodesProccessed,
+      fastestPath,
+      algorithmRan,
     } = this.state;
 
     return (
@@ -313,7 +322,12 @@ export default class Visualizer extends Component {
         ) : !finish.present ? (
           <Alert variant="primary">Please Choose An End Node</Alert>
         ) : null}
-
+        <Stats
+          runtime={runtime}
+          nodesProccessed={nodesProccessed}
+          fastestPath={fastestPath}
+          algorithmRan={algorithmRan}
+        />
         <Nodes
           grid={grid}
           gridHasStart={start.present}
