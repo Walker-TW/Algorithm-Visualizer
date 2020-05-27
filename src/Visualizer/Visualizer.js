@@ -210,6 +210,12 @@ export default class Visualizer extends Component {
       resultOfBreadthFirstSearch[resultOfBreadthFirstSearch.length - 1]
     );
     this.animateAlgorithm(resultOfBreadthFirstSearch, z);
+    this.statsUpdate(
+      "Breadth First",
+      resultOfBreadthFirstSearch.length,
+      z.length,
+      "A lot"
+    );
   };
 
   runDepthFirstSearch = () => {
@@ -225,6 +231,12 @@ export default class Visualizer extends Component {
       resultOfDepthFirstSearch[resultOfDepthFirstSearch.length - 1]
     );
     this.animateAlgorithm(resultOfDepthFirstSearch, z);
+    this.statsUpdate(
+      "Depth First",
+      resultOfDepthFirstSearch.length,
+      z.length,
+      "A lot"
+    );
   };
 
   runAstarEuclidean = () => {
@@ -234,6 +246,7 @@ export default class Visualizer extends Component {
     const resultOfAStarE = aStarEuclidean(grid, startNode, finishNode);
     const y = findShortestPathAStarE(resultOfAStarE[resultOfAStarE.length - 1]);
     this.animateAlgorithm(resultOfAStarE, y);
+    this.statsUpdate("A* Euclidean", resultOfAStarE.length, y.length, "A lot");
   };
 
   runAstarManhatten = () => {
@@ -243,6 +256,7 @@ export default class Visualizer extends Component {
     const resultOfAStarM = aStarManhatten(grid, startNode, finishNode);
     const y = findShortestPathAStarM(resultOfAStarM[resultOfAStarM.length - 1]);
     this.animateAlgorithm(resultOfAStarM, y);
+    this.statsUpdate("A* Manhattan", resultOfAStarM.length, y.length, "A lot");
   };
 
   runDijkstra = () => {
@@ -252,6 +266,16 @@ export default class Visualizer extends Component {
     const resultOfDijkstra = dijkstra(grid, startNode, finishNode);
     const y = findShortestPath(resultOfDijkstra[resultOfDijkstra.length - 1]);
     this.animateAlgorithm(resultOfDijkstra, y);
+    this.statsUpdate("Dijkstra", resultOfDijkstra.length, y.length, "A lot");
+  };
+
+  statsUpdate = (algorithm, nodesProccessed, fastestPath, runtime) => {
+    this.setState({
+      algorithmRan: algorithm,
+      nodesProccessed: nodesProccessed,
+      fastestPath: fastestPath,
+      runtime: runtime,
+    });
   };
 
   // animation
