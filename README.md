@@ -33,7 +33,7 @@ It is deployed on Heroku [here:](https://algo-visualiser.herokuapp.com)
 
 ## About The Project
 
-The Algo-Visualiser is a web app built in ReactJS that shows how various graph traversal algorithm work. It was built by [Bassell Al-Sayed](https://github.com/basselalsayed) and [Tom Walker](https://github.com/Walker-TW) out of a mutual wish to understand ReactJS and GPS systems and these algorithms together.
+The Algo-Visualiser is a web app built in ReactJS that shows how various graph traversal algorithm work. It was built by [Bassel Al-Sayed](https://github.com/basselalsayed) and [Tom Walker](https://github.com/Walker-TW) out of a mutual wish to understand ReactJS and GPS systems and these algorithms together.
 
 ## Features
 

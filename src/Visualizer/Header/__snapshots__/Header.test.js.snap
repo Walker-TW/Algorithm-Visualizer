@@ -19,329 +19,352 @@ exports[`<Header /> renders 1`] = `
   <NavbarCollapse
     id="responsive-navbar-nav"
   >
-    <Nav
-      className="mr-auto"
-      fill={false}
-      justify={false}
+    <Container
+      fluid={true}
     >
-      <NavDropdown
-        title="Mazes"
-      >
-        <DropdownItem
-          as={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "displayName": "SafeAnchor",
-              "render": [Function],
-            }
-          }
-          disabled={false}
+      <Col>
+        <Nav
+          className="mr-auto"
+          fill={false}
+          justify={false}
         >
-          1
-        </DropdownItem>
-        <DropdownDivider
-          role="separator"
-        />
-        <DropdownItem
-          as={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "displayName": "SafeAnchor",
-              "render": [Function],
-            }
-          }
-          disabled={false}
-        >
-          2
-        </DropdownItem>
-        <DropdownDivider
-          role="separator"
-        />
-        <DropdownItem
-          as={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "displayName": "SafeAnchor",
-              "render": [Function],
-            }
-          }
-          disabled={false}
-        >
-          3?
-        </DropdownItem>
-        <DropdownDivider
-          role="separator"
-        />
-      </NavDropdown>
-      <NavDropdown
-        id="collasible-nav-dropdown"
-        title="Algorithms"
-      >
-        <DropdownItem
-          as={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "displayName": "SafeAnchor",
-              "render": [Function],
-            }
-          }
-          disabled={false}
-          id="set-dijkstra"
-          onClick={[Function]}
-        >
-          Dijkstra
-        </DropdownItem>
-        <DropdownItem
-          as={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "displayName": "SafeAnchor",
-              "render": [Function],
-            }
-          }
-          disabled={false}
-          id="set-astar-euclidean"
-          onClick={[Function]}
-        >
-          A* (Euclidean Distance)
-        </DropdownItem>
-        <DropdownItem
-          as={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "displayName": "SafeAnchor",
-              "render": [Function],
-            }
-          }
-          disabled={false}
-          id="set-astar-manhatten"
-          onClick={[Function]}
-        >
-          A* (Manhatten Distance)
-        </DropdownItem>
-        <DropdownItem
-          as={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "displayName": "SafeAnchor",
-              "render": [Function],
-            }
-          }
-          disabled={false}
-          id="set-depth-first-search"
-          onClick={[Function]}
-        >
-          Depth First Search
-        </DropdownItem>
-        <DropdownItem
-          as={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "displayName": "SafeAnchor",
-              "render": [Function],
-            }
-          }
-          disabled={false}
-          id="set-breadth-first-search"
-          onClick={[Function]}
-        >
-          Breadth First Search
-        </DropdownItem>
-      </NavDropdown>
-      <Form
-        inline={true}
-      >
-        <FormCheck
-          disabled={false}
-          id="fence-check"
-          inline={false}
-          isInvalid={false}
-          isValid={false}
-          label="Fence mode"
-          name="fences"
-          onChange={[MockFunction]}
-          style={
-            Object {
-              "color": "white",
-            }
-          }
-          title=""
-          type="checkbox"
-        />
-      </Form>
-    </Nav>
-    <Nav
-      fill={false}
-      justify={false}
-      variant="center"
-    >
-      <Button
-        active={false}
-        disabled={true}
-        id="run-btn"
-        onClick={[Function]}
-        style={
-          Object {
-            "border": "2px solid yellow",
-            "color": "yellow",
-          }
-        }
-        type="button"
-        variant="dark"
-      >
-        Select Algorithm
-      </Button>
-      <Button
-        active={false}
-        disabled={false}
-        id="reset-btn"
-        onClick={[MockFunction]}
-        style={
-          Object {
-            "border": "2px solid red",
-            "color": "red",
-          }
-        }
-        type="button"
-        variant="dark"
-      >
-        Reset
-      </Button>
-    </Nav>
-    <DropdownButton
-      size="sm"
-      title="Settings"
-      variant="secondary"
-    >
-      <Form
-        inline={true}
-        onSubmit={[Function]}
-      >
-        Grid Size
-        <FormControl
-          className="Column-Input"
-          onChange={[Function]}
-          placeholder="Column"
-          size="sm"
-          type="text"
-        />
-        <FormControl
-          className="Row-Input"
-          onChange={[Function]}
-          placeholder="Row"
-          size="sm"
-          type="text"
-        />
-        <FormGroup
-          controlId="formBasicRange"
-        >
-          <FormLabel
-            column={false}
-            srOnly={false}
+          <NavDropdown
+            title="Mazes"
           >
-             Speed
-          </FormLabel>
-          <FormControl
-            type="range"
-          />
-        </FormGroup>
-        <Button
-          active={false}
-          block={true}
-          disabled={false}
-          type="submit"
-          variant="danger"
+            <DropdownItem
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "SafeAnchor",
+                  "render": [Function],
+                }
+              }
+              disabled={false}
+            >
+              1
+            </DropdownItem>
+            <DropdownDivider
+              role="separator"
+            />
+            <DropdownItem
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "SafeAnchor",
+                  "render": [Function],
+                }
+              }
+              disabled={false}
+            >
+              2
+            </DropdownItem>
+            <DropdownDivider
+              role="separator"
+            />
+            <DropdownItem
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "SafeAnchor",
+                  "render": [Function],
+                }
+              }
+              disabled={false}
+            >
+              3?
+            </DropdownItem>
+            <DropdownDivider
+              role="separator"
+            />
+          </NavDropdown>
+          <NavDropdown
+            id="collasible-nav-dropdown"
+            title="Algorithms"
+          >
+            <DropdownItem
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "SafeAnchor",
+                  "render": [Function],
+                }
+              }
+              disabled={false}
+              id="set-dijkstra"
+              onClick={[Function]}
+            >
+              Dijkstra
+            </DropdownItem>
+            <DropdownItem
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "SafeAnchor",
+                  "render": [Function],
+                }
+              }
+              disabled={false}
+              id="set-astar-euclidean"
+              onClick={[Function]}
+            >
+              A* (Euclidean Distance)
+            </DropdownItem>
+            <DropdownItem
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "SafeAnchor",
+                  "render": [Function],
+                }
+              }
+              disabled={false}
+              id="set-astar-manhatten"
+              onClick={[Function]}
+            >
+              A* (Manhatten Distance)
+            </DropdownItem>
+            <DropdownItem
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "SafeAnchor",
+                  "render": [Function],
+                }
+              }
+              disabled={false}
+              id="set-depth-first-search"
+              onClick={[Function]}
+            >
+              Depth First Search
+            </DropdownItem>
+            <DropdownItem
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "SafeAnchor",
+                  "render": [Function],
+                }
+              }
+              disabled={false}
+              id="set-breadth-first-search"
+              onClick={[Function]}
+            >
+              Breadth First Search
+            </DropdownItem>
+          </NavDropdown>
+        </Nav>
+      </Col>
+      <Col>
+        <Nav
+          fill={false}
+          justify={false}
         >
-          Update
-        </Button>
-      </Form>
-    </DropdownButton>
-    <DropdownButton
-      id="contact-info"
-      size="sm"
-      title="Contact The Team"
-    >
-      <Container
-        fluid={false}
-      >
-        <Row
-          noGutters={false}
-        >
-          <DropdownItem
-            as={
+          <Button
+            active={false}
+            disabled={true}
+            id="run-btn"
+            onClick={[Function]}
+            style={
               Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "displayName": "SafeAnchor",
-                "render": [Function],
+                "border": "2px solid chartreuse",
+                "color": "chartreuse",
               }
             }
-            disabled={false}
-            href="https://github.com/basselalsayed"
-            id="bassellGit"
+            type="button"
+            variant="dark"
           >
-            Bassell's Git
-          </DropdownItem>
-        </Row>
-        <Row
-          noGutters={false}
-        >
-          <DropdownItem
-            as={
+            Please Select An Algorithm
+          </Button>
+          <Button
+            active={false}
+            disabled={false}
+            id="reset-btn"
+            onClick={[MockFunction]}
+            style={
               Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "displayName": "SafeAnchor",
-                "render": [Function],
+                "border": "2px solid red",
+                "color": "red",
               }
             }
-            disabled={false}
-            href="https://www.linkedin.com/in/bsas/"
-            id="bassellLink"
+            type="button"
+            variant="dark"
           >
-            Bassell's LinkedIn
-          </DropdownItem>
-        </Row>
-      </Container>
-      <Container
-        fluid={false}
-      >
-        <Row
-          noGutters={false}
+            Reset
+          </Button>
+        </Nav>
+      </Col>
+      <Col>
+        <Nav
+          fill={false}
+          justify={false}
+          navbar="true"
         >
-          <DropdownItem
-            as={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "displayName": "SafeAnchor",
-                "render": [Function],
-              }
-            }
-            disabled={false}
-            href="https://github.com/Walker-TW"
-            id="tomGit"
+          <Container
+            fluid={false}
           >
-            Tom's Git
-          </DropdownItem>
-        </Row>
-        <Row
-          noGutters={false}
-        >
-          <DropdownItem
-            as={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "displayName": "SafeAnchor",
-                "render": [Function],
-              }
-            }
-            disabled={false}
-            href="https://www.linkedin.com/in/thomas-w-walker/"
-            id="tomLink"
+            <Form
+              inline={true}
+            >
+              <FormCheck
+                disabled={false}
+                id="fence-check"
+                inline={false}
+                isInvalid={false}
+                isValid={false}
+                label="Fence mode"
+                name="fences"
+                onChange={[MockFunction]}
+                style={
+                  Object {
+                    "color": "white",
+                  }
+                }
+                title=""
+                type="checkbox"
+              />
+            </Form>
+          </Container>
+          <DropdownButton
+            size="sm"
+            title="Settings"
+            variant="secondary"
           >
-            Tom's LinkedIn
-          </DropdownItem>
-        </Row>
-      </Container>
-    </DropdownButton>
+            <Container
+              fluid={false}
+            >
+              <Form
+                inline={true}
+                onSubmit={[Function]}
+              >
+                Grid Size
+                <FormControl
+                  className="Column-Input"
+                  onChange={[Function]}
+                  placeholder="Column"
+                  size="sm"
+                  type="text"
+                />
+                <FormControl
+                  className="Row-Input"
+                  onChange={[Function]}
+                  placeholder="Row"
+                  size="sm"
+                  type="text"
+                />
+                <FormGroup
+                  controlId="formBasicRange"
+                >
+                  <FormLabel
+                    column={false}
+                    srOnly={false}
+                  >
+                     Speed
+                  </FormLabel>
+                  <FormControl
+                    type="range"
+                  />
+                </FormGroup>
+                <Button
+                  active={false}
+                  block={true}
+                  disabled={false}
+                  type="submit"
+                  variant="danger"
+                >
+                  Update
+                </Button>
+              </Form>
+            </Container>
+          </DropdownButton>
+          <DropdownButton
+            id="contact-info"
+            size="sm"
+            title="Contact The Team"
+          >
+            <Container
+              fluid={false}
+            >
+              <Row
+                noGutters={false}
+              >
+                <DropdownItem
+                  as={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "displayName": "SafeAnchor",
+                      "render": [Function],
+                    }
+                  }
+                  disabled={false}
+                  href="https://github.com/basselalsayed"
+                  id="basselGit"
+                >
+                  Bassel's Git
+                </DropdownItem>
+              </Row>
+              <Row
+                noGutters={false}
+              >
+                <DropdownItem
+                  as={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "displayName": "SafeAnchor",
+                      "render": [Function],
+                    }
+                  }
+                  disabled={false}
+                  href="https://www.linkedin.com/in/bsas/"
+                  id="basselLink"
+                >
+                  Bassel's LinkedIn
+                </DropdownItem>
+              </Row>
+            </Container>
+            <Container
+              fluid={false}
+            >
+              <Row
+                noGutters={false}
+              >
+                <DropdownItem
+                  as={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "displayName": "SafeAnchor",
+                      "render": [Function],
+                    }
+                  }
+                  disabled={false}
+                  href="https://github.com/Walker-TW"
+                  id="tomGit"
+                >
+                  Tom's Git
+                </DropdownItem>
+              </Row>
+              <Row
+                noGutters={false}
+              >
+                <DropdownItem
+                  as={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "displayName": "SafeAnchor",
+                      "render": [Function],
+                    }
+                  }
+                  disabled={false}
+                  href="https://www.linkedin.com/in/thomas-w-walker/"
+                  id="tomLink"
+                >
+                  Tom's LinkedIn
+                </DropdownItem>
+              </Row>
+            </Container>
+          </DropdownButton>
+        </Nav>
+      </Col>
+    </Container>
   </NavbarCollapse>
 </Navbar>
 `;

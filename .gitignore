@@ -40,9 +40,10 @@ sketch
 .prettierrc
 .vscode
 
-src/Algorithms/cDijkstra.js
+src/Algorithms/notesForDijkstra.js
+src/Algorithms/notesOnDijkstra.txt
+src/Algorithms/AStarNotes.txt
 
-Stats
 pnode.css
 public/images
 

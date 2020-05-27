@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   Button,
+  Col,
   Container,
   DropdownButton,
   Form,
@@ -58,132 +59,154 @@ const Header = (props) => {
       />
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto">
-          <NavDropdown title="Mazes">
-            <NavDropdown.Item children={"1"} />
-            <NavDropdown.Divider />
-            <NavDropdown.Item children={"2"} />
-            <NavDropdown.Divider />
-            <NavDropdown.Item children={"3?"} />
-            <NavDropdown.Divider />
-          </NavDropdown>
-          <NavDropdown title="Algorithms" id="collasible-nav-dropdown">
-            <NavDropdown.Item
-              id={"set-dijkstra"}
-              onClick={() => setAlgorithm("Dijkstra")}
-              children={"Dijkstra"}
-            />
-            <NavDropdown.Item
-              id={"set-astar-euclidean"}
-              onClick={() => setAlgorithm("A* Euclidean")}
-              children={"A* (Euclidean Distance)"}
-            />
-            <NavDropdown.Item
-              id={"set-astar-manhatten"}
-              onClick={() => setAlgorithm("A* Manhatten")}
-              children={"A* (Manhatten Distance)"}
-            />
-            <NavDropdown.Item
-              id={"set-depth-first-search"}
-              onClick={() => setAlgorithm("Depth First Search")}
-              children={"Depth First Search"}
-            />
-            <NavDropdown.Item
-              id={"set-breadth-first-search"}
-              onClick={() => setAlgorithm("Breadth First Search")}
-              children={"Breadth First Search"}
-            />
-          </NavDropdown>
-          <Form inline>
-            <Form.Check
-              type="checkbox"
-              id="fence-check"
-              name="fences"
-              label="Fence mode"
-              style={{ color: "white" }}
-              onChange={fenceToggle}
-            />
-          </Form>
-        </Nav>
-        <Nav variant="center">
-          <Button
-            id="run-btn"
-            style={{ border: "2px solid yellow", color: "yellow" }}
-            variant="dark"
-            onClick={run}
-            children={algorithm ? `Let's Run ${algorithm}` : "Select Algorithm"}
-            disabled={!ready || algorithm === ""}
-          />
-          <Button
-            id="reset-btn"
-            style={{ border: "2px solid red", color: "red" }}
-            variant="dark"
-            onClick={reset}
-            children={"Reset"}
-          />
-        </Nav>
-        <DropdownButton title="Settings" size="sm" variant="secondary">
-          <Form onSubmit={handleSubmit} inline>
-            Grid Size
-            <FormControl
-              size="sm"
-              type="text"
-              value={width}
-              onChange={(e) => setWidth(e.target.value)}
-              placeholder="Column"
-              className="Column-Input"
-            />
-            <FormControl
-              type="text"
-              size="sm"
-              value={height}
-              onChange={(e) => setHeight(e.target.value)}
-              placeholder="Row"
-              className="Row-Input"
-            />
-            <Form.Group controlId="formBasicRange">
-              <Form.Label> Speed</Form.Label>
-              <Form.Control type="range" />
-            </Form.Group>
-            <Button variant="danger" type="submit" block>
-              Update
-            </Button>
-          </Form>
-        </DropdownButton>
-        <DropdownButton title="Contact The Team" size="sm" id="contact-info">
-          <Container>
-            <Row>
-              <NavDropdown.Item
-                id={"bassellGit"}
-                children={"Bassell's Git"}
-                href={"https://github.com/basselalsayed"}
+        <Container fluid>
+          <Col>
+            <Nav className="mr-auto">
+              <NavDropdown title="Mazes">
+                <NavDropdown.Item children={"1"} />
+                <NavDropdown.Divider />
+                <NavDropdown.Item children={"2"} />
+                <NavDropdown.Divider />
+                <NavDropdown.Item children={"3?"} />
+                <NavDropdown.Divider />
+              </NavDropdown>
+              <NavDropdown title="Algorithms" id="collasible-nav-dropdown">
+                <NavDropdown.Item
+                  id={"set-dijkstra"}
+                  onClick={() => setAlgorithm("Dijkstra")}
+                  children={"Dijkstra"}
+                />
+                <NavDropdown.Item
+                  id={"set-astar-euclidean"}
+                  onClick={() => setAlgorithm("A* Euclidean")}
+                  children={"A* (Euclidean Distance)"}
+                />
+                <NavDropdown.Item
+                  id={"set-astar-manhatten"}
+                  onClick={() => setAlgorithm("A* Manhatten")}
+                  children={"A* (Manhatten Distance)"}
+                />
+                <NavDropdown.Item
+                  id={"set-depth-first-search"}
+                  onClick={() => setAlgorithm("Depth First Search")}
+                  children={"Depth First Search"}
+                />
+                <NavDropdown.Item
+                  id={"set-breadth-first-search"}
+                  onClick={() => setAlgorithm("Breadth First Search")}
+                  children={"Breadth First Search"}
+                />
+              </NavDropdown>
+            </Nav>
+          </Col>
+          <Col>
+            <Nav>
+              <Button
+                id="run-btn"
+                style={{ border: "2px solid chartreuse", color: "chartreuse" }}
+                variant="dark"
+                onClick={run}
+                children={
+                  algorithm
+                    ? `Let's Run ${algorithm}`
+                    : "Please Select An Algorithm"
+                }
+                disabled={!ready || algorithm === ""}
               />
-            </Row>
-            <Row>
-              <NavDropdown.Item
-                id={"bassellLink"}
-                children={"Bassell's LinkedIn"}
-                href={"https://www.linkedin.com/in/bsas/"}
+              <Button
+                id="reset-btn"
+                style={{ border: "2px solid red", color: "red" }}
+                variant="dark"
+                onClick={reset}
+                children={"Reset"}
               />
-            </Row>
-          </Container>
-          <Container>
-            <Row>
-              <NavDropdown.Item
-                id={"tomGit"}
-                children={"Tom's Git"}
-                href={"https://github.com/Walker-TW"}
-              />
-            </Row>
-            <Row>
-              <NavDropdown.Item
-                id={"tomLink"}
-                children={"Tom's LinkedIn"}
-                href={"https://www.linkedin.com/in/thomas-w-walker/"}
-              />
-            </Row>
-          </Container>
-        </DropdownButton>
+            </Nav>
+          </Col>
+          <Col>
+            <Nav navbar="true">
+              <Container>
+                <Form inline>
+                  <Form.Check
+                    type="checkbox"
+                    id="fence-check"
+                    name="fences"
+                    label="Fence mode"
+                    style={{ color: "white" }}
+                    onChange={fenceToggle}
+                  />
+                </Form>
+              </Container>
+              <DropdownButton title="Settings" size="sm" variant="secondary">
+                <Container>
+                  <Form onSubmit={handleSubmit} inline>
+                    Grid Size
+                    <FormControl
+                      size="sm"
+                      type="text"
+                      value={width}
+                      onChange={(e) => setWidth(e.target.value)}
+                      placeholder="Column"
+                      className="Column-Input"
+                    />
+                    <FormControl
+                      type="text"
+                      size="sm"
+                      value={height}
+                      onChange={(e) => setHeight(e.target.value)}
+                      placeholder="Row"
+                      className="Row-Input"
+                    />
+                    <Form.Group controlId="formBasicRange">
+                      <Form.Label> Speed</Form.Label>
+                      <Form.Control type="range" />
+                    </Form.Group>
+                    <Button variant="danger" type="submit" block>
+                      Update
+                    </Button>
+                  </Form>
+                </Container>
+              </DropdownButton>
+              <DropdownButton
+                title="Contact The Team"
+                size="sm"
+                id="contact-info"
+              >
+                <Container>
+                  <Row>
+                    <NavDropdown.Item
+                      id={"basselGit"}
+                      children={"Bassel's Git"}
+                      href={"https://github.com/basselalsayed"}
+                    />
+                  </Row>
+                  <Row>
+                    <NavDropdown.Item
+                      id={"basselLink"}
+                      children={"Bassel's LinkedIn"}
+                      href={"https://www.linkedin.com/in/bsas/"}
+                    />
+                  </Row>
+                </Container>
+                <Container>
+                  <Row>
+                    <NavDropdown.Item
+                      id={"tomGit"}
+                      children={"Tom's Git"}
+                      href={"https://github.com/Walker-TW"}
+                    />
+                  </Row>
+                  <Row>
+                    <NavDropdown.Item
+                      id={"tomLink"}
+                      children={"Tom's LinkedIn"}
+                      href={"https://www.linkedin.com/in/thomas-w-walker/"}
+                    />
+                  </Row>
+                </Container>
+              </DropdownButton>
+            </Nav>
+          </Col>
+        </Container>
       </Navbar.Collapse>
     </Navbar>
   );
