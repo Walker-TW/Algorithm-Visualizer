@@ -76,6 +76,7 @@ export default class Visualizer extends Component {
       heuristic: Infinity,
       manhatten: Infinity,
       distance: Infinity,
+      passage: false,
     };
   };
 
@@ -97,8 +98,8 @@ export default class Visualizer extends Component {
   };
 
   gridSetup = () => {
-    let [width, height] = this.getDimensions();
-    // let [width, height] = [10, 10];
+    // let [width, height] = this.getDimensions();
+    let [width, height] = [10, 10];
     let grid = [];
     for (let rowIndex = 0; rowIndex < width; rowIndex++) {
       let current_row = [];
@@ -129,9 +130,10 @@ export default class Visualizer extends Component {
     const { grid } = this.state;
     const { rowIndex, colIndex } = gridId;
     const node = grid[rowIndex][colIndex];
-    if (type === 'fence') {
+    if (type === 'fence' || type === 'passage') {
       node[type] = !node[type];
     } else {
+      console.log(node.fence, 'SHOW');
       node[type] = true;
       this.setState({
         [type]: {
@@ -261,8 +263,8 @@ export default class Visualizer extends Component {
     this.animateAlgorithm(resultOfDijkstra, y);
   };
 
-  makeFence = (node) => {
-    this.nodeFlag(node.gridId, 'fence');
+  mazeHelper = (node, type) => {
+    this.nodeFlag(node.gridId, type);
     this.animateNode(node);
   };
 
@@ -270,7 +272,7 @@ export default class Visualizer extends Component {
     const { grid } = this.state;
     let [width, height] = [grid.length, grid[0].length];
     // this.animateMaze(recursiveDivision(grid, width, height));
-    recursiveDivision(grid, this.makeFence);
+    recursiveDivision(grid, this.mazeHelper);
   };
 
   // animation

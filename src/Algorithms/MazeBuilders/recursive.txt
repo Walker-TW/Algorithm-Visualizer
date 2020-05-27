@@ -1,0 +1,19 @@
+- we pass in the grid, the section coordinates, and the orientation of the section 
+ - getOrientation function improvement? 
+- based on the orientation, we bisect the section at a random point, leaving a gap in the wall
+- if the section on the left/right, above/below the new wall is smaller than the other, 
+  we recursively divide again, finding the orientation of the new subsection, and bisecting accordingly
+  until a threshold (gap inbetween) is met
+- continue same recursion on the other side until condtion is met everywhere
+
+const divide = (grid, rowStart, rowEnd, colStart, colEnd)
+
+const divide = (grid, 1, width, 1, height) => {
+
+min = orientation === 'horizontal' ? colStart : rowStart
+max = orientation === 'horizontal' ? colEnd : rowEnd
+
+randomIndex = Math.floor(1 + Math.random() * max - 1)
+
+
+}
