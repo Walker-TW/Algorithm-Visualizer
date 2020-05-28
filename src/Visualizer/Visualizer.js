@@ -1,24 +1,26 @@
-import React, { Component, Fragment } from "react";
-import Header from "./Header/Header";
-import Alert from "react-bootstrap/Alert";
-import Nodes from "./Nodes/Nodes";
-import Stats from "./Stats/Stats";
-import { dijkstra, findShortestPath } from "../Algorithms/dijkstra";
+import React, { Component, Fragment } from 'react';
+
+import getDimensions from '../Helpers/getDimensions';
+import Header from './Header/Header';
+import Alert from 'react-bootstrap/Alert';
+import Nodes from './Nodes/Nodes';
+import Stats from './Stats/Stats';
+import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
 import {
   aStarManhatten,
   findShortestPathAStarM,
-} from "../Algorithms/a*manhatten";
+} from '../Algorithms/a*manhatten';
 import {
   aStarEuclidean,
   findShortestPathAStarE,
-} from "../Algorithms/a*euclidean";
-import { breadthFirstSearch, findShortestPathBFS } from "../Algorithms/bfs.js";
-import { depthFirstSearch, findShortestPathDFS } from "../Algorithms/dfs.js";
-import "./Visualizer.css";
+} from '../Algorithms/a*euclidean';
+import { breadthFirstSearch, findShortestPathBFS } from '../Algorithms/bfs.js';
+import { depthFirstSearch, findShortestPathDFS } from '../Algorithms/dfs.js';
+import './Visualizer.css';
 
 export default class Visualizer extends Component {
   state = {
-    algorithm: "",
+    algorithm: '',
     grid: [],
     fenceToggle: false,
     mouseToggle: false,
@@ -43,19 +45,16 @@ export default class Visualizer extends Component {
         },
       },
     },
-    runtime: "None Yet",
-    nodesProccessed: "None Yet",
-    fastestPath: "None Yet",
-    algorithmRan: "None Yet",
+    runtime: 'None Yet',
+    nodesProccessed: 'None Yet',
+    fastestPath: 'None Yet',
+    algorithmRan: 'None Yet',
+    speed: null,
   };
 
   // setup methods
   componentDidMount() {
-    this.gridSetup(this.getDimensions());
-    window.addEventListener("resize", this.gridSetup);
-  }
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.gridSetup);
+    this.gridSetup();
   }
 
   createNode = (gridId) => {
@@ -72,26 +71,9 @@ export default class Visualizer extends Component {
     };
   };
 
-  getDimensions = () => {
-    const [screenWidth, screenHeight] = [window.innerWidth, window.innerHeight];
-
-    let width, height;
-    if (screenWidth > 1450) {
-      width = screenWidth / 20 - 12;
-      height = screenHeight / 20 - 7;
-    } else if (screenWidth > 900) {
-      width = screenWidth / 30;
-      height = screenHeight / 30;
-    } else {
-      width = screenWidth / 40 - 3;
-      height = screenHeight / 40 - 5;
-    }
-    return [width, height];
-  };
-
-  gridSetup = (array) => {
-    const width = array[0];
-    const height = array[1];
+  gridSetup = (dimensions = getDimensions()) => {
+    let [width, height] = dimensions;
+    this.setState({ dimensions: dimensions });
     let grid = [];
     for (let rowIndex = 0; rowIndex < width; rowIndex++) {
       let current_row = [];
@@ -107,8 +89,17 @@ export default class Visualizer extends Component {
 
   // state changers & prop methods
 
-  defaultStateSizeChange = () => {
+  resizeGrid = (dimensions) => {
     this.setState({ start: { present: false }, finish: { present: false } });
+
+    this.gridSetup(dimensions);
+
+    this.state.grid.forEach((row) => {
+      row.forEach((node) => {
+        this.resetNodeStyle(node);
+        this.resetNodeObject(node, 'all');
+      });
+    });
   };
 
   fenceToggler = () => {
@@ -127,7 +118,7 @@ export default class Visualizer extends Component {
     const { grid } = this.state;
     const { rowIndex, colIndex } = gridId;
     const node = grid[rowIndex][colIndex];
-    if (type === "fence") {
+    if (type === 'fence') {
       node[type] = !node[type];
     } else {
       node[type] = true;
@@ -156,27 +147,31 @@ export default class Visualizer extends Component {
     this.setState({ grid: grid });
   };
 
+  resetNodeStyle = (node) => {
+    document.getElementById(
+      `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
+    ).className = `Node`;
+  };
+
+  resetNodeObject = (node, type) => {
+    node.heuristic = Infinity;
+    node.manhatten = Infinity;
+    node.distance = Infinity;
+    node.visited = false;
+    node.pastNode = null;
+    if (type === 'all') {
+      node.start = false;
+      node.finish = false;
+      node.fence = false;
+    }
+  };
+
   resetNodeHandler = (node) => {
-    const resetNodeStyle = (node) => {
-      document.getElementById(
-        `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
-      ).className = `Node`;
-    };
-
-    const resetNode = (node) => {
-      node.heuristic = Infinity;
-      node.manhatten = Infinity;
-      node.distance = Infinity;
-      node.visited = false;
-      node.pastNode = null;
-    };
-
     if (node.start || node.fence || node.finish) {
-      resetNode(node);
+      this.resetNodeObject(node, 'visited');
     } else {
-      resetNode(node);
-      // this has been added because the nodes were not being created so instead they are resetted
-      resetNodeStyle(node);
+      this.resetNodeObject(node, 'visited');
+      this.resetNodeStyle(node);
       node = this.createNode(node.gridId);
     }
   };
@@ -184,15 +179,15 @@ export default class Visualizer extends Component {
   run = () => {
     const { algorithm } = this.state;
 
-    if (algorithm === "Dijkstra") {
+    if (algorithm === 'Dijkstra') {
       this.runDijkstra();
-    } else if (algorithm === "A* Euclidean") {
+    } else if (algorithm === 'A* Euclidean') {
       this.runAstarEuclidean();
-    } else if (algorithm === "A* Manhatten") {
+    } else if (algorithm === 'A* Manhatten') {
       this.runAstarManhatten();
-    } else if (algorithm === "Depth First Search") {
+    } else if (algorithm === 'Depth First Search') {
       this.runDepthFirstSearch();
-    } else if (algorithm === "Breadth First Search") {
+    } else if (algorithm === 'Breadth First Search') {
       this.runBreadthFirstSearch();
     }
   };
@@ -215,7 +210,7 @@ export default class Visualizer extends Component {
 
     this.animateAlgorithm(resultOfBreadthFirstSearch, z);
     this.statsUpdate(
-      "Breadth First",
+      'Breadth First',
       resultOfBreadthFirstSearch.length,
       z.length,
       (timerComplete - timerBegin) * 1000
@@ -239,7 +234,7 @@ export default class Visualizer extends Component {
     const timerComplete = performance.now();
     this.animateAlgorithm(resultOfDepthFirstSearch, z);
     this.statsUpdate(
-      "Depth First",
+      'Depth First',
       resultOfDepthFirstSearch.length,
       z.length,
       (timerComplete - timerBegin) * 1000
@@ -258,7 +253,7 @@ export default class Visualizer extends Component {
 
     this.animateAlgorithm(resultOfAStarE, y);
     this.statsUpdate(
-      "A* Euclidean",
+      'A* Euclidean',
       resultOfAStarE.length,
       y.length,
       (timerComplete - timerBegin) * 1000
@@ -275,7 +270,7 @@ export default class Visualizer extends Component {
     const timerComplete = performance.now();
     this.animateAlgorithm(resultOfAStarM, y);
     this.statsUpdate(
-      "A* Manhattan",
+      'A* Manhattan',
       resultOfAStarM.length,
       y.length,
       (timerComplete - timerBegin) * 1000
@@ -293,7 +288,7 @@ export default class Visualizer extends Component {
 
     this.animateAlgorithm(resultOfDijkstra, y);
     this.statsUpdate(
-      "Dijkstra",
+      'Dijkstra',
       resultOfDijkstra.length,
       y.length,
       (timerComplete - timerBegin) * 1000
@@ -309,13 +304,22 @@ export default class Visualizer extends Component {
     });
   };
 
+  animationSpeed = (speedGiven) => {
+    const hash = { '1': 25, '2': 18, '3': 13, '4': 7, '5': 3 };
+    const speedOfAlgorithm = hash[speedGiven] || 5;
+    console.log(speedOfAlgorithm);
+    this.setState({ speed: speedOfAlgorithm });
+    console.log(this.state.speed, 'the speed it has been set to');
+  };
+
   // animation
   animateAlgorithm = (visitedNodesInOrder, nodesInShortestPathOrder) => {
+    const animationTimer = this.state.speed;
     for (let i = 1; i <= visitedNodesInOrder.length - 1; i++) {
       if (i === visitedNodesInOrder.length - 1) {
         setTimeout(() => {
           this.animateShortestPath(nodesInShortestPathOrder);
-        }, 5 * i);
+        }, animationTimer * i);
         return;
       }
       setTimeout(() => {
@@ -324,31 +328,34 @@ export default class Visualizer extends Component {
           `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
         ).className = `Node ${
           node.start
-            ? "start"
+            ? 'start'
             : node.finish
-            ? "finish"
+            ? 'finish'
             : node.visited
-            ? "visited"
-            : ""
+            ? 'visited'
+            : ''
         }`;
-      }, 5 * i);
+      }, animationTimer * i);
     }
   };
 
   animateShortestPath = (nodesInShortestPathOrder) => {
+    const animationTimer = this.state.speed;
+    console.log(animationTimer, 'animate shortest path');
     for (let i = 1; i < nodesInShortestPathOrder.length - 1; i++) {
       setTimeout(() => {
         const node = nodesInShortestPathOrder[i];
         document.getElementById(
           `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
-        ).className = "Node path";
-      }, 50 * i);
+        ).className = 'Node path';
+      }, animationTimer * 10 * i);
     }
   };
 
   render() {
     const {
       algorithm,
+      dimensions,
       fenceToggle,
       finish,
       grid,
@@ -364,7 +371,9 @@ export default class Visualizer extends Component {
       <Fragment>
         <Header
           algorithm={algorithm}
-          defaultStateSizeChange={this.defaultStateSizeChange}
+          animationSpeed={this.animationSpeed}
+          dimensions={dimensions}
+          resizeGrid={this.resizeGrid}
           gridSetup={this.gridSetup}
           ready={start.present && finish.present}
           run={this.run}

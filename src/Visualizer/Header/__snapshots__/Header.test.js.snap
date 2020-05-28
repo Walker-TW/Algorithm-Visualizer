@@ -227,49 +227,99 @@ exports[`<Header /> renders 1`] = `
           <DropdownButton
             size="sm"
             title="Settings"
-            variant="secondary"
+            variant="dark"
           >
             <Container
               fluid={false}
+              variant="dark"
             >
               <Form
                 inline={true}
                 onSubmit={[Function]}
+                variant="dark"
               >
                 Grid Size
                 <FormControl
                   className="Column-Input"
                   onChange={[Function]}
-                  placeholder="Column"
+                  placeholder="Width (Currently 35)"
                   size="sm"
                   type="text"
                 />
                 <FormControl
+                  className="range-input"
+                  max="100"
+                  min="1"
+                  onChange={[Function]}
+                  size="sm"
+                  type="range"
+                  value={35}
+                />
+                <DropdownDivider
+                  role="separator"
+                />
+                <FormControl
                   className="Row-Input"
                   onChange={[Function]}
-                  placeholder="Row"
+                  placeholder="Height (Currently 26)"
                   size="sm"
                   type="text"
                 />
-                <FormGroup
-                  controlId="formBasicRange"
+                <FormControl
+                  className="range-input"
+                  max="50"
+                  min="1"
+                  onChange={[Function]}
+                  size="sm"
+                  type="range"
+                  value={26}
+                />
+                <DropdownDivider
+                  role="separator"
+                />
+                <FormLabel
+                  column={false}
+                  srOnly={false}
                 >
-                  <FormLabel
-                    column={false}
-                    srOnly={false}
-                  >
-                     Speed
-                  </FormLabel>
-                  <FormControl
-                    type="range"
-                  />
-                </FormGroup>
+                  Draw Square
+                </FormLabel>
+                <FormControl
+                  className="range-input"
+                  max="50"
+                  min="1"
+                  onChange={[Function]}
+                  size="sm"
+                  type="range"
+                  value={26}
+                />
+                <DropdownDivider
+                  role="separator"
+                />
+                <FormLabel
+                  column={false}
+                  srOnly={false}
+                >
+                  Animation Speed
+                </FormLabel>
+                <FormControl
+                  max="5"
+                  min="1"
+                  onChange={[Function]}
+                  size="sm"
+                  type="range"
+                />
                 <Button
                   active={false}
                   block={true}
                   disabled={false}
+                  style={
+                    Object {
+                      "border": "2px solid chartreuse",
+                      "color": "chartreuse",
+                    }
+                  }
                   type="submit"
-                  variant="danger"
+                  variant="dark"
                 >
                   Update
                 </Button>

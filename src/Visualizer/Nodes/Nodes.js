@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import './Grid.css';
 
 const Nodes = (props) => {
-  const [grid, setGrid] = useState([]);
   const {
     grid: propsGrid,
     fenceToggle,
@@ -16,6 +15,7 @@ const Nodes = (props) => {
     mouseFlag,
     updateNode,
   } = props;
+  const [grid, setGrid] = useState(propsGrid);
 
   useEffect(
     (propsGrid) => {
@@ -23,7 +23,7 @@ const Nodes = (props) => {
         () => {
           setGrid(propsGrid);
         },
-        console.log('object')
+        console.log('Hope Your Enjoying The App!')
       );
     },
     [propsGrid, grid]

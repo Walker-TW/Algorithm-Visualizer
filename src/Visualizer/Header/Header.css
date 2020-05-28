@@ -12,3 +12,7 @@
   left: 50%;
   transform: translatex(-50%);
 }
+
+.slider.slider-horizontal {
+  width: 70%;
+}
