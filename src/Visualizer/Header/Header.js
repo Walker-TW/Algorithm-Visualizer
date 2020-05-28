@@ -170,7 +170,7 @@ const Header = (props) => {
                             type="range"
                             size="sm"
                             min="1"
-                            max="10"
+                            max="5"
                             value={speed}
                             onChange={(e) => setSpeed(e.target.value)}
                             placeholder="Speed"

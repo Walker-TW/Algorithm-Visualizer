@@ -47,7 +47,7 @@ export default class Visualizer extends Component {
     nodesProccessed: "None Yet",
     fastestPath: "None Yet",
     algorithmRan: "None Yet",
-    speed: 5,
+    speed: null,
   };
 
   // setup methods
@@ -311,14 +311,16 @@ export default class Visualizer extends Component {
   };
 
   animationSpeed = (speedGiven) => {
-    const speedOfAlgorithm = 10 - parseInt(speedGiven);
+    const hash = { "1": 25, "2": 18, "3": 13, "4": 7, "5": 3 };
+    const speedOfAlgorithm = hash[speedGiven] || 5;
+    console.log(speedOfAlgorithm);
     this.setState({ speed: speedOfAlgorithm });
     console.log(this.state.speed, "the speed it has been set to");
   };
 
   // animation
   animateAlgorithm = (visitedNodesInOrder, nodesInShortestPathOrder) => {
-    const animationTimer = this.state.speed || 5;
+    const animationTimer = this.state.speed;
     for (let i = 1; i <= visitedNodesInOrder.length - 1; i++) {
       if (i === visitedNodesInOrder.length - 1) {
         setTimeout(() => {
