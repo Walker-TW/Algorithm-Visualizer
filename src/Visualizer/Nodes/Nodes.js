@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import Node from '../Node/Node';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from "react";
+import Node from "../Node/Node";
+import PropTypes from "prop-types";
 
-import './Grid.css';
+import "./Grid.css";
 
 const Nodes = (props) => {
   const [grid, setGrid] = useState([]);
@@ -23,7 +23,7 @@ const Nodes = (props) => {
         () => {
           setGrid(propsGrid);
         },
-        console.log('object')
+        console.log("")
       );
     },
     [propsGrid, grid]
@@ -36,7 +36,7 @@ const Nodes = (props) => {
           <div className="Column" key={colIndex.toString()}>
             {row.map((node, rowIndex) => (
               <Node
-                key={colIndex.toString() + ' ' + rowIndex.toString()}
+                key={colIndex.toString() + " " + rowIndex.toString()}
                 id={`node-${node.gridId.colIndex}-${node.gridId.rowIndex}`}
                 gridId={node.gridId}
                 gridHasStart={gridHasStart}
