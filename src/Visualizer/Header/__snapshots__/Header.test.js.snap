@@ -232,48 +232,62 @@ exports[`<Header /> renders 1`] = `
             <Container
               fluid={false}
             >
-              <Form
-                inline={true}
-                onSubmit={[Function]}
+              <Row
+                noGutters={false}
               >
-                Grid Size
-                <FormControl
-                  className="Column-Input"
-                  onChange={[Function]}
-                  placeholder="Column"
-                  size="sm"
-                  type="text"
-                />
-                <FormControl
-                  className="Row-Input"
-                  onChange={[Function]}
-                  placeholder="Row"
-                  size="sm"
-                  type="text"
-                />
-                <FormGroup
-                  controlId="formBasicRange"
+                <Form
+                  inline={true}
+                  onSubmit={[Function]}
                 >
-                  <FormLabel
-                    column={false}
-                    srOnly={false}
+                  <Col>
+                    Grid Size
+                    <FormControl
+                      className="Column-Input"
+                      onChange={[Function]}
+                      placeholder="Width (Currently 35)"
+                      size="sm"
+                      type="text"
+                    />
+                    <FormControl
+                      className="Row-Input"
+                      onChange={[Function]}
+                      placeholder="Height (Currently 26)"
+                      size="sm"
+                      type="text"
+                    />
+                  </Col>
+                  <Col>
+                    <FormGroup
+                      controlId="formBasicRange"
+                    >
+                      <FormLabel
+                        column={false}
+                        srOnly={false}
+                      >
+                         Animation Speed
+                      </FormLabel>
+                      <FormControl
+                        className="Speed-Input"
+                        max="5"
+                        min="1"
+                        onChange={[Function]}
+                        placeholder="Speed"
+                        size="sm"
+                        type="range"
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Button
+                    active={false}
+                    block={true}
+                    disabled={false}
+                    type="submit"
+                    variant="danger"
                   >
-                     Speed
-                  </FormLabel>
-                  <FormControl
-                    type="range"
-                  />
-                </FormGroup>
-                <Button
-                  active={false}
-                  block={true}
-                  disabled={false}
-                  type="submit"
-                  variant="danger"
-                >
-                  Update
-                </Button>
-              </Form>
+                    Update
+                  </Button>
+                </Form>
+              </Row>
             </Container>
           </DropdownButton>
           <DropdownButton

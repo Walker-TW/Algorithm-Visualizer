@@ -4,7 +4,14 @@ exports[`<Visualizer /> renders 1`] = `
 <Fragment>
   <Header
     algorithm=""
+    animationSpeed={[Function]}
     defaultStateSizeChange={[Function]}
+    dimensions={
+      Array [
+        34.13333333333333,
+        25.6,
+      ]
+    }
     fenceToggle={[Function]}
     gridSetup={[Function]}
     ready={false}
