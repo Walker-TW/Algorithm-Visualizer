@@ -4,7 +4,7 @@ export const getDimensions = () => {
   let width, height;
   if (screenWidth > 1450) {
     width = screenWidth / 20 - 12;
-    height = screenHeight / 20 - 7;
+    height = screenHeight / 20 - 16;
   } else if (screenWidth > 900) {
     width = screenWidth / 30;
     height = screenHeight / 30;
