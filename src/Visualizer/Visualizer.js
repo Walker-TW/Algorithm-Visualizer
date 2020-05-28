@@ -55,10 +55,6 @@ export default class Visualizer extends Component {
   // setup methods
   componentDidMount() {
     this.gridSetup();
-    // window.addEventListener('resize', () => this.gridSetup);
-  }
-  componentWillUnmount() {
-    // window.removeEventListener('resize', () => this.gridSetup);
   }
 
   createNode = (gridId) => {
@@ -101,13 +97,9 @@ export default class Visualizer extends Component {
     this.state.grid.forEach((row) => {
       row.forEach((node) => {
         this.resetNodeStyle(node);
-        this.resetNode(node, 'all');
+        this.resetNodeObject(node, 'all');
       });
     });
-  };
-
-  defaultStateSizeChange = () => {
-    this.setState({ start: { present: false }, finish: { present: false } });
   };
 
   fenceToggler = () => {
@@ -161,7 +153,7 @@ export default class Visualizer extends Component {
     ).className = `Node`;
   };
 
-  resetNode = (node, type) => {
+  resetNodeObject = (node, type) => {
     node.heuristic = Infinity;
     node.manhatten = Infinity;
     node.distance = Infinity;
@@ -176,10 +168,9 @@ export default class Visualizer extends Component {
 
   resetNodeHandler = (node) => {
     if (node.start || node.fence || node.finish) {
-      this.resetNode(node, 'visited');
+      this.resetNodeObject(node, 'visited');
     } else {
-      this.resetNode(node, 'visited');
-      // this has been added because the nodes were not being created so instead they are resetted
+      this.resetNodeObject(node, 'visited');
       this.resetNodeStyle(node);
       node = this.createNode(node.gridId);
     }
