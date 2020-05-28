@@ -13,6 +13,6 @@
   transform: translatex(-50%);
 }
 
-.range-input {
-  size: 50%;
+.slider.slider-horizontal {
+  width: 70%;
 }

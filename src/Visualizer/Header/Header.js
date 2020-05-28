@@ -141,72 +141,88 @@ const Header = (props) => {
                   />
                 </Form>
               </Container>
-              <DropdownButton title="Settings" size="sm" variant="secondary">
-                <Container>
-                  <Row>
-                    <Form onSubmit={handleSubmit} inline>
-                      <Col>
-                        Grid Size
-                        <FormControl
-                          size="sm"
-                          type="text"
-                          placeholder={`Width (Currently ${width})`}
-                          onChange={(e) => setWidth(e.target.value)}
-                          className="Column-Input"
-                        />
-                        <Form.Control
-                          type="range"
-                          size="sm"
-                          min="1"
-                          max="100"
-                          value={width}
-                          onChange={(e) => {
-                            setWidth(e.target.value);
-                            resizeGrid([width, height]);
-                          }}
-                          className="range-input"
-                        />
-                        <NavDropdown.Divider />
-                        <FormControl
-                          type="text"
-                          size="sm"
-                          placeholder={`Height (Currently ${height})`}
-                          onChange={(e) => setHeight(e.target.value)}
-                          className="Row-Input"
-                        />
-                        <Form.Control
-                          type="range"
-                          size="sm"
-                          min="1"
-                          max="50"
-                          value={height}
-                          onChange={(e) => {
-                            setHeight(e.target.value);
-                            resizeGrid([width, height]);
-                          }}
-                          className="range-input"
-                        />
-                        <NavDropdown.Divider />
-                      </Col>
-                      <Col>
-                        <Form.Group controlId="formBasicRange">
-                          <Form.Label> Animation Speed</Form.Label>
-                          <Form.Control
-                            type="range"
-                            size="sm"
-                            min="1"
-                            max="5"
-                            value={speed}
-                            onChange={(e) => setSpeed(e.target.value)}
-                            className="range-input"
-                          />
-                        </Form.Group>
-                      </Col>
-                      <Button variant="danger" type="submit" block>
-                        Update
-                      </Button>
-                    </Form>
-                  </Row>
+              <DropdownButton title="Settings" size="sm" variant="dark">
+                <Container variant="dark">
+                  {/* <Row> */}
+                  <Form onSubmit={handleSubmit} variant="dark" inline>
+                    {/* <Col> */}
+                    Grid Size
+                    <FormControl
+                      size="sm"
+                      type="text"
+                      placeholder={`Width (Currently ${width})`}
+                      onChange={(e) => setWidth(e.target.value)}
+                      className="Column-Input"
+                    />
+                    <Form.Control
+                      type="range"
+                      size="sm"
+                      min="1"
+                      max="100"
+                      value={width}
+                      onChange={(e) => {
+                        setWidth(e.target.value);
+                        resizeGrid([width, height]);
+                      }}
+                      className="range-input"
+                    />
+                    <NavDropdown.Divider />
+                    <FormControl
+                      type="text"
+                      size="sm"
+                      placeholder={`Height (Currently ${height})`}
+                      onChange={(e) => setHeight(e.target.value)}
+                      className="Row-Input"
+                    />
+                    <Form.Control
+                      type="range"
+                      size="sm"
+                      min="1"
+                      max="50"
+                      value={height}
+                      onChange={(e) => {
+                        setHeight(e.target.value);
+                        resizeGrid([width, height]);
+                      }}
+                      className="range-input"
+                    />
+                    <NavDropdown.Divider />
+                    <Form.Label children={'Draw Square'} />
+                    <Form.Control
+                      type="range"
+                      size="sm"
+                      min="1"
+                      max="50"
+                      value={height}
+                      onChange={(e) => {
+                        setWidth(e.target.value);
+                        setHeight(e.target.value);
+                        resizeGrid([height, height]);
+                      }}
+                      className="range-input"
+                    />
+                    <NavDropdown.Divider />
+                    <Form.Label children={'Animation Speed'} />
+                    <Form.Control
+                      type="range"
+                      size="sm"
+                      min="1"
+                      max="5"
+                      value={speed}
+                      onChange={(e) => setSpeed(e.target.value)}
+                    />
+                    <Button
+                      variant="dark"
+                      type="submit"
+                      style={{
+                        border: '2px solid chartreuse',
+                        color: 'chartreuse',
+                      }}
+                      block
+                    >
+                      Update
+                    </Button>
+                  </Form>
                 </Container>
               </DropdownButton>
               <DropdownButton
