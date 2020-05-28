@@ -142,41 +142,47 @@ const Header = (props) => {
               </Container>
               <DropdownButton title="Settings" size="sm" variant="secondary">
                 <Container>
-                  <Form onSubmit={handleSubmit} inline>
-                    Grid Size
-                    <FormControl
-                      size="sm"
-                      type="text"
-                      value={width}
-                      onChange={(e) => setWidth(e.target.value)}
-                      placeholder="Column"
-                      className="Column-Input"
-                    />
-                    <FormControl
-                      type="text"
-                      size="sm"
-                      value={height}
-                      onChange={(e) => setHeight(e.target.value)}
-                      placeholder="Row"
-                      className="Row-Input"
-                    />
-                    <Form.Group controlId="formBasicRange">
-                      <Form.Label> Animation Speed</Form.Label>
-                      <Form.Control
-                        type="range"
-                        size="sm"
-                        min="1"
-                        max="10"
-                        value={speed}
-                        onChange={(e) => setSpeed(e.target.value)}
-                        placeholder="Speed"
-                        className="Speed-Input"
-                      />
-                    </Form.Group>
-                    <Button variant="danger" type="submit" block>
-                      Update
-                    </Button>
-                  </Form>
+                  <Row>
+                    <Form onSubmit={handleSubmit} inline>
+                      <Col>
+                        Grid Size
+                        <FormControl
+                          size="sm"
+                          type="text"
+                          value={width}
+                          onChange={(e) => setWidth(e.target.value)}
+                          placeholder="Column"
+                          className="Column-Input"
+                        />
+                        <FormControl
+                          type="text"
+                          size="sm"
+                          value={height}
+                          onChange={(e) => setHeight(e.target.value)}
+                          placeholder="Row"
+                          className="Row-Input"
+                        />
+                      </Col>
+                      <Col>
+                        <Form.Group controlId="formBasicRange">
+                          <Form.Label> Animation Speed</Form.Label>
+                          <Form.Control
+                            type="range"
+                            size="sm"
+                            min="1"
+                            max="10"
+                            value={speed}
+                            onChange={(e) => setSpeed(e.target.value)}
+                            placeholder="Speed"
+                            className="Speed-Input"
+                          />
+                        </Form.Group>
+                      </Col>
+                      <Button variant="danger" type="submit" block>
+                        Update
+                      </Button>
+                    </Form>
+                  </Row>
                 </Container>
               </DropdownButton>
               <DropdownButton
