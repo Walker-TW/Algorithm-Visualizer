@@ -93,12 +93,17 @@ export default class Visualizer extends Component {
 
   // state changers & prop methods
 
-  resetGrid = (dimensions) => {
-    this.state.grid.forEach((node) => {
-      node = this.createNode(node.gridId);
-    });
+  resizeGrid = (dimensions) => {
     this.setState({ start: { present: false }, finish: { present: false } });
+
     this.gridSetup(dimensions);
+
+    this.state.grid.forEach((row) => {
+      row.forEach((node) => {
+        this.resetNodeStyle(node);
+        this.resetNode(node, 'all');
+      });
+    });
   };
 
   defaultStateSizeChange = () => {
@@ -150,27 +155,32 @@ export default class Visualizer extends Component {
     this.setState({ grid: grid });
   };
 
+  resetNodeStyle = (node) => {
+    document.getElementById(
+      `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
+    ).className = `Node`;
+  };
+
+  resetNode = (node, type) => {
+    node.heuristic = Infinity;
+    node.manhatten = Infinity;
+    node.distance = Infinity;
+    node.visited = false;
+    node.pastNode = null;
+    if (type === 'all') {
+      node.start = false;
+      node.finish = false;
+      node.fence = false;
+    }
+  };
+
   resetNodeHandler = (node) => {
-    const resetNodeStyle = (node) => {
-      document.getElementById(
-        `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
-      ).className = `Node`;
-    };
-
-    const resetNode = (node) => {
-      node.heuristic = Infinity;
-      node.manhatten = Infinity;
-      node.distance = Infinity;
-      node.visited = false;
-      node.pastNode = null;
-    };
-
     if (node.start || node.fence || node.finish) {
-      resetNode(node);
+      this.resetNode(node, 'visited');
     } else {
-      resetNode(node);
+      this.resetNode(node, 'visited');
       // this has been added because the nodes were not being created so instead they are resetted
-      resetNodeStyle(node);
+      this.resetNodeStyle(node);
       node = this.createNode(node.gridId);
     }
   };
@@ -372,7 +382,7 @@ export default class Visualizer extends Component {
           algorithm={algorithm}
           animationSpeed={this.animationSpeed}
           dimensions={dimensions}
-          defaultStateSizeChange={this.resetGrid}
+          resizeGrid={this.resizeGrid}
           gridSetup={this.gridSetup}
           ready={start.present && finish.present}
           run={this.run}

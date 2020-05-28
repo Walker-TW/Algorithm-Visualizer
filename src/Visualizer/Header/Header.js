@@ -20,7 +20,7 @@ const Header = (props) => {
     algorithm,
     animationSpeed,
     fenceToggle,
-    defaultStateSizeChange,
+    resizeGrid,
     ready,
     run: propRun,
     reset,
@@ -49,10 +49,9 @@ const Header = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let array = [width, height];
-    console.log(array);
-    defaultStateSizeChange(array);
-    // gridSetup(array);
+    let dimensions = [width, height];
+    resizeGrid(dimensions);
+
     let speedOfAnimation = speed;
     animationSpeed(speedOfAnimation);
   };

@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
-import Node from "../Node/Node";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from 'react';
+import Node from '../Node/Node';
+import PropTypes from 'prop-types';
 
-import "./Grid.css";
+import './Grid.css';
 
 const Nodes = (props) => {
-  const [grid, setGrid] = useState([]);
   const {
     grid: propsGrid,
     fenceToggle,
@@ -16,6 +15,7 @@ const Nodes = (props) => {
     mouseFlag,
     updateNode,
   } = props;
+  const [grid, setGrid] = useState(propsGrid);
 
   useEffect(
     (propsGrid) => {
@@ -23,7 +23,7 @@ const Nodes = (props) => {
         () => {
           setGrid(propsGrid);
         },
-        console.log("Hope Your Enjoying The App!")
+        console.log('Hope Your Enjoying The App!')
       );
     },
     [propsGrid, grid]
@@ -36,7 +36,7 @@ const Nodes = (props) => {
           <div className="Column" key={colIndex.toString()}>
             {row.map((node, rowIndex) => (
               <Node
-                key={colIndex.toString() + " " + rowIndex.toString()}
+                key={colIndex.toString() + ' ' + rowIndex.toString()}
                 id={`node-${node.gridId.colIndex}-${node.gridId.rowIndex}`}
                 gridId={node.gridId}
                 gridHasStart={gridHasStart}

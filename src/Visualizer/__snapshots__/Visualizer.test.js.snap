@@ -5,7 +5,6 @@ exports[`<Visualizer /> renders 1`] = `
   <Header
     algorithm=""
     animationSpeed={[Function]}
-    defaultStateSizeChange={[Function]}
     dimensions={
       Array [
         34.13333333333333,
@@ -16,6 +15,7 @@ exports[`<Visualizer /> renders 1`] = `
     gridSetup={[Function]}
     ready={false}
     reset={[Function]}
+    resizeGrid={[Function]}
     run={[Function]}
     setAlgorithm={[Function]}
   />
