@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Button,
   Col,
@@ -10,21 +10,16 @@ import {
   Navbar,
   NavDropdown,
   Row,
-} from "react-bootstrap";
-import PropTypes from "prop-types";
-
-import "./Header.css";
+} from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import getDimensions from '../../Helpers/getDimensions';
+import './Header.css';
 
 const Header = (props) => {
-  const [width, setWidth] = useState();
-  const [height, setHeight] = useState();
-  const [speed, setSpeed] = useState();
-
   const {
     algorithm,
     animationSpeed,
     fenceToggle,
-    gridSetup,
     defaultStateSizeChange,
     ready,
     run: propRun,
@@ -32,13 +27,19 @@ const Header = (props) => {
     setAlgorithm,
   } = props;
 
+  const [screenWidth, screenHeight] = getDimensions();
+
+  const [width, setWidth] = useState(Math.ceil(screenWidth));
+  const [height, setHeight] = useState(Math.ceil(screenHeight));
+  const [speed, setSpeed] = useState();
+
   const run = () => {
-    if (algorithm === "") {
-      alert("Please select an algorithm");
+    if (algorithm === '') {
+      alert('Please select an algorithm');
     }
     if (!ready) {
       alert(
-        "Please choose a start and finish point before running by clicking on the desired squares"
+        'Please choose a start and finish point before running by clicking on the desired squares'
       );
     }
     if (ready && algorithm) {
@@ -49,8 +50,9 @@ const Header = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let array = [width, height];
-    defaultStateSizeChange();
-    gridSetup(array);
+    console.log(array);
+    defaultStateSizeChange(array);
+    // gridSetup(array);
     let speedOfAnimation = speed;
     animationSpeed(speedOfAnimation);
   };
@@ -59,7 +61,7 @@ const Header = (props) => {
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand
         href="https://github.com/Walker-TW/Algorithm-Visualizer"
-        children={"Algo-Visualiser"}
+        children={'Algo-Visualiser'}
       />
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
@@ -67,38 +69,38 @@ const Header = (props) => {
           <Col>
             <Nav className="mr-auto">
               <NavDropdown title="Mazes">
-                <NavDropdown.Item children={"1"} />
+                <NavDropdown.Item children={'1'} />
                 <NavDropdown.Divider />
-                <NavDropdown.Item children={"2"} />
+                <NavDropdown.Item children={'2'} />
                 <NavDropdown.Divider />
-                <NavDropdown.Item children={"3?"} />
+                <NavDropdown.Item children={'3?'} />
                 <NavDropdown.Divider />
               </NavDropdown>
               <NavDropdown title="Algorithms" id="collasible-nav-dropdown">
                 <NavDropdown.Item
-                  id={"set-dijkstra"}
-                  onClick={() => setAlgorithm("Dijkstra")}
-                  children={"Dijkstra"}
+                  id={'set-dijkstra'}
+                  onClick={() => setAlgorithm('Dijkstra')}
+                  children={'Dijkstra'}
                 />
                 <NavDropdown.Item
-                  id={"set-astar-euclidean"}
-                  onClick={() => setAlgorithm("A* Euclidean")}
-                  children={"A* (Euclidean Distance)"}
+                  id={'set-astar-euclidean'}
+                  onClick={() => setAlgorithm('A* Euclidean')}
+                  children={'A* (Euclidean Distance)'}
                 />
                 <NavDropdown.Item
-                  id={"set-astar-manhatten"}
-                  onClick={() => setAlgorithm("A* Manhatten")}
-                  children={"A* (Manhatten Distance)"}
+                  id={'set-astar-manhatten'}
+                  onClick={() => setAlgorithm('A* Manhatten')}
+                  children={'A* (Manhatten Distance)'}
                 />
                 <NavDropdown.Item
-                  id={"set-depth-first-search"}
-                  onClick={() => setAlgorithm("Depth First Search")}
-                  children={"Depth First Search"}
+                  id={'set-depth-first-search'}
+                  onClick={() => setAlgorithm('Depth First Search')}
+                  children={'Depth First Search'}
                 />
                 <NavDropdown.Item
-                  id={"set-breadth-first-search"}
-                  onClick={() => setAlgorithm("Breadth First Search")}
-                  children={"Breadth First Search"}
+                  id={'set-breadth-first-search'}
+                  onClick={() => setAlgorithm('Breadth First Search')}
+                  children={'Breadth First Search'}
                 />
               </NavDropdown>
             </Nav>
@@ -107,22 +109,22 @@ const Header = (props) => {
             <Nav>
               <Button
                 id="run-btn"
-                style={{ border: "2px solid chartreuse", color: "chartreuse" }}
+                style={{ border: '2px solid chartreuse', color: 'chartreuse' }}
                 variant="dark"
                 onClick={run}
                 children={
                   algorithm
                     ? `Let's Run ${algorithm}`
-                    : "Please Select An Algorithm"
+                    : 'Please Select An Algorithm'
                 }
-                disabled={!ready || algorithm === ""}
+                disabled={!ready || algorithm === ''}
               />
               <Button
                 id="reset-btn"
-                style={{ border: "2px solid red", color: "red" }}
+                style={{ border: '2px solid red', color: 'red' }}
                 variant="dark"
                 onClick={reset}
-                children={"Reset"}
+                children={'Reset'}
               />
             </Nav>
           </Col>
@@ -135,7 +137,7 @@ const Header = (props) => {
                     id="fence-check"
                     name="fences"
                     label="Fence mode"
-                    style={{ color: "white" }}
+                    style={{ color: 'white' }}
                     onChange={fenceToggle}
                   />
                 </Form>
@@ -149,17 +151,15 @@ const Header = (props) => {
                         <FormControl
                           size="sm"
                           type="text"
-                          value={width}
+                          placeholder={`Width (Currently ${width})`}
                           onChange={(e) => setWidth(e.target.value)}
-                          placeholder="Column"
                           className="Column-Input"
                         />
                         <FormControl
                           type="text"
                           size="sm"
-                          value={height}
+                          placeholder={`Height (Currently ${height})`}
                           onChange={(e) => setHeight(e.target.value)}
-                          placeholder="Row"
                           className="Row-Input"
                         />
                       </Col>
@@ -193,32 +193,32 @@ const Header = (props) => {
                 <Container>
                   <Row>
                     <NavDropdown.Item
-                      id={"basselGit"}
+                      id={'basselGit'}
                       children={"Bassel's Git"}
-                      href={"https://github.com/basselalsayed"}
+                      href={'https://github.com/basselalsayed'}
                     />
                   </Row>
                   <Row>
                     <NavDropdown.Item
-                      id={"basselLink"}
+                      id={'basselLink'}
                       children={"Bassel's LinkedIn"}
-                      href={"https://www.linkedin.com/in/bsas/"}
+                      href={'https://www.linkedin.com/in/bsas/'}
                     />
                   </Row>
                 </Container>
                 <Container>
                   <Row>
                     <NavDropdown.Item
-                      id={"tomGit"}
+                      id={'tomGit'}
                       children={"Tom's Git"}
-                      href={"https://github.com/Walker-TW"}
+                      href={'https://github.com/Walker-TW'}
                     />
                   </Row>
                   <Row>
                     <NavDropdown.Item
-                      id={"tomLink"}
+                      id={'tomLink'}
                       children={"Tom's LinkedIn"}
-                      href={"https://www.linkedin.com/in/thomas-w-walker/"}
+                      href={'https://www.linkedin.com/in/thomas-w-walker/'}
                     />
                   </Row>
                 </Container>
