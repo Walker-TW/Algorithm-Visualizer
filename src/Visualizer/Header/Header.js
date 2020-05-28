@@ -18,9 +18,11 @@ import "./Header.css";
 const Header = (props) => {
   const [width, setWidth] = useState();
   const [height, setHeight] = useState();
+  const [speed, setSpeed] = useState();
 
   const {
     algorithm,
+    animationSpeed,
     fenceToggle,
     gridSetup,
     defaultStateSizeChange,
@@ -49,6 +51,8 @@ const Header = (props) => {
     let array = [width, height];
     defaultStateSizeChange();
     gridSetup(array);
+    let speedOfAnimation = speed;
+    animationSpeed(speedOfAnimation);
   };
 
   return (
@@ -157,8 +161,17 @@ const Header = (props) => {
                       className="Row-Input"
                     />
                     <Form.Group controlId="formBasicRange">
-                      <Form.Label> Speed</Form.Label>
-                      <Form.Control type="range" />
+                      <Form.Label> Animation Speed</Form.Label>
+                      <Form.Control
+                        type="range"
+                        size="sm"
+                        min="1"
+                        max="10"
+                        value={speed}
+                        onChange={(e) => setSpeed(e.target.value)}
+                        placeholder="Speed"
+                        className="Speed-Input"
+                      />
                     </Form.Group>
                     <Button variant="danger" type="submit" block>
                       Update

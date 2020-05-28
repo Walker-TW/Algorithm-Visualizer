@@ -47,6 +47,7 @@ export default class Visualizer extends Component {
     nodesProccessed: "None Yet",
     fastestPath: "None Yet",
     algorithmRan: "None Yet",
+    speed: 5,
   };
 
   // setup methods
@@ -309,13 +310,20 @@ export default class Visualizer extends Component {
     });
   };
 
+  animationSpeed = (speedGiven) => {
+    const speedOfAlgorithm = 10 - parseInt(speedGiven);
+    this.setState({ speed: speedOfAlgorithm });
+    console.log(this.state.speed, "the speed it has been set to");
+  };
+
   // animation
   animateAlgorithm = (visitedNodesInOrder, nodesInShortestPathOrder) => {
+    const animationTimer = this.state.speed || 5;
     for (let i = 1; i <= visitedNodesInOrder.length - 1; i++) {
       if (i === visitedNodesInOrder.length - 1) {
         setTimeout(() => {
           this.animateShortestPath(nodesInShortestPathOrder);
-        }, 5 * i);
+        }, animationTimer * i);
         return;
       }
       setTimeout(() => {
@@ -331,18 +339,20 @@ export default class Visualizer extends Component {
             ? "visited"
             : ""
         }`;
-      }, 5 * i);
+      }, animationTimer * i);
     }
   };
 
   animateShortestPath = (nodesInShortestPathOrder) => {
+    const animationTimer = this.state.speed;
+    console.log(animationTimer, "animate shortest path");
     for (let i = 1; i < nodesInShortestPathOrder.length - 1; i++) {
       setTimeout(() => {
         const node = nodesInShortestPathOrder[i];
         document.getElementById(
           `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
         ).className = "Node path";
-      }, 50 * i);
+      }, animationTimer * 10 * i);
     }
   };
 
@@ -364,6 +374,7 @@ export default class Visualizer extends Component {
       <Fragment>
         <Header
           algorithm={algorithm}
+          animationSpeed={this.animationSpeed}
           defaultStateSizeChange={this.defaultStateSizeChange}
           gridSetup={this.gridSetup}
           ready={start.present && finish.present}

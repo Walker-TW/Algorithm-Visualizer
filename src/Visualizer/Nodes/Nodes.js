@@ -23,7 +23,7 @@ const Nodes = (props) => {
         () => {
           setGrid(propsGrid);
         },
-        console.log("")
+        console.log("Hope Your Enjoying The App!")
       );
     },
     [propsGrid, grid]
