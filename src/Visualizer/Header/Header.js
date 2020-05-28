@@ -154,6 +154,19 @@ const Header = (props) => {
                           onChange={(e) => setWidth(e.target.value)}
                           className="Column-Input"
                         />
+                        <Form.Control
+                          type="range"
+                          size="sm"
+                          min="1"
+                          max="100"
+                          value={width}
+                          onChange={(e) => {
+                            setWidth(e.target.value);
+                            resizeGrid([width, height]);
+                          }}
+                          className="range-input"
+                        />
+                        <NavDropdown.Divider />
                         <FormControl
                           type="text"
                           size="sm"
@@ -161,6 +174,19 @@ const Header = (props) => {
                           onChange={(e) => setHeight(e.target.value)}
                           className="Row-Input"
                         />
+                        <Form.Control
+                          type="range"
+                          size="sm"
+                          min="1"
+                          max="50"
+                          value={height}
+                          onChange={(e) => {
+                            setHeight(e.target.value);
+                            resizeGrid([width, height]);
+                          }}
+                          className="range-input"
+                        />
+                        <NavDropdown.Divider />
                       </Col>
                       <Col>
                         <Form.Group controlId="formBasicRange">
@@ -172,8 +198,7 @@ const Header = (props) => {
                             max="5"
                             value={speed}
                             onChange={(e) => setSpeed(e.target.value)}
-                            placeholder="Speed"
-                            className="Speed-Input"
+                            className="range-input"
                           />
                         </Form.Group>
                       </Col>
