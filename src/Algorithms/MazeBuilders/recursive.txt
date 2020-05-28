@@ -15,5 +15,16 @@ max = orientation === 'horizontal' ? colEnd : rowEnd
 
 randomIndex = Math.floor(1 + Math.random() * max - 1)
 
+grid[randomIndex].forEach(node => node.fence)
+
+one vertical column somewhere with one gap + border
+
+rowStart, rowEnd, colStart, colEnd
+
+if dist(rowStart - currentCol) < 
+divide(grid, rowStart, rowEnd,   )
+
+
+
 
 }

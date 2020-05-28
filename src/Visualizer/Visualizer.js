@@ -24,7 +24,7 @@ import {
   findShortestPathDFS,
 } from '../Algorithms/PathFinders/dfs.js';
 
-import { recursiveDivision } from '../Algorithms/MazeBuilders/RecursiveDivision';
+import { recursiveDivision } from '../Algorithms/MazeBuilders/Scratch';
 import './Visualizer.css';
 
 export default class Visualizer extends Component {
@@ -98,8 +98,8 @@ export default class Visualizer extends Component {
   };
 
   gridSetup = () => {
-    // let [width, height] = this.getDimensions();
-    let [width, height] = [10, 10];
+    let [width, height] = this.getDimensions();
+    // let [width, height] = [20, 10];
     let grid = [];
     for (let rowIndex = 0; rowIndex < width; rowIndex++) {
       let current_row = [];
@@ -130,10 +130,12 @@ export default class Visualizer extends Component {
     const { grid } = this.state;
     const { rowIndex, colIndex } = gridId;
     const node = grid[rowIndex][colIndex];
-    if (type === 'fence' || type === 'passage') {
+    if (type === 'passage') {
+      node.fence = false;
+      node[type] = !node[type];
+    } else if (type === 'fence') {
       node[type] = !node[type];
     } else {
-      console.log(node.fence, 'SHOW');
       node[type] = true;
       this.setState({
         [type]: {
@@ -175,7 +177,7 @@ export default class Visualizer extends Component {
       node.pastNode = null;
     };
 
-    if (node.start || node.fence || node.finish) {
+    if (node.start || node.fence || node.finish || node.passage) {
       resetNode(node);
     } else {
       resetNode(node);
@@ -286,6 +288,8 @@ export default class Visualizer extends Component {
         ? 'finish'
         : node.fence
         ? 'fence'
+        : node.passage
+        ? 'passage'
         : node.visited
         ? 'visited'
         : ''

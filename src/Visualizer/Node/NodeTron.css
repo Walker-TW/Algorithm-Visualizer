@@ -1,6 +1,6 @@
 .Node {
-  width: 50px;
-  height: 50px;
+  width: 20px;
+  height: 20px;
   border: 2px solid rgb(189, 189, 5);
   /* background-color: black; */
   /* opacity: 0.5; */
@@ -22,6 +22,9 @@
   }
 }
 
+.passage {
+  background-color: olive;
+}
 .visited {
   animation-name: visitedAnimation;
   animation-duration: 0.3s;

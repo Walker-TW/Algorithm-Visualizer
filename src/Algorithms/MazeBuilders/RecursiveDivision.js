@@ -126,7 +126,7 @@ export const divide = function (
     let currentRow = [];
     for (let i = rowStart; i < max; i++) {
       console.log(i, max, 'the i number');
-      const node = grid[i][max - 1];
+      const node = grid[i][max];
       console.log(node, 'the node its doing');
       if (!node.fence && !node.passage) {
         currentRow.push(node);
