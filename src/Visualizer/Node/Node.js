@@ -93,12 +93,12 @@ export default class Node extends Component {
 }
 
 Node.propTypes = {
+  fenceToggle: PropTypes.bool.isRequired,
   gridId: PropTypes.object.isRequired,
   gridHasStart: PropTypes.bool.isRequired,
   gridHasFinish: PropTypes.bool.isRequired,
-  nodeFlag: PropTypes.func.isRequired,
   mouseFlag: PropTypes.func.isRequired,
   mouseToggle: PropTypes.bool.isRequired,
-  fenceToggle: PropTypes.bool.isRequired,
+  nodeFlag: PropTypes.func.isRequired,
   resetStartFinish: PropTypes.func.isRequired,
 };

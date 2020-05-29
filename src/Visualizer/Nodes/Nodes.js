@@ -58,13 +58,14 @@ const Nodes = (props) => {
 };
 
 Nodes.propTypes = {
+  fenceToggle: PropTypes.bool.isRequired,
   grid: PropTypes.array.isRequired,
   gridHasStart: PropTypes.bool.isRequired,
   gridHasFinish: PropTypes.bool.isRequired,
-  nodeFlag: PropTypes.func.isRequired,
   mouseFlag: PropTypes.func.isRequired,
   mouseToggle: PropTypes.bool.isRequired,
-  fenceToggle: PropTypes.bool.isRequired,
+  nodeFlag: PropTypes.func.isRequired,
+  resetStartFinish: PropTypes.func.isRequired,
 };
 
 export default Nodes;

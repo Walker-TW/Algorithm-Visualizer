@@ -12,6 +12,7 @@ const defaultProps = {
   mouseFlag: () => {},
   mouseToggle: false,
   fenceToggle: false,
+  resetStartFinish: () => {},
   updateNode: () => {},
 };
 
