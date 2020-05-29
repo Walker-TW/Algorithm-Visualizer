@@ -16,3 +16,17 @@
 .slider.slider-horizontal {
   width: 70%;
 }
+
+.github-img {
+  width: 70%;
+  height: auto;
+  margin: 5px 20% 5px 50%;
+}
+.linkedin-img {
+  width: 90%;
+  height: auto;
+  margin: 5px 20% 5px 50%;
+}
+.image-link {
+  width: 30%;
+}
