@@ -8,7 +8,6 @@ exports[`<Visualizer /> renders 1`] = `
     fenceToggle={[Function]}
     ready={false}
     resetFences={[Function]}
-    resetStartFinish={[Function]}
     resetVisited={[Function]}
     resizeGrid={[Function]}
     run={[Function]}
@@ -6413,6 +6412,7 @@ exports[`<Visualizer /> renders 1`] = `
     mouseFlag={[Function]}
     mouseToggle={false}
     nodeFlag={[Function]}
+    resetStartFinish={[Function]}
   />
 </Fragment>
 `;

@@ -240,41 +240,11 @@ exports[`<Header /> renders 1`] = `
                 }
               }
               disabled={false}
-              id="start-reset"
-              onClick={[Function]}
-              variant="dark"
-            >
-              Reset Start
-            </DropdownItem>
-            <DropdownItem
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "SafeAnchor",
-                  "render": [Function],
-                }
-              }
-              disabled={false}
               id="fence-reset-btn"
               onClick={[MockFunction]}
               variant="dark"
             >
               Reset Fences
-            </DropdownItem>
-            <DropdownItem
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "SafeAnchor",
-                  "render": [Function],
-                }
-              }
-              disabled={false}
-              id="end-reset"
-              onClick={[Function]}
-              variant="dark"
-            >
-              Reset End
             </DropdownItem>
           </SplitButton>
         </Nav>

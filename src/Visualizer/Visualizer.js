@@ -411,7 +411,6 @@ export default class Visualizer extends Component {
           setAlgorithm={this.setAlgorithm}
           fenceToggle={this.fenceToggler}
           resetFences={this.resetFences}
-          resetStartFinish={this.resetStartFinish}
           resetVisited={this.resetVisited}
           speed={speed}
         />
@@ -435,6 +434,7 @@ export default class Visualizer extends Component {
           mouseFlag={this.mouseFlag}
           updateNode={this.updateNode}
           mouseToggle={mouseToggle}
+          resetStartFinish={this.resetStartFinish}
         />
       </Fragment>
     );

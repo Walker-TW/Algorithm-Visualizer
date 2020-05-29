@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Button,
   Col,
@@ -18,7 +18,6 @@ import PropTypes from 'prop-types';
 import { getDimensions, getMax } from '../../Helpers/getDimensions';
 import './Header.css';
 
-
 const Header = (props) => {
   const {
     algorithm,
@@ -27,7 +26,6 @@ const Header = (props) => {
     ready,
     resizeGrid,
     resetFences,
-    resetStartFinish,
     resetVisited,
     run: propRun,
     setAlgorithm,
@@ -45,12 +43,12 @@ const Header = (props) => {
   const handleShow = () => setShow(true);
 
   const run = () => {
-    if (algorithm === "") {
-      alert("Please select an algorithm");
+    if (algorithm === '') {
+      alert('Please select an algorithm');
     }
     if (!ready) {
       alert(
-        "Please choose a start and finish point before running by clicking on the desired squares"
+        'Please choose a start and finish point before running by clicking on the desired squares'
       );
     }
     if (ready && algorithm) {
@@ -62,7 +60,7 @@ const Header = (props) => {
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand
         href="https://github.com/Walker-TW/Algorithm-Visualizer"
-        children={"Algo-Visualiser"}
+        children={'Algo-Visualiser'}
       />
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
@@ -107,9 +105,9 @@ const Header = (props) => {
             <Nav>
               <Button
                 id="maze-btn"
-                style={{ border: "2px solid cyan", color: "cyan" }}
+                style={{ border: '2px solid cyan', color: 'cyan' }}
                 variant="dark"
-                children={"How To Use"}
+                children={'How To Use'}
                 onClick={handleShow}
               />
               <Modal show={show} onHide={handleClose}>
@@ -122,15 +120,15 @@ const Header = (props) => {
                       1. Place a start and end point by clicking on the grid!
                     </Row>
                     <Row>
-                      {" "}
+                      {' '}
                       2. Then place fences by checking "Fence Mode" and clicking
-                      on the grid.{" "}
+                      on the grid.{' '}
                     </Row>
                     <Row>
-                      3. Choose an algorithm via the "Algorithms" dropdown.{" "}
+                      3. Choose an algorithm via the "Algorithms" dropdown.{' '}
                     </Row>
                     <Row>
-                      4. Run it via pressing the green "Run Algorithm" button.{" "}
+                      4. Run it via pressing the green "Run Algorithm" button.{' '}
                     </Row>
                     <Row>5. Enjoy!</Row>
                   </Container>
@@ -143,15 +141,15 @@ const Header = (props) => {
               </Modal>
               <Button
                 id="run-btn"
-                style={{ border: "2px solid chartreuse", color: "chartreuse" }}
+                style={{ border: '2px solid chartreuse', color: 'chartreuse' }}
                 variant="dark"
                 onClick={run}
                 children={
                   algorithm
                     ? `Let's Run ${algorithm}`
-                    : "Please Select An Algorithm"
+                    : 'Please Select An Algorithm'
                 }
-                disabled={!ready || algorithm === ""}
+                disabled={!ready || algorithm === ''}
               />
               <SplitButton
                 title="Reset Visited"
@@ -161,23 +159,10 @@ const Header = (props) => {
                 variant="dark"
               >
                 <Dropdown.Item
-                  id="start-reset"
-                  onClick={() => resetStartFinish('start')}
-                  variant="dark"
-                  children={'Reset Start'}
-                />
-                <Dropdown.Item
                   id="fence-reset-btn"
                   onClick={resetFences}
                   variant="dark"
                   children={'Reset Fences'}
-                />
-
-                <Dropdown.Item
-                  id="end-reset"
-                  onClick={() => resetStartFinish('finish')}
-                  variant="dark"
-                  children={'Reset End'}
                 />
               </SplitButton>
             </Nav>
@@ -191,7 +176,7 @@ const Header = (props) => {
                     id="fence-check"
                     name="fences"
                     label="Fence mode"
-                    style={{ color: "white" }}
+                    style={{ color: 'white' }}
                     onChange={fenceToggle}
                   />
                 </Form>
@@ -281,32 +266,32 @@ const Header = (props) => {
                 <Container>
                   <Row>
                     <NavDropdown.Item
-                      id={"basselGit"}
+                      id={'basselGit'}
                       children={"Bassel's Git"}
-                      href={"https://github.com/basselalsayed"}
+                      href={'https://github.com/basselalsayed'}
                     />
                   </Row>
                   <Row>
                     <NavDropdown.Item
-                      id={"basselLink"}
+                      id={'basselLink'}
                       children={"Bassel's LinkedIn"}
-                      href={"https://www.linkedin.com/in/bsas/"}
+                      href={'https://www.linkedin.com/in/bsas/'}
                     />
                   </Row>
                 </Container>
                 <Container>
                   <Row>
                     <NavDropdown.Item
-                      id={"tomGit"}
+                      id={'tomGit'}
                       children={"Tom's Git"}
-                      href={"https://github.com/Walker-TW"}
+                      href={'https://github.com/Walker-TW'}
                     />
                   </Row>
                   <Row>
                     <NavDropdown.Item
-                      id={"tomLink"}
+                      id={'tomLink'}
                       children={"Tom's LinkedIn"}
-                      href={"https://www.linkedin.com/in/thomas-w-walker/"}
+                      href={'https://www.linkedin.com/in/thomas-w-walker/'}
                     />
                   </Row>
                 </Container>
@@ -326,7 +311,6 @@ Header.propTypes = {
   fenceToggle: PropTypes.func.isRequired,
   ready: PropTypes.bool.isRequired,
   resetFences: PropTypes.func.isRequired,
-  resetStartFinish: PropTypes.func.isRequired,
   resetVisited: PropTypes.func.isRequired,
   resizeGrid: PropTypes.func.isRequired,
   run: PropTypes.func.isRequired,
