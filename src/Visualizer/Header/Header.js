@@ -300,6 +300,5 @@ Header.propTypes = {
   resizeGrid: PropTypes.func.isRequired,
   run: PropTypes.func.isRequired,
   setAlgorithm: PropTypes.func.isRequired,
-  reset: PropTypes.func.isRequired,
   speed: PropTypes.string.isRequired,
 };

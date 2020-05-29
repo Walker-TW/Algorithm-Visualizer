@@ -6,29 +6,32 @@ import Header from './Header';
 
 const runSpy = jest.fn(() => {});
 const fenceToggleSpy = jest.fn(() => {});
-const resetSpy = jest.fn(() => {});
+
 const setAlgorithmSpy = jest.fn(() => {});
+const animationSpeedSpy = jest.fn(() => {});
+const resetFencesSpy = jest.fn(() => {});
+const resetStartFinishSpy = jest.fn(() => {});
+const resetVisitedSpy = jest.fn(() => {});
+const resizeGridSpy = jest.fn(() => {});
 
 const defaultProps = {
   algorithm: '',
-  animationSpeed: () => {},
-  run: runSpy,
+  animationSpeed: animationSpeedSpy,
   fenceToggle: fenceToggleSpy,
-  resetFences: resetSpy,
-  resizeGrid: () => {},
-  resetStartFinish: resetSpy,
-  resetVisited: resetSpy,
+  resetFences: resetFencesSpy,
+  resizeGrid: resizeGridSpy,
+  resetStartFinish: resetStartFinishSpy,
+  resetVisited: resetVisitedSpy,
+  run: runSpy,
   setAlgorithm: setAlgorithmSpy,
+  speed: '5',
   ready: false,
 };
 
 const readyProps = {
+  ...defaultProps,
   algorithm: 'dijkstra',
   ready: true,
-  run: runSpy,
-  fenceToggle: fenceToggleSpy,
-  reset: resetSpy,
-  setAlgorithm: setAlgorithmSpy,
 };
 
 describe('<Header />', () => {
@@ -58,7 +61,7 @@ describe('<Header />', () => {
 
   it('calls the reset spy onclick', () => {
     wrapper.find('#reset-btn').simulate('click');
-    expect(resetSpy.mock.calls.length).toEqual(1);
+    expect(resetVisitedSpy.mock.calls.length).toEqual(1);
   });
 
   it('calls the set algorithm spy onclick', () => {

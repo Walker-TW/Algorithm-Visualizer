@@ -357,6 +357,7 @@ exports[`<Header /> renders 1`] = `
                       min="1"
                       onChange={[Function]}
                       type="range"
+                      value="5"
                     />
                   </Col>
                 </Form>
