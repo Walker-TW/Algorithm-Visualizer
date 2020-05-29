@@ -215,7 +215,7 @@ exports[`<Header /> renders 1`] = `
             type="button"
             variant="dark"
           >
-            Please Select An Algorithm
+            Please Select Algorithm
           </Button>
           <SplitButton
             id="reset-btn"
@@ -397,34 +397,39 @@ exports[`<Header /> renders 1`] = `
                     }
                   }
                   disabled={false}
+                  id="bassel"
+                >
+                  Bassel
+                </DropdownItem>
+                <a
+                  className="image-link"
                   href="https://github.com/basselalsayed"
-                  id="basselGit"
                 >
-                  Bassel's Git
-                </DropdownItem>
-              </Row>
-              <Row
-                noGutters={false}
-              >
-                <DropdownItem
-                  as={
-                    Object {
-                      "$$typeof": Symbol(react.forward_ref),
-                      "displayName": "SafeAnchor",
-                      "render": [Function],
-                    }
-                  }
-                  disabled={false}
+                  <Image
+                    alt="Github"
+                    className="github-img"
+                    fluid={true}
+                    rounded={false}
+                    roundedCircle={false}
+                    src="/images/github.png"
+                    thumbnail={false}
+                  />
+                </a>
+                <a
+                  className="image-link"
                   href="https://www.linkedin.com/in/bsas/"
-                  id="basselLink"
                 >
-                  Bassel's LinkedIn
-                </DropdownItem>
+                  <Image
+                    alt="LinkedIn"
+                    className="linkedin-img"
+                    fluid={true}
+                    rounded={false}
+                    roundedCircle={false}
+                    src="/images/linkedin.png"
+                    thumbnail={false}
+                  />
+                </a>
               </Row>
-            </Container>
-            <Container
-              fluid={false}
-            >
               <Row
                 noGutters={false}
               >
@@ -437,29 +442,38 @@ exports[`<Header /> renders 1`] = `
                     }
                   }
                   disabled={false}
+                  id="tom"
+                >
+                  Tom
+                </DropdownItem>
+                <a
+                  className="image-link"
                   href="https://github.com/Walker-TW"
-                  id="tomGit"
                 >
-                  Tom's Git
-                </DropdownItem>
-              </Row>
-              <Row
-                noGutters={false}
-              >
-                <DropdownItem
-                  as={
-                    Object {
-                      "$$typeof": Symbol(react.forward_ref),
-                      "displayName": "SafeAnchor",
-                      "render": [Function],
-                    }
-                  }
-                  disabled={false}
-                  href="https://www.linkedin.com/in/thomas-w-walker/"
-                  id="tomLink"
+                  <Image
+                    alt="Github"
+                    className="github-img"
+                    fluid={true}
+                    rounded={false}
+                    roundedCircle={false}
+                    src="/images/github.png"
+                    thumbnail={false}
+                  />
+                </a>
+                <a
+                  className="image-link"
+                  href="https://www.linkedin.com/in/thomas-w-walker"
                 >
-                  Tom's LinkedIn
-                </DropdownItem>
+                  <Image
+                    alt="LinkedIn"
+                    className="linkedin-img"
+                    fluid={true}
+                    rounded={false}
+                    roundedCircle={false}
+                    src="/images/linkedin.png"
+                    thumbnail={false}
+                  />
+                </a>
               </Row>
             </Container>
           </DropdownButton>

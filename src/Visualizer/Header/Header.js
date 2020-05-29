@@ -7,6 +7,7 @@ import {
   DropdownButton,
   Form,
   FormControl,
+  Image,
   Nav,
   Navbar,
   Modal,
@@ -55,6 +56,23 @@ const Header = (props) => {
       propRun();
     }
   };
+
+  const gitHubImage = (
+    <Image
+      src="/images/github.png"
+      className={'github-img'}
+      alt={'Github'}
+      fluid
+    />
+  );
+  const linkedInImage = (
+    <Image
+      src="/images/linkedin.png"
+      alt={'LinkedIn'}
+      className={'linkedin-img'}
+      fluid
+    />
+  );
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -147,7 +165,7 @@ const Header = (props) => {
                 children={
                   algorithm
                     ? `Let's Run ${algorithm}`
-                    : 'Please Select An Algorithm'
+                    : 'Please Select Algorithm'
                 }
                 disabled={!ready || algorithm === ''}
               />
@@ -265,33 +283,29 @@ const Header = (props) => {
               >
                 <Container>
                   <Row>
-                    <NavDropdown.Item
-                      id={'basselGit'}
-                      children={"Bassel's Git"}
-                      href={'https://github.com/basselalsayed'}
+                    <NavDropdown.Item id={'bassel'} children={'Bassel'} />
+                    <a
+                      className={'image-link'}
+                      href="https://github.com/basselalsayed"
+                      children={gitHubImage}
+                    />
+                    <a
+                      className={'image-link'}
+                      href="https://www.linkedin.com/in/bsas/"
+                      children={linkedInImage}
                     />
                   </Row>
                   <Row>
-                    <NavDropdown.Item
-                      id={'basselLink'}
-                      children={"Bassel's LinkedIn"}
-                      href={'https://www.linkedin.com/in/bsas/'}
+                    <NavDropdown.Item id={'tom'} children={'Tom'} />
+                    <a
+                      className={'image-link'}
+                      href="https://github.com/Walker-TW"
+                      children={gitHubImage}
                     />
-                  </Row>
-                </Container>
-                <Container>
-                  <Row>
-                    <NavDropdown.Item
-                      id={'tomGit'}
-                      children={"Tom's Git"}
-                      href={'https://github.com/Walker-TW'}
-                    />
-                  </Row>
-                  <Row>
-                    <NavDropdown.Item
-                      id={'tomLink'}
-                      children={"Tom's LinkedIn"}
-                      href={'https://www.linkedin.com/in/thomas-w-walker/'}
+                    <a
+                      className={'image-link'}
+                      href="https://www.linkedin.com/in/thomas-w-walker"
+                      children={linkedInImage}
                     />
                   </Row>
                 </Container>
