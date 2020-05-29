@@ -49,7 +49,14 @@ export default class Visualizer extends Component {
     nodesProccessed: 'None Yet',
     fastestPath: 'None Yet',
     algorithmRan: 'None Yet',
-    speed: 5,
+    speed: '4',
+    speedHash: {
+      '1': 25,
+      '2': 18,
+      '3': 13,
+      '4': 7,
+      '5': 2,
+    },
   };
 
   // setup methods
@@ -135,6 +142,19 @@ export default class Visualizer extends Component {
   setAlgorithm = (selection) => {
     if (this.state.algorithm !== selection)
       this.setState({ algorithm: selection });
+  };
+
+  statsUpdate = (algorithm, nodesProccessed, fastestPath, runtime) => {
+    this.setState({
+      algorithmRan: algorithm,
+      nodesProccessed: nodesProccessed,
+      fastestPath: fastestPath,
+      runtime: runtime,
+    });
+  };
+
+  animationSpeed = (speedGiven) => {
+    this.setState({ speed: speedGiven });
   };
 
   // reset
@@ -324,25 +344,11 @@ export default class Visualizer extends Component {
     );
   };
 
-  statsUpdate = (algorithm, nodesProccessed, fastestPath, runtime) => {
-    this.setState({
-      algorithmRan: algorithm,
-      nodesProccessed: nodesProccessed,
-      fastestPath: fastestPath,
-      runtime: runtime,
-    });
-  };
-
-  animationSpeed = (speedGiven) => {
-    const hash = { '1': 25, '2': 18, '3': 13, '4': 7, '5': 3 };
-    const speedOfAlgorithm = hash[speedGiven] || 5;
-
-    this.setState({ speed: speedOfAlgorithm });
-  };
-
   // animation
   animateAlgorithm = (visitedNodesInOrder, nodesInShortestPathOrder) => {
-    const animationTimer = this.state.speed;
+    const { speed, speedHash } = this.state;
+    const animationTimer = speedHash[speed];
+
     for (let i = 1; i <= visitedNodesInOrder.length - 1; i++) {
       if (i === visitedNodesInOrder.length - 1) {
         setTimeout(() => {
@@ -382,7 +388,6 @@ export default class Visualizer extends Component {
   render() {
     const {
       algorithm,
-      dimensions,
       fenceToggle,
       finish,
       grid,
@@ -392,6 +397,7 @@ export default class Visualizer extends Component {
       nodesProccessed,
       fastestPath,
       algorithmRan,
+      speed,
     } = this.state;
 
     return (
@@ -407,6 +413,7 @@ export default class Visualizer extends Component {
           resetFences={this.resetFences}
           resetStartFinish={this.resetStartFinish}
           resetVisited={this.resetVisited}
+          speed={speed}
         />
         {!start.present && !finish.present ? (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>

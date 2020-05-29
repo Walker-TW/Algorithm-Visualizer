@@ -29,13 +29,14 @@ const Header = (props) => {
     resetVisited,
     run: propRun,
     setAlgorithm,
+    speed: propsSpeed,
   } = props;
 
   const [screenWidth, screenHeight] = getDimensions();
   const [maxWidth, maxHeight] = getMax();
   const [width, setWidth] = useState(Math.ceil(screenWidth));
   const [height, setHeight] = useState(Math.ceil(screenHeight));
-  const [speed, setSpeed] = useState();
+  const [speed, setSpeed] = useState(propsSpeed);
 
   const run = () => {
     if (algorithm === '') {
@@ -49,14 +50,6 @@ const Header = (props) => {
     if (ready && algorithm) {
       propRun();
     }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    resizeGrid([width, height]);
-
-    animationSpeed(speed);
   };
 
   return (
@@ -83,26 +76,31 @@ const Header = (props) => {
                   id={'set-dijkstra'}
                   onClick={() => setAlgorithm('Dijkstra')}
                   children={'Dijkstra'}
+                  active={algorithm === 'Dijkstra'}
                 />
                 <NavDropdown.Item
                   id={'set-astar-euclidean'}
                   onClick={() => setAlgorithm('A* Euclidean')}
                   children={'A* (Euclidean Distance)'}
+                  active={algorithm === 'A* Euclidean'}
                 />
                 <NavDropdown.Item
                   id={'set-astar-manhatten'}
                   onClick={() => setAlgorithm('A* Manhatten')}
                   children={'A* (Manhatten Distance)'}
+                  active={algorithm === 'A* Manhatten'}
                 />
                 <NavDropdown.Item
                   id={'set-depth-first-search'}
                   onClick={() => setAlgorithm('Depth First Search')}
                   children={'Depth First Search'}
+                  active={algorithm === 'Depth First Search'}
                 />
                 <NavDropdown.Item
                   id={'set-breadth-first-search'}
                   onClick={() => setAlgorithm('Breadth First Search')}
                   children={'Breadth First Search'}
+                  active={algorithm === 'Breadth First Search'}
                 />
               </NavDropdown>
             </Nav>
@@ -170,7 +168,7 @@ const Header = (props) => {
               <DropdownButton title="Settings" size="sm" variant="dark">
                 <Container variant="dark">
                   <Row>
-                    <Form onSubmit={handleSubmit} variant="dark" inline>
+                    <Form variant="dark" inline>
                       <Col>
                         Grid Size
                         <FormControl
@@ -233,20 +231,12 @@ const Header = (props) => {
                           min="1"
                           max="5"
                           value={speed}
-                          onChange={(e) => setSpeed(e.target.value)}
+                          onChange={(e) => {
+                            setSpeed(e.target.value);
+                            animationSpeed(speed);
+                          }}
                           custom
                         />
-                        <Button
-                          variant="dark"
-                          type="submit"
-                          style={{
-                            border: '2px solid chartreuse',
-                            color: 'chartreuse',
-                          }}
-                          block
-                        >
-                          Update
-                        </Button>
                       </Col>
                     </Form>
                   </Row>
@@ -301,9 +291,15 @@ export default Header;
 
 Header.propTypes = {
   algorithm: PropTypes.string.isRequired,
-  ready: PropTypes.bool.isRequired,
-  run: PropTypes.func.isRequired,
+  animationSpeed: PropTypes.func.isRequired,
   fenceToggle: PropTypes.func.isRequired,
+  ready: PropTypes.bool.isRequired,
+  resetFences: PropTypes.func.isRequired,
+  resetStartFinish: PropTypes.func.isRequired,
+  resetVisited: PropTypes.func.isRequired,
+  resizeGrid: PropTypes.func.isRequired,
+  run: PropTypes.func.isRequired,
   setAlgorithm: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
+  speed: PropTypes.string.isRequired,
 };

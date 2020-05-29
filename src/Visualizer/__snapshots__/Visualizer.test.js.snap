@@ -13,6 +13,7 @@ exports[`<Visualizer /> renders 1`] = `
     resizeGrid={[Function]}
     run={[Function]}
     setAlgorithm={[Function]}
+    speed="4"
   />
   <Alert
     closeLabel="Close alert"

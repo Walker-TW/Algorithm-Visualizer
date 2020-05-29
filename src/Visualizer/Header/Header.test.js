@@ -11,9 +11,13 @@ const setAlgorithmSpy = jest.fn(() => {});
 
 const defaultProps = {
   algorithm: '',
+  animationSpeed: () => {},
   run: runSpy,
   fenceToggle: fenceToggleSpy,
-  reset: resetSpy,
+  resetFences: resetSpy,
+  resizeGrid: () => {},
+  resetStartFinish: resetSpy,
+  resetVisited: resetSpy,
   setAlgorithm: setAlgorithmSpy,
   ready: false,
 };

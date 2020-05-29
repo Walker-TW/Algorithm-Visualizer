@@ -82,6 +82,7 @@ exports[`<Header /> renders 1`] = `
             title="Algorithms"
           >
             <DropdownItem
+              active={false}
               as={
                 Object {
                   "$$typeof": Symbol(react.forward_ref),
@@ -96,6 +97,7 @@ exports[`<Header /> renders 1`] = `
               Dijkstra
             </DropdownItem>
             <DropdownItem
+              active={false}
               as={
                 Object {
                   "$$typeof": Symbol(react.forward_ref),
@@ -110,6 +112,7 @@ exports[`<Header /> renders 1`] = `
               A* (Euclidean Distance)
             </DropdownItem>
             <DropdownItem
+              active={false}
               as={
                 Object {
                   "$$typeof": Symbol(react.forward_ref),
@@ -124,6 +127,7 @@ exports[`<Header /> renders 1`] = `
               A* (Manhatten Distance)
             </DropdownItem>
             <DropdownItem
+              active={false}
               as={
                 Object {
                   "$$typeof": Symbol(react.forward_ref),
@@ -138,6 +142,7 @@ exports[`<Header /> renders 1`] = `
               Depth First Search
             </DropdownItem>
             <DropdownItem
+              active={false}
               as={
                 Object {
                   "$$typeof": Symbol(react.forward_ref),
@@ -177,6 +182,7 @@ exports[`<Header /> renders 1`] = `
           </Button>
           <SplitButton
             id="reset-btn"
+            onClick={[MockFunction]}
             style={
               Object {
                 "border": "2px solid red",
@@ -213,6 +219,7 @@ exports[`<Header /> renders 1`] = `
               }
               disabled={false}
               id="fence-reset-btn"
+              onClick={[MockFunction]}
               variant="dark"
             >
               Reset Fences
@@ -280,7 +287,6 @@ exports[`<Header /> renders 1`] = `
               >
                 <Form
                   inline={true}
-                  onSubmit={[Function]}
                   variant="dark"
                 >
                   <Col>
@@ -352,21 +358,6 @@ exports[`<Header /> renders 1`] = `
                       onChange={[Function]}
                       type="range"
                     />
-                    <Button
-                      active={false}
-                      block={true}
-                      disabled={false}
-                      style={
-                        Object {
-                          "border": "2px solid chartreuse",
-                          "color": "chartreuse",
-                        }
-                      }
-                      type="submit"
-                      variant="dark"
-                    >
-                      Update
-                    </Button>
                   </Col>
                 </Form>
               </Row>

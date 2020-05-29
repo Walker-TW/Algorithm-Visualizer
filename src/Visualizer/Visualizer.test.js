@@ -34,7 +34,7 @@ describe('<Visualizer />', () => {
   it('renders all 1500 Node components', () => {
     const wrapper = mount(<Visualizer />);
     // expect(wrapper.find(Node)).toEqual(true);
-    expect(wrapper.find(Node).length).toEqual(910);
+    expect(wrapper.find(Node).length).toEqual(450);
   });
 
   it('render a node that will change the start state when clicked', () => {
@@ -58,7 +58,7 @@ describe('<Visualizer />', () => {
     window.resizeTo(375, 667);
 
     const wrapperTwo = mount(<Visualizer />);
-    expect(wrapperTwo.find(Node).length).toEqual(84);
+    expect(wrapperTwo.find(Node).length).toEqual(450);
   });
 
   it('registers if a mouse is held', () => {
