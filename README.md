@@ -105,7 +105,7 @@ AKA the taxi-cab distance will only work on a grid system unlike the euclidean, 
 
 `|(x2-x1)| + |(y2-y1)|`
 
-Because Manhattan moves only in horizontal or vertical verticies it will always find the shortest path. HOWEVER it will much slower than Euclidean so if speed is an issue (especially in huge graphs) while accurancy is not choose Euclidean.
+Because Manhattan moves only in horizontal or vertical verticies it will always find the shortest path. However it will be much slower than Euclidean so if speed is an issue (especially in huge graphs) while accurancy is not choose Euclidean.
 
 ### Breadth First Search
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Button,
   Col,
@@ -9,6 +9,7 @@ import {
   FormControl,
   Nav,
   Navbar,
+  Modal,
   NavDropdown,
   Row,
   SplitButton,
@@ -16,6 +17,7 @@ import {
 import PropTypes from 'prop-types';
 import { getDimensions, getMax } from '../../Helpers/getDimensions';
 import './Header.css';
+
 
 const Header = (props) => {
   const {
@@ -37,14 +39,18 @@ const Header = (props) => {
   const [width, setWidth] = useState(Math.ceil(screenWidth));
   const [height, setHeight] = useState(Math.ceil(screenHeight));
   const [speed, setSpeed] = useState(propsSpeed);
+  const [show, setShow] = useState();
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const run = () => {
-    if (algorithm === '') {
-      alert('Please select an algorithm');
+    if (algorithm === "") {
+      alert("Please select an algorithm");
     }
     if (!ready) {
       alert(
-        'Please choose a start and finish point before running by clicking on the desired squares'
+        "Please choose a start and finish point before running by clicking on the desired squares"
       );
     }
     if (ready && algorithm) {
@@ -56,21 +62,13 @@ const Header = (props) => {
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand
         href="https://github.com/Walker-TW/Algorithm-Visualizer"
-        children={'Algo-Visualiser'}
+        children={"Algo-Visualiser"}
       />
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Container fluid>
-          <Col>
+          <Col md={{ span: 2 }}>
             <Nav className="mr-auto">
-              <NavDropdown title="Mazes">
-                <NavDropdown.Item children={'1'} />
-                <NavDropdown.Divider />
-                <NavDropdown.Item children={'2'} />
-                <NavDropdown.Divider />
-                <NavDropdown.Item children={'3?'} />
-                <NavDropdown.Divider />
-              </NavDropdown>
               <NavDropdown title="Algorithms" id="collasible-nav-dropdown">
                 <NavDropdown.Item
                   id={'set-dijkstra'}
@@ -105,19 +103,55 @@ const Header = (props) => {
               </NavDropdown>
             </Nav>
           </Col>
-          <Col>
+          <Col md={{ span: 4 }}>
             <Nav>
               <Button
+                id="maze-btn"
+                style={{ border: "2px solid cyan", color: "cyan" }}
+                variant="dark"
+                children={"How To Use"}
+                onClick={handleShow}
+              />
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>How To Use</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <Container>
+                    <Row>
+                      1. Place a start and end point by clicking on the grid!
+                    </Row>
+                    <Row>
+                      {" "}
+                      2. Then place fences by checking "Fence Mode" and clicking
+                      on the grid.{" "}
+                    </Row>
+                    <Row>
+                      3. Choose an algorithm via the "Algorithms" dropdown.{" "}
+                    </Row>
+                    <Row>
+                      4. Run it via pressing the green "Run Algorithm" button.{" "}
+                    </Row>
+                    <Row>5. Enjoy!</Row>
+                  </Container>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="primary" onClick={handleClose}>
+                    Close
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+              <Button
                 id="run-btn"
-                style={{ border: '2px solid chartreuse', color: 'chartreuse' }}
+                style={{ border: "2px solid chartreuse", color: "chartreuse" }}
                 variant="dark"
                 onClick={run}
                 children={
                   algorithm
                     ? `Let's Run ${algorithm}`
-                    : 'Please Select An Algorithm'
+                    : "Please Select An Algorithm"
                 }
-                disabled={!ready || algorithm === ''}
+                disabled={!ready || algorithm === ""}
               />
               <SplitButton
                 title="Reset Visited"
@@ -129,14 +163,12 @@ const Header = (props) => {
                 <Dropdown.Item
                   id="start-reset"
                   onClick={() => resetStartFinish('start')}
-                  // style={{ border: '2px solid red', color: 'red' }}
                   variant="dark"
                   children={'Reset Start'}
                 />
                 <Dropdown.Item
                   id="fence-reset-btn"
                   onClick={resetFences}
-                  // style={{ border: '2px solid red', color: 'red' }}
                   variant="dark"
                   children={'Reset Fences'}
                 />
@@ -144,14 +176,13 @@ const Header = (props) => {
                 <Dropdown.Item
                   id="end-reset"
                   onClick={() => resetStartFinish('finish')}
-                  // style={{ border: '2px solid red', color: 'red' }}
                   variant="dark"
                   children={'Reset End'}
                 />
               </SplitButton>
             </Nav>
           </Col>
-          <Col>
+          <Col md={{ span: 4 }}>
             <Nav navbar="true">
               <Container>
                 <Form inline>
@@ -160,7 +191,7 @@ const Header = (props) => {
                     id="fence-check"
                     name="fences"
                     label="Fence mode"
-                    style={{ color: 'white' }}
+                    style={{ color: "white" }}
                     onChange={fenceToggle}
                   />
                 </Form>
@@ -250,32 +281,32 @@ const Header = (props) => {
                 <Container>
                   <Row>
                     <NavDropdown.Item
-                      id={'basselGit'}
+                      id={"basselGit"}
                       children={"Bassel's Git"}
-                      href={'https://github.com/basselalsayed'}
+                      href={"https://github.com/basselalsayed"}
                     />
                   </Row>
                   <Row>
                     <NavDropdown.Item
-                      id={'basselLink'}
+                      id={"basselLink"}
                       children={"Bassel's LinkedIn"}
-                      href={'https://www.linkedin.com/in/bsas/'}
+                      href={"https://www.linkedin.com/in/bsas/"}
                     />
                   </Row>
                 </Container>
                 <Container>
                   <Row>
                     <NavDropdown.Item
-                      id={'tomGit'}
+                      id={"tomGit"}
                       children={"Tom's Git"}
-                      href={'https://github.com/Walker-TW'}
+                      href={"https://github.com/Walker-TW"}
                     />
                   </Row>
                   <Row>
                     <NavDropdown.Item
-                      id={'tomLink'}
+                      id={"tomLink"}
                       children={"Tom's LinkedIn"}
-                      href={'https://www.linkedin.com/in/thomas-w-walker/'}
+                      href={"https://www.linkedin.com/in/thomas-w-walker/"}
                     />
                   </Row>
                 </Container>
