@@ -14,6 +14,7 @@ const Nodes = (props) => {
     nodeFlag,
     mouseFlag,
     updateNode,
+    resetStartFinish,
   } = props;
   const [grid, setGrid] = useState(propsGrid);
 
@@ -46,6 +47,7 @@ const Nodes = (props) => {
                 mouseFlag={mouseFlag}
                 updateNode={updateNode}
                 mouseToggle={mouseToggle}
+                resetStartFinish={resetStartFinish}
               />
             ))}
           </div>

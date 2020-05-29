@@ -435,6 +435,7 @@ export default class Visualizer extends Component {
           mouseFlag={this.mouseFlag}
           updateNode={this.updateNode}
           mouseToggle={mouseToggle}
+          resetStartFinish={this.resetStartFinish}
         />
       </Fragment>
     );

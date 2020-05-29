@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 // import "./Node.css";
-import "./NodeTron.css";
+import './NodeTron.css';
 // import './AnimatedNode.css';
 export default class Node extends Component {
   state = {
@@ -24,7 +24,7 @@ export default class Node extends Component {
     const { gridId, nodeFlag } = this.props;
     const { fence, start, finish } = this.state;
 
-    if (!start && !finish) nodeFlag(gridId, "fence");
+    if (!start && !finish) nodeFlag(gridId, 'fence');
     this.setState({ fence: !fence });
   };
 
@@ -51,18 +51,28 @@ export default class Node extends Component {
   };
 
   clickHandler = () => {
-    const { gridHasStart, gridHasFinish } = this.props;
-    const { start } = this.state;
+    const { gridHasStart, gridHasFinish, resetStartFinish } = this.props;
+    const { start, finish } = this.state;
 
     if (gridHasStart && gridHasFinish) {
       // visual aid
-      document.getElementById("run-btn").innerText = "Click Me!";
-    } else {
-      !gridHasStart
-        ? this.startFinishHandler("start")
-        : gridHasStart && start
-        ? alert("Start and end can't be the same")
-        : this.startFinishHandler("finish");
+      document.getElementById('run-btn').innerText = 'Click Me!';
+      if (start) resetStartFinish('start');
+      if (finish) resetStartFinish('finish');
+    }
+    if (!gridHasStart) {
+      if (finish) {
+        alert("Start and end can't be the same");
+      } else {
+        this.startFinishHandler('start');
+      }
+    }
+    if (gridHasStart && !gridHasFinish) {
+      if (start) {
+        alert("Start and end can't be the same");
+      } else {
+        this.startFinishHandler('finish');
+      }
     }
   };
 
@@ -74,7 +84,7 @@ export default class Node extends Component {
         onMouseEnter={this.mouseEnterHandler}
         onMouseUp={this.mouseUpHandler}
         className={`Node ${
-          start ? "start" : finish ? "finish" : fence ? "fence" : ""
+          start ? 'start' : finish ? 'finish' : fence ? 'fence' : ''
         }`}
         id={this.props.id}
       />
@@ -90,4 +100,5 @@ Node.propTypes = {
   mouseFlag: PropTypes.func.isRequired,
   mouseToggle: PropTypes.bool.isRequired,
   fenceToggle: PropTypes.bool.isRequired,
+  resetStartFinish: PropTypes.func.isRequired,
 };
