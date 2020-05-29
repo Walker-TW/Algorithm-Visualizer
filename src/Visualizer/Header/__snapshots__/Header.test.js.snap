@@ -22,61 +22,18 @@ exports[`<Header /> renders 1`] = `
     <Container
       fluid={true}
     >
-      <Col>
+      <Col
+        md={
+          Object {
+            "span": 2,
+          }
+        }
+      >
         <Nav
           className="mr-auto"
           fill={false}
           justify={false}
         >
-          <NavDropdown
-            title="Mazes"
-          >
-            <DropdownItem
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "SafeAnchor",
-                  "render": [Function],
-                }
-              }
-              disabled={false}
-            >
-              1
-            </DropdownItem>
-            <DropdownDivider
-              role="separator"
-            />
-            <DropdownItem
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "SafeAnchor",
-                  "render": [Function],
-                }
-              }
-              disabled={false}
-            >
-              2
-            </DropdownItem>
-            <DropdownDivider
-              role="separator"
-            />
-            <DropdownItem
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "SafeAnchor",
-                  "render": [Function],
-                }
-              }
-              disabled={false}
-            >
-              3?
-            </DropdownItem>
-            <DropdownDivider
-              role="separator"
-            />
-          </NavDropdown>
           <NavDropdown
             id="collasible-nav-dropdown"
             title="Algorithms"
@@ -154,11 +111,91 @@ exports[`<Header /> renders 1`] = `
           </NavDropdown>
         </Nav>
       </Col>
-      <Col>
+      <Col
+        md={
+          Object {
+            "span": 4,
+          }
+        }
+      >
         <Nav
           fill={false}
           justify={false}
         >
+          <Button
+            active={false}
+            disabled={false}
+            id="maze-btn"
+            onClick={[Function]}
+            style={
+              Object {
+                "border": "2px solid cyan",
+                "color": "cyan",
+              }
+            }
+            type="button"
+            variant="dark"
+          >
+            How To Use
+          </Button>
+          <Bootstrap(Modal)
+            onHide={[Function]}
+          >
+            <ModalHeader
+              closeButton={true}
+              closeLabel="Close"
+            >
+              <ModalTitle>
+                How To Use
+              </ModalTitle>
+            </ModalHeader>
+            <ModalBody>
+              <Container
+                fluid={false}
+              >
+                <Row
+                  noGutters={false}
+                >
+                  1. Place a start and end point by clicking on the grid!
+                </Row>
+                <Row
+                  noGutters={false}
+                >
+                   
+                  2. Then place fences by checking "Fence Mode" and clicking on the grid.
+                   
+                </Row>
+                <Row
+                  noGutters={false}
+                >
+                  3. Choose an algorithm via the "Algorithms" dropdown.
+                   
+                </Row>
+                <Row
+                  noGutters={false}
+                >
+                  4. Run it via pressing the green "Run Algorithm" button.
+                   
+                </Row>
+                <Row
+                  noGutters={false}
+                >
+                  5. Enjoy!
+                </Row>
+              </Container>
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                active={false}
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+                variant="primary"
+              >
+                Close
+              </Button>
+            </ModalFooter>
+          </Bootstrap(Modal)>
           <Button
             active={false}
             disabled={true}
@@ -193,7 +230,13 @@ exports[`<Header /> renders 1`] = `
           </Button>
         </Nav>
       </Col>
-      <Col>
+      <Col
+        md={
+          Object {
+            "span": 4,
+          }
+        }
+      >
         <Nav
           fill={false}
           justify={false}

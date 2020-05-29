@@ -70,7 +70,7 @@ const Header = (props) => {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Container fluid>
-          <Col>
+          <Col md={{ span: 2 }}>
             <Nav className="mr-auto">
               <NavDropdown title="Algorithms" id="collasible-nav-dropdown">
                 <NavDropdown.Item
@@ -101,7 +101,7 @@ const Header = (props) => {
               </NavDropdown>
             </Nav>
           </Col>
-          <Col>
+          <Col md={{ span: 4 }}>
             <Nav>
               <Button
                 id="maze-btn"
@@ -160,7 +160,7 @@ const Header = (props) => {
               />
             </Nav>
           </Col>
-          <Col>
+          <Col md={{ span: 4 }}>
             <Nav navbar="true">
               <Container>
                 <Form inline>
