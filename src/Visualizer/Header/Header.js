@@ -3,6 +3,7 @@ import {
   Button,
   Col,
   Container,
+  Dropdown,
   DropdownButton,
   Form,
   FormControl,
@@ -10,9 +11,10 @@ import {
   Navbar,
   NavDropdown,
   Row,
+  SplitButton,
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import getDimensions from '../../Helpers/getDimensions';
+import { getDimensions, getMax } from '../../Helpers/getDimensions';
 import './Header.css';
 
 const Header = (props) => {
@@ -20,15 +22,17 @@ const Header = (props) => {
     algorithm,
     animationSpeed,
     fenceToggle,
-    resizeGrid,
     ready,
+    resizeGrid,
+    resetFences,
+    resetStartFinish,
+    resetVisited,
     run: propRun,
-    reset,
     setAlgorithm,
   } = props;
 
   const [screenWidth, screenHeight] = getDimensions();
-
+  const [maxWidth, maxHeight] = getMax();
   const [width, setWidth] = useState(Math.ceil(screenWidth));
   const [height, setHeight] = useState(Math.ceil(screenHeight));
   const [speed, setSpeed] = useState();
@@ -49,11 +53,10 @@ const Header = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let dimensions = [width, height];
-    resizeGrid(dimensions);
 
-    let speedOfAnimation = speed;
-    animationSpeed(speedOfAnimation);
+    resizeGrid([width, height]);
+
+    animationSpeed(speed);
   };
 
   return (
@@ -118,13 +121,36 @@ const Header = (props) => {
                 }
                 disabled={!ready || algorithm === ''}
               />
-              <Button
+              <SplitButton
+                title="Reset Visited"
                 id="reset-btn"
                 style={{ border: '2px solid red', color: 'red' }}
+                onClick={resetVisited}
                 variant="dark"
-                onClick={reset}
-                children={'Reset'}
-              />
+              >
+                <Dropdown.Item
+                  id="start-reset"
+                  onClick={() => resetStartFinish('start')}
+                  // style={{ border: '2px solid red', color: 'red' }}
+                  variant="dark"
+                  children={'Reset Start'}
+                />
+                <Dropdown.Item
+                  id="fence-reset-btn"
+                  onClick={resetFences}
+                  // style={{ border: '2px solid red', color: 'red' }}
+                  variant="dark"
+                  children={'Reset Fences'}
+                />
+
+                <Dropdown.Item
+                  id="end-reset"
+                  onClick={() => resetStartFinish('finish')}
+                  // style={{ border: '2px solid red', color: 'red' }}
+                  variant="dark"
+                  children={'Reset End'}
+                />
+              </SplitButton>
             </Nav>
           </Col>
           <Col>
@@ -132,7 +158,7 @@ const Header = (props) => {
               <Container>
                 <Form inline>
                   <Form.Check
-                    type="checkbox"
+                    type="switch"
                     id="fence-check"
                     name="fences"
                     label="Fence mode"
@@ -143,86 +169,87 @@ const Header = (props) => {
               </Container>
               <DropdownButton title="Settings" size="sm" variant="dark">
                 <Container variant="dark">
-                  {/* <Row> */}
-                  <Form onSubmit={handleSubmit} variant="dark" inline>
-                    {/* <Col> */}
-                    Grid Size
-                    <FormControl
-                      size="sm"
-                      type="text"
-                      placeholder={`Width (Currently ${width})`}
-                      onChange={(e) => setWidth(e.target.value)}
-                      className="Column-Input"
-                    />
-                    <Form.Control
-                      type="range"
-                      size="sm"
-                      min="1"
-                      max="100"
-                      value={width}
-                      onChange={(e) => {
-                        setWidth(e.target.value);
-                        resizeGrid([width, height]);
-                      }}
-                      className="range-input"
-                    />
-                    <NavDropdown.Divider />
-                    <FormControl
-                      type="text"
-                      size="sm"
-                      placeholder={`Height (Currently ${height})`}
-                      onChange={(e) => setHeight(e.target.value)}
-                      className="Row-Input"
-                    />
-                    <Form.Control
-                      type="range"
-                      size="sm"
-                      min="1"
-                      max="50"
-                      value={height}
-                      onChange={(e) => {
-                        setHeight(e.target.value);
-                        resizeGrid([width, height]);
-                      }}
-                      className="range-input"
-                    />
-                    <NavDropdown.Divider />
-                    <Form.Label children={'Draw Square'} />
-                    <Form.Control
-                      type="range"
-                      size="sm"
-                      min="1"
-                      max="50"
-                      value={height}
-                      onChange={(e) => {
-                        setWidth(e.target.value);
-                        setHeight(e.target.value);
-                        resizeGrid([height, height]);
-                      }}
-                      className="range-input"
-                    />
-                    <NavDropdown.Divider />
-                    <Form.Label children={'Animation Speed'} />
-                    <Form.Control
-                      type="range"
-                      size="sm"
-                      min="1"
-                      max="5"
-                      value={speed}
-                      onChange={(e) => setSpeed(e.target.value)}
-                    />
-                    <Button
-                      variant="dark"
-                      type="submit"
-                      style={{
-                        border: '2px solid chartreuse',
-                        color: 'chartreuse',
-                      }}
-                      block
-                    >
-                      Update
-                    </Button>
-                  </Form>
+                  <Row>
+                    <Form onSubmit={handleSubmit} variant="dark" inline>
+                      <Col>
+                        Grid Size
+                        <FormControl
+                          size="sm"
+                          type="text"
+                          placeholder={`Width (Currently ${width})`}
+                          onChange={(e) => setWidth(e.target.value)}
+                          // className="Column-Input"
+                        />
+                        <Form.Control
+                          type="range"
+                          size="sm"
+                          min="1"
+                          max={maxWidth}
+                          value={width}
+                          onChange={(e) => {
+                            setWidth(e.target.value);
+                            resizeGrid([width, height]);
+                          }}
+                          custom
+                        />
+                        <NavDropdown.Divider />
+                        <FormControl
+                          type="text"
+                          size="sm"
+                          placeholder={`Height (Currently ${height})`}
+                          onChange={(e) => setHeight(e.target.value)}
+                          className="Row-Input"
+                        />
+                        <Form.Control
+                          type="range"
+                          min="1"
+                          max="50"
+                          value={height}
+                          onChange={(e) => {
+                            setHeight(e.target.value);
+                            resizeGrid([width, height]);
+                          }}
+                          custom
+                        />
+                        <NavDropdown.Divider />
+                        <Form.Label children={'Draw Square'} />
+                        <Form.Control
+                          type="range"
+                          size="sm"
+                          min="1"
+                          max="50"
+                          value={(height, width)}
+                          onChange={(e) => {
+                            setWidth(e.target.value);
+                            setHeight(e.target.value);
+                            resizeGrid([height, height]);
+                          }}
+                          custom
+                        />
+                        <NavDropdown.Divider />
+                        <Form.Label children={'Animation Speed'} />
+                        <Form.Control
+                          type="range"
+                          min="1"
+                          max="5"
+                          value={speed}
+                          onChange={(e) => setSpeed(e.target.value)}
+                          custom
+                        />
+                        <Button
+                          variant="dark"
+                          type="submit"
+                          style={{
+                            border: '2px solid chartreuse',
+                            color: 'chartreuse',
+                          }}
+                          block
+                        >
+                          Update
+                        </Button>
+                      </Col>
+                    </Form>
+                  </Row>
                 </Container>
               </DropdownButton>
               <DropdownButton

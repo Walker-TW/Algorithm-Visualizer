@@ -8,7 +8,7 @@
   border-radius: 2px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1030px) {
   .Node {
     width: 30px;
     height: 30px;

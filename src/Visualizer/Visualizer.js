@@ -49,7 +49,7 @@ export default class Visualizer extends Component {
     nodesProccessed: 'None Yet',
     fastestPath: 'None Yet',
     algorithmRan: 'None Yet',
-    speed: null,
+    speed: 5,
   };
 
   // setup methods
@@ -73,7 +73,9 @@ export default class Visualizer extends Component {
 
   gridSetup = (dimensions = getDimensions()) => {
     let [width, height] = dimensions;
+
     this.setState({ dimensions: dimensions });
+
     let grid = [];
     for (let rowIndex = 0; rowIndex < width; rowIndex++) {
       let current_row = [];
@@ -96,8 +98,7 @@ export default class Visualizer extends Component {
 
     this.state.grid.forEach((row) => {
       row.forEach((node) => {
-        this.resetNodeStyle(node);
-        this.resetNodeObject(node, 'all');
+        this.resetNodeHandler(node, 'all');
       });
     });
   };
@@ -136,17 +137,35 @@ export default class Visualizer extends Component {
       this.setState({ algorithm: selection });
   };
 
-  reset = () => {
+  // reset
+
+  resetVisited = () => {
     let grid = [...this.state.grid];
     grid.forEach((row) => {
       row.forEach((node) => {
-        this.resetNodeHandler(node);
+        this.resetNodeHandler(node, 'visited');
       });
     });
 
     this.setState({ grid: grid });
   };
 
+  resetFences = () => {
+    let grid = [...this.state.grid];
+    grid.forEach((row) => {
+      row.forEach((node) => {
+        if (node.fence) this.resetNodeHandler(node, 'fence');
+      });
+    });
+  };
+
+  resetStartFinish = (type) => {
+    const { rowIndex, colIndex } = this.state[type].gridId;
+    let node = this.state.grid[rowIndex][colIndex];
+
+    this.resetNodeHandler(node, [type]);
+    this.setState({ [type]: { present: false } });
+  };
   resetNodeStyle = (node) => {
     document.getElementById(
       `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
@@ -160,21 +179,42 @@ export default class Visualizer extends Component {
     node.visited = false;
     node.pastNode = null;
     if (type === 'all') {
-      node.start = false;
-      node.finish = false;
-      node.fence = false;
+      node = this.createNode(node.gridId);
+    }
+    if (type === 'fence' || 'start' || 'finish') {
+      node[type] = false;
     }
   };
 
-  resetNodeHandler = (node) => {
-    if (node.start || node.fence || node.finish) {
-      this.resetNodeObject(node, 'visited');
-    } else {
-      this.resetNodeObject(node, 'visited');
+  resetNodeHandler = (node, type) => {
+    if (type === 'visited') {
+      if (node.start || node.fence || node.finish) {
+        this.resetNodeObject(node, [type]);
+      } else {
+        this.resetNodeObject(node, 'all');
+        this.resetNodeStyle(node);
+      }
+    } else if (type === 'all') {
+      this.resetNodeObject(node, [type]);
       this.resetNodeStyle(node);
-      node = this.createNode(node.gridId);
+      // node = this.createNode(node.gridId);
+    } else if (type === 'fence' || 'start' || 'finish') {
+      this.resetNodeObject(node, [type]);
+      this.resetNodeStyle(node);
     }
   };
+
+  // resetNodeHandler = (node) => {
+  //   if (node.start || node.fence || node.finish) {
+  //     this.resetNodeObject(node, 'visited');
+  //   } else {
+  //     this.resetNodeObject(node, 'all');
+  //     this.resetNodeStyle(node);
+  //     // node = this.createNode(node.gridId);
+  //   }
+  // };
+
+  // algorithms
 
   run = () => {
     const { algorithm } = this.state;
@@ -307,9 +347,8 @@ export default class Visualizer extends Component {
   animationSpeed = (speedGiven) => {
     const hash = { '1': 25, '2': 18, '3': 13, '4': 7, '5': 3 };
     const speedOfAlgorithm = hash[speedGiven] || 5;
-    console.log(speedOfAlgorithm);
+
     this.setState({ speed: speedOfAlgorithm });
-    console.log(this.state.speed, 'the speed it has been set to');
   };
 
   // animation
@@ -341,7 +380,6 @@ export default class Visualizer extends Component {
 
   animateShortestPath = (nodesInShortestPathOrder) => {
     const animationTimer = this.state.speed;
-    console.log(animationTimer, 'animate shortest path');
     for (let i = 1; i < nodesInShortestPathOrder.length - 1; i++) {
       setTimeout(() => {
         const node = nodesInShortestPathOrder[i];
@@ -372,14 +410,14 @@ export default class Visualizer extends Component {
         <Header
           algorithm={algorithm}
           animationSpeed={this.animationSpeed}
-          dimensions={dimensions}
           resizeGrid={this.resizeGrid}
-          gridSetup={this.gridSetup}
           ready={start.present && finish.present}
           run={this.run}
           setAlgorithm={this.setAlgorithm}
           fenceToggle={this.fenceToggler}
-          reset={this.reset}
+          resetFences={this.resetFences}
+          resetStartFinish={this.resetStartFinish}
+          resetVisited={this.resetVisited}
         />
         {!start.present && !finish.present ? (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
