@@ -201,7 +201,7 @@ const Header = (props) => {
                         <Form.Control
                           type="range"
                           min="1"
-                          max="50"
+                          max={maxHeight}
                           value={height}
                           onChange={(e) => {
                             setHeight(e.target.value);
