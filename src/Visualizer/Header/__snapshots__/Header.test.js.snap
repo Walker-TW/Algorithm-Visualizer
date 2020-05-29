@@ -346,7 +346,7 @@ exports[`<Header /> renders 1`] = `
                 <Row
                   noGutters={false}
                 >
-                  1. Place a start and end point by clicking on the grid! (You can removed them by clicking on them again)
+                  1. Place a start and end point by clicking on the grid! (You can remove them by clicking on them again)
                 </Row>
                 <Row
                   noGutters={false}

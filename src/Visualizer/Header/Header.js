@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Button,
   Col,
@@ -16,10 +16,10 @@ import {
   Popover,
   Row,
   SplitButton,
-} from 'react-bootstrap';
-import PropTypes from 'prop-types';
-import { getDimensions, getMax } from '../../Helpers/getDimensions';
-import './Header.css';
+} from "react-bootstrap";
+import PropTypes from "prop-types";
+import { getDimensions, getMax } from "../../Helpers/getDimensions";
+import "./Header.css";
 
 const Header = (props) => {
   const {
@@ -46,12 +46,12 @@ const Header = (props) => {
   const handleShow = () => setShow(true);
 
   const run = () => {
-    if (algorithm === '') {
-      alert('Please select an algorithm');
+    if (algorithm === "") {
+      alert("Please select an algorithm");
     }
     if (!ready) {
       alert(
-        'Please choose a start and finish point before running by clicking on the desired squares'
+        "Please choose a start and finish point before running by clicking on the desired squares"
       );
     }
     if (ready && algorithm) {
@@ -62,16 +62,16 @@ const Header = (props) => {
   const gitHubImage = (
     <Image
       src="/images/github.png"
-      className={'github-img'}
-      alt={'Github'}
+      className={"github-img"}
+      alt={"Github"}
       fluid
     />
   );
   const linkedInImage = (
     <Image
       src="/images/linkedin.png"
-      alt={'LinkedIn'}
-      className={'linkedin-img'}
+      alt={"LinkedIn"}
+      className={"linkedin-img"}
       fluid
     />
   );
@@ -80,7 +80,7 @@ const Header = (props) => {
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand
         href="https://github.com/Walker-TW/Algorithm-Visualizer"
-        children={'Algo-Visualiser'}
+        children={"Algo-Visualiser"}
       />
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
@@ -90,7 +90,7 @@ const Header = (props) => {
               <NavDropdown title="Algorithms" id="collasible-nav-dropdown">
                 <OverlayTrigger
                   trigger="hover"
-                  placement={'right'}
+                  placement={"right"}
                   overlay={
                     <Popover id={`dijkstra-popover`}>
                       <Popover.Title as="h3">{`Dijkstra`}</Popover.Title>
@@ -110,20 +110,20 @@ const Header = (props) => {
                   }
                   children={
                     <NavDropdown.Item
-                      id={'set-dijkstra'}
-                      onClick={() => setAlgorithm('Dijkstra')}
-                      children={'Dijkstra'}
-                      active={algorithm === 'Dijkstra'}
+                      id={"set-dijkstra"}
+                      onClick={() => setAlgorithm("Dijkstra")}
+                      children={"Dijkstra"}
+                      active={algorithm === "Dijkstra"}
                     />
                   }
                 />
 
                 <OverlayTrigger
                   trigger="hover"
-                  placement={'right'}
+                  placement={"right"}
                   overlay={
                     <Popover id={`astar-e-popover`}>
-                      <Popover.Title as="h3">{'A* (Euclidean)'}</Popover.Title>
+                      <Popover.Title as="h3">{"A* (Euclidean)"}</Popover.Title>
                       <Popover.Content>
                         <p>
                           <strong>Weighted</strong>
@@ -140,19 +140,19 @@ const Header = (props) => {
                   }
                   children={
                     <NavDropdown.Item
-                      id={'set-astar-euclidean'}
-                      onClick={() => setAlgorithm('A* Euclidean')}
-                      children={'A* (Euclidean Distance)'}
-                      active={algorithm === 'A* Euclidean'}
+                      id={"set-astar-euclidean"}
+                      onClick={() => setAlgorithm("A* Euclidean")}
+                      children={"A* (Euclidean Distance)"}
+                      active={algorithm === "A* Euclidean"}
                     />
                   }
                 />
                 <OverlayTrigger
                   trigger="hover"
-                  placement={'right'}
+                  placement={"right"}
                   overlay={
-                    <Popover id={'astar-m-popover'}>
-                      <Popover.Title as="h3">{'A* (Manhatten)'}</Popover.Title>
+                    <Popover id={"astar-m-popover"}>
+                      <Popover.Title as="h3">{"A* (Manhatten)"}</Popover.Title>
                       <Popover.Content>
                         <p>
                           <strong>Weighted</strong>
@@ -168,20 +168,20 @@ const Header = (props) => {
                   }
                   children={
                     <NavDropdown.Item
-                      id={'set-astar-manhatten'}
-                      onClick={() => setAlgorithm('A* Manhatten')}
-                      children={'A* (Manhatten Distance)'}
-                      active={algorithm === 'A* Manhatten'}
+                      id={"set-astar-manhatten"}
+                      onClick={() => setAlgorithm("A* Manhatten")}
+                      children={"A* (Manhatten Distance)"}
+                      active={algorithm === "A* Manhatten"}
                     />
                   }
                 />
                 <OverlayTrigger
                   trigger="hover"
-                  placement={'right'}
+                  placement={"right"}
                   overlay={
-                    <Popover id={'dfs-popover'}>
+                    <Popover id={"dfs-popover"}>
                       <Popover.Title as="h3">
-                        {'Depth First Search'}
+                        {"Depth First Search"}
                       </Popover.Title>
                       <Popover.Content>
                         <p>
@@ -196,20 +196,20 @@ const Header = (props) => {
                   }
                   children={
                     <NavDropdown.Item
-                      id={'set-depth-first-search'}
-                      onClick={() => setAlgorithm('Depth First Search')}
-                      children={'Depth First Search'}
-                      active={algorithm === 'Depth First Search'}
+                      id={"set-depth-first-search"}
+                      onClick={() => setAlgorithm("Depth First Search")}
+                      children={"Depth First Search"}
+                      active={algorithm === "Depth First Search"}
                     />
                   }
                 />
                 <OverlayTrigger
                   trigger="hover"
-                  placement={'right'}
+                  placement={"right"}
                   overlay={
-                    <Popover id={'bfs-popover'}>
+                    <Popover id={"bfs-popover"}>
                       <Popover.Title as="h3">
-                        {'Breadth First Search'}
+                        {"Breadth First Search"}
                       </Popover.Title>
                       <Popover.Content>
                         <p>
@@ -227,10 +227,10 @@ const Header = (props) => {
                   }
                   children={
                     <NavDropdown.Item
-                      id={'set-breadth-first-search'}
-                      onClick={() => setAlgorithm('Breadth First Search')}
-                      children={'Breadth First Search'}
-                      active={algorithm === 'Breadth First Search'}
+                      id={"set-breadth-first-search"}
+                      onClick={() => setAlgorithm("Breadth First Search")}
+                      children={"Breadth First Search"}
+                      active={algorithm === "Breadth First Search"}
                     />
                   }
                 />
@@ -241,9 +241,9 @@ const Header = (props) => {
             <Nav>
               <Button
                 id="maze-btn"
-                style={{ border: '2px solid cyan', color: 'cyan' }}
+                style={{ border: "2px solid cyan", color: "cyan" }}
                 variant="dark"
-                children={'How To Use'}
+                children={"How To Use"}
                 onClick={handleShow}
               />
               <Modal show={show} onHide={handleClose}>
@@ -254,18 +254,18 @@ const Header = (props) => {
                   <Container>
                     <Row>
                       1. Place a start and end point by clicking on the grid!
-                      (You can removed them by clicking on them again)
+                      (You can remove them by clicking on them again)
                     </Row>
                     <Row>
-                      {' '}
+                      {" "}
                       2. Then place fences by checking "Fence Mode" and clicking
-                      on the grid.{' '}
+                      on the grid.{" "}
                     </Row>
                     <Row>
-                      3. Choose an algorithm via the "Algorithms" dropdown.{' '}
+                      3. Choose an algorithm via the "Algorithms" dropdown.{" "}
                     </Row>
                     <Row>
-                      4. Run it via pressing the green "Run Algorithm" button.{' '}
+                      4. Run it via pressing the green "Run Algorithm" button.{" "}
                     </Row>
                     <Row>5. Enjoy!</Row>
                   </Container>
@@ -278,20 +278,20 @@ const Header = (props) => {
               </Modal>
               <Button
                 id="run-btn"
-                style={{ border: '2px solid chartreuse', color: 'chartreuse' }}
+                style={{ border: "2px solid chartreuse", color: "chartreuse" }}
                 variant="dark"
                 onClick={run}
                 children={
                   algorithm
                     ? `Let's Run ${algorithm}`
-                    : 'Please Select Algorithm'
+                    : "Please Select Algorithm"
                 }
-                disabled={!ready || algorithm === ''}
+                disabled={!ready || algorithm === ""}
               />
               <SplitButton
                 title="Reset Visited"
                 id="reset-btn"
-                style={{ border: '2px solid red', color: 'red' }}
+                style={{ border: "2px solid red", color: "red" }}
                 onClick={resetVisited}
                 variant="dark"
               >
@@ -299,7 +299,7 @@ const Header = (props) => {
                   id="fence-reset-btn"
                   onClick={resetFences}
                   variant="dark"
-                  children={'Reset Fences'}
+                  children={"Reset Fences"}
                 />
               </SplitButton>
             </Nav>
@@ -313,7 +313,7 @@ const Header = (props) => {
                     id="fence-check"
                     name="fences"
                     label="Fence mode"
-                    style={{ color: 'white' }}
+                    style={{ color: "white" }}
                     onChange={fenceToggle}
                   />
                 </Form>
@@ -363,7 +363,7 @@ const Header = (props) => {
                           custom
                         />
                         <NavDropdown.Divider />
-                        <Form.Label children={'Draw Square'} />
+                        <Form.Label children={"Draw Square"} />
                         <Form.Control
                           type="range"
                           size="sm"
@@ -378,7 +378,7 @@ const Header = (props) => {
                           custom
                         />
                         <NavDropdown.Divider />
-                        <Form.Label children={'Animation Speed'} />
+                        <Form.Label children={"Animation Speed"} />
                         <Form.Control
                           type="range"
                           min="1"
@@ -402,27 +402,27 @@ const Header = (props) => {
               >
                 <Container>
                   <Row>
-                    <NavDropdown.Item id={'bassel'} children={'Bassel'} />
+                    <NavDropdown.Item id={"bassel"} children={"Bassel"} />
                     <a
-                      className={'image-link'}
+                      className={"image-link"}
                       href="https://github.com/basselalsayed"
                       children={gitHubImage}
                     />
                     <a
-                      className={'image-link'}
+                      className={"image-link"}
                       href="https://www.linkedin.com/in/bsas/"
                       children={linkedInImage}
                     />
                   </Row>
                   <Row>
-                    <NavDropdown.Item id={'tom'} children={'Tom'} />
+                    <NavDropdown.Item id={"tom"} children={"Tom"} />
                     <a
-                      className={'image-link'}
+                      className={"image-link"}
                       href="https://github.com/Walker-TW"
                       children={gitHubImage}
                     />
                     <a
-                      className={'image-link'}
+                      className={"image-link"}
                       href="https://www.linkedin.com/in/thomas-w-walker"
                       children={linkedInImage}
                     />
