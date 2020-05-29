@@ -197,28 +197,17 @@ export default class Visualizer extends Component {
     } else if (type === 'all') {
       this.resetNodeObject(node, [type]);
       this.resetNodeStyle(node);
-      // node = this.createNode(node.gridId);
     } else if (type === 'fence' || 'start' || 'finish') {
       this.resetNodeObject(node, [type]);
       this.resetNodeStyle(node);
     }
   };
 
-  // resetNodeHandler = (node) => {
-  //   if (node.start || node.fence || node.finish) {
-  //     this.resetNodeObject(node, 'visited');
-  //   } else {
-  //     this.resetNodeObject(node, 'all');
-  //     this.resetNodeStyle(node);
-  //     // node = this.createNode(node.gridId);
-  //   }
-  // };
-
   // algorithms
 
   run = () => {
     const { algorithm } = this.state;
-
+    this.resetVisited();
     if (algorithm === 'Dijkstra') {
       this.runDijkstra();
     } else if (algorithm === 'A* Euclidean') {
