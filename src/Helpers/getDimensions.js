@@ -1,16 +1,24 @@
-export const getDimensions = () => {
-  const [screenWidth, screenHeight] = [window.innerWidth, window.innerHeight];
+const [screenWidth, screenHeight] = [window.innerWidth, window.innerHeight];
+let width, height;
 
-  let width, height;
+export const getDimensions = () => {
   if (screenWidth > 1450) {
-    width = screenWidth / 20 - 12;
-    height = screenHeight / 20 - 16;
+    [width, height] = [screenWidth / 20 - 12, screenHeight / 20 - 16];
   } else if (screenWidth > 900) {
-    width = screenWidth / 30;
-    height = screenHeight / 30;
+    [width, height] = [screenWidth / 30 - 5, screenHeight / 30 - 11];
   } else {
-    width = screenWidth / 40 - 3;
-    height = screenHeight / 40 - 5;
+    [width, height] = [screenWidth / 40 - 2, screenHeight / 40 - 8];
+  }
+  return [width, height];
+};
+
+export const getMax = () => {
+  if (screenWidth > 1450) {
+    [width, height] = [screenWidth / 20, screenHeight / 20];
+  } else if (screenWidth > 900) {
+    [width, height] = [screenWidth / 30, screenHeight / 30];
+  } else {
+    [width, height] = [screenWidth / 40 - 3, screenHeight / 40 - 5];
   }
   return [width, height];
 };

@@ -39,6 +39,7 @@ exports[`<Header /> renders 1`] = `
             title="Algorithms"
           >
             <DropdownItem
+              active={false}
               as={
                 Object {
                   "$$typeof": Symbol(react.forward_ref),
@@ -53,6 +54,7 @@ exports[`<Header /> renders 1`] = `
               Dijkstra
             </DropdownItem>
             <DropdownItem
+              active={false}
               as={
                 Object {
                   "$$typeof": Symbol(react.forward_ref),
@@ -67,6 +69,7 @@ exports[`<Header /> renders 1`] = `
               A* (Euclidean Distance)
             </DropdownItem>
             <DropdownItem
+              active={false}
               as={
                 Object {
                   "$$typeof": Symbol(react.forward_ref),
@@ -81,6 +84,7 @@ exports[`<Header /> renders 1`] = `
               A* (Manhatten Distance)
             </DropdownItem>
             <DropdownItem
+              active={false}
               as={
                 Object {
                   "$$typeof": Symbol(react.forward_ref),
@@ -95,6 +99,7 @@ exports[`<Header /> renders 1`] = `
               Depth First Search
             </DropdownItem>
             <DropdownItem
+              active={false}
               as={
                 Object {
                   "$$typeof": Symbol(react.forward_ref),
@@ -212,9 +217,7 @@ exports[`<Header /> renders 1`] = `
           >
             Please Select An Algorithm
           </Button>
-          <Button
-            active={false}
-            disabled={false}
+          <SplitButton
             id="reset-btn"
             onClick={[MockFunction]}
             style={
@@ -223,11 +226,57 @@ exports[`<Header /> renders 1`] = `
                 "color": "red",
               }
             }
+            title="Reset Visited"
+            toggleLabel="Toggle dropdown"
             type="button"
             variant="dark"
           >
-            Reset
-          </Button>
+            <DropdownItem
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "SafeAnchor",
+                  "render": [Function],
+                }
+              }
+              disabled={false}
+              id="start-reset"
+              onClick={[Function]}
+              variant="dark"
+            >
+              Reset Start
+            </DropdownItem>
+            <DropdownItem
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "SafeAnchor",
+                  "render": [Function],
+                }
+              }
+              disabled={false}
+              id="fence-reset-btn"
+              onClick={[MockFunction]}
+              variant="dark"
+            >
+              Reset Fences
+            </DropdownItem>
+            <DropdownItem
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "SafeAnchor",
+                  "render": [Function],
+                }
+              }
+              disabled={false}
+              id="end-reset"
+              onClick={[Function]}
+              variant="dark"
+            >
+              Reset End
+            </DropdownItem>
+          </SplitButton>
         </Nav>
       </Col>
       <Col
@@ -263,7 +312,7 @@ exports[`<Header /> renders 1`] = `
                   }
                 }
                 title=""
-                type="checkbox"
+                type="switch"
               />
             </Form>
           </Container>
@@ -276,97 +325,86 @@ exports[`<Header /> renders 1`] = `
               fluid={false}
               variant="dark"
             >
-              <Form
-                inline={true}
-                onSubmit={[Function]}
-                variant="dark"
+              <Row
+                noGutters={false}
               >
-                Grid Size
-                <FormControl
-                  className="Column-Input"
-                  onChange={[Function]}
-                  placeholder="Width (Currently 35)"
-                  size="sm"
-                  type="text"
-                />
-                <FormControl
-                  className="range-input"
-                  max="100"
-                  min="1"
-                  onChange={[Function]}
-                  size="sm"
-                  type="range"
-                  value={35}
-                />
-                <DropdownDivider
-                  role="separator"
-                />
-                <FormControl
-                  className="Row-Input"
-                  onChange={[Function]}
-                  placeholder="Height (Currently 26)"
-                  size="sm"
-                  type="text"
-                />
-                <FormControl
-                  className="range-input"
-                  max="50"
-                  min="1"
-                  onChange={[Function]}
-                  size="sm"
-                  type="range"
-                  value={26}
-                />
-                <DropdownDivider
-                  role="separator"
-                />
-                <FormLabel
-                  column={false}
-                  srOnly={false}
-                >
-                  Draw Square
-                </FormLabel>
-                <FormControl
-                  className="range-input"
-                  max="50"
-                  min="1"
-                  onChange={[Function]}
-                  size="sm"
-                  type="range"
-                  value={26}
-                />
-                <DropdownDivider
-                  role="separator"
-                />
-                <FormLabel
-                  column={false}
-                  srOnly={false}
-                >
-                  Animation Speed
-                </FormLabel>
-                <FormControl
-                  max="5"
-                  min="1"
-                  onChange={[Function]}
-                  size="sm"
-                  type="range"
-                />
-                <Button
-                  active={false}
-                  block={true}
-                  disabled={false}
-                  style={
-                    Object {
-                      "border": "2px solid chartreuse",
-                      "color": "chartreuse",
-                    }
-                  }
-                  type="submit"
+                <Form
+                  inline={true}
                   variant="dark"
                 >
-                  Update
-                </Button>
-              </Form>
+                  <Col>
+                    Grid Size
+                    <FormControl
+                      onChange={[Function]}
+                      placeholder="Width (Currently 30)"
+                      size="sm"
+                      type="text"
+                    />
+                    <FormControl
+                      custom={true}
+                      max={34.13333333333333}
+                      min="1"
+                      onChange={[Function]}
+                      size="sm"
+                      type="range"
+                      value={30}
+                    />
+                    <DropdownDivider
+                      role="separator"
+                    />
+                    <FormControl
+                      className="Row-Input"
+                      onChange={[Function]}
+                      placeholder="Height (Currently 15)"
+                      size="sm"
+                      type="text"
+                    />
+                    <FormControl
+                      custom={true}
+                      max={25.6}
+                      min="1"
+                      onChange={[Function]}
+                      type="range"
+                      value={15}
+                    />
+                    <DropdownDivider
+                      role="separator"
+                    />
+                    <FormLabel
+                      column={false}
+                      srOnly={false}
+                    >
+                      Draw Square
+                    </FormLabel>
+                    <FormControl
+                      custom={true}
+                      max="50"
+                      min="1"
+                      onChange={[Function]}
+                      size="sm"
+                      type="range"
+                      value={30}
+                    />
+                    <DropdownDivider
+                      role="separator"
+                    />
+                    <FormLabel
+                      column={false}
+                      srOnly={false}
+                    >
+                      Animation Speed
+                    </FormLabel>
+                    <FormControl
+                      custom={true}
+                      max="5"
+                      min="1"
+                      onChange={[Function]}
+                      type="range"
+                      value="5"
+                    />
+                  </Col>
+                </Form>
+              </Row>
             </Container>
           </DropdownButton>
           <DropdownButton
