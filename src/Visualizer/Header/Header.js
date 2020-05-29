@@ -254,6 +254,7 @@ const Header = (props) => {
                   <Container>
                     <Row>
                       1. Place a start and end point by clicking on the grid!
+                      (You can removed them by clicking on them again)
                     </Row>
                     <Row>
                       {' '}
