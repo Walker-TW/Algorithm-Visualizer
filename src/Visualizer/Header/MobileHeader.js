@@ -25,6 +25,7 @@ const MobileHeader = (props) => {
   const {
     algorithm,
     animationSpeed,
+    device,
     fenceToggle,
     ready,
     resizeGrid,
@@ -43,6 +44,7 @@ const MobileHeader = (props) => {
   const [show, setShow] = useState();
   const [expanded, setExpanded] = useState(false);
 
+  const mobile = device === 'mobile';
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const collapseNav = () => setExpanded(false);
@@ -290,10 +292,14 @@ const MobileHeader = (props) => {
                 id="run-btn"
                 style={{ border: '2px solid chartreuse', color: 'chartreuse' }}
                 variant="dark"
-                onClick={() => {
-                  run();
-                  collapseNav();
-                }}
+                onClick={
+                  mobile
+                    ? () => {
+                        run();
+                        collapseNav();
+                      }
+                    : run
+                }
                 children={
                   algorithm
                     ? `Let's Run ${algorithm}`
@@ -466,6 +472,7 @@ export default MobileHeader;
 MobileHeader.propTypes = {
   algorithm: PropTypes.string.isRequired,
   animationSpeed: PropTypes.func.isRequired,
+  device: PropTypes.string.isRequired,
   fenceToggle: PropTypes.func.isRequired,
   ready: PropTypes.bool.isRequired,
   resetFences: PropTypes.func.isRequired,

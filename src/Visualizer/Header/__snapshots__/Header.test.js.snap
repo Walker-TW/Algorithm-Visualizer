@@ -534,7 +534,7 @@ exports[`<Header /> renders 1`] = `
                     <FormControl
                       custom={true}
                       max="50"
-                      min="1"
+                      min="2"
                       onChange={[Function]}
                       size="sm"
                       type="range"
