@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 import getDimensions from '../Helpers/getDimensions';
 import Header from './Header/Header';
+import MobileHeader from './Header/MobileHeader';
 import Alert from 'react-bootstrap/Alert';
 import Nodes from './Nodes/Nodes';
 import Stats from './Stats/Stats';
@@ -402,18 +403,33 @@ export default class Visualizer extends Component {
 
     return (
       <Fragment>
-        <Header
-          algorithm={algorithm}
-          animationSpeed={this.animationSpeed}
-          resizeGrid={this.resizeGrid}
-          ready={start.present && finish.present}
-          run={this.run}
-          setAlgorithm={this.setAlgorithm}
-          fenceToggle={this.fenceToggler}
-          resetFences={this.resetFences}
-          resetVisited={this.resetVisited}
-          speed={speed}
-        />
+        {window.innerWidth <= 500 ? (
+          <MobileHeader
+            algorithm={algorithm}
+            animationSpeed={this.animationSpeed}
+            resizeGrid={this.resizeGrid}
+            ready={start.present && finish.present}
+            run={this.run}
+            setAlgorithm={this.setAlgorithm}
+            fenceToggle={this.fenceToggler}
+            resetFences={this.resetFences}
+            resetVisited={this.resetVisited}
+            speed={speed}
+          />
+        ) : (
+          <Header
+            algorithm={algorithm}
+            animationSpeed={this.animationSpeed}
+            resizeGrid={this.resizeGrid}
+            ready={start.present && finish.present}
+            run={this.run}
+            setAlgorithm={this.setAlgorithm}
+            fenceToggle={this.fenceToggler}
+            resetFences={this.resetFences}
+            resetVisited={this.resetVisited}
+            speed={speed}
+          />
+        )}
         {!start.present && !finish.present ? (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
         ) : !finish.present ? (
