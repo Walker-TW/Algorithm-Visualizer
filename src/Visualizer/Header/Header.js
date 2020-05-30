@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import algorithmDropdowns from './algorithms.js';
+import algorithmInfo from './algorithms.js';
 import {
   Button,
   ButtonGroup,
@@ -81,6 +81,35 @@ const Header = (props) => {
     />
   );
 
+  const algorithmDropdowns = algorithmInfo.map((alg, i) => {
+    return (
+      <OverlayTrigger
+        key={i}
+        trigger={['hover', 'focus']}
+        placement={mobile ? 'bottom' : 'right'}
+        overlay={
+          <Popover id={`${alg.id}-popover`}>
+            <Popover.Title as="h2" children={`${alg.name}`} />
+            <Popover.Content>
+              <p>
+                <strong>{`${alg.header}`}</strong>
+              </p>
+              <p style={{ whiteSpace: 'pre-line' }}>{`${alg.content}`}</p>
+              <p>{`${alg.footer}`}</p>
+            </Popover.Content>
+          </Popover>
+        }
+      >
+        <NavDropdown.Item
+          id={`set-${alg.id}`}
+          onClick={() => setAlgorithm(`${alg.name}`)}
+          children={`${alg.name}`}
+          active={algorithm === `${alg.name}`}
+        />
+      </OverlayTrigger>
+    );
+  });
+
   return (
     <Navbar
       expanded={expanded}
@@ -102,37 +131,7 @@ const Header = (props) => {
           <Col md={{ span: 2 }}>
             <Nav className="mr-auto">
               <NavDropdown title="Algorithms" id="collapsible-nav-dropdown">
-                {algorithmDropdowns.map((alg, i) => {
-                  return (
-                    <OverlayTrigger
-                      key={i}
-                      trigger={['hover', 'focus']}
-                      placement={mobile ? 'bottom' : 'right'}
-                      overlay={
-                        <Popover id={`${alg.id}-popover`}>
-                          <Popover.Title as="h2" children={`${alg.name}`} />
-                          <Popover.Content>
-                            <p>
-                              <strong>{`${alg.header}`}</strong>
-                            </p>
-                            <p
-                              style={{ whiteSpace: 'pre-line' }}
-                            >{`${alg.content}`}</p>
-
-                            <p>{`${alg.footer}`}</p>
-                          </Popover.Content>
-                        </Popover>
-                      }
-                    >
-                      <NavDropdown.Item
-                        id={`set-${alg.id}`}
-                        onClick={() => setAlgorithm(`${alg.name}`)}
-                        children={`${alg.name}`}
-                        active={algorithm === `${alg.name}`}
-                      />
-                    </OverlayTrigger>
-                  );
-                })}
+                {algorithmDropdowns}
               </NavDropdown>
             </Nav>
           </Col>

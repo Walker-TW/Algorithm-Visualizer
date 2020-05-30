@@ -1,4 +1,4 @@
-export const algorithmDropdowns = [
+export const algorithmInfo = [
   {
     id: 'dijkstra',
     name: 'Dijkstra',
@@ -40,4 +40,4 @@ export const algorithmDropdowns = [
   },
 ];
 
-export default algorithmDropdowns;
+export default algorithmInfo;
