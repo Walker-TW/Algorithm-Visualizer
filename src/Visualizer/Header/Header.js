@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   Button,
+  ButtonGroup,
   Col,
   Container,
   Dropdown,
@@ -15,7 +16,6 @@ import {
   OverlayTrigger,
   Popover,
   Row,
-  SplitButton,
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { getDimensions, getMax } from '../../Helpers/getDimensions';
@@ -25,6 +25,7 @@ const Header = (props) => {
   const {
     algorithm,
     animationSpeed,
+    device,
     fenceToggle,
     ready,
     resizeGrid,
@@ -41,9 +42,12 @@ const Header = (props) => {
   const [height, setHeight] = useState(Math.ceil(screenHeight));
   const [speed, setSpeed] = useState(propsSpeed);
   const [show, setShow] = useState();
+  const [expanded, setExpanded] = useState(false);
 
+  const mobile = device === 'mobile';
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const collapseNav = () => setExpanded(false);
 
   const run = () => {
     if (algorithm === '') {
@@ -77,23 +81,32 @@ const Header = (props) => {
   );
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar
+      expanded={expanded}
+      expand="lg"
+      bg="dark"
+      variant="dark"
+      collapseOnSelect
+    >
       <Navbar.Brand
         href="https://github.com/Walker-TW/Algorithm-Visualizer"
         children={'Algo-Visualiser'}
       />
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Toggle
+        onClick={() => setExpanded(expanded ? false : 'lg')}
+        aria-controls="responsive-navbar-nav"
+      />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Container fluid>
           <Col md={{ span: 2 }}>
             <Nav className="mr-auto">
-              <NavDropdown title="Algorithms" id="collasible-nav-dropdown">
+              <NavDropdown title="Algorithms" id="collapsible-nav-dropdown">
                 <OverlayTrigger
-                  trigger="hover"
-                  placement={'right'}
+                  trigger={('hover', 'focus')}
+                  placement={'bottom'}
                   overlay={
                     <Popover id={`dijkstra-popover`}>
-                      <Popover.Title as="h3">{`Dijkstra`}</Popover.Title>
+                      <Popover.Title as="h2">{`Dijkstra`}</Popover.Title>
                       <Popover.Content>
                         <p>
                           <strong>Weighted</strong>
@@ -117,10 +130,9 @@ const Header = (props) => {
                     />
                   }
                 />
-
                 <OverlayTrigger
-                  trigger="hover"
-                  placement={'right'}
+                  trigger={('hover', 'focus')}
+                  placement={'bottom'}
                   overlay={
                     <Popover id={`astar-e-popover`}>
                       <Popover.Title as="h3">{'A* (Euclidean)'}</Popover.Title>
@@ -148,8 +160,8 @@ const Header = (props) => {
                   }
                 />
                 <OverlayTrigger
-                  trigger="hover"
-                  placement={'right'}
+                  trigger={('hover', 'focus')}
+                  placement={'bottom'}
                   overlay={
                     <Popover id={'astar-m-popover'}>
                       <Popover.Title as="h3">{'A* (Manhatten)'}</Popover.Title>
@@ -176,8 +188,8 @@ const Header = (props) => {
                   }
                 />
                 <OverlayTrigger
-                  trigger="hover"
-                  placement={'right'}
+                  trigger={('hover', 'focus')}
+                  placement={'bottom'}
                   overlay={
                     <Popover id={'dfs-popover'}>
                       <Popover.Title as="h3">
@@ -204,8 +216,8 @@ const Header = (props) => {
                   }
                 />
                 <OverlayTrigger
-                  trigger="hover"
-                  placement={'right'}
+                  trigger={('hover', 'focus')}
+                  placement={'bottom'}
                   overlay={
                     <Popover id={'bfs-popover'}>
                       <Popover.Title as="h3">
@@ -280,7 +292,14 @@ const Header = (props) => {
                 id="run-btn"
                 style={{ border: '2px solid chartreuse', color: 'chartreuse' }}
                 variant="dark"
-                onClick={run}
+                onClick={
+                  mobile
+                    ? () => {
+                        run();
+                        collapseNav();
+                      }
+                    : run
+                }
                 children={
                   algorithm
                     ? `Let's Run ${algorithm}`
@@ -288,20 +307,29 @@ const Header = (props) => {
                 }
                 disabled={!ready || algorithm === ''}
               />
-              <SplitButton
-                title="Reset Visited"
-                id="reset-btn"
-                style={{ border: '2px solid red', color: 'red' }}
-                onClick={resetVisited}
-                variant="dark"
-              >
-                <Dropdown.Item
-                  id="fence-reset-btn"
-                  onClick={resetFences}
+              <Dropdown as={ButtonGroup}>
+                <Button
+                  id="reset-btn"
                   variant="dark"
-                  children={'Reset Fences'}
+                  style={{ border: '2px solid red', color: 'red' }}
+                  children={'Reset Visited'}
+                  onClick={resetVisited}
                 />
-              </SplitButton>
+                <Dropdown.Toggle
+                  split
+                  variant="dark"
+                  style={{ border: '2px solid red', color: 'red' }}
+                  id="dropdown-custom-2"
+                />
+                <Dropdown.Menu>
+                  <Dropdown.Item
+                    id="fence-reset-btn"
+                    onClick={resetFences}
+                    variant="dark"
+                    children={'Reset Fences'}
+                  />
+                </Dropdown.Menu>
+              </Dropdown>
             </Nav>
           </Col>
           <Col md={{ span: 4 }}>
@@ -328,8 +356,9 @@ const Header = (props) => {
                           size="sm"
                           type="text"
                           placeholder={`Width (Currently ${width})`}
-                          onChange={(e) => setWidth(e.target.value)}
-                          // className="Column-Input"
+                          onChange={(e) => {
+                            setWidth(e.target.value);
+                          }}
                         />
                         <Form.Control
                           type="range"
@@ -348,7 +377,9 @@ const Header = (props) => {
                           type="text"
                           size="sm"
                           placeholder={`Height (Currently ${height})`}
-                          onChange={(e) => setHeight(e.target.value)}
+                          onChange={(e) => {
+                            setHeight(e.target.value);
+                          }}
                           className="Row-Input"
                         />
                         <Form.Control
@@ -367,14 +398,13 @@ const Header = (props) => {
                         <Form.Control
                           type="range"
                           size="sm"
-                          min="2"
+                          min="1"
                           max="50"
                           value={(height, width)}
                           onChange={(e) => {
-                            const { value } = e.target;
-                            setWidth(value);
-                            setHeight(value);
-                            resizeGrid([value, value]);
+                            setWidth(e.target.value);
+                            setHeight(e.target.value);
+                            resizeGrid([height, height]);
                           }}
                           custom
                         />
@@ -387,7 +417,7 @@ const Header = (props) => {
                           value={speed}
                           onChange={(e) => {
                             setSpeed(e.target.value);
-                            animationSpeed(speed);
+                            animationSpeed(e.target.value);
                           }}
                           custom
                         />
@@ -442,6 +472,7 @@ export default Header;
 Header.propTypes = {
   algorithm: PropTypes.string.isRequired,
   animationSpeed: PropTypes.func.isRequired,
+  device: PropTypes.string.isRequired,
   fenceToggle: PropTypes.func.isRequired,
   ready: PropTypes.bool.isRequired,
   resetFences: PropTypes.func.isRequired,

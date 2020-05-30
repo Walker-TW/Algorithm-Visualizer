@@ -2,7 +2,7 @@
 
 exports[`<Visualizer /> renders 1`] = `
 <Fragment>
-  <MobileHeader
+  <Header
     algorithm=""
     animationSpeed={[Function]}
     device="desktop"

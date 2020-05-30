@@ -5,6 +5,7 @@ exports[`<Header /> renders 1`] = `
   bg="dark"
   collapseOnSelect={true}
   expand="lg"
+  expanded={false}
   variant="dark"
 >
   <NavbarBrand
@@ -15,6 +16,7 @@ exports[`<Header /> renders 1`] = `
   <NavbarToggle
     aria-controls="responsive-navbar-nav"
     label="Toggle navigation"
+    onClick={[Function]}
   />
   <NavbarCollapse
     id="responsive-navbar-nav"
@@ -35,7 +37,7 @@ exports[`<Header /> renders 1`] = `
           justify={false}
         >
           <NavDropdown
-            id="collasible-nav-dropdown"
+            id="collapsible-nav-dropdown"
             title="Algorithms"
           >
             <OverlayTrigger
@@ -46,7 +48,7 @@ exports[`<Header /> renders 1`] = `
                   placement="right"
                 >
                   <ForwardRef
-                    as="h3"
+                    as="h2"
                   >
                     Dijkstra
                   </ForwardRef>
@@ -71,8 +73,8 @@ exports[`<Header /> renders 1`] = `
                   </ForwardRef>
                 </ForwardRef>
               }
-              placement="right"
-              trigger="hover"
+              placement="bottom"
+              trigger="focus"
             >
               <DropdownItem
                 active={false}
@@ -123,8 +125,8 @@ exports[`<Header /> renders 1`] = `
                   </ForwardRef>
                 </ForwardRef>
               }
-              placement="right"
-              trigger="hover"
+              placement="bottom"
+              trigger="focus"
             >
               <DropdownItem
                 active={false}
@@ -175,8 +177,8 @@ exports[`<Header /> renders 1`] = `
                   </ForwardRef>
                 </ForwardRef>
               }
-              placement="right"
-              trigger="hover"
+              placement="bottom"
+              trigger="focus"
             >
               <DropdownItem
                 active={false}
@@ -227,8 +229,8 @@ exports[`<Header /> renders 1`] = `
                   </ForwardRef>
                 </ForwardRef>
               }
-              placement="right"
-              trigger="hover"
+              placement="bottom"
+              trigger="focus"
             >
               <DropdownItem
                 active={false}
@@ -279,8 +281,8 @@ exports[`<Header /> renders 1`] = `
                   </ForwardRef>
                 </ForwardRef>
               }
-              placement="right"
-              trigger="hover"
+              placement="bottom"
+              trigger="focus"
             >
               <DropdownItem
                 active={false}
@@ -402,36 +404,69 @@ exports[`<Header /> renders 1`] = `
           >
             Please Select Algorithm
           </Button>
-          <SplitButton
-            id="reset-btn"
-            onClick={[MockFunction]}
-            style={
+          <Dropdown
+            as={
               Object {
-                "border": "2px solid red",
-                "color": "red",
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": Object {
+                  "role": "group",
+                  "toggle": false,
+                  "vertical": false,
+                },
+                "displayName": "ButtonGroup",
+                "render": [Function],
               }
             }
-            title="Reset Visited"
-            toggleLabel="Toggle dropdown"
-            type="button"
-            variant="dark"
+            navbar={false}
           >
-            <DropdownItem
-              as={
+            <Button
+              active={false}
+              disabled={false}
+              id="reset-btn"
+              onClick={[MockFunction]}
+              style={
                 Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "SafeAnchor",
-                  "render": [Function],
+                  "border": "2px solid red",
+                  "color": "red",
                 }
               }
-              disabled={false}
-              id="fence-reset-btn"
-              onClick={[MockFunction]}
+              type="button"
               variant="dark"
             >
-              Reset Fences
-            </DropdownItem>
-          </SplitButton>
+              Reset Visited
+            </Button>
+            <DropdownToggle
+              id="dropdown-custom-2"
+              split={true}
+              style={
+                Object {
+                  "border": "2px solid red",
+                  "color": "red",
+                }
+              }
+              variant="dark"
+            />
+            <DropdownMenu
+              alignRight={false}
+              flip={true}
+            >
+              <DropdownItem
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+                id="fence-reset-btn"
+                onClick={[MockFunction]}
+                variant="dark"
+              >
+                Reset Fences
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </Nav>
       </Col>
       <Col
@@ -534,7 +569,7 @@ exports[`<Header /> renders 1`] = `
                     <FormControl
                       custom={true}
                       max="50"
-                      min="2"
+                      min="1"
                       onChange={[Function]}
                       size="sm"
                       type="range"
