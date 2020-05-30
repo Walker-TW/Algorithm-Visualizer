@@ -406,7 +406,7 @@ export default class Visualizer extends Component {
         <Header
           algorithm={algorithm}
           animationSpeed={this.animationSpeed}
-          device={window.innerWidth <= 500 ? 'mobile' : 'desktop'}
+          device={window.innerWidth <= 900 ? 'mobile' : 'desktop'}
           resizeGrid={this.resizeGrid}
           ready={start.present && finish.present}
           run={this.run}
