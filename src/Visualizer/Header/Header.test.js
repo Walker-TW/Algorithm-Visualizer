@@ -67,8 +67,8 @@ describe('<Header />', () => {
 
   it('calls the set algorithm spy onclick', () => {
     wrapper.find('#set-dijkstra').simulate('click');
-    wrapper.find('#set-astar-manhatten').simulate('click');
-    wrapper.find('#set-astar-euclidean').simulate('click');
+    wrapper.find('#set-astar-m').simulate('click');
+    wrapper.find('#set-astar-e').simulate('click');
     expect(setAlgorithmSpy.mock.calls.length).toEqual(3);
   });
 });

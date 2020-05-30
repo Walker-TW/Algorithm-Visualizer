@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import algorithmDropdowns from './algorithms.js';
 import {
   Button,
   ButtonGroup,
@@ -101,151 +102,37 @@ const Header = (props) => {
           <Col md={{ span: 2 }}>
             <Nav className="mr-auto">
               <NavDropdown title="Algorithms" id="collapsible-nav-dropdown">
-                <OverlayTrigger
-                  trigger={['hover', 'focus']}
-                  placement={mobile ? 'bottom' : 'right'}
-                  overlay={
-                    <Popover id={`dijkstra-popover`}>
-                      <Popover.Title as="h2">{`Dijkstra`}</Popover.Title>
-                      <Popover.Content>
-                        <p>
-                          <strong>Weighted</strong>
-                        </p>
-                        <p>Running Time:</p>
-                        <p>O( | E | log | V | )</p>
-                        <p>Always finds the shortest path.</p>
-                        <p>
-                          Uses distance of nodes to choose the direction to
-                          travel.
-                        </p>
-                      </Popover.Content>
-                    </Popover>
-                  }
-                  children={
-                    <NavDropdown.Item
-                      id={'set-dijkstra'}
-                      onClick={() => setAlgorithm('Dijkstra')}
-                      children={'Dijkstra'}
-                      active={algorithm === 'Dijkstra'}
-                    />
-                  }
-                />
-                <OverlayTrigger
-                  trigger={['hover', 'focus']}
-                  placement={mobile ? 'bottom' : 'right'}
-                  overlay={
-                    <Popover id={`astar-e-popover`}>
-                      <Popover.Title as="h3">{'A* (Euclidean)'}</Popover.Title>
-                      <Popover.Content>
-                        <p>
-                          <strong>Weighted</strong>
-                        </p>
-                        <p>Running Time:</p>
-                        <p>O( log ( h* )( x ) )</p>
-                        <p>Will not always find the shortest path.</p>
-                        <p>
-                          Uses as the crow flies heuristic to decide direction
-                          of search.
-                        </p>
-                      </Popover.Content>
-                    </Popover>
-                  }
-                  children={
-                    <NavDropdown.Item
-                      id={'set-astar-euclidean'}
-                      onClick={() => setAlgorithm('A* Euclidean')}
-                      children={'A* (Euclidean Distance)'}
-                      active={algorithm === 'A* Euclidean'}
-                    />
-                  }
-                />
-                <OverlayTrigger
-                  trigger={['hover', 'focus']}
-                  placement={mobile ? 'bottom' : 'right'}
-                  overlay={
-                    <Popover id={'astar-m-popover'}>
-                      <Popover.Title as="h3">{'A* (Manhatten)'}</Popover.Title>
-                      <Popover.Content>
-                        <p>
-                          <strong>Weighted</strong>
-                        </p>
-                        <p>Running Time:</p>
-                        <p>O( log ( h* )( x ) )</p>
-                        <p>Will find the shortest path</p>
-                        <p>
-                          Uses the “taxi cab” heuristic for non diagonal graphs.
-                        </p>
-                      </Popover.Content>
-                    </Popover>
-                  }
-                  children={
-                    <NavDropdown.Item
-                      id={'set-astar-manhatten'}
-                      onClick={() => setAlgorithm('A* Manhatten')}
-                      children={'A* (Manhatten Distance)'}
-                      active={algorithm === 'A* Manhatten'}
-                    />
-                  }
-                />
-                <OverlayTrigger
-                  trigger={['hover', 'focus']}
-                  placement={mobile ? 'bottom' : 'right'}
-                  overlay={
-                    <Popover id={'dfs-popover'}>
-                      <Popover.Title as="h3">
-                        {'Depth First Search'}
-                      </Popover.Title>
-                      <Popover.Content>
-                        <p>
-                          <strong>Not Weighted</strong>
-                        </p>
-                        <p>Running Time:</p>
-                        <p>O( | V | + | E | )</p>
-                        <p>Will not find the shortest path</p>
-                        <p>Searches every branch of a graph</p>
-                      </Popover.Content>
-                    </Popover>
-                  }
-                  children={
-                    <NavDropdown.Item
-                      id={'set-depth-first-search'}
-                      onClick={() => setAlgorithm('Depth First Search')}
-                      children={'Depth First Search'}
-                      active={algorithm === 'Depth First Search'}
-                    />
-                  }
-                />
-                <OverlayTrigger
-                  trigger={['hover', 'focus']}
-                  placement={mobile ? 'bottom' : 'right'}
-                  overlay={
-                    <Popover id={'bfs-popover'}>
-                      <Popover.Title as="h3">
-                        {'Breadth First Search'}
-                      </Popover.Title>
-                      <Popover.Content>
-                        <p>
-                          <strong>Not Weighted</strong>
-                        </p>
-                        <p>Running Time:</p>
-                        <p>O( | V | + | E | )</p>
-                        <p>Will find the shortest path</p>
-                        <p>
-                          Will search paths only after its current path has been
-                          fully explored.
-                        </p>
-                      </Popover.Content>
-                    </Popover>
-                  }
-                  children={
-                    <NavDropdown.Item
-                      id={'set-breadth-first-search'}
-                      onClick={() => setAlgorithm('Breadth First Search')}
-                      children={'Breadth First Search'}
-                      active={algorithm === 'Breadth First Search'}
-                    />
-                  }
-                />
+                {algorithmDropdowns.map((alg, i) => {
+                  return (
+                    <OverlayTrigger
+                      key={i}
+                      trigger={['hover', 'focus']}
+                      placement={mobile ? 'bottom' : 'right'}
+                      overlay={
+                        <Popover id={`${alg.id}-popover`}>
+                          <Popover.Title as="h2" children={`${alg.name}`} />
+                          <Popover.Content>
+                            <p>
+                              <strong>{`${alg.header}`}</strong>
+                            </p>
+                            <p
+                              style={{ whiteSpace: 'pre-line' }}
+                            >{`${alg.content}`}</p>
+
+                            <p>{`${alg.footer}`}</p>
+                          </Popover.Content>
+                        </Popover>
+                      }
+                    >
+                      <NavDropdown.Item
+                        id={`set-${alg.id}`}
+                        onClick={() => setAlgorithm(`${alg.name}`)}
+                        children={`${alg.name}`}
+                        active={algorithm === `${alg.name}`}
+                      />
+                    </OverlayTrigger>
+                  );
+                })}
               </NavDropdown>
             </Nav>
           </Col>
