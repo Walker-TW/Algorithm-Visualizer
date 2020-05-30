@@ -72,6 +72,7 @@ const Header = (props) => {
       fluid
     />
   );
+
   const linkedInImage = (
     <Image
       src="/images/linkedin.png"
@@ -138,6 +139,123 @@ const Header = (props) => {
       </Modal.Footer>
     </Modal>
   );
+
+  const settings = (
+    <DropdownButton title="Settings" size="sm" variant="dark">
+      <Container variant="dark">
+        <Row>
+          <Form variant="dark" inline>
+            <Col>
+              Grid Size
+              <FormControl
+                size="sm"
+                type="text"
+                placeholder={`Width (Currently ${width})`}
+                onChange={(e) => {
+                  setWidth(e.target.value);
+                }}
+              />
+              <Form.Control
+                type="range"
+                size="sm"
+                min="1"
+                max={maxWidth}
+                value={width}
+                onChange={(e) => {
+                  setWidth(e.target.value);
+                  resizeGrid([e.target.value, height]);
+                }}
+                custom
+              />
+              <NavDropdown.Divider />
+              <FormControl
+                type="text"
+                size="sm"
+                placeholder={`Height (Currently ${height})`}
+                onChange={(e) => {
+                  setHeight(e.target.value);
+                }}
+                className="Row-Input"
+              />
+              <Form.Control
+                type="range"
+                min="1"
+                max={maxHeight}
+                value={height}
+                onChange={(e) => {
+                  setHeight(e.target.value);
+                  resizeGrid([width, e.target.value]);
+                }}
+                custom
+              />
+              <NavDropdown.Divider />
+              <Form.Label children={'Draw Square'} />
+              <Form.Control
+                type="range"
+                size="sm"
+                min="1"
+                max="50"
+                value={(height, width)}
+                onChange={(e) => {
+                  setWidth(e.target.value);
+                  setHeight(e.target.value);
+                  resizeGrid([e.target.value, e.target.value]);
+                }}
+                custom
+              />
+              <NavDropdown.Divider />
+              <Form.Label children={'Animation Speed'} />
+              <Form.Control
+                type="range"
+                min="1"
+                max="5"
+                value={speed}
+                onChange={(e) => {
+                  setSpeed(e.target.value);
+                  animationSpeed(e.target.value);
+                }}
+                custom
+              />
+            </Col>
+          </Form>
+        </Row>
+      </Container>
+    </DropdownButton>
+  );
+
+  const contactInfo = (
+    <DropdownButton title="Contact The Team" size="sm" id="contact-info">
+      <Container>
+        <Row>
+          <NavDropdown.Item id={'bassel'} children={'Bassel'} />
+          <a
+            className={'image-link'}
+            href="https://github.com/basselalsayed"
+            children={gitHubImage}
+          />
+          <a
+            className={'image-link'}
+            href="https://www.linkedin.com/in/bsas/"
+            children={linkedInImage}
+          />
+        </Row>
+        <Row>
+          <NavDropdown.Item id={'tom'} children={'Tom'} />
+          <a
+            className={'image-link'}
+            href="https://github.com/Walker-TW"
+            children={gitHubImage}
+          />
+          <a
+            className={'image-link'}
+            href="https://www.linkedin.com/in/thomas-w-walker"
+            children={linkedInImage}
+          />
+        </Row>
+      </Container>
+    </DropdownButton>
+  );
+
   return (
     <Navbar
       expanded={expanded}
@@ -231,120 +349,8 @@ const Header = (props) => {
                   />
                 </Form>
               </Container>
-              <DropdownButton title="Settings" size="sm" variant="dark">
-                <Container variant="dark">
-                  <Row>
-                    <Form variant="dark" inline>
-                      <Col>
-                        Grid Size
-                        <FormControl
-                          size="sm"
-                          type="text"
-                          placeholder={`Width (Currently ${width})`}
-                          onChange={(e) => {
-                            setWidth(e.target.value);
-                          }}
-                        />
-                        <Form.Control
-                          type="range"
-                          size="sm"
-                          min="1"
-                          max={maxWidth}
-                          value={width}
-                          onChange={(e) => {
-                            setWidth(e.target.value);
-                            resizeGrid([e.target.value, height]);
-                          }}
-                          custom
-                        />
-                        <NavDropdown.Divider />
-                        <FormControl
-                          type="text"
-                          size="sm"
-                          placeholder={`Height (Currently ${height})`}
-                          onChange={(e) => {
-                            setHeight(e.target.value);
-                          }}
-                          className="Row-Input"
-                        />
-                        <Form.Control
-                          type="range"
-                          min="1"
-                          max={maxHeight}
-                          value={height}
-                          onChange={(e) => {
-                            setHeight(e.target.value);
-                            resizeGrid([width, e.target.value]);
-                          }}
-                          custom
-                        />
-                        <NavDropdown.Divider />
-                        <Form.Label children={'Draw Square'} />
-                        <Form.Control
-                          type="range"
-                          size="sm"
-                          min="1"
-                          max="50"
-                          value={(height, width)}
-                          onChange={(e) => {
-                            setWidth(e.target.value);
-                            setHeight(e.target.value);
-                            resizeGrid([e.target.value, e.target.value]);
-                          }}
-                          custom
-                        />
-                        <NavDropdown.Divider />
-                        <Form.Label children={'Animation Speed'} />
-                        <Form.Control
-                          type="range"
-                          min="1"
-                          max="5"
-                          value={speed}
-                          onChange={(e) => {
-                            setSpeed(e.target.value);
-                            animationSpeed(e.target.value);
-                          }}
-                          custom
-                        />
-                      </Col>
-                    </Form>
-                  </Row>
-                </Container>
-              </DropdownButton>
-              <DropdownButton
-                title="Contact The Team"
-                size="sm"
-                id="contact-info"
-              >
-                <Container>
-                  <Row>
-                    <NavDropdown.Item id={'bassel'} children={'Bassel'} />
-                    <a
-                      className={'image-link'}
-                      href="https://github.com/basselalsayed"
-                      children={gitHubImage}
-                    />
-                    <a
-                      className={'image-link'}
-                      href="https://www.linkedin.com/in/bsas/"
-                      children={linkedInImage}
-                    />
-                  </Row>
-                  <Row>
-                    <NavDropdown.Item id={'tom'} children={'Tom'} />
-                    <a
-                      className={'image-link'}
-                      href="https://github.com/Walker-TW"
-                      children={gitHubImage}
-                    />
-                    <a
-                      className={'image-link'}
-                      href="https://www.linkedin.com/in/thomas-w-walker"
-                      children={linkedInImage}
-                    />
-                  </Row>
-                </Container>
-              </DropdownButton>
+              {settings}
+              {contactInfo}
             </Nav>
           </Col>
         </Container>
