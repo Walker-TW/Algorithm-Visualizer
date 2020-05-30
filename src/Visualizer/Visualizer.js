@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 import getDimensions from '../Helpers/getDimensions';
 import Header from './Header/Header';
+
 import Alert from 'react-bootstrap/Alert';
 import Nodes from './Nodes/Nodes';
 import Stats from './Stats/Stats';
@@ -405,6 +406,7 @@ export default class Visualizer extends Component {
         <Header
           algorithm={algorithm}
           animationSpeed={this.animationSpeed}
+          device={window.innerWidth <= 500 ? 'mobile' : 'desktop'}
           resizeGrid={this.resizeGrid}
           ready={start.present && finish.present}
           run={this.run}
@@ -414,6 +416,7 @@ export default class Visualizer extends Component {
           resetVisited={this.resetVisited}
           speed={speed}
         />
+
         {!start.present && !finish.present ? (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
         ) : !finish.present ? (

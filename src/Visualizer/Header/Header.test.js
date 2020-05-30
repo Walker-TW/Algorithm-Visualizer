@@ -17,6 +17,7 @@ const resizeGridSpy = jest.fn(() => {});
 const defaultProps = {
   algorithm: '',
   animationSpeed: animationSpeedSpy,
+  device: 'desktop',
   fenceToggle: fenceToggleSpy,
   resetFences: resetFencesSpy,
   resizeGrid: resizeGridSpy,

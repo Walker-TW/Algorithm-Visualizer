@@ -5,6 +5,7 @@ exports[`<Visualizer /> renders 1`] = `
   <Header
     algorithm=""
     animationSpeed={[Function]}
+    device="desktop"
     fenceToggle={[Function]}
     ready={false}
     resetFences={[Function]}
