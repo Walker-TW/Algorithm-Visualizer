@@ -38,81 +38,266 @@ exports[`<Header /> renders 1`] = `
             id="collasible-nav-dropdown"
             title="Algorithms"
           >
-            <DropdownItem
-              active={false}
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "SafeAnchor",
-                  "render": [Function],
-                }
+            <OverlayTrigger
+              defaultShow={false}
+              overlay={
+                <ForwardRef
+                  id="dijkstra-popover"
+                  placement="right"
+                >
+                  <ForwardRef
+                    as="h3"
+                  >
+                    Dijkstra
+                  </ForwardRef>
+                  <ForwardRef>
+                    <p>
+                      <strong>
+                        Weighted
+                      </strong>
+                    </p>
+                    <p>
+                      Running Time:
+                    </p>
+                    <p>
+                      O( | E | log | V | )
+                    </p>
+                    <p>
+                      Always finds the shortest path.
+                    </p>
+                    <p>
+                      Uses distance of nodes to choose the direction to travel.
+                    </p>
+                  </ForwardRef>
+                </ForwardRef>
               }
-              disabled={false}
-              id="set-dijkstra"
-              onClick={[Function]}
+              placement="right"
+              trigger="hover"
             >
-              Dijkstra
-            </DropdownItem>
-            <DropdownItem
-              active={false}
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "SafeAnchor",
-                  "render": [Function],
+              <DropdownItem
+                active={false}
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
                 }
+                disabled={false}
+                id="set-dijkstra"
+                onClick={[Function]}
+              >
+                Dijkstra
+              </DropdownItem>
+            </OverlayTrigger>
+            <OverlayTrigger
+              defaultShow={false}
+              overlay={
+                <ForwardRef
+                  id="astar-e-popover"
+                  placement="right"
+                >
+                  <ForwardRef
+                    as="h3"
+                  >
+                    A* (Euclidean)
+                  </ForwardRef>
+                  <ForwardRef>
+                    <p>
+                      <strong>
+                        Weighted
+                      </strong>
+                    </p>
+                    <p>
+                      Running Time:
+                    </p>
+                    <p>
+                      O( log ( h* )( x ) )
+                    </p>
+                    <p>
+                      Will not always find the shortest path.
+                    </p>
+                    <p>
+                      Uses as the crow flies heuristic to decide direction of search.
+                    </p>
+                  </ForwardRef>
+                </ForwardRef>
               }
-              disabled={false}
-              id="set-astar-euclidean"
-              onClick={[Function]}
+              placement="right"
+              trigger="hover"
             >
-              A* (Euclidean Distance)
-            </DropdownItem>
-            <DropdownItem
-              active={false}
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "SafeAnchor",
-                  "render": [Function],
+              <DropdownItem
+                active={false}
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
                 }
+                disabled={false}
+                id="set-astar-euclidean"
+                onClick={[Function]}
+              >
+                A* (Euclidean Distance)
+              </DropdownItem>
+            </OverlayTrigger>
+            <OverlayTrigger
+              defaultShow={false}
+              overlay={
+                <ForwardRef
+                  id="astar-m-popover"
+                  placement="right"
+                >
+                  <ForwardRef
+                    as="h3"
+                  >
+                    A* (Manhatten)
+                  </ForwardRef>
+                  <ForwardRef>
+                    <p>
+                      <strong>
+                        Weighted
+                      </strong>
+                    </p>
+                    <p>
+                      Running Time:
+                    </p>
+                    <p>
+                      O( log ( h* )( x ) )
+                    </p>
+                    <p>
+                      Will find the shortest path
+                    </p>
+                    <p>
+                      Uses the “taxi cab” heuristic for non diagonal graphs.
+                    </p>
+                  </ForwardRef>
+                </ForwardRef>
               }
-              disabled={false}
-              id="set-astar-manhatten"
-              onClick={[Function]}
+              placement="right"
+              trigger="hover"
             >
-              A* (Manhatten Distance)
-            </DropdownItem>
-            <DropdownItem
-              active={false}
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "SafeAnchor",
-                  "render": [Function],
+              <DropdownItem
+                active={false}
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
                 }
+                disabled={false}
+                id="set-astar-manhatten"
+                onClick={[Function]}
+              >
+                A* (Manhatten Distance)
+              </DropdownItem>
+            </OverlayTrigger>
+            <OverlayTrigger
+              defaultShow={false}
+              overlay={
+                <ForwardRef
+                  id="dfs-popover"
+                  placement="right"
+                >
+                  <ForwardRef
+                    as="h3"
+                  >
+                    Depth First Search
+                  </ForwardRef>
+                  <ForwardRef>
+                    <p>
+                      <strong>
+                        Not Weighted
+                      </strong>
+                    </p>
+                    <p>
+                      Running Time:
+                    </p>
+                    <p>
+                      O( | V | + | E | )
+                    </p>
+                    <p>
+                      Will not find the shortest path
+                    </p>
+                    <p>
+                      Searches every branch of a graph
+                    </p>
+                  </ForwardRef>
+                </ForwardRef>
               }
-              disabled={false}
-              id="set-depth-first-search"
-              onClick={[Function]}
+              placement="right"
+              trigger="hover"
             >
-              Depth First Search
-            </DropdownItem>
-            <DropdownItem
-              active={false}
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "SafeAnchor",
-                  "render": [Function],
+              <DropdownItem
+                active={false}
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
                 }
+                disabled={false}
+                id="set-depth-first-search"
+                onClick={[Function]}
+              >
+                Depth First Search
+              </DropdownItem>
+            </OverlayTrigger>
+            <OverlayTrigger
+              defaultShow={false}
+              overlay={
+                <ForwardRef
+                  id="bfs-popover"
+                  placement="right"
+                >
+                  <ForwardRef
+                    as="h3"
+                  >
+                    Breadth First Search
+                  </ForwardRef>
+                  <ForwardRef>
+                    <p>
+                      <strong>
+                        Not Weighted
+                      </strong>
+                    </p>
+                    <p>
+                      Running Time:
+                    </p>
+                    <p>
+                      O( | V | + | E | )
+                    </p>
+                    <p>
+                      Will find the shortest path
+                    </p>
+                    <p>
+                      Will search paths only after its current path has been fully explored.
+                    </p>
+                  </ForwardRef>
+                </ForwardRef>
               }
-              disabled={false}
-              id="set-breadth-first-search"
-              onClick={[Function]}
+              placement="right"
+              trigger="hover"
             >
-              Breadth First Search
-            </DropdownItem>
+              <DropdownItem
+                active={false}
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+                id="set-breadth-first-search"
+                onClick={[Function]}
+              >
+                Breadth First Search
+              </DropdownItem>
+            </OverlayTrigger>
           </NavDropdown>
         </Nav>
       </Col>
@@ -161,7 +346,7 @@ exports[`<Header /> renders 1`] = `
                 <Row
                   noGutters={false}
                 >
-                  1. Place a start and end point by clicking on the grid!
+                  1. Place a start and end point by clicking on the grid! (You can remove them by clicking on them again)
                 </Row>
                 <Row
                   noGutters={false}
