@@ -357,7 +357,7 @@ Will find the shortest path
           <Button
             active={false}
             disabled={false}
-            id="maze-btn"
+            id="info-btn"
             onClick={[Function]}
             style={
               Object {
@@ -400,14 +400,12 @@ Will find the shortest path
                 <Row
                   noGutters={false}
                 >
-                  3. Choose an algorithm via the "Algorithms" dropdown.
-                   
+                  3. Choose an algorithm via the "Algorithms" dropdown. 
                 </Row>
                 <Row
                   noGutters={false}
                 >
-                  4. Run it via pressing the green "Run Algorithm" button.
-                   
+                  4. Run it via pressing the green "Run Algorithm" button. 
                 </Row>
                 <Row
                   noGutters={false}

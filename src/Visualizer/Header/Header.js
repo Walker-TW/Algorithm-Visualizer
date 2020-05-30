@@ -110,6 +110,34 @@ const Header = (props) => {
     );
   });
 
+  const howToUse = (
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>How To Use</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Container>
+          <Row>
+            1. Place a start and end point by clicking on the grid! (You can
+            remove them by clicking on them again)
+          </Row>
+          <Row>
+            {' '}
+            2. Then place fences by checking "Fence Mode" and clicking on the
+            grid.{' '}
+          </Row>
+          <Row>3. Choose an algorithm via the "Algorithms" dropdown. </Row>
+          <Row>4. Run it via pressing the green "Run Algorithm" button. </Row>
+          <Row>5. Enjoy!</Row>
+        </Container>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="primary" onClick={handleClose}>
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
   return (
     <Navbar
       expanded={expanded}
@@ -138,42 +166,13 @@ const Header = (props) => {
           <Col md={{ span: 4 }}>
             <Nav>
               <Button
-                id="maze-btn"
+                id="info-btn"
                 style={{ border: '2px solid cyan', color: 'cyan' }}
                 variant="dark"
                 children={'How To Use'}
                 onClick={handleShow}
               />
-              <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                  <Modal.Title>How To Use</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <Container>
-                    <Row>
-                      1. Place a start and end point by clicking on the grid!
-                      (You can remove them by clicking on them again)
-                    </Row>
-                    <Row>
-                      {' '}
-                      2. Then place fences by checking "Fence Mode" and clicking
-                      on the grid.{' '}
-                    </Row>
-                    <Row>
-                      3. Choose an algorithm via the "Algorithms" dropdown.{' '}
-                    </Row>
-                    <Row>
-                      4. Run it via pressing the green "Run Algorithm" button.{' '}
-                    </Row>
-                    <Row>5. Enjoy!</Row>
-                  </Container>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button variant="primary" onClick={handleClose}>
-                    Close
-                  </Button>
-                </Modal.Footer>
-              </Modal>
+              {howToUse}
               <Button
                 id="run-btn"
                 style={{ border: '2px solid chartreuse', color: 'chartreuse' }}
