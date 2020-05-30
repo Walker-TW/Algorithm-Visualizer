@@ -73,8 +73,13 @@ exports[`<Header /> renders 1`] = `
                   </ForwardRef>
                 </ForwardRef>
               }
-              placement="bottom"
-              trigger="focus"
+              placement="right"
+              trigger={
+                Array [
+                  "hover",
+                  "focus",
+                ]
+              }
             >
               <DropdownItem
                 active={false}
@@ -125,8 +130,13 @@ exports[`<Header /> renders 1`] = `
                   </ForwardRef>
                 </ForwardRef>
               }
-              placement="bottom"
-              trigger="focus"
+              placement="right"
+              trigger={
+                Array [
+                  "hover",
+                  "focus",
+                ]
+              }
             >
               <DropdownItem
                 active={false}
@@ -177,8 +187,13 @@ exports[`<Header /> renders 1`] = `
                   </ForwardRef>
                 </ForwardRef>
               }
-              placement="bottom"
-              trigger="focus"
+              placement="right"
+              trigger={
+                Array [
+                  "hover",
+                  "focus",
+                ]
+              }
             >
               <DropdownItem
                 active={false}
@@ -229,8 +244,13 @@ exports[`<Header /> renders 1`] = `
                   </ForwardRef>
                 </ForwardRef>
               }
-              placement="bottom"
-              trigger="focus"
+              placement="right"
+              trigger={
+                Array [
+                  "hover",
+                  "focus",
+                ]
+              }
             >
               <DropdownItem
                 active={false}
@@ -281,8 +301,13 @@ exports[`<Header /> renders 1`] = `
                   </ForwardRef>
                 </ForwardRef>
               }
-              placement="bottom"
-              trigger="focus"
+              placement="right"
+              trigger={
+                Array [
+                  "hover",
+                  "focus",
+                ]
+              }
             >
               <DropdownItem
                 active={false}

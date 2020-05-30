@@ -102,8 +102,8 @@ const Header = (props) => {
             <Nav className="mr-auto">
               <NavDropdown title="Algorithms" id="collapsible-nav-dropdown">
                 <OverlayTrigger
-                  trigger={('hover', 'focus')}
-                  placement={'bottom'}
+                  trigger={['hover', 'focus']}
+                  placement={mobile ? 'bottom' : 'right'}
                   overlay={
                     <Popover id={`dijkstra-popover`}>
                       <Popover.Title as="h2">{`Dijkstra`}</Popover.Title>
@@ -131,8 +131,8 @@ const Header = (props) => {
                   }
                 />
                 <OverlayTrigger
-                  trigger={('hover', 'focus')}
-                  placement={'bottom'}
+                  trigger={['hover', 'focus']}
+                  placement={mobile ? 'bottom' : 'right'}
                   overlay={
                     <Popover id={`astar-e-popover`}>
                       <Popover.Title as="h3">{'A* (Euclidean)'}</Popover.Title>
@@ -160,8 +160,8 @@ const Header = (props) => {
                   }
                 />
                 <OverlayTrigger
-                  trigger={('hover', 'focus')}
-                  placement={'bottom'}
+                  trigger={['hover', 'focus']}
+                  placement={mobile ? 'bottom' : 'right'}
                   overlay={
                     <Popover id={'astar-m-popover'}>
                       <Popover.Title as="h3">{'A* (Manhatten)'}</Popover.Title>
@@ -188,8 +188,8 @@ const Header = (props) => {
                   }
                 />
                 <OverlayTrigger
-                  trigger={('hover', 'focus')}
-                  placement={'bottom'}
+                  trigger={['hover', 'focus']}
+                  placement={mobile ? 'bottom' : 'right'}
                   overlay={
                     <Popover id={'dfs-popover'}>
                       <Popover.Title as="h3">
@@ -216,8 +216,8 @@ const Header = (props) => {
                   }
                 />
                 <OverlayTrigger
-                  trigger={('hover', 'focus')}
-                  placement={'bottom'}
+                  trigger={['hover', 'focus']}
+                  placement={mobile ? 'bottom' : 'right'}
                   overlay={
                     <Popover id={'bfs-popover'}>
                       <Popover.Title as="h3">
@@ -404,7 +404,7 @@ const Header = (props) => {
                           onChange={(e) => {
                             setWidth(e.target.value);
                             setHeight(e.target.value);
-                            resizeGrid([height, height]);
+                            resizeGrid([e.target.value, e.target.value]);
                           }}
                           custom
                         />
