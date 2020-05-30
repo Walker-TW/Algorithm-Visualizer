@@ -209,8 +209,9 @@ const Header = (props) => {
                           size="sm"
                           type="text"
                           placeholder={`Width (Currently ${width})`}
-                          onChange={(e) => setWidth(e.target.value)}
-                          // className="Column-Input"
+                          onChange={(e) => {
+                            setWidth(e.target.value);
+                          }}
                         />
                         <Form.Control
                           type="range"
@@ -220,7 +221,7 @@ const Header = (props) => {
                           value={width}
                           onChange={(e) => {
                             setWidth(e.target.value);
-                            resizeGrid([width, height]);
+                            resizeGrid([e.target.value, height]);
                           }}
                           custom
                         />
@@ -229,7 +230,9 @@ const Header = (props) => {
                           type="text"
                           size="sm"
                           placeholder={`Height (Currently ${height})`}
-                          onChange={(e) => setHeight(e.target.value)}
+                          onChange={(e) => {
+                            setHeight(e.target.value);
+                          }}
                           className="Row-Input"
                         />
                         <Form.Control
@@ -239,7 +242,7 @@ const Header = (props) => {
                           value={height}
                           onChange={(e) => {
                             setHeight(e.target.value);
-                            resizeGrid([width, height]);
+                            resizeGrid([width, e.target.value]);
                           }}
                           custom
                         />
@@ -267,7 +270,7 @@ const Header = (props) => {
                           value={speed}
                           onChange={(e) => {
                             setSpeed(e.target.value);
-                            animationSpeed(speed);
+                            animationSpeed(e.target.value);
                           }}
                           custom
                         />
