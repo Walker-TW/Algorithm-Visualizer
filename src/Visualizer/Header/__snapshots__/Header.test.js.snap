@@ -564,7 +564,7 @@ Will find the shortest path
                     Node Size
                     <FormControl
                       onChange={[Function]}
-                      placeholder="Currently 30)"
+                      placeholder="Currently 20)"
                       size="sm"
                       type="text"
                     />
@@ -575,23 +575,23 @@ Will find the shortest path
                       onChange={[Function]}
                       size="sm"
                       type="range"
-                      value={30}
+                      value={20}
                     />
                     Grid Size
                     <FormControl
                       onChange={[Function]}
-                      placeholder="Width (Currently 32)"
+                      placeholder="Width (Currently 49)"
                       size="sm"
                       type="text"
                     />
                     <FormControl
                       custom={true}
-                      max={32}
+                      max={49}
                       min="1"
                       onChange={[Function]}
                       size="sm"
                       type="range"
-                      value={32}
+                      value={49}
                     />
                     <DropdownDivider
                       role="separator"
@@ -599,17 +599,17 @@ Will find the shortest path
                     <FormControl
                       className="Row-Input"
                       onChange={[Function]}
-                      placeholder="Height (Currently 24)"
+                      placeholder="Height (Currently 27)"
                       size="sm"
                       type="text"
                     />
                     <FormControl
                       custom={true}
-                      max={24}
+                      max={27}
                       min="1"
                       onChange={[Function]}
                       type="range"
-                      value={24}
+                      value={27}
                     />
                     <DropdownDivider
                       role="separator"
@@ -627,7 +627,7 @@ Will find the shortest path
                       onChange={[Function]}
                       size="sm"
                       type="range"
-                      value={32}
+                      value={49}
                     />
                     <DropdownDivider
                       role="separator"
