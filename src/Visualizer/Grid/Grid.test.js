@@ -2,8 +2,6 @@ import React from 'react';
 import Grid from './Grid';
 import { shallowToJson } from 'enzyme-to-json';
 
-import { shallow, mount, render } from 'enzyme';
-
 const defaultProps = {
   grid: [],
   gridHasStart: false,

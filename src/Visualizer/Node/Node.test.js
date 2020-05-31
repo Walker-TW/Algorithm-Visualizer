@@ -2,8 +2,6 @@ import React from 'react';
 import Node from './Node';
 import { shallowToJson } from 'enzyme-to-json';
 
-import { shallow } from 'enzyme';
-
 const nodeFlagSpy = jest.fn(() => {});
 
 const defaultProps = {
