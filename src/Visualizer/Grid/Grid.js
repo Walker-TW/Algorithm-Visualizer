@@ -19,17 +19,7 @@ const Grid = (props) => {
   } = props;
   const [grid, setGrid] = useState(propsGrid);
 
-  useEffect(
-    (propsGrid) => {
-      return (
-        () => {
-          setGrid(propsGrid);
-        },
-        console.log('Hope Your Enjoying The App!')
-      );
-    },
-    [propsGrid, grid]
-  );
+  useEffect((propsGrid) => setGrid(propsGrid), [propsGrid, grid]);
 
   return (
     <div className="Grid">
