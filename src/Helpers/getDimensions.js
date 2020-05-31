@@ -13,41 +13,36 @@ const thinSize = screenWidth > 991;
 
 const tablet = screenWidth > 414;
 
+const adjustedHeight = (navHeight, nodeSize) => {
+  return Math.floor(
+    (screenHeight - GRID_PADDING - navHeight - STATS_HEIGHT) / nodeSize
+  );
+};
+const adjustedWidth = (screenWidth, nodeSize) => {
+  return Math.floor(Math.floor((screenWidth - GRID_PADDING) * 0.9) / nodeSize);
+};
+const maxFill = (value, nodeSize) => {
+  return Math.floor((value - GRID_PADDING) / nodeSize);
+};
 export const getDimensions = (nodeSize) => {
   let size = nodeSize ? nodeSize : defaultNodeSize();
   if (fullSize) {
-    console.log('fullsize');
     [width, height] = [
-      Math.floor((screenWidth - GRID_PADDING) / size),
-      Math.floor(
-        (screenHeight - GRID_PADDING - FULL_SIZE_NAV_HEIGHT - STATS_HEIGHT) /
-          size
-      ),
+      adjustedWidth(screenWidth, size),
+      adjustedHeight(FULL_SIZE_NAV_HEIGHT, size),
     ];
   } else if (midSize) {
-    console.log('mid');
     [width, height] = [
-      Math.floor((screenWidth - GRID_PADDING) / size),
-      Math.floor(
-        (screenHeight - GRID_PADDING - MID_SIZE_NAV_HEIGHT - STATS_HEIGHT) /
-          size
-      ),
+      adjustedWidth(screenWidth, size),
+      adjustedHeight(MID_SIZE_NAV_HEIGHT, size),
     ];
   } else if (thinSize) {
-    console.log('thin');
     [width, height] = [
-      Math.floor((screenWidth - GRID_PADDING) / size),
-      Math.floor(
-        (screenHeight - GRID_PADDING - THIN_SIZE_NAV_HEIGHT - STATS_HEIGHT) /
-          size
-      ),
+      adjustedWidth(screenWidth, size),
+      adjustedHeight(THIN_SIZE_NAV_HEIGHT, size),
     ];
   } else {
-    console.log('tab mobile');
-    [width, height] = [
-      Math.floor((screenWidth - GRID_PADDING) / size),
-      Math.floor((screenHeight - GRID_PADDING) / size),
-    ];
+    [width, height] = [maxFill(screenWidth, size), maxFill(screenHeight, size)];
   }
 
   return [width, height];
