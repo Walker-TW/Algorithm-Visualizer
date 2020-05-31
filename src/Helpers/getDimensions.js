@@ -38,7 +38,8 @@ export const getMax = () => {
       Math.floor((screenHeight - 40) / 40),
     ];
   }
-  return [width, height];
+  // return [width, height];
+  return [400, 400];
 };
 
 export default getDimensions;

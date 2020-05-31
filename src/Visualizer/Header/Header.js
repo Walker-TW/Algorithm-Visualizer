@@ -35,8 +35,8 @@ const Header = (props) => {
     resetVisited,
     run: propRun,
     setAlgorithm,
-    scrollToBottom,
     speed: propsSpeed,
+    setNodeSize: propsNodeSize,
   } = props;
 
   const [screenWidth, screenHeight] = getDimensions();
@@ -44,6 +44,8 @@ const Header = (props) => {
   const [width, setWidth] = useState(Math.ceil(screenWidth));
   const [height, setHeight] = useState(Math.ceil(screenHeight));
   const [speed, setSpeed] = useState(propsSpeed);
+  const [nodeSize, setNodeSize] = useState();
+
   const [show, setShow] = useState();
   const [expanded, setExpanded] = useState(false);
 
@@ -148,6 +150,27 @@ const Header = (props) => {
         <Row>
           <Form variant="dark" inline>
             <Col>
+              Node Size
+              <FormControl
+                size="sm"
+                type="text"
+                placeholder={`Currently ${nodeSize})`}
+                onChange={(e) => {
+                  setNodeSize(e.target.value);
+                }}
+              />
+              <Form.Control
+                type="range"
+                size="sm"
+                min="1"
+                max="100"
+                value={nodeSize}
+                onChange={(e) => {
+                  setNodeSize(e.target.value);
+                  propsNodeSize(e.target.value);
+                }}
+                custom
+              />
               Grid Size
               <FormControl
                 size="sm"

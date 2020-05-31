@@ -75,11 +75,15 @@ export default class Node extends Component {
 
   render() {
     const { start, finish, fence } = this.state;
+    const { size } = this.props;
     return (
       <div
         onMouseDown={this.mouseDownHandler}
         onMouseEnter={this.mouseEnterHandler}
         onMouseUp={this.mouseUpHandler}
+        style={
+          size === 0 ? null : { width: parseInt(size), height: parseInt(size) }
+        }
         className={`Node ${
           start ? 'start' : finish ? 'finish' : fence ? 'fence' : ''
         }`}
@@ -98,4 +102,5 @@ Node.propTypes = {
   mouseToggle: PropTypes.bool.isRequired,
   nodeFlag: PropTypes.func.isRequired,
   resetStartFinish: PropTypes.func.isRequired,
+  size: PropTypes.number.isRequired,
 };

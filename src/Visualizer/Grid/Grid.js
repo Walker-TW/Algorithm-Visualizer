@@ -15,6 +15,7 @@ const Grid = (props) => {
     mouseFlag,
     updateNode,
     resetStartFinish,
+    nodeSize,
   } = props;
   const [grid, setGrid] = useState(propsGrid);
 
@@ -48,6 +49,7 @@ const Grid = (props) => {
                 updateNode={updateNode}
                 mouseToggle={mouseToggle}
                 resetStartFinish={resetStartFinish}
+                size={nodeSize}
               />
             ))}
           </div>
@@ -66,6 +68,7 @@ Grid.propTypes = {
   mouseToggle: PropTypes.bool.isRequired,
   nodeFlag: PropTypes.func.isRequired,
   resetStartFinish: PropTypes.func.isRequired,
+  nodeSize: PropTypes.number.isRequired,
 };
 
 export default Grid;

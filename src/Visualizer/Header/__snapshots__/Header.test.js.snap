@@ -561,6 +561,21 @@ Will find the shortest path
                   variant="dark"
                 >
                   <Col>
+                    Node Size
+                    <FormControl
+                      onChange={[Function]}
+                      placeholder="Currently undefined)"
+                      size="sm"
+                      type="text"
+                    />
+                    <FormControl
+                      custom={true}
+                      max="100"
+                      min="1"
+                      onChange={[Function]}
+                      size="sm"
+                      type="range"
+                    />
                     Grid Size
                     <FormControl
                       onChange={[Function]}
@@ -570,7 +585,7 @@ Will find the shortest path
                     />
                     <FormControl
                       custom={true}
-                      max={32}
+                      max={400}
                       min="1"
                       onChange={[Function]}
                       size="sm"
@@ -589,7 +604,7 @@ Will find the shortest path
                     />
                     <FormControl
                       custom={true}
-                      max={24}
+                      max={400}
                       min="1"
                       onChange={[Function]}
                       type="range"

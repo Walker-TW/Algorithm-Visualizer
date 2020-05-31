@@ -6,5 +6,11 @@ exports[`<Node /> Test that Node renders 1`] = `
   onMouseDown={[Function]}
   onMouseEnter={[Function]}
   onMouseUp={[Function]}
+  style={
+    Object {
+      "height": NaN,
+      "width": NaN,
+    }
+  }
 />
 `;

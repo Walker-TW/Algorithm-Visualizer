@@ -47,6 +47,7 @@ export default class Visualizer extends Component {
       },
     },
     runtime: 'None Yet',
+    nodeSize: 0,
     nodesProccessed: 'None Yet',
     fastestPath: 'None Yet',
     algorithmRan: 'None Yet',
@@ -156,6 +157,9 @@ export default class Visualizer extends Component {
 
   animationSpeed = (speedGiven) => {
     this.setState({ speed: speedGiven });
+  };
+  setNodeSize = (size) => {
+    this.setState({ nodeSize: size });
   };
 
   // reset
@@ -394,6 +398,7 @@ export default class Visualizer extends Component {
       start,
       runtime,
       nodesProccessed,
+      nodeSize,
       fastestPath,
       algorithmRan,
       speed,
@@ -412,6 +417,7 @@ export default class Visualizer extends Component {
           fenceToggle={this.fenceToggler}
           resetFences={this.resetFences}
           resetVisited={this.resetVisited}
+          setNodeSize={this.setNodeSize}
           speed={speed}
         />
 
@@ -434,6 +440,7 @@ export default class Visualizer extends Component {
           gridHasFinish={finish.present}
           fenceToggle={fenceToggle}
           nodeFlag={this.nodeFlag}
+          nodeSize={nodeSize}
           mouseFlag={this.mouseFlag}
           updateNode={this.updateNode}
           mouseToggle={mouseToggle}

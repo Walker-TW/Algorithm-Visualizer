@@ -13,6 +13,7 @@ exports[`<Visualizer /> renders 1`] = `
     resizeGrid={[Function]}
     run={[Function]}
     setAlgorithm={[Function]}
+    setNodeSize={[Function]}
     speed="4"
   />
   <Alert
@@ -10869,6 +10870,7 @@ exports[`<Visualizer /> renders 1`] = `
     mouseFlag={[Function]}
     mouseToggle={false}
     nodeFlag={[Function]}
+    nodeSize={0}
     resetStartFinish={[Function]}
   />
 </Fragment>
