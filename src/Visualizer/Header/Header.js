@@ -70,16 +70,23 @@ const Header = (props) => {
   const collapseNav = () => setExpanded(false);
 
   const run = () => {
-    if (algorithm === '') {
-      alert('Please select an algorithm');
-    }
-    if (!ready) {
+    if (algorithm === '') alert('Please select an algorithm');
+
+    if (!ready)
       alert(
         'Please choose a start and finish point before running by clicking on the desired squares'
       );
-    }
+
     if (ready && algorithm) {
-      propRun();
+      if (mobile) {
+        setTimeout(() => propRun(), 200);
+        collapseNav();
+        scroll.scrollToBottom({
+          duration: 1200,
+          delay: 100,
+          smooth: true,
+        });
+      } else setTimeout(() => propRun(), 200);
     }
   };
 
@@ -349,19 +356,7 @@ const Header = (props) => {
                 id="run-btn"
                 style={{ border: '2px solid chartreuse', color: 'chartreuse' }}
                 variant="dark"
-                onClick={
-                  mobile
-                    ? () => {
-                        setTimeout(() => run(), 200);
-                        collapseNav();
-                        scroll.scrollToBottom({
-                          duration: 1500,
-                          delay: 100,
-                          smooth: true,
-                        });
-                      }
-                    : () => setTimeout(() => run(), 200)
-                }
+                onClick={run}
                 children={
                   algorithm
                     ? `Let's Run ${algorithm}`
