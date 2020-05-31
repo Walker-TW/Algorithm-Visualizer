@@ -57,17 +57,14 @@ export default class Node extends Component {
     if (gridHasStart && gridHasFinish) {
       // visual aid
       document.getElementById('run-btn').innerText = 'Click Me!';
-      if (start) resetStartFinish('start');
-      if (finish) resetStartFinish('finish');
-    }
-    if (!gridHasStart) {
-      if (finish) {
-        alert("Start and end can't be the same");
-      } else {
-        this.startFinishHandler('start');
-      }
-    }
-    if (gridHasStart && !gridHasFinish) {
+
+      let reset = start ? 'start' : finish ? 'finish' : null;
+
+      if (start || finish) resetStartFinish(reset);
+    } else if (!gridHasStart) {
+      if (finish) alert("Start and end can't be the same");
+      else this.startFinishHandler('start');
+    } else if (gridHasStart && !gridHasFinish) {
       if (start) {
         alert("Start and end can't be the same");
       } else {

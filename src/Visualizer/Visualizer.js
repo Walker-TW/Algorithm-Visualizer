@@ -187,40 +187,40 @@ export default class Visualizer extends Component {
     this.resetNodeHandler(node, [type]);
     this.setState({ [type]: { present: false } });
   };
-  resetNodeStyle = (node) => {
-    document.getElementById(
-      `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
-    ).className = `Node`;
-  };
-
-  resetNodeObject = (node, type) => {
-    node.heuristic = Infinity;
-    node.manhatten = Infinity;
-    node.distance = Infinity;
-    node.visited = false;
-    node.pastNode = null;
-    if (type === 'all') {
-      node = this.createNode(node.gridId);
-    }
-    if (type === 'fence' || 'start' || 'finish') {
-      node[type] = false;
-    }
-  };
 
   resetNodeHandler = (node, type) => {
+    const resetNodeStyle = (node) => {
+      document.getElementById(
+        `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
+      ).className = `Node`;
+    };
+
+    const resetNodeObject = (node, type) => {
+      node.heuristic = Infinity;
+      node.manhatten = Infinity;
+      node.distance = Infinity;
+      node.visited = false;
+      node.pastNode = null;
+      if (type === 'all') {
+        node = this.createNode(node.gridId);
+      }
+      if (type === 'fence' || 'start' || 'finish') {
+        node[type] = false;
+      }
+    };
     if (type === 'visited') {
       if (node.start || node.fence || node.finish) {
-        this.resetNodeObject(node, [type]);
+        resetNodeObject(node, [type]);
       } else {
-        this.resetNodeObject(node, 'all');
-        this.resetNodeStyle(node);
+        resetNodeObject(node, 'all');
+        resetNodeStyle(node);
       }
     } else if (type === 'all') {
-      this.resetNodeObject(node, [type]);
-      this.resetNodeStyle(node);
+      resetNodeObject(node, [type]);
+      resetNodeStyle(node);
     } else if (type === 'fence' || 'start' || 'finish') {
-      this.resetNodeObject(node, [type]);
-      this.resetNodeStyle(node);
+      resetNodeObject(node, [type]);
+      resetNodeStyle(node);
     }
   };
 
@@ -419,6 +419,8 @@ export default class Visualizer extends Component {
 
         {!start.present && !finish.present ? (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
+        ) : !start.present ? (
+          <Alert variant="primary">Please Choose A Start Node</Alert>
         ) : !finish.present ? (
           <Alert variant="primary">Please Choose An End Node</Alert>
         ) : null}
