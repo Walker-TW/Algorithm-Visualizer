@@ -3,22 +3,40 @@ let width, height;
 
 export const getDimensions = () => {
   if (screenWidth > 1450) {
-    [width, height] = [screenWidth / 20 - 12, screenHeight / 20 - 16];
+    [width, height] = [
+      Math.floor((screenWidth - 40) / 20),
+      Math.floor((screenHeight - 40) / 20),
+    ];
   } else if (screenWidth > 900) {
-    [width, height] = [screenWidth / 30 - 5, screenHeight / 30 - 11];
+    [width, height] = [
+      Math.floor((screenWidth - 40) / 30),
+      Math.floor((screenHeight - 40) / 30),
+    ];
   } else {
-    [width, height] = [screenWidth / 40 - 2, screenHeight / 40 - 8];
+    [width, height] = [
+      Math.floor((screenWidth - 40) / 40),
+      Math.floor((screenHeight - 40) / 40),
+    ];
   }
   return [width, height];
 };
 
 export const getMax = () => {
   if (screenWidth > 1450) {
-    [width, height] = [screenWidth / 20, screenHeight / 20];
+    [width, height] = [
+      Math.floor((screenWidth - 40) / 20),
+      Math.floor((screenHeight - 40) / 20),
+    ];
   } else if (screenWidth > 900) {
-    [width, height] = [screenWidth / 30, screenHeight / 30];
+    [width, height] = [
+      Math.floor((screenWidth - 40) / 30),
+      Math.floor((screenHeight - 40) / 30),
+    ];
   } else {
-    [width, height] = [screenWidth / 40 - 3, screenHeight / 40 - 5];
+    [width, height] = [
+      Math.floor((screenWidth - 40) / 40),
+      Math.floor((screenHeight - 40) / 40),
+    ];
   }
   return [width, height];
 };
