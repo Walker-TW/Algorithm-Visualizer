@@ -208,6 +208,7 @@ export default class Visualizer extends Component {
         node[type] = false;
       }
     };
+
     if (type === 'visited') {
       if (node.start || node.fence || node.finish) {
         resetNodeObject(node, [type]);
@@ -215,10 +216,7 @@ export default class Visualizer extends Component {
         resetNodeObject(node, 'all');
         resetNodeStyle(node);
       }
-    } else if (type === 'all') {
-      resetNodeObject(node, [type]);
-      resetNodeStyle(node);
-    } else if (type === 'fence' || 'start' || 'finish') {
+    } else if ((type === 'all', 'fence' || 'start' || 'finish')) {
       resetNodeObject(node, [type]);
       resetNodeStyle(node);
     }
