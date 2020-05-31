@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import './Grid.css';
 
-const Nodes = (props) => {
+const Grid = (props) => {
   const {
     grid: propsGrid,
     fenceToggle,
@@ -57,7 +57,7 @@ const Nodes = (props) => {
   );
 };
 
-Nodes.propTypes = {
+Grid.propTypes = {
   fenceToggle: PropTypes.bool.isRequired,
   grid: PropTypes.array.isRequired,
   gridHasStart: PropTypes.bool.isRequired,
@@ -68,4 +68,4 @@ Nodes.propTypes = {
   resetStartFinish: PropTypes.func.isRequired,
 };
 
-export default Nodes;
+export default Grid;

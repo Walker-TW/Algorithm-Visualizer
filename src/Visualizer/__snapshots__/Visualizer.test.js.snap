@@ -42,7 +42,7 @@ exports[`<Visualizer /> renders 1`] = `
     nodesProccessed="None Yet"
     runtime="None Yet"
   />
-  <Nodes
+  <Grid
     fenceToggle={false}
     grid={
       Array [

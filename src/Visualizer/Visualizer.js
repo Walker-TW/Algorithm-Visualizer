@@ -4,7 +4,7 @@ import getDimensions from '../Helpers/getDimensions';
 import Header from './Header/Header';
 
 import Alert from 'react-bootstrap/Alert';
-import Nodes from './Nodes/Nodes';
+import Grid from './Grid/Grid';
 import Stats from './Stats/Stats';
 import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
 import {
@@ -428,7 +428,7 @@ export default class Visualizer extends Component {
           fastestPath={fastestPath}
           algorithmRan={algorithmRan}
         />
-        <Nodes
+        <Grid
           grid={grid}
           gridHasStart={start.present}
           gridHasFinish={finish.present}
