@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import './Grid.css';
 
-const Nodes = (props) => {
+const Grid = (props) => {
   const {
     grid: propsGrid,
     fenceToggle,
@@ -15,20 +15,11 @@ const Nodes = (props) => {
     mouseFlag,
     updateNode,
     resetStartFinish,
+    nodeSize,
   } = props;
   const [grid, setGrid] = useState(propsGrid);
 
-  useEffect(
-    (propsGrid) => {
-      return (
-        () => {
-          setGrid(propsGrid);
-        },
-        console.log('Hope Your Enjoying The App!')
-      );
-    },
-    [propsGrid, grid]
-  );
+  useEffect((propsGrid) => setGrid(propsGrid), [propsGrid, grid]);
 
   return (
     <div className="Grid">
@@ -48,6 +39,7 @@ const Nodes = (props) => {
                 updateNode={updateNode}
                 mouseToggle={mouseToggle}
                 resetStartFinish={resetStartFinish}
+                size={nodeSize}
               />
             ))}
           </div>
@@ -57,7 +49,7 @@ const Nodes = (props) => {
   );
 };
 
-Nodes.propTypes = {
+Grid.propTypes = {
   fenceToggle: PropTypes.bool.isRequired,
   grid: PropTypes.array.isRequired,
   gridHasStart: PropTypes.bool.isRequired,
@@ -66,6 +58,7 @@ Nodes.propTypes = {
   mouseToggle: PropTypes.bool.isRequired,
   nodeFlag: PropTypes.func.isRequired,
   resetStartFinish: PropTypes.func.isRequired,
+  nodeSize: PropTypes.number.isRequired,
 };
 
-export default Nodes;
+export default Grid;

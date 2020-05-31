@@ -1,26 +1,54 @@
 const [screenWidth, screenHeight] = [window.innerWidth, window.innerHeight];
+const GRID_PADDING = 40;
+const FULL_SIZE_NAV_HEIGHT = 48;
+const MID_SIZE_NAV_HEIGHT = 104;
+const THIN_SIZE_NAV_HEIGHT = 104;
+const STATS_HEIGHT = 83;
+
 let width, height;
 
-export const getDimensions = () => {
-  if (screenWidth > 1450) {
-    [width, height] = [screenWidth / 20 - 12, screenHeight / 20 - 16];
-  } else if (screenWidth > 900) {
-    [width, height] = [screenWidth / 30 - 5, screenHeight / 30 - 11];
-  } else {
-    [width, height] = [screenWidth / 40 - 2, screenHeight / 40 - 8];
-  }
-  return [width, height];
+const fullSize = screenWidth > 1654;
+const midSize = screenWidth > 1212;
+const thinSize = screenWidth > 991;
+const tablet = screenWidth > 414;
+
+const adjustedHeight = (navHeight, nodeSize) => {
+  return Math.floor(
+    (screenHeight - GRID_PADDING - navHeight - STATS_HEIGHT) / nodeSize
+  );
+};
+const adjustedWidth = (screenWidth, nodeSize) => {
+  return Math.floor(Math.floor((screenWidth - GRID_PADDING) * 0.9) / nodeSize);
+};
+export const maxFill = (value, nodeSize) => {
+  return Math.floor((value - GRID_PADDING) / nodeSize);
 };
 
-export const getMax = () => {
-  if (screenWidth > 1450) {
-    [width, height] = [screenWidth / 20, screenHeight / 20];
-  } else if (screenWidth > 900) {
-    [width, height] = [screenWidth / 30, screenHeight / 30];
-  } else {
-    [width, height] = [screenWidth / 40 - 3, screenHeight / 40 - 5];
-  }
+export const getDimensions = (nodeSize) => {
+  let size = nodeSize ? nodeSize : defaultNodeSize();
+  [width, height] = fullSize
+    ? [
+        adjustedWidth(screenWidth, size),
+        adjustedHeight(FULL_SIZE_NAV_HEIGHT, size),
+      ]
+    : midSize
+    ? [
+        adjustedWidth(screenWidth, size),
+        adjustedHeight(MID_SIZE_NAV_HEIGHT, size),
+      ]
+    : thinSize
+    ? [
+        adjustedWidth(screenWidth, size),
+        adjustedHeight(THIN_SIZE_NAV_HEIGHT, size),
+      ]
+    : [maxFill(screenWidth, size), maxFill(screenHeight, size)];
+
   return [width, height];
+};
+export const defaultNodeSize = () => {
+  let nodeSize = thinSize ? 20 : tablet ? 30 : 40;
+
+  return nodeSize;
 };
 
 export default getDimensions;

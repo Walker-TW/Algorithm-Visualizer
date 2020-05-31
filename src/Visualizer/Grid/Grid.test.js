@@ -1,8 +1,6 @@
 import React from 'react';
-import Nodes from './Nodes';
+import Grid from './Grid';
 import { shallowToJson } from 'enzyme-to-json';
-
-import { shallow, mount, render } from 'enzyme';
 
 const defaultProps = {
   grid: [],
@@ -11,14 +9,15 @@ const defaultProps = {
   nodeFlag: () => {},
   mouseFlag: () => {},
   mouseToggle: false,
+  nodeSize: 20,
   fenceToggle: false,
   resetStartFinish: () => {},
   updateNode: () => {},
 };
 
-describe('<Nodes />', () => {
-  const nodes = shallow(<Nodes {...defaultProps} />);
+describe('<Grid />', () => {
+  const grid = shallow(<Grid {...defaultProps} />);
   it('renders', () => {
-    expect(shallowToJson(nodes)).toMatchSnapshot();
+    expect(shallowToJson(grid)).toMatchSnapshot();
   });
 });

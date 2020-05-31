@@ -17,6 +17,7 @@
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "react-scroll": "^1.7.16",
     "react-sizeme": "^2.6.12"
   },
   "scripts": {

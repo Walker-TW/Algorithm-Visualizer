@@ -2,8 +2,6 @@ import React from 'react';
 import Node from './Node';
 import { shallowToJson } from 'enzyme-to-json';
 
-import { shallow } from 'enzyme';
-
 const nodeFlagSpy = jest.fn(() => {});
 
 const defaultProps = {
@@ -15,6 +13,7 @@ const defaultProps = {
   mouseToggle: false,
   nodeFlag: nodeFlagSpy,
   resetStartFinish: () => {},
+  size: 20,
 };
 
 describe('<Node />', () => {

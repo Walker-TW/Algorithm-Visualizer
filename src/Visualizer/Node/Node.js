@@ -57,17 +57,14 @@ export default class Node extends Component {
     if (gridHasStart && gridHasFinish) {
       // visual aid
       document.getElementById('run-btn').innerText = 'Click Me!';
-      if (start) resetStartFinish('start');
-      if (finish) resetStartFinish('finish');
-    }
-    if (!gridHasStart) {
-      if (finish) {
-        alert("Start and end can't be the same");
-      } else {
-        this.startFinishHandler('start');
-      }
-    }
-    if (gridHasStart && !gridHasFinish) {
+
+      let reset = start ? 'start' : finish ? 'finish' : null;
+
+      if (start || finish) resetStartFinish(reset);
+    } else if (!gridHasStart) {
+      if (finish) alert("Start and end can't be the same");
+      else this.startFinishHandler('start');
+    } else if (gridHasStart && !gridHasFinish) {
       if (start) {
         alert("Start and end can't be the same");
       } else {
@@ -78,11 +75,15 @@ export default class Node extends Component {
 
   render() {
     const { start, finish, fence } = this.state;
+    const { size } = this.props;
     return (
       <div
         onMouseDown={this.mouseDownHandler}
         onMouseEnter={this.mouseEnterHandler}
         onMouseUp={this.mouseUpHandler}
+        style={
+          size === 0 ? null : { width: parseInt(size), height: parseInt(size) }
+        }
         className={`Node ${
           start ? 'start' : finish ? 'finish' : fence ? 'fence' : ''
         }`}
@@ -101,4 +102,5 @@ Node.propTypes = {
   mouseToggle: PropTypes.bool.isRequired,
   nodeFlag: PropTypes.func.isRequired,
   resetStartFinish: PropTypes.func.isRequired,
+  size: PropTypes.number.isRequired,
 };

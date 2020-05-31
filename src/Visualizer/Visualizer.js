@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 
-import getDimensions from '../Helpers/getDimensions';
+import { getDimensions, defaultNodeSize } from '../Helpers/getDimensions';
 import Header from './Header/Header';
 
 import Alert from 'react-bootstrap/Alert';
-import Nodes from './Nodes/Nodes';
+import Grid from './Grid/Grid';
 import Stats from './Stats/Stats';
 import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
 import {
@@ -47,6 +47,7 @@ export default class Visualizer extends Component {
       },
     },
     runtime: 'None Yet',
+    nodeSize: 0,
     nodesProccessed: 'None Yet',
     fastestPath: 'None Yet',
     algorithmRan: 'None Yet',
@@ -79,7 +80,7 @@ export default class Visualizer extends Component {
     };
   };
 
-  gridSetup = (dimensions = getDimensions()) => {
+  gridSetup = (dimensions = getDimensions(defaultNodeSize())) => {
     let [width, height] = dimensions;
 
     this.setState({ dimensions: dimensions });
@@ -157,6 +158,9 @@ export default class Visualizer extends Component {
   animationSpeed = (speedGiven) => {
     this.setState({ speed: speedGiven });
   };
+  setNodeSize = (size) => {
+    this.setState({ nodeSize: size });
+  };
 
   // reset
 
@@ -187,40 +191,38 @@ export default class Visualizer extends Component {
     this.resetNodeHandler(node, [type]);
     this.setState({ [type]: { present: false } });
   };
-  resetNodeStyle = (node) => {
-    document.getElementById(
-      `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
-    ).className = `Node`;
-  };
-
-  resetNodeObject = (node, type) => {
-    node.heuristic = Infinity;
-    node.manhatten = Infinity;
-    node.distance = Infinity;
-    node.visited = false;
-    node.pastNode = null;
-    if (type === 'all') {
-      node = this.createNode(node.gridId);
-    }
-    if (type === 'fence' || 'start' || 'finish') {
-      node[type] = false;
-    }
-  };
 
   resetNodeHandler = (node, type) => {
+    const resetNodeStyle = (node) => {
+      document.getElementById(
+        `node-${node.gridId.colIndex}-${node.gridId.rowIndex}`
+      ).className = `Node`;
+    };
+
+    const resetNodeObject = (node, type) => {
+      node.heuristic = Infinity;
+      node.manhatten = Infinity;
+      node.distance = Infinity;
+      node.visited = false;
+      node.pastNode = null;
+      if (type === 'all') {
+        node = this.createNode(node.gridId);
+      }
+      if (type === 'fence' || 'start' || 'finish') {
+        node[type] = false;
+      }
+    };
+
     if (type === 'visited') {
       if (node.start || node.fence || node.finish) {
-        this.resetNodeObject(node, [type]);
+        resetNodeObject(node, [type]);
       } else {
-        this.resetNodeObject(node, 'all');
-        this.resetNodeStyle(node);
+        resetNodeObject(node, 'all');
+        resetNodeStyle(node);
       }
-    } else if (type === 'all') {
-      this.resetNodeObject(node, [type]);
-      this.resetNodeStyle(node);
-    } else if (type === 'fence' || 'start' || 'finish') {
-      this.resetNodeObject(node, [type]);
-      this.resetNodeStyle(node);
+    } else if ((type === 'all', 'fence' || 'start' || 'finish')) {
+      resetNodeObject(node, [type]);
+      resetNodeStyle(node);
     }
   };
 
@@ -396,6 +398,7 @@ export default class Visualizer extends Component {
       start,
       runtime,
       nodesProccessed,
+      nodeSize,
       fastestPath,
       algorithmRan,
       speed,
@@ -414,11 +417,14 @@ export default class Visualizer extends Component {
           fenceToggle={this.fenceToggler}
           resetFences={this.resetFences}
           resetVisited={this.resetVisited}
+          setNodeSize={this.setNodeSize}
           speed={speed}
         />
 
         {!start.present && !finish.present ? (
           <Alert variant="primary">Please Choose A Start & End Node</Alert>
+        ) : !start.present ? (
+          <Alert variant="primary">Please Choose A Start Node</Alert>
         ) : !finish.present ? (
           <Alert variant="primary">Please Choose An End Node</Alert>
         ) : null}
@@ -428,12 +434,13 @@ export default class Visualizer extends Component {
           fastestPath={fastestPath}
           algorithmRan={algorithmRan}
         />
-        <Nodes
+        <Grid
           grid={grid}
           gridHasStart={start.present}
           gridHasFinish={finish.present}
           fenceToggle={fenceToggle}
           nodeFlag={this.nodeFlag}
+          nodeSize={nodeSize}
           mouseFlag={this.mouseFlag}
           updateNode={this.updateNode}
           mouseToggle={mouseToggle}

@@ -42,6 +42,7 @@ exports[`<Header /> renders 1`] = `
           >
             <OverlayTrigger
               defaultShow={false}
+              key="0"
               overlay={
                 <ForwardRef
                   id="dijkstra-popover"
@@ -58,14 +59,16 @@ exports[`<Header /> renders 1`] = `
                         Weighted
                       </strong>
                     </p>
-                    <p>
+                    <p
+                      style={
+                        Object {
+                          "whiteSpace": "pre-line",
+                        }
+                      }
+                    >
                       Running Time:
-                    </p>
-                    <p>
-                      O( | E | log | V | )
-                    </p>
-                    <p>
-                      Always finds the shortest path.
+O( | E | log | V | )
+Always finds the shortest path.
                     </p>
                     <p>
                       Uses distance of nodes to choose the direction to travel.
@@ -99,15 +102,16 @@ exports[`<Header /> renders 1`] = `
             </OverlayTrigger>
             <OverlayTrigger
               defaultShow={false}
+              key="1"
               overlay={
                 <ForwardRef
                   id="astar-e-popover"
                   placement="right"
                 >
                   <ForwardRef
-                    as="h3"
+                    as="h2"
                   >
-                    A* (Euclidean)
+                    A* Euclidean
                   </ForwardRef>
                   <ForwardRef>
                     <p>
@@ -115,14 +119,16 @@ exports[`<Header /> renders 1`] = `
                         Weighted
                       </strong>
                     </p>
-                    <p>
+                    <p
+                      style={
+                        Object {
+                          "whiteSpace": "pre-line",
+                        }
+                      }
+                    >
                       Running Time:
-                    </p>
-                    <p>
-                      O( log ( h* )( x ) )
-                    </p>
-                    <p>
-                      Will not always find the shortest path.
+O( log ( h* )( x ) )
+Will not always find the shortest path.
                     </p>
                     <p>
                       Uses as the crow flies heuristic to decide direction of search.
@@ -148,23 +154,24 @@ exports[`<Header /> renders 1`] = `
                   }
                 }
                 disabled={false}
-                id="set-astar-euclidean"
+                id="set-astar-e"
                 onClick={[Function]}
               >
-                A* (Euclidean Distance)
+                A* Euclidean
               </DropdownItem>
             </OverlayTrigger>
             <OverlayTrigger
               defaultShow={false}
+              key="2"
               overlay={
                 <ForwardRef
                   id="astar-m-popover"
                   placement="right"
                 >
                   <ForwardRef
-                    as="h3"
+                    as="h2"
                   >
-                    A* (Manhatten)
+                    A* Manhatten
                   </ForwardRef>
                   <ForwardRef>
                     <p>
@@ -172,14 +179,16 @@ exports[`<Header /> renders 1`] = `
                         Weighted
                       </strong>
                     </p>
-                    <p>
+                    <p
+                      style={
+                        Object {
+                          "whiteSpace": "pre-line",
+                        }
+                      }
+                    >
                       Running Time:
-                    </p>
-                    <p>
-                      O( log ( h* )( x ) )
-                    </p>
-                    <p>
-                      Will find the shortest path
+O( log ( h* )( x ) )
+Will find the shortest path
                     </p>
                     <p>
                       Uses the “taxi cab” heuristic for non diagonal graphs.
@@ -205,21 +214,22 @@ exports[`<Header /> renders 1`] = `
                   }
                 }
                 disabled={false}
-                id="set-astar-manhatten"
+                id="set-astar-m"
                 onClick={[Function]}
               >
-                A* (Manhatten Distance)
+                A* Manhatten
               </DropdownItem>
             </OverlayTrigger>
             <OverlayTrigger
               defaultShow={false}
+              key="3"
               overlay={
                 <ForwardRef
                   id="dfs-popover"
                   placement="right"
                 >
                   <ForwardRef
-                    as="h3"
+                    as="h2"
                   >
                     Depth First Search
                   </ForwardRef>
@@ -229,14 +239,16 @@ exports[`<Header /> renders 1`] = `
                         Not Weighted
                       </strong>
                     </p>
-                    <p>
+                    <p
+                      style={
+                        Object {
+                          "whiteSpace": "pre-line",
+                        }
+                      }
+                    >
                       Running Time:
-                    </p>
-                    <p>
-                      O( | V | + | E | )
-                    </p>
-                    <p>
-                      Will not find the shortest path
+O( | V | + | E | )
+Will not find the shortest path
                     </p>
                     <p>
                       Searches every branch of a graph
@@ -262,7 +274,7 @@ exports[`<Header /> renders 1`] = `
                   }
                 }
                 disabled={false}
-                id="set-depth-first-search"
+                id="set-dfs"
                 onClick={[Function]}
               >
                 Depth First Search
@@ -270,13 +282,14 @@ exports[`<Header /> renders 1`] = `
             </OverlayTrigger>
             <OverlayTrigger
               defaultShow={false}
+              key="4"
               overlay={
                 <ForwardRef
                   id="bfs-popover"
                   placement="right"
                 >
                   <ForwardRef
-                    as="h3"
+                    as="h2"
                   >
                     Breadth First Search
                   </ForwardRef>
@@ -286,14 +299,16 @@ exports[`<Header /> renders 1`] = `
                         Not Weighted
                       </strong>
                     </p>
-                    <p>
+                    <p
+                      style={
+                        Object {
+                          "whiteSpace": "pre-line",
+                        }
+                      }
+                    >
                       Running Time:
-                    </p>
-                    <p>
-                      O( | V | + | E | )
-                    </p>
-                    <p>
-                      Will find the shortest path
+O( | V | + | E | )
+Will find the shortest path
                     </p>
                     <p>
                       Will search paths only after its current path has been fully explored.
@@ -319,7 +334,7 @@ exports[`<Header /> renders 1`] = `
                   }
                 }
                 disabled={false}
-                id="set-breadth-first-search"
+                id="set-bfs"
                 onClick={[Function]}
               >
                 Breadth First Search
@@ -342,7 +357,7 @@ exports[`<Header /> renders 1`] = `
           <Button
             active={false}
             disabled={false}
-            id="maze-btn"
+            id="info-btn"
             onClick={[Function]}
             style={
               Object {
@@ -385,14 +400,12 @@ exports[`<Header /> renders 1`] = `
                 <Row
                   noGutters={false}
                 >
-                  3. Choose an algorithm via the "Algorithms" dropdown.
-                   
+                  3. Choose an algorithm via the "Algorithms" dropdown. 
                 </Row>
                 <Row
                   noGutters={false}
                 >
-                  4. Run it via pressing the green "Run Algorithm" button.
-                   
+                  4. Run it via pressing the green "Run Algorithm" button. 
                 </Row>
                 <Row
                   noGutters={false}
@@ -548,21 +561,37 @@ exports[`<Header /> renders 1`] = `
                   variant="dark"
                 >
                   <Col>
-                    Grid Size
+                    Node Size
                     <FormControl
                       onChange={[Function]}
-                      placeholder="Width (Currently 30)"
+                      placeholder="Currently 20)"
                       size="sm"
                       type="text"
                     />
                     <FormControl
                       custom={true}
-                      max={34.13333333333333}
+                      max="100"
+                      min="10"
+                      onChange={[Function]}
+                      size="sm"
+                      type="range"
+                      value={20}
+                    />
+                    Grid Size
+                    <FormControl
+                      onChange={[Function]}
+                      placeholder="Width (Currently 44)"
+                      size="sm"
+                      type="text"
+                    />
+                    <FormControl
+                      custom={true}
+                      max={49}
                       min="1"
                       onChange={[Function]}
                       size="sm"
                       type="range"
-                      value={30}
+                      value={44}
                     />
                     <DropdownDivider
                       role="separator"
@@ -570,17 +599,17 @@ exports[`<Header /> renders 1`] = `
                     <FormControl
                       className="Row-Input"
                       onChange={[Function]}
-                      placeholder="Height (Currently 15)"
+                      placeholder="Height (Currently 27)"
                       size="sm"
                       type="text"
                     />
                     <FormControl
                       custom={true}
-                      max={25.6}
+                      max={27}
                       min="1"
                       onChange={[Function]}
                       type="range"
-                      value={15}
+                      value={27}
                     />
                     <DropdownDivider
                       role="separator"
@@ -593,12 +622,12 @@ exports[`<Header /> renders 1`] = `
                     </FormLabel>
                     <FormControl
                       custom={true}
-                      max="50"
+                      max={27}
                       min="1"
                       onChange={[Function]}
                       size="sm"
                       type="range"
-                      value={30}
+                      value={44}
                     />
                     <DropdownDivider
                       role="separator"
