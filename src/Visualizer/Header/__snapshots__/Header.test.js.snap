@@ -580,18 +580,18 @@ Will find the shortest path
                     Grid Size
                     <FormControl
                       onChange={[Function]}
-                      placeholder="Width (Currently 49)"
+                      placeholder="Width (Currently 44)"
                       size="sm"
                       type="text"
                     />
                     <FormControl
                       custom={true}
-                      max={49}
+                      max={44}
                       min="1"
                       onChange={[Function]}
                       size="sm"
                       type="range"
-                      value={49}
+                      value={44}
                     />
                     <DropdownDivider
                       role="separator"
@@ -627,7 +627,7 @@ Will find the shortest path
                       onChange={[Function]}
                       size="sm"
                       type="range"
-                      value={49}
+                      value={44}
                     />
                     <DropdownDivider
                       role="separator"

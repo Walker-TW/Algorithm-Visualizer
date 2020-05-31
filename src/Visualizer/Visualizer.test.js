@@ -10,11 +10,6 @@ import { shallowToJson } from 'enzyme-to-json';
 import { shallow, mount, render } from 'enzyme';
 
 describe('<Visualizer />', () => {
-  function toggleFences(wrapper) {
-    wrapper
-      .find('input[type="checkbox"]')
-      .simulate('change', { target: { checked: true } });
-  }
   beforeAll(() => {
     matchMediaPolyfill(window);
     window.resizeTo = function resizeTo(width, height) {
@@ -26,6 +21,11 @@ describe('<Visualizer />', () => {
       }).dispatchEvent(new this.Event('resize'));
     };
   });
+  function toggleFences(wrapper) {
+    wrapper
+      .find('input[type="checkbox"]')
+      .simulate('change', { target: { checked: true } });
+  }
   it('renders', () => {
     const wrapper = shallow(<Visualizer />);
     expect(shallowToJson(wrapper)).toMatchSnapshot();
@@ -34,7 +34,7 @@ describe('<Visualizer />', () => {
   it('renders all 1500 Node components', () => {
     const wrapper = mount(<Visualizer />);
     // expect(wrapper.find(Node)).toEqual(true);
-    expect(wrapper.find('.Node').length).toEqual(1323);
+    expect(wrapper.find('.Node').length).toEqual(1188);
   });
 
   it('render a node that will change the start state when clicked', () => {
@@ -54,11 +54,11 @@ describe('<Visualizer />', () => {
     expect(wrapper.state().start.present).toEqual(true);
   });
 
-  it('renders 1323 nodes on mobile', () => {
+  it('renders 1188 nodes on mobile', () => {
     window.resizeTo(375, 667);
 
     const wrapperTwo = mount(<Visualizer />);
-    expect(wrapperTwo.find('.Node').length).toEqual(1323);
+    expect(wrapperTwo.find('.Node').length).toEqual(1188);
   });
 
   it('registers if a mouse is held', () => {

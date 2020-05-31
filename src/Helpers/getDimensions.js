@@ -24,36 +24,30 @@ const adjustedWidth = (screenWidth, nodeSize) => {
 const maxFill = (value, nodeSize) => {
   return Math.floor((value - GRID_PADDING) / nodeSize);
 };
+
 export const getDimensions = (nodeSize) => {
   let size = nodeSize ? nodeSize : defaultNodeSize();
-  if (fullSize) {
-    [width, height] = [
-      adjustedWidth(screenWidth, size),
-      adjustedHeight(FULL_SIZE_NAV_HEIGHT, size),
-    ];
-  } else if (midSize) {
-    [width, height] = [
-      adjustedWidth(screenWidth, size),
-      adjustedHeight(MID_SIZE_NAV_HEIGHT, size),
-    ];
-  } else if (thinSize) {
-    [width, height] = [
-      adjustedWidth(screenWidth, size),
-      adjustedHeight(THIN_SIZE_NAV_HEIGHT, size),
-    ];
-  } else {
-    [width, height] = [maxFill(screenWidth, size), maxFill(screenHeight, size)];
-  }
+  [width, height] = fullSize
+    ? [
+        adjustedWidth(screenWidth, size),
+        adjustedHeight(FULL_SIZE_NAV_HEIGHT, size),
+      ]
+    : midSize
+    ? [
+        adjustedWidth(screenWidth, size),
+        adjustedHeight(MID_SIZE_NAV_HEIGHT, size),
+      ]
+    : thinSize
+    ? [
+        adjustedWidth(screenWidth, size),
+        adjustedHeight(THIN_SIZE_NAV_HEIGHT, size),
+      ]
+    : [maxFill(screenWidth, size), maxFill(screenHeight, size)];
 
   return [width, height];
 };
-
 export const defaultNodeSize = () => {
-  let nodeSize;
-
-  if (thinSize) nodeSize = 20;
-  else if (tablet) nodeSize = 30;
-  else nodeSize = 40;
+  let nodeSize = thinSize ? 20 : tablet ? 30 : 40;
 
   return nodeSize;
 };
