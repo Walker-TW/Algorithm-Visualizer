@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import algorithmInfo from './algorithms.js';
+import { animateScroll as scroll } from 'react-scroll';
 import {
   Button,
   ButtonGroup,
@@ -34,6 +35,7 @@ const Header = (props) => {
     resetVisited,
     run: propRun,
     setAlgorithm,
+    scrollToBottom,
     speed: propsSpeed,
   } = props;
 
@@ -298,10 +300,15 @@ const Header = (props) => {
                 onClick={
                   mobile
                     ? () => {
-                        run();
+                        setTimeout(() => run(), 1000);
                         collapseNav();
+                        scroll.scrollToBottom({
+                          duration: 1500,
+                          delay: 100,
+                          smooth: true,
+                        });
                       }
-                    : run
+                    : () => setTimeout(() => run(), 500)
                 }
                 children={
                   algorithm
