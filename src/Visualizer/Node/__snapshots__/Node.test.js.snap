@@ -8,8 +8,8 @@ exports[`<Node /> Test that Node renders 1`] = `
   onMouseUp={[Function]}
   style={
     Object {
-      "height": NaN,
-      "width": NaN,
+      "height": 20,
+      "width": 20,
     }
   }
 />

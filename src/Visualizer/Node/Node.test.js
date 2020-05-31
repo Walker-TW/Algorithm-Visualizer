@@ -13,6 +13,7 @@ const defaultProps = {
   mouseToggle: false,
   nodeFlag: nodeFlagSpy,
   resetStartFinish: () => {},
+  size: 20,
 };
 
 describe('<Node />', () => {

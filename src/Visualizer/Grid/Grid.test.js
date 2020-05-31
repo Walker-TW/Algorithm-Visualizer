@@ -9,6 +9,7 @@ const defaultProps = {
   nodeFlag: () => {},
   mouseFlag: () => {},
   mouseToggle: false,
+  nodeSize: 20,
   fenceToggle: false,
   resetStartFinish: () => {},
   updateNode: () => {},
