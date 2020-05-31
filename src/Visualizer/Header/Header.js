@@ -20,7 +20,7 @@ import {
   Row,
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { getDimensions, getMax } from '../../Helpers/getDimensions';
+import { getDimensions, defaultNodeSize } from '../../Helpers/getDimensions';
 import './Header.css';
 
 const Header = (props) => {
@@ -39,12 +39,15 @@ const Header = (props) => {
     setNodeSize: propsNodeSize,
   } = props;
 
+  const [nodeSize, setNodeSize] = useState(defaultNodeSize());
+
   const [screenWidth, screenHeight] = getDimensions();
-  const [maxWidth, maxHeight] = getMax();
+  const [maxDimensions, setMaxDimensions] = useState(getDimensions());
+
+  const [maxWidth, maxHeight] = maxDimensions;
   const [width, setWidth] = useState(Math.ceil(screenWidth));
   const [height, setHeight] = useState(Math.ceil(screenHeight));
   const [speed, setSpeed] = useState(propsSpeed);
-  const [nodeSize, setNodeSize] = useState();
 
   const [show, setShow] = useState();
   const [expanded, setExpanded] = useState(false);
@@ -66,6 +69,18 @@ const Header = (props) => {
     if (ready && algorithm) {
       propRun();
     }
+  };
+
+  const nodeSizeHandler = (e) => {
+    setNodeSize(e.target.value);
+    propsNodeSize(e.target.value);
+
+    let [width, height] = getDimensions(e.target.value);
+
+    resizeGrid([width, height]);
+    setMaxDimensions([width, height]);
+    setWidth(width);
+    setHeight(height);
   };
 
   const gitHubImage = (
@@ -162,13 +177,10 @@ const Header = (props) => {
               <Form.Control
                 type="range"
                 size="sm"
-                min="1"
+                min="10"
                 max="100"
                 value={nodeSize}
-                onChange={(e) => {
-                  setNodeSize(e.target.value);
-                  propsNodeSize(e.target.value);
-                }}
+                onChange={nodeSizeHandler}
                 custom
               />
               Grid Size
@@ -323,7 +335,7 @@ const Header = (props) => {
                 onClick={
                   mobile
                     ? () => {
-                        setTimeout(() => run(), 1000);
+                        setTimeout(() => run(), 200);
                         collapseNav();
                         scroll.scrollToBottom({
                           duration: 1500,
@@ -331,7 +343,7 @@ const Header = (props) => {
                           smooth: true,
                         });
                       }
-                    : () => setTimeout(() => run(), 500)
+                    : () => setTimeout(() => run(), 200)
                 }
                 children={
                   algorithm

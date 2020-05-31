@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import getDimensions from '../Helpers/getDimensions';
+import { getDimensions, defaultNodeSize } from '../Helpers/getDimensions';
 import Header from './Header/Header';
 
 import Alert from 'react-bootstrap/Alert';
@@ -80,7 +80,7 @@ export default class Visualizer extends Component {
     };
   };
 
-  gridSetup = (dimensions = getDimensions()) => {
+  gridSetup = (dimensions = getDimensions(defaultNodeSize())) => {
     let [width, height] = dimensions;
 
     this.setState({ dimensions: dimensions });
