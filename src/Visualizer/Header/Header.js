@@ -20,7 +20,11 @@ import {
   Row,
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { getDimensions, defaultNodeSize } from '../../Helpers/getDimensions';
+import {
+  getDimensions,
+  defaultNodeSize,
+  maxFill,
+} from '../../Helpers/getDimensions';
 import './Header.css';
 
 const Header = (props) => {
@@ -39,20 +43,28 @@ const Header = (props) => {
     setNodeSize: propsNodeSize,
   } = props;
 
+  const mobile = device === 'mobile';
+
   const [nodeSize, setNodeSize] = useState(defaultNodeSize());
 
   const [screenWidth, screenHeight] = getDimensions();
-  const [maxDimensions, setMaxDimensions] = useState(getDimensions());
+  const defaultDimensions = [
+    maxFill(window.innerWidth, nodeSize),
+    mobile ? maxFill(window.innerHeight, nodeSize) : screenHeight,
+  ];
+  const [maxDimensions, setMaxDimensions] = useState(defaultDimensions);
 
   const [maxWidth, maxHeight] = maxDimensions;
+
+  // form value display
   const [width, setWidth] = useState(Math.ceil(screenWidth));
   const [height, setHeight] = useState(Math.ceil(screenHeight));
   const [speed, setSpeed] = useState(propsSpeed);
 
+  // bootstrap
   const [show, setShow] = useState();
   const [expanded, setExpanded] = useState(false);
 
-  const mobile = device === 'mobile';
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const collapseNav = () => setExpanded(false);
@@ -72,13 +84,18 @@ const Header = (props) => {
   };
 
   const nodeSizeHandler = (e) => {
+    // for display
     setNodeSize(e.target.value);
+    // for visualizer to change node inline style
     propsNodeSize(e.target.value);
 
     let [width, height] = getDimensions(e.target.value);
 
     resizeGrid([width, height]);
-    setMaxDimensions([width, height]);
+    setMaxDimensions([
+      maxFill(window.innerWidth, nodeSize),
+      mobile ? maxFill(window.innerWidth, e.target.value) : height,
+    ]);
     setWidth(width);
     setHeight(height);
   };
@@ -231,7 +248,7 @@ const Header = (props) => {
                 type="range"
                 size="sm"
                 min="1"
-                max="50"
+                max={mobile ? maxWidth : maxHeight}
                 value={(height, width)}
                 onChange={(e) => {
                   setWidth(e.target.value);

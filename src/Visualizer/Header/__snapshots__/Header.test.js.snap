@@ -586,7 +586,7 @@ Will find the shortest path
                     />
                     <FormControl
                       custom={true}
-                      max={44}
+                      max={49}
                       min="1"
                       onChange={[Function]}
                       size="sm"

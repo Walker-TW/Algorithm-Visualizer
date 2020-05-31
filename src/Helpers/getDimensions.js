@@ -10,7 +10,6 @@ let width, height;
 const fullSize = screenWidth > 1654;
 const midSize = screenWidth > 1212;
 const thinSize = screenWidth > 991;
-
 const tablet = screenWidth > 414;
 
 const adjustedHeight = (navHeight, nodeSize) => {
@@ -21,7 +20,7 @@ const adjustedHeight = (navHeight, nodeSize) => {
 const adjustedWidth = (screenWidth, nodeSize) => {
   return Math.floor(Math.floor((screenWidth - GRID_PADDING) * 0.9) / nodeSize);
 };
-const maxFill = (value, nodeSize) => {
+export const maxFill = (value, nodeSize) => {
   return Math.floor((value - GRID_PADDING) / nodeSize);
 };
 
