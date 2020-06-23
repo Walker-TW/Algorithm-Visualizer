@@ -1,6 +1,6 @@
 <h2 align="center"> The Algo-Visualiser</h2>
 
-<div align="center">
+<div align="center"> 
 
 [![Build Status](https://travis-ci.org/Walker-TW/Algorithm-Visualizer.svg?branch=master)](https://travis-ci.org/Walker-TW/Algorithm-Visualizer)
 [![JavaScript commits][javascriptcommits]](https://sourcerer.io/walker-tw)
