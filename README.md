@@ -133,6 +133,10 @@ The brother of Breadth First Search it will not explore all neighbour nodes inst
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
+## Acknowledgements
+
+This project was inspired by a video from Clément Mihailescu please visit his youtube channel [here](https://www.youtube.com/channel/UCaO6VoaYJv4kS-TQO_M-N_g)
+
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
 [license-url]: https://github.com/Walker-TW/Algorithm-Visualizer/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
