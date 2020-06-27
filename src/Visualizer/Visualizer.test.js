@@ -2,8 +2,8 @@ import React from 'react';
 
 import matchMediaPolyfill from 'mq-polyfill';
 
-import Visualizer from './Visualizer';
-import Node from './Node/Node';
+import Visualizer from './';
+import { Node } from './Components';
 
 import { shallowToJson } from 'enzyme-to-json';
 

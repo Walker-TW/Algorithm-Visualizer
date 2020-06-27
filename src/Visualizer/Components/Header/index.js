@@ -24,28 +24,26 @@ import {
   getDimensions,
   defaultNodeSize,
   maxFill,
-} from '../../Helpers/getDimensions';
+} from '../../../Helpers/getDimensions';
 import './Header.css';
 
-const Header = (props) => {
-  const {
-    algorithm,
-    animationSpeed,
-    device,
-    fenceToggle,
-    ready,
-    resizeGrid,
-    resetFences,
-    resetVisited,
-    run: propRun,
-    setAlgorithm,
-    speed: propsSpeed,
-    setNodeSize: propsNodeSize,
-  } = props;
-
+const Header = ({
+  algorithm,
+  animationSpeed,
+  device,
+  fenceToggle,
+  ready,
+  resizeGrid,
+  resetFences,
+  resetVisited,
+  run: propRun,
+  setAlgorithm,
+  speed: propsSpeed,
+  setNodeSize: propsNodeSize,
+}) => {
   const mobile = device === 'mobile';
 
-  const [nodeSize, setNodeSize] = useState(defaultNodeSize());
+  const [nodeSize, setNodeSize] = useState(defaultNodeSize);
 
   const [screenWidth, screenHeight] = getDimensions();
   const defaultDimensions = [
@@ -412,7 +410,7 @@ const Header = (props) => {
     </Navbar>
   );
 };
-export default Header;
+export { Header };
 
 Header.propTypes = {
   algorithm: PropTypes.string.isRequired,

@@ -25,7 +25,7 @@ export const maxFill = (value, nodeSize) => {
 };
 
 export const getDimensions = (nodeSize) => {
-  let size = nodeSize ? nodeSize : defaultNodeSize();
+  let size = nodeSize ? nodeSize : defaultNodeSize;
   [width, height] = fullSize
     ? [
         adjustedWidth(screenWidth, size),
@@ -45,10 +45,7 @@ export const getDimensions = (nodeSize) => {
 
   return [width, height];
 };
-export const defaultNodeSize = () => {
-  let nodeSize = thinSize ? 20 : tablet ? 30 : 40;
 
-  return nodeSize;
-};
+export const defaultNodeSize = thinSize ? 20 : tablet ? 30 : 40;
 
 export default getDimensions;

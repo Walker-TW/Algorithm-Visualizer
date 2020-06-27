@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Header from './Header';
+import { Header } from './';
 
 const runSpy = jest.fn(() => {});
 const fenceToggleSpy = jest.fn(() => {});

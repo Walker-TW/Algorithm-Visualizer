@@ -1,5 +1,5 @@
 import React from 'react';
-import Grid from './Grid';
+import { Grid } from './';
 import { shallowToJson } from 'enzyme-to-json';
 
 const defaultProps = {

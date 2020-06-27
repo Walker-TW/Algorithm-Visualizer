@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import Node from '../Node/Node';
+import { Node } from '../';
 import PropTypes from 'prop-types';
 
 import './Grid.css';
 
-const Grid = (props) => {
-  const {
-    grid: propsGrid,
-    fenceToggle,
-    gridHasStart,
-    gridHasFinish,
-    mouseToggle,
-    nodeFlag,
-    mouseFlag,
-    updateNode,
-    resetStartFinish,
-    nodeSize,
-  } = props;
+const Grid = ({
+  grid: propsGrid,
+  fenceToggle,
+  gridHasStart,
+  gridHasFinish,
+  mouseToggle,
+  nodeFlag,
+  mouseFlag,
+  updateNode,
+  resetStartFinish,
+  nodeSize,
+}) => {
   const [grid, setGrid] = useState(propsGrid);
 
   useEffect((propsGrid) => setGrid(propsGrid), [propsGrid, grid]);
@@ -61,4 +60,4 @@ Grid.propTypes = {
   nodeSize: PropTypes.number.isRequired,
 };
 
-export default Grid;
+export { Grid };
