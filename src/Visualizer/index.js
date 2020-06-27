@@ -1,22 +1,21 @@
 import React, { Component, Fragment } from 'react';
 
 import { getDimensions, defaultNodeSize } from '../Helpers/getDimensions';
-import Header from './Header/Header';
 
 import Alert from 'react-bootstrap/Alert';
-import Grid from './Grid/Grid';
-import Stats from './Stats/Stats';
-import { dijkstra, findShortestPath } from '../Algorithms/dijkstra';
+import { Header, Grid, Stats } from './Components';
 import {
+  dijkstra,
+  findShortestPath,
   aStarManhatten,
   findShortestPathAStarM,
-} from '../Algorithms/a*manhatten';
-import {
   aStarEuclidean,
   findShortestPathAStarE,
-} from '../Algorithms/a*euclidean';
-import { breadthFirstSearch, findShortestPathBFS } from '../Algorithms/bfs.js';
-import { depthFirstSearch, findShortestPathDFS } from '../Algorithms/dfs.js';
+  breadthFirstSearch,
+  findShortestPathBFS,
+  depthFirstSearch,
+  findShortestPathDFS,
+} from '../Algorithms';
 import './Visualizer.css';
 
 export default class Visualizer extends Component {
@@ -80,7 +79,7 @@ export default class Visualizer extends Component {
     };
   };
 
-  gridSetup = (dimensions = getDimensions(defaultNodeSize())) => {
+  gridSetup = (dimensions = getDimensions(defaultNodeSize)) => {
     let [width, height] = dimensions;
 
     this.setState({ dimensions: dimensions });

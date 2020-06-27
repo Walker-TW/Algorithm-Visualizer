@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // import "./Node.css";
 import './NodeTron.css';
 // import './AnimatedNode.css';
-export default class Node extends Component {
+class Node extends Component {
   state = {
     start: false,
     finish: false,
@@ -93,6 +93,7 @@ export default class Node extends Component {
   }
 }
 
+export { Node };
 Node.propTypes = {
   fenceToggle: PropTypes.bool.isRequired,
   gridId: PropTypes.object.isRequired,

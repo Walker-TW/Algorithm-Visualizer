@@ -1,10 +1,8 @@
-import React from "react";
-import { Table } from "react-bootstrap";
-import "./Stats.css";
+import React from 'react';
+import { Table } from 'react-bootstrap';
+import './Stats.css';
 
-const Stats = (props) => {
-  const { runtime, nodesProccessed, fastestPath, algorithmRan } = props;
-
+const Stats = ({ runtime, nodesProccessed, fastestPath, algorithmRan }) => {
   return (
     <Table striped bordered hover variant="dark" size="sm">
       <tbody>
@@ -25,4 +23,4 @@ const Stats = (props) => {
   );
 };
 
-export default Stats;
+export { Stats };
