@@ -4,18 +4,7 @@ import PropTypes from 'prop-types';
 
 import './Grid.css';
 
-const Grid = ({
-  grid: propsGrid,
-  fenceToggle,
-  gridHasStart,
-  gridHasFinish,
-  mouseToggle,
-  nodeFlag,
-  mouseFlag,
-  updateNode,
-  resetStartFinish,
-  nodeSize,
-}) => {
+const Grid = ({ grid: propsGrid, nodeProps }) => {
   const [grid, setGrid] = useState(propsGrid);
 
   useEffect((propsGrid) => setGrid(propsGrid), [propsGrid, grid]);
@@ -30,15 +19,7 @@ const Grid = ({
                 key={colIndex.toString() + ' ' + rowIndex.toString()}
                 id={`node-${node.gridId.colIndex}-${node.gridId.rowIndex}`}
                 gridId={node.gridId}
-                gridHasStart={gridHasStart}
-                gridHasFinish={gridHasFinish}
-                fenceToggle={fenceToggle}
-                nodeFlag={nodeFlag}
-                mouseFlag={mouseFlag}
-                updateNode={updateNode}
-                mouseToggle={mouseToggle}
-                resetStartFinish={resetStartFinish}
-                size={nodeSize}
+                {...nodeProps}
               />
             ))}
           </div>
@@ -49,15 +30,8 @@ const Grid = ({
 };
 
 Grid.propTypes = {
-  fenceToggle: PropTypes.bool.isRequired,
   grid: PropTypes.array.isRequired,
-  gridHasStart: PropTypes.bool.isRequired,
-  gridHasFinish: PropTypes.bool.isRequired,
-  mouseFlag: PropTypes.func.isRequired,
-  mouseToggle: PropTypes.bool.isRequired,
-  nodeFlag: PropTypes.func.isRequired,
-  resetStartFinish: PropTypes.func.isRequired,
-  nodeSize: PropTypes.number.isRequired,
+  nodeProps: PropTypes.object.isRequired,
 };
 
 export { Grid };

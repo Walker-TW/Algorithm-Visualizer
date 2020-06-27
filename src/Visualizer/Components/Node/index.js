@@ -94,6 +94,7 @@ class Node extends Component {
 }
 
 export { Node };
+
 Node.propTypes = {
   fenceToggle: PropTypes.bool.isRequired,
   gridId: PropTypes.object.isRequired,

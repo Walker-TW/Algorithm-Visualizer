@@ -44,7 +44,6 @@ exports[`<Visualizer /> renders 1`] = `
     runtime="None Yet"
   />
   <Grid
-    fenceToggle={false}
     grid={
       Array [
         Array [
@@ -16769,13 +16768,19 @@ exports[`<Visualizer /> renders 1`] = `
         ],
       ]
     }
-    gridHasFinish={false}
-    gridHasStart={false}
-    mouseFlag={[Function]}
-    mouseToggle={false}
-    nodeFlag={[Function]}
-    nodeSize={0}
-    resetStartFinish={[Function]}
+    nodeProps={
+      Object {
+        "fenceToggle": false,
+        "gridHasFinish": false,
+        "gridHasStart": false,
+        "mouseFlag": [Function],
+        "mouseToggle": false,
+        "nodeFlag": [Function],
+        "resetStartFinish": [Function],
+        "size": 0,
+        "updateNode": undefined,
+      }
+    }
   />
 </Fragment>
 `;
