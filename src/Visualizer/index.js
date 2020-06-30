@@ -403,6 +403,18 @@ export default class Visualizer extends Component {
       speed,
     } = this.state;
 
+    const nodeProps = {
+      gridHasStart: start.present,
+      gridHasFinish: finish.present,
+      fenceToggle,
+      nodeFlag: this.nodeFlag,
+      mouseFlag: this.mouseFlag,
+      updateNode: this.updateNode,
+      mouseToggle: mouseToggle,
+      resetStartFinish: this.resetStartFinish,
+      size: nodeSize,
+    };
+
     return (
       <Fragment>
         <Header
@@ -433,18 +445,7 @@ export default class Visualizer extends Component {
           fastestPath={fastestPath}
           algorithmRan={algorithmRan}
         />
-        <Grid
-          grid={grid}
-          gridHasStart={start.present}
-          gridHasFinish={finish.present}
-          fenceToggle={fenceToggle}
-          nodeFlag={this.nodeFlag}
-          nodeSize={nodeSize}
-          mouseFlag={this.mouseFlag}
-          updateNode={this.updateNode}
-          mouseToggle={mouseToggle}
-          resetStartFinish={this.resetStartFinish}
-        />
+        <Grid grid={grid} nodeProps={nodeProps} />
       </Fragment>
     );
   }

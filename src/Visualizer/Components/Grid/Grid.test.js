@@ -4,15 +4,7 @@ import { shallowToJson } from 'enzyme-to-json';
 
 const defaultProps = {
   grid: [],
-  gridHasStart: false,
-  gridHasFinish: false,
-  nodeFlag: () => {},
-  mouseFlag: () => {},
-  mouseToggle: false,
-  nodeSize: 20,
-  fenceToggle: false,
-  resetStartFinish: () => {},
-  updateNode: () => {},
+  nodeProps: {},
 };
 
 describe('<Grid />', () => {
