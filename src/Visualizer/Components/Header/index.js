@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import algorithmInfo from './algorithms.js';
-import { animateScroll as scroll } from 'react-scroll';
+import React, { useState } from "react";
+import algorithmInfo from "./algorithms.js";
+import { animateScroll as scroll } from "react-scroll";
 import {
   Button,
   ButtonGroup,
@@ -18,14 +18,14 @@ import {
   OverlayTrigger,
   Popover,
   Row,
-} from 'react-bootstrap';
-import PropTypes from 'prop-types';
+} from "react-bootstrap";
+import PropTypes from "prop-types";
 import {
   getDimensions,
   defaultNodeSize,
   maxFill,
-} from '../../../Helpers/getDimensions';
-import './Header.css';
+} from "../../../Helpers/getDimensions";
+import "./Header.css";
 
 const Header = ({
   algorithm,
@@ -41,7 +41,7 @@ const Header = ({
   speed: propsSpeed,
   setNodeSize: propsNodeSize,
 }) => {
-  const mobile = device === 'mobile';
+  const mobile = device === "mobile";
 
   const [nodeSize, setNodeSize] = useState(defaultNodeSize);
 
@@ -68,11 +68,11 @@ const Header = ({
   const collapseNav = () => setExpanded(false);
 
   const run = () => {
-    if (algorithm === '') alert('Please select an algorithm');
+    if (algorithm === "") alert("Please select an algorithm");
 
     if (!ready)
       alert(
-        'Please choose a start and finish point before running by clicking on the desired squares'
+        "Please choose a start and finish point before running by clicking on the desired squares"
       );
 
     if (ready && algorithm) {
@@ -108,8 +108,8 @@ const Header = ({
   const gitHubImage = (
     <Image
       src="/images/github.png"
-      className={'github-img'}
-      alt={'Github'}
+      className={"github-img"}
+      alt={"Github"}
       fluid
     />
   );
@@ -117,8 +117,8 @@ const Header = ({
   const linkedInImage = (
     <Image
       src="/images/linkedin.png"
-      alt={'LinkedIn'}
-      className={'linkedin-img'}
+      alt={"LinkedIn"}
+      className={"linkedin-img"}
       fluid
     />
   );
@@ -127,8 +127,8 @@ const Header = ({
     return (
       <OverlayTrigger
         key={i}
-        trigger={['hover', 'focus']}
-        placement={mobile ? 'bottom' : 'right'}
+        trigger={["hover", "focus"]}
+        placement={mobile ? "bottom" : "right"}
         overlay={
           <Popover id={`${alg.id}-popover`}>
             <Popover.Title as="h2" children={`${alg.name}`} />
@@ -136,7 +136,7 @@ const Header = ({
               <p>
                 <strong>{`${alg.header}`}</strong>
               </p>
-              <p style={{ whiteSpace: 'pre-line' }}>{`${alg.content}`}</p>
+              <p style={{ whiteSpace: "pre-line" }}>{`${alg.content}`}</p>
               <p>{`${alg.footer}`}</p>
             </Popover.Content>
           </Popover>
@@ -164,9 +164,9 @@ const Header = ({
             remove them by clicking on them again)
           </Row>
           <Row>
-            {' '}
+            {" "}
             2. Then place fences by checking "Fence Mode" and clicking on the
-            grid.{' '}
+            grid.{" "}
           </Row>
           <Row>3. Choose an algorithm via the "Algorithms" dropdown. </Row>
           <Row>4. Run it via pressing the green "Run Algorithm" button. </Row>
@@ -248,7 +248,7 @@ const Header = ({
                 custom
               />
               <NavDropdown.Divider />
-              <Form.Label children={'Draw Square'} />
+              <Form.Label children={"Draw Square"} />
               <Form.Control
                 type="range"
                 size="sm"
@@ -263,7 +263,7 @@ const Header = ({
                 custom
               />
               <NavDropdown.Divider />
-              <Form.Label children={'Animation Speed'} />
+              <Form.Label children={"Animation Speed"} />
               <Form.Control
                 type="range"
                 min="1"
@@ -283,30 +283,30 @@ const Header = ({
   );
 
   const contactInfo = (
-    <DropdownButton title="Contact The Team" size="sm" id="contact-info">
+    <DropdownButton title=" Contact The Creators" size="sm" id="contact-info">
       <Container>
         <Row>
-          <NavDropdown.Item id={'bassel'} children={'Bassel'} />
+          <NavDropdown.Item id={"bassel"} children={"Bassel"} />
           <a
-            className={'image-link'}
+            className={"image-link"}
             href="https://github.com/basselalsayed"
             children={gitHubImage}
           />
           <a
-            className={'image-link'}
+            className={"image-link"}
             href="https://www.linkedin.com/in/bsas/"
             children={linkedInImage}
           />
         </Row>
         <Row>
-          <NavDropdown.Item id={'tom'} children={'Tom'} />
+          <NavDropdown.Item id={"tom"} children={"Tom"} />
           <a
-            className={'image-link'}
+            className={"image-link"}
             href="https://github.com/Walker-TW"
             children={gitHubImage}
           />
           <a
-            className={'image-link'}
+            className={"image-link"}
             href="https://www.linkedin.com/in/thomas-w-walker"
             children={linkedInImage}
           />
@@ -325,10 +325,10 @@ const Header = ({
     >
       <Navbar.Brand
         href="https://github.com/Walker-TW/Algorithm-Visualizer"
-        children={'Algo-Visualiser'}
+        children={"Algo-Visualiser"}
       />
       <Navbar.Toggle
-        onClick={() => setExpanded(expanded ? false : 'lg')}
+        onClick={() => setExpanded(expanded ? false : "lg")}
         aria-controls="responsive-navbar-nav"
       />
       <Navbar.Collapse id="responsive-navbar-nav">
@@ -344,36 +344,36 @@ const Header = ({
             <Nav>
               <Button
                 id="info-btn"
-                style={{ border: '2px solid cyan', color: 'cyan' }}
+                style={{ border: "2px solid cyan", color: "cyan" }}
                 variant="dark"
-                children={'How To Use'}
+                children={"How To Use"}
                 onClick={handleShow}
               />
               {howToUse}
               <Button
                 id="run-btn"
-                style={{ border: '2px solid chartreuse', color: 'chartreuse' }}
+                style={{ border: "2px solid chartreuse", color: "chartreuse" }}
                 variant="dark"
                 onClick={run}
                 children={
                   algorithm
                     ? `Let's Run ${algorithm}`
-                    : 'Please Select Algorithm'
+                    : "Please Select Algorithm"
                 }
-                disabled={!ready || algorithm === ''}
+                disabled={!ready || algorithm === ""}
               />
               <Dropdown as={ButtonGroup}>
                 <Button
                   id="reset-btn"
                   variant="dark"
-                  style={{ border: '2px solid red', color: 'red' }}
-                  children={'Reset Visited'}
+                  style={{ border: "2px solid red", color: "red" }}
+                  children={"Reset Visited"}
                   onClick={resetVisited}
                 />
                 <Dropdown.Toggle
                   split
                   variant="dark"
-                  style={{ border: '2px solid red', color: 'red' }}
+                  style={{ border: "2px solid red", color: "red" }}
                   id="dropdown-custom-2"
                 />
                 <Dropdown.Menu>
@@ -381,7 +381,7 @@ const Header = ({
                     id="fence-reset-btn"
                     onClick={resetFences}
                     variant="dark"
-                    children={'Reset Fences'}
+                    children={"Reset Fences"}
                   />
                 </Dropdown.Menu>
               </Dropdown>
@@ -396,7 +396,7 @@ const Header = ({
                     id="fence-check"
                     name="fences"
                     label="Fence mode"
-                    style={{ color: 'white' }}
+                    style={{ color: "white" }}
                     onChange={fenceToggle}
                   />
                 </Form>
