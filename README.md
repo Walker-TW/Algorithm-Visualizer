@@ -2,7 +2,6 @@
 
 <div align="center"> 
 
-[![Build Status](https://travis-ci.org/Walker-TW/Algorithm-Visualizer.svg?branch=master)](https://travis-ci.org/Walker-TW/Algorithm-Visualizer)
 [![JavaScript commits][javascriptcommits]](https://sourcerer.io/walker-tw)
 [![Jest][jest]](https://sourcerer.io/basselalsayed)
 [![CSS commits][csscommits]](https://sourcerer.io/walker-tw)
@@ -14,7 +13,7 @@
 
 <p align="center">
   <a href="https://github.com/Walker-TW/Algorithm-Visualizer">
-      <img src="https://f0.pngfuel.com/png/858/267/round-black-maze-png-clip-art.png" width="200" height="200" alt="icon">
+      <img src="https://st3.depositphotos.com/1216158/14623/v/450/depositphotos_146238761-stock-illustration-solvable-circular-maze-element.jpg" width="200" height="200" alt="icon">
   </a>
 
   <p align="center">
