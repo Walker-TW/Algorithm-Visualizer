@@ -13,12 +13,11 @@
 
 <p align="center">
   <a href="https://github.com/Walker-TW/Algorithm-Visualizer">
-      <img src="https://st3.depositphotos.com/1216158/14623/v/450/depositphotos_146238761-stock-illustration-solvable-circular-maze-element.jpg" width="200" height="200" alt="icon">
+      <img src='public/readMeImage.jpeg' width="200" height="200" alt="icon">
   </a>
 
   <p align="center">
     An interactive visualiser which demonstrates the pro's and con's of various graph solving algorithms.
- 
   </p>
 </p>
 
@@ -26,7 +25,7 @@
 
 [_About The Project_](#About-The-Project) | [_Features_](#Features) | [_Getting Started_](#Getting-Started) | [_How To Use_](#How-To-Use) | [_The Algorithms_](#The-Algorithms) | [_Contact The Team_](#Contact-The-Team) | [_License_](#license)
 
-It is deployed via Netlify [here:]([https://algo-visualiser.herokuapp.com](https://the-algorithm-visualizer.netlify.app/))
+It is deployed via Netlify [here:](https://the-algorithm-visualizer.netlify.app/)
 
 </div>
 
